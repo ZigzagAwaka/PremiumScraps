@@ -58,3 +58,5 @@ E:\Productions\LethalCompany-Mods-dev\PremiumScraps\PremiumScraps\obj\Debug\nets
 E:\Productions\LethalCompany-Mods-dev\PremiumScraps\PremiumScraps\obj\Debug\netstandard2.1\PremiumS.2C6B17D3.Up2Date
 E:\Productions\LethalCompany-Mods-dev\PremiumScraps\PremiumScraps\obj\Debug\netstandard2.1\PremiumScraps.dll
 E:\Productions\LethalCompany-Mods-dev\PremiumScraps\PremiumScraps\obj\Debug\netstandard2.1\PremiumScraps.pdb
+E:\Productions\LethalCompany-Mods-dev\PremiumScraps\PremiumScraps\bin\Debug\netstandard2.1\LethalNetworkAPI.dll
+E:\Productions\LethalCompany-Mods-dev\PremiumScraps\PremiumScraps\obj\Debug\netstandard2.1\PremiumScraps.sourcelink.json

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PremiumScraps")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd2a0c89d5f22360606ba66749da885df3d83eb7")]
 [assembly: System.Reflection.AssemblyProductAttribute("PremiumScraps")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PremiumScraps")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

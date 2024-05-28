@@ -53,7 +53,6 @@ crashlytics-build.properties
 
 # Custom
 /.vsconfig
-/zigzag.premiumscraps/*
 /PremiumScraps/bin/*
 /PremiumScraps/obj/*
 /Assets/AssetBundles/*

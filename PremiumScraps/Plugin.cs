@@ -24,6 +24,8 @@ namespace PremiumScraps
     }
 
 
+    [BepInDependency("LethalLib")]
+    [BepInDependency("LethalNetworkAPI")]
     [BepInPlugin(GUID, NAME, VERSION)]
     public class Plugin : BaseUnityPlugin
     {
@@ -33,20 +35,17 @@ namespace PremiumScraps
 
         public static Plugin instance;
 
-        void loadBehaviour(Item item, int behaviourId)
+        void loadItemBehaviour(Item item, int behaviourId)
         {
+            PhysicsProp script;
             switch (behaviourId)
             {
-                case 1:
-                    {
-                        Explosion script = item.spawnPrefab.AddComponent<Explosion>();
-                        script.grabbable = true;
-                        script.grabbableToEnemies = true;
-                        script.itemProperties = item;
-                        break;
-                    }
+                case 1: script = item.spawnPrefab.AddComponent<Explosion>(); break;
                 default: return;
             }
+            script.grabbable = true;
+            script.grabbableToEnemies = true;
+            script.itemProperties = item;
         }
 
         void Awake()
@@ -80,7 +79,7 @@ namespace PremiumScraps
             foreach (Scrap scrap in scraps)
             {
                 Item item = bundle.LoadAsset<Item>(directory + scrap.asset);
-                if (scrap.behaviourId != 0) loadBehaviour(item, scrap.behaviourId);
+                if (scrap.behaviourId != 0) loadItemBehaviour(item, scrap.behaviourId);
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
                 Utilities.FixMixerGroups(item.spawnPrefab);
                 Items.RegisterScrap(item, scrap.rarity, Levels.LevelTypes.All);
