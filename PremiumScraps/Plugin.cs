@@ -24,7 +24,6 @@ namespace PremiumScraps
     }
 
 
-    [BepInDependency("LethalLib")]
     [BepInDependency("LethalNetworkAPI")]
     [BepInPlugin(GUID, NAME, VERSION)]
     public class Plugin : BaseUnityPlugin

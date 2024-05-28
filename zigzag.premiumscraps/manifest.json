@@ -4,7 +4,8 @@
     "website_url": "",
     "description": "Adds several scrap items to the game, with custom audio and... some secrets!",
     "dependencies": [
-        "Evaisa-LethalLib-0.15.1",
+        "Evaisa-LethalLib-0.16.0",
+        "xilophor-LethalNetworkAPI-2.1.7",
         "BepInEx-BepInExPack-5.4.2100"
     ]
 }

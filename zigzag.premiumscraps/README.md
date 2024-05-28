@@ -6,7 +6,7 @@ These items could be cute, funny or stylich but in any case they all have been c
 
 Compatible with v50 of Lethal Company thanks to [LethalLib](https://thunderstore.io/c/lethal-company/p/Evaisa/LethalLib/).
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/Images/main/premiumscraps-preview4.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview4.PNG)
 
 ### Notes
 Each item has a low/medium spawn chance on all moons, you will not find them easily. This is to keep the game as vanilla as possible while adding some rare scraps to find if you are lucky !
