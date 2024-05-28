@@ -50,3 +50,12 @@ crashlytics-build.properties
 
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Custom
+/.vsconfig
+/zigzag.premiumscraps/*
+/PremiumScraps/bin/*
+/PremiumScraps/obj/*
+/Assets/AssetBundles/*
+/Assets/AudioMixerController/*
+/Assets/Plugins/*
