@@ -1,0 +1,87 @@
+ManifestFileVersion: 0
+CRC: 820488422
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3ffff3e0415da280ce7a8ebd2a012153
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6c1c815c5c0259ff5ebd6648fd9b9a3f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 3ffff3e0415da280ce7a8ebd2a012153
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: c7b430c469db0421764b70ff9c06bc0d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c30496d6ae6d6f907456e10a94e01ec6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3c36d0a92cbb1f26a39169ef0eae393a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3d0cf24d2ccc3b7eab72048d0f57c437, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 241
+  Script: {instanceID: 0}
+- Class: 243
+  Script: {instanceID: 0}
+- Class: 245
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: Battery
+- AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
+  ClassName: UnityEngine.Rendering.HighDefinition.BoolScalableSettingValue
+- AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
+  ClassName: UnityEngine.Rendering.HighDefinition.IntScalableSettingValue
+Assets:
+- Assets/Data/Spoon/SpoonItem.asset
+- Assets/Data/PuppyShark/PuppySharkItem.asset
+- Assets/Data/EaNasir/EaNasirItem.asset
+- Assets/Data/SODA/SODAItem.asset
+- Assets/Data/AirHornCustom/AirHornCustomItem.asset
+- Assets/Data/HScard/HSCardItem.asset
+- Assets/Data/TheKing/TheKingItem.asset
+- Assets/Data/Balan/BalanItem.asset
+- Assets/Data/Frieren/FrierenItem.asset
+- Assets/Data/AinzOoalGown/AinzOoalGownItem.asset
+- Assets/Data/Chocobo/ChocoboItem.asset
+- Assets/Data/HarryMason/HarryMasonItem.asset
+- Assets/Data/Cristal/CristalItem.asset
+- Assets/Data/Rupee/RupeeItem.asset
+- Assets/Data/HelmDomination/HelmDominationItem.asset
+- Assets/Data/Crouton/CroutonItem.asset
+Dependencies: []
