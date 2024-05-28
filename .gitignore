@@ -53,8 +53,8 @@ crashlytics-build.properties
 
 # Custom
 /.vsconfig
-/PremiumScraps/bin/*
-/PremiumScraps/obj/*
-/Assets/AssetBundles/*
-/Assets/AudioMixerController/*
-/Assets/Plugins/*
+/PremiumScraps/bin/
+/PremiumScraps/obj/
+/Assets/AssetBundles/
+/Assets/AudioMixerController/
+/Assets/Plugins/
