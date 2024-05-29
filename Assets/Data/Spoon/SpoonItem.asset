@@ -64,5 +64,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8e2d244655a28d046ae7a4b69d56c19e, type: 2}
   - {fileID: 2100000, guid: 8e2d244655a28d046ae7a4b69d56c19e, type: 2}
   - {fileID: 2100000, guid: ac5a0b3c19560fa4288d0f579a0c1217, type: 2}
+  - {fileID: 2100000, guid: ac5a0b3c19560fa4288d0f579a0c1217, type: 2}
+  - {fileID: 2100000, guid: eba7849dde0ef824d992419a50df5af1, type: 2}
   usableInSpecialAnimations: 0
   canBeInspected: 0

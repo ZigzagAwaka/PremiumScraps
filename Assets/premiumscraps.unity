@@ -708,7 +708,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 556a391547f7b5d4c9a1466c85a07488, type: 2}
+      objectReference: {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
+    - target: {fileID: 6540655128183217405, guid: 273657b2b38c9cf41be7018aa0de9ccd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
     - target: {fileID: 7138642567691528873, guid: 273657b2b38c9cf41be7018aa0de9ccd,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -1138,6 +1143,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4104952896641776208, guid: fb7a0ba76ba12f6428b9e94af89a4556,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8e2d244655a28d046ae7a4b69d56c19e, type: 2}
     - target: {fileID: 4958517193539299838, guid: fb7a0ba76ba12f6428b9e94af89a4556,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1273,8 +1283,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7489578232780143942, guid: b7ffab121a8d56147bc1508f94f7cb68,
         type: 3}
-      propertyPath: MaxDistance
-      value: 200
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 0.14821962
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

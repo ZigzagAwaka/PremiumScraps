@@ -1,7 +1,9 @@
 # 1.5.0 New scraps
 - **Added**
     - Added crouton, Airhorn and Balan Statue
+    - Added a rare glowing color variation to Comically Large Spoon
 - **Updated**
+    - HearthStone Card can now be inspected
     - Reduced Helm of Domination, Ea-Nasir Statue and Ainz Ooal Gown weight
     - Updated dependencies (last version of LethalLib and added LethalNetworkAPI)
     - Updated README (+github repo)

@@ -1,6 +1,6 @@
 # PremiumScraps
 
-This mod currently adds **13 scrap items** to the game !
+This mod currently adds **16 scrap items** to the game !
 
 These items could be cute, funny or stylich but in any case they all have been cleaned to have no impact on performance.
 

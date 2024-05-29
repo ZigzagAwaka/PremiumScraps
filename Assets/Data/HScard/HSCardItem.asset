@@ -50,7 +50,8 @@ MonoBehaviour:
   syncInteractLRFunction: 0
   saveItemVariable: 0
   isDefensiveWeapon: 0
-  toolTips: []
+  toolTips:
+  - 'Inspect: [Z]'
   verticalOffset: 0
   floorYOffset: 90
   allowDroppingAheadOfPlayer: 0
@@ -61,4 +62,4 @@ MonoBehaviour:
   meshVariants: []
   materialVariants: []
   usableInSpecialAnimations: 0
-  canBeInspected: 0
+  canBeInspected: 1
