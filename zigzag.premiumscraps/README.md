@@ -11,10 +11,12 @@ Compatible with v50 of Lethal Company thanks to [LethalLib](https://thunderstore
 ### Notes
 Each item has a low/medium spawn chance on all moons, you will not find them easily. This is to keep the game as vanilla as possible while adding some rare scraps to find if you are lucky !
 
+### Feedback
+You can post some suggestions or issues in the [github](https://github.com/ZigzagAwaka/PremiumScraps).
+
 ### ToDo
 - More scraps
 - Config file
-- Make custom interactions sync to all players if I ever find a way to do it?
 
 ###
 
@@ -34,7 +36,7 @@ Each item has a low/medium spawn chance on all moons, you will not find them eas
 - SODA
 - Comically Large Spoon *(+ gold variant)*
 - crouton
-- ahc
+- Airhorn *(is this the real one?)*
 - Balan Statue *(+ glowing rainbow variant)*
 
 </details>

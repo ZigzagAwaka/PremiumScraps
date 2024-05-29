@@ -1,16 +1,16 @@
 # 1.5.0 New scraps
 - **Added**
-    - Added crouton
+    - Added crouton, Airhorn and Balan Statue
 - **Updated**
     - Reduced Helm of Domination, Ea-Nasir Statue and Ainz Ooal Gown weight
-    - Updated LethalLib to last version
+    - Updated dependencies (last version of LethalLib and added LethalNetworkAPI)
     - Updated README (+github repo)
 - **Fixed**
     - Fixed Comically Large Spoon damage desync bug (probably)
 
 # 1.4.0 Improvements
 - **Added**
-    - Added Comically Large Spoon (with a gold variant)
+    - Added Comically Large Spoon
     - Added 6 color variations to the Rupee
 - **Updated**
     - Added a tool tip to The King
