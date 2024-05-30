@@ -62,6 +62,8 @@ MonoBehaviour:
   meshVariants: []
   materialVariants:
   - {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
+  - {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
+  - {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
   - {fileID: 2100000, guid: 556a391547f7b5d4c9a1466c85a07488, type: 2}
   usableInSpecialAnimations: 0
   canBeInspected: 1
