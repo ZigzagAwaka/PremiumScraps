@@ -5,6 +5,7 @@
 - **Updated**
     - HearthStone Card can now be inspected
     - Reduced Helm of Domination, Ea-Nasir Statue and Ainz Ooal Gown weight
+    - Reduced HearthStone Card texture quality
     - Updated dependencies (last version of LethalLib and added LethalNetworkAPI)
     - Updated README (+github repo)
 - **Fixed**

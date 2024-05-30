@@ -1495,6 +1495,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 53209762976646261, guid: 861cfe2c1670527498f675268aeb3702,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e31d8166a41fd54cb6caf203f18db29, type: 2}
+    - target: {fileID: 53769651547852759, guid: 861cfe2c1670527498f675268aeb3702,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a2e87bf784c252f4f902db0eee2e61a3, type: 2}
     - target: {fileID: 4104197315190692299, guid: 861cfe2c1670527498f675268aeb3702,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1554,11 +1564,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HScard
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282405199402976967, guid: 861cfe2c1670527498f675268aeb3702,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

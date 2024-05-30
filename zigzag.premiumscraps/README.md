@@ -44,7 +44,7 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - Comically Large Spoon *(3 different colors)*
 - crouton
 - Airhorn *(is this the real one? watch out...)*
-- Balan Statue *(+ glowing rainbow variant)*
+- Balan Statue *(2 different colors)*
 
 </details>
 
