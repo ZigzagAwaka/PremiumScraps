@@ -1,21 +1,30 @@
+# 1.6.0 Improvements
+- **Updated**
+    - Added an emissive texture for Helm of Domination and HearthStone Card
+    - Increased Comically Large Spoon damage
+    - Reduced Comically Large Spoon spawn chance
+- **Fixed**
+    - Fixed Chocobo, The King and Puppy Shark grab animation
+    - Reduced Airhorn explosion range
+
 # 1.5.0 New scraps
 - **Added**
     - Added crouton, Airhorn and Balan Statue
-    - Added a rare glowing color variation to Comically Large Spoon
 - **Updated**
+    - Added a rare glowing color variation to Comically Large Spoon
     - HearthStone Card can now be inspected
     - Reduced Helm of Domination, Ea-Nasir Statue and Ainz Ooal Gown weight
     - Reduced HearthStone Card texture quality
     - Updated dependencies (last version of LethalLib and added LethalNetworkAPI)
     - Updated README (+github repo)
 - **Fixed**
-    - Fixed Comically Large Spoon damage desync bug (probably)
+    - Fixed Comically Large Spoon damage desync bug
 
 # 1.4.0 Improvements
 - **Added**
     - Added Comically Large Spoon
-    - Added 6 color variations to the Rupee
 - **Updated**
+    - Added 6 color variations to the Rupee
     - Added a tool tip to The King
     - Increased Helm of Domination scrap value
     - Reduced Ea-Nasir Statue weight

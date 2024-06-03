@@ -1,6 +1,6 @@
 # PremiumScraps
 
-This mod currently adds **16 scrap items** to the game !
+This mod currently adds **16 scrap items** to the game ! (some with custom effect 😎)
 
 These items could be cute, funny or stylich but in any case they all have been cleaned to have no impact on performance.
 
@@ -37,14 +37,14 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - Harry Mason
 - Mystic Cristal
 - Puppy Shark
-- Rupee *(6 different colors)*
+- Rupee *(6 colors)*
 - Ea-Nasir Statue
 - HearthStone Card
 - SODA
-- Comically Large Spoon *(3 different colors)*
+- Comically Large Spoon *(weapon, 3 colors)*
 - crouton
-- Airhorn *(is this the real one? watch out...)*
-- Balan Statue *(2 different colors)*
+- Airhorn *(can be used for a surprise effect... is this the real one?)*
+- Balan Statue *(2 colors)*
 
 </details>
 
