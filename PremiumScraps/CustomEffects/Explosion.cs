@@ -13,7 +13,7 @@ namespace PremiumScraps.CustomEffects
 
         private void SpawnExplosionNetwork(UnityEngine.Vector3 position, ulong clientId)
         {
-            Landmine.SpawnExplosion(position, true, 8, 16, 50, 1);
+            Landmine.SpawnExplosion(position, true, 4, 8, 50, 1);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)

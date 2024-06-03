@@ -209,7 +209,7 @@ MonoBehaviour:
   radarIcon: {fileID: 0}
   reachedFloorTarget: 0
   grabbableToEnemies: 1
-  shovelHitForce: 1
+  shovelHitForce: 2
   reelingUp: 0
   isHoldingButton: 0
   reelUp: {fileID: 8300000, guid: 05bd970a35270974e9b62dbdc2db0574, type: 3}

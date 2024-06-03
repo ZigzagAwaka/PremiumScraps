@@ -30,7 +30,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.5.0";
+        const string VERSION = "1.6.0";
 
         public static Plugin instance;
 
@@ -69,7 +69,7 @@ namespace PremiumScraps
                 new Scrap("EaNasir/EaNasirItem.asset", 7),
                 new Scrap("HScard/HSCardItem.asset", 8),
                 new Scrap("SODA/SODAItem.asset", 10),
-                new Scrap("Spoon/SpoonItem.asset", 11),
+                new Scrap("Spoon/SpoonItem.asset", 8),
                 new Scrap("Crouton/CroutonItem.asset", 5),
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 7, 1),
                 new Scrap("Balan/BalanItem.asset", 10)
