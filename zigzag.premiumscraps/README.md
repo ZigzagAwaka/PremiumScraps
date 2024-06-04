@@ -2,7 +2,7 @@
 
 This mod currently adds **16 scrap items** to the game ! (some with custom effect 😎)
 
-These items could be cute, funny or stylich but in any case they all have been cleaned to have no impact on performance.
+These items could be cute, funny or stylish but in any case they all have been cleaned to have no impact on performance.
 
 Compatible with v50 of Lethal Company thanks to [LethalLib](https://thunderstore.io/c/lethal-company/p/Evaisa/LethalLib/).
 
