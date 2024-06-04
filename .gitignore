@@ -53,6 +53,7 @@ crashlytics-build.properties
 
 # Custom
 /.vsconfig
+/.vscode
 /PremiumScraps/bin/
 /PremiumScraps/obj/
 /Assets/AssetBundles/
