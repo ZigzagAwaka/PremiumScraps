@@ -1,8 +1,10 @@
 # 1.6.0 Improvements
 - **Updated**
+    - The King and Puppy Shark can now be used to make some funny sound
     - Added an emissive texture for Helm of Domination and HearthStone Card
     - Increased Comically Large Spoon damage
     - Reduced Comically Large Spoon spawn chance
+    - Increased The King audio
 - **Fixed**
     - Fixed Chocobo, The King and Puppy Shark grab animation
     - Reduced Airhorn explosion range

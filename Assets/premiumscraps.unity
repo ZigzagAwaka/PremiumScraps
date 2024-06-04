@@ -1797,6 +1797,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheKing
       objectReference: {fileID: 0}
+    - target: {fileID: 6022225511392733100, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+        type: 3}
+      propertyPath: noiseSFX.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022225511392733100, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+        type: 3}
+      propertyPath: noiseSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2139c4bd4d3fe794d8611113bc9f0120, type: 3}
+    - target: {fileID: 6022225511392733100, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+        type: 3}
+      propertyPath: noiseSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 586a5c1cd3afb6e469cf2d369b178605, type: 3}
+    - target: {fileID: 6022225511392733100, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+        type: 3}
+      propertyPath: noiseSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c41f1857bfe0ed49a2bd6add4a5f190, type: 3}
+    - target: {fileID: 6022225511392733100, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+        type: 3}
+      propertyPath: noiseSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 196cf4a64fee57141bd49c2be2cb0494, type: 3}
+    - target: {fileID: 6022225511392733100, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+        type: 3}
+      propertyPath: noiseSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a9d846cb4d381504c86b0c853b3d92e5, type: 3}
     - target: {fileID: 6223540880787003224, guid: 5f6d21f3dd589f6439eb80a99102afd4,
         type: 3}
       propertyPath: m_LocalPosition.x

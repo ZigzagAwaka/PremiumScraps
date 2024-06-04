@@ -84,10 +84,10 @@ namespace PremiumScraps
                 Items.RegisterScrap(item, scrap.rarity, Levels.LevelTypes.All);
 
                 //// TEST
-                /*                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
-                                node.clearPreviousText = true;
-                                node.displayText = "test";
-                                Items.RegisterShopItem(item, null, null, node, 0);*/
+                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
+                node.clearPreviousText = true;
+                node.displayText = "test";
+                Items.RegisterShopItem(item, null, null, node, 0);
             }
 
             Logger.LogInfo("PremiumScraps is loaded !");

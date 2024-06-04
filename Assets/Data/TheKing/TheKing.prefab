@@ -840,10 +840,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6223540880787003224}
-  - component: {fileID: 8891842181655158824}
   - component: {fileID: 1693920384588464802}
   - component: {fileID: 606559351266644899}
   - component: {fileID: 3236368203286286806}
+  - component: {fileID: 6022225511392733100}
   m_Layer: 6
   m_Name: TheKing
   m_TagString: PhysicsProp
@@ -868,53 +868,6 @@ Transform:
   - {fileID: 7716526948011089712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8891842181655158824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563487053704156925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0cf24d2ccc3b7eab72048d0f57c437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbable: 1
-  isHeld: 0
-  isHeldByEnemy: 0
-  deactivated: 0
-  parentObject: {fileID: 0}
-  targetFloorPosition: {x: 0, y: 0, z: 0}
-  startFallingPosition: {x: 0, y: 0, z: 0}
-  floorYRot: 0
-  fallTime: 0
-  hasHitGround: 0
-  scrapValue: 0
-  itemUsedUp: 0
-  playerHeldBy: {fileID: 0}
-  isPocketed: 0
-  isBeingUsed: 0
-  isInElevator: 0
-  isInShipRoom: 0
-  isInFactory: 0
-  useCooldown: 0
-  currentUseCooldown: 0
-  itemProperties: {fileID: 11400000, guid: 610013e60e657964b841d1e7430fe98d, type: 2}
-  insertedBattery:
-    empty: 0
-    charge: 0
-  customGrabTooltip: 
-  propBody: {fileID: 0}
-  propColliders: []
-  originalScale: {x: 0, y: 0, z: 0}
-  wasOwnerLastFrame: 0
-  mainObjectRenderer: {fileID: 0}
-  scrapPersistedThroughRounds: 0
-  heldByPlayerOnServer: 0
-  radarIcon: {fileID: 0}
-  reachedFloorTarget: 0
-  grabbableToEnemies: 1
 --- !u!114 &1693920384588464802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1006,68 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6022225511392733100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563487053704156925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47a20a28c3465c9e978f827ff3840ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbable: 1
+  isHeld: 0
+  isHeldByEnemy: 0
+  deactivated: 0
+  parentObject: {fileID: 0}
+  targetFloorPosition: {x: 0, y: 0, z: 0}
+  startFallingPosition: {x: 0, y: 0, z: 0}
+  floorYRot: 0
+  fallTime: 0
+  hasHitGround: 0
+  scrapValue: 0
+  itemUsedUp: 0
+  playerHeldBy: {fileID: 0}
+  isPocketed: 0
+  isBeingUsed: 0
+  isInElevator: 0
+  isInShipRoom: 0
+  isInFactory: 0
+  useCooldown: 2
+  currentUseCooldown: 0
+  itemProperties: {fileID: 11400000, guid: 610013e60e657964b841d1e7430fe98d, type: 2}
+  insertedBattery:
+    empty: 0
+    charge: 0
+  customGrabTooltip: 
+  propBody: {fileID: 0}
+  propColliders: []
+  originalScale: {x: 0, y: 0, z: 0}
+  wasOwnerLastFrame: 0
+  mainObjectRenderer: {fileID: 0}
+  scrapPersistedThroughRounds: 0
+  heldByPlayerOnServer: 0
+  radarIcon: {fileID: 0}
+  reachedFloorTarget: 0
+  grabbableToEnemies: 1
+  noiseAudio: {fileID: 3236368203286286806}
+  noiseAudioFar: {fileID: 0}
+  noiseSFX:
+  - {fileID: 8300000, guid: 2139c4bd4d3fe794d8611113bc9f0120, type: 3}
+  - {fileID: 8300000, guid: 586a5c1cd3afb6e469cf2d369b178605, type: 3}
+  - {fileID: 8300000, guid: 8c41f1857bfe0ed49a2bd6add4a5f190, type: 3}
+  - {fileID: 8300000, guid: 196cf4a64fee57141bd49c2be2cb0494, type: 3}
+  - {fileID: 8300000, guid: a9d846cb4d381504c86b0c853b3d92e5, type: 3}
+  noiseSFXFar: []
+  noiseRange: 50
+  maxLoudness: 1
+  minLoudness: 0.9
+  minPitch: 1
+  maxPitch: 1
+  triggerAnimator: {fileID: 0}
 --- !u!1 &3564194706545405405
 GameObject:
   m_ObjectHideFlags: 0
