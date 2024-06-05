@@ -18,7 +18,7 @@ MonoBehaviour:
   twoHanded: 0
   twoHandedAnimation: 1
   canBeGrabbedBeforeGameStart: 1
-  weight: 1.13
+  weight: 1.15
   itemIsTrigger: 0
   holdButtonUse: 1
   itemSpawnsOnGround: 1
