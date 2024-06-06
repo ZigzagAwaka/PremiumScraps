@@ -45,7 +45,7 @@ MonoBehaviour:
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
-  syncUseFunction: 0
+  syncUseFunction: 1
   syncDiscardFunction: 0
   syncInteractLRFunction: 0
   saveItemVariable: 0

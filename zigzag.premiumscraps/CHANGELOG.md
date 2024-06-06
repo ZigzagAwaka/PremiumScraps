@@ -2,7 +2,7 @@
 - **Updated**
     - The King and Puppy Shark can now be used to make some funny sound
     - Added an emissive texture for Helm of Domination and HearthStone Card
-    - Increased Comically Large Spoon damage
+    - Increased Comically Large Spoon damage and weight
     - Reduced Comically Large Spoon spawn chance
     - Increased The King audio
 - **Fixed**
