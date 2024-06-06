@@ -33,10 +33,10 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - Chocobo
 - Ainz Ooal Gown
 - Helm of Domination
-- The King
+- The King *(can speak when used)*
 - Harry Mason
 - Mystic Cristal
-- Puppy Shark
+- Puppy Shark *(can be squeezed)*
 - Rupee *(6 colors)*
 - Ea-Nasir Statue
 - HearthStone Card
@@ -53,6 +53,8 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 # Credits
 
 - Thanks [XyphireTV](https://www.twitch.tv/xyphiretv) for helping with some custom made 3D models, shaders and other stuff!
+
+- Thanks Leaucard for helping with custom sounds, assets and some ideas!
 
 - One scrap uses voice acting by [Zedahu](https://www.twitch.tv/zedahu)
 

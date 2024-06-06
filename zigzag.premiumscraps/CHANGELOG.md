@@ -8,6 +8,8 @@
 - **Fixed**
     - Fixed Chocobo, The King and Puppy Shark grab animation
     - Reduced Airhorn explosion range
+    - Reduced Mystic Cristal texture quality
+    - Optimized Helm of Domination model
 
 # 1.5.0 New scraps
 - **Added**
@@ -16,11 +18,11 @@
     - Added a rare glowing color variation to Comically Large Spoon
     - HearthStone Card can now be inspected
     - Reduced Helm of Domination, Ea-Nasir Statue and Ainz Ooal Gown weight
-    - Reduced HearthStone Card texture quality
     - Updated last version of LethalLib, added LethalNetworkAPI
     - Updated README (+github repo)
 - **Fixed**
     - Fixed Comically Large Spoon damage desync bug
+    - Reduced HearthStone Card texture quality
 
 # 1.4.0 Improvements
 - **Added**
