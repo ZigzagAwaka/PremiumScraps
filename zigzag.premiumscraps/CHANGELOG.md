@@ -1,3 +1,8 @@
+# 1.7.0 New scraps
+- **Added**
+- **Updated**
+- **Fixed**
+
 ## 1.6.2
 - **Updated**
     - Added a config file to set every spawn chance as you like

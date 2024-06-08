@@ -30,7 +30,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.6.2";
+        const string VERSION = "1.7.0";
 
         public static Plugin instance;
 
@@ -87,10 +87,10 @@ namespace PremiumScraps
                 Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
 
                 //// TEST
-                /*                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
-                                node.clearPreviousText = true;
-                                node.displayText = "test";
-                                Items.RegisterShopItem(item, null, null, node, 0);*/
+                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
+                node.clearPreviousText = true;
+                node.displayText = "test";
+                Items.RegisterShopItem(item, null, null, node, 0);
             }
 
             Logger.LogInfo("PremiumScraps is loaded !");
