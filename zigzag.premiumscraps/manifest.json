@@ -1,6 +1,6 @@
 {
     "name": "PremiumScraps",
-    "version_number": "1.6.0",
+    "version_number": "1.6.1",
     "website_url": "https://github.com/ZigzagAwaka/PremiumScraps",
     "description": "Adds several scrap items to the game, with custom audio and... some secrets!",
     "dependencies": [

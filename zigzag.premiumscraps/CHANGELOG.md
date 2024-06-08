@@ -1,3 +1,8 @@
+## 1.6.1
+- **Updated**
+    - All scraps can now be grabbed before game start
+    - Reduced Balan Statue audio
+
 # 1.6.0 Improvements
 - **Updated**
     - The King and Puppy Shark can now be used to make some funny sound

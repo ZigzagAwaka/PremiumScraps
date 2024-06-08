@@ -17,7 +17,7 @@ MonoBehaviour:
   spawnPositionTypes: []
   twoHanded: 0
   twoHandedAnimation: 0
-  canBeGrabbedBeforeGameStart: 0
+  canBeGrabbedBeforeGameStart: 1
   weight: 1.05
   itemIsTrigger: 0
   holdButtonUse: 0
