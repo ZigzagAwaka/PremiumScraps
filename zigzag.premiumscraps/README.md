@@ -6,7 +6,7 @@ These items could be cute, funny or stylish but in any case they all have been c
 
 Compatible with v50 of Lethal Company thanks to [LethalLib](https://thunderstore.io/c/lethal-company/p/Evaisa/LethalLib/).
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview5.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview6.PNG)
 
 <details><summary>More images? (click to reveal)</summary>
 
