@@ -71,7 +71,7 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
     - [lukinu](https://sketchfab.com/3d-models/heart-in-glass-1dacc91d294141658633cce0a79ecd97)
     - [rozeHart](https://sketchfab.com/3d-models/vress-the-puppy-shark-0bf0ac5dd20f46cbb91534491438bb2f)
     - [Calfan](https://sketchfab.com/3d-models/legend-of-zelda-rupee-aa19b25bc1af41139a671403bc4110e3)
-    - [TheKingJo](https://sketchfab.com/3d-models/standing-male-worshiper-6b8afed41874447a8451ea2907e5e1b0)
+    - [TheKingJo](https://sketchfab.com/3d-models/standing-male-worshiper-game-ready-572f7a4aa653464eb96d14c5b953d600)
     - [sandenArt](https://sketchfab.com/3d-models/hearthstone-card-wisp-5c354d20122d4bdd946ca4b4f3c23ca9)
     - [Ruslan Abbasov](https://sketchfab.com/3d-models/psx-soda-can-2823eac5e9d14414a9577715274fd89f)
     - [OnOne Supplies](https://sketchfab.com/3d-models/spoon-lowpoly-9b3e16a7a2c04ca5907a09e4e4daaac7)

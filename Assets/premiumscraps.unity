@@ -1422,51 +1422,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3400008853772760016, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.62941074
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400008853772760016, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.6568086
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400008853772760016, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.42260468
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400008853772760016, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0.011124134
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400008853772760016, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.8318169
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400008853772760016, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.021854788
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651950454729639715, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651950454729639715, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651950454729639715, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 7095343532696214657, guid: 01aab56d19ed01c40bef3305d93bba20,
         type: 3}
       propertyPath: m_Name
@@ -1476,11 +1431,6 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3107315565
-      objectReference: {fileID: 0}
-    - target: {fileID: 8832990687100733642, guid: 01aab56d19ed01c40bef3305d93bba20,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.94
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

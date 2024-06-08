@@ -2,6 +2,8 @@
 - **Updated**
     - All scraps can now be grabbed before game start
     - Reduced Balan Statue audio
+- **Fixed**
+    - Optimized Ea-Nasir Statue model
 
 # 1.6.0 Improvements
 - **Updated**
