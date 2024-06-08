@@ -1,3 +1,8 @@
+## 1.6.2
+- **Updated**
+    - Added a config file to set every spawn chance as you like
+    - Increased Comically Large Spoon audio
+
 ## 1.6.1
 - **Updated**
     - All scraps can now be grabbed before game start

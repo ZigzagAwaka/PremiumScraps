@@ -18,12 +18,14 @@ Compatible with v50 of Lethal Company thanks to [LethalLib](https://thunderstore
 ### Notes
 Each item has a low/medium spawn chance on all moons, you will not find them easily. This is to keep the game as vanilla as possible while adding some rare scraps to find if you are lucky !
 
+*You can modify any spawn chance in the config file, only for those who really want to.*
+
 ### Feedback
 You can post some suggestions or issues in the [github](https://github.com/ZigzagAwaka/PremiumScraps).
 
 ### ToDo
 - More scraps
-- Config file
+- More custom effects
 
 ###
 
@@ -75,6 +77,3 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
     - [sandenArt](https://sketchfab.com/3d-models/hearthstone-card-wisp-5c354d20122d4bdd946ca4b4f3c23ca9)
     - [Ruslan Abbasov](https://sketchfab.com/3d-models/psx-soda-can-2823eac5e9d14414a9577715274fd89f)
     - [OnOne Supplies](https://sketchfab.com/3d-models/spoon-lowpoly-9b3e16a7a2c04ca5907a09e4e4daaac7)
-
-
-

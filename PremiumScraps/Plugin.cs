@@ -30,7 +30,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.6.1";
+        const string VERSION = "1.6.2";
 
         public static Plugin instance;
 
@@ -47,6 +47,7 @@ namespace PremiumScraps
             script.itemProperties = item;
         }
 
+        internal static Config config { get; private set; } = null!;
         void Awake()
         {
             instance = this;
@@ -75,13 +76,15 @@ namespace PremiumScraps
                 new Scrap("Balan/BalanItem.asset", 10)
             };
 
+            int i = 0; config = new Config(base.Config, scraps);
+
             foreach (Scrap scrap in scraps)
             {
                 Item item = bundle.LoadAsset<Item>(directory + scrap.asset);
                 if (scrap.behaviourId != 0) loadItemBehaviour(item, scrap.behaviourId);
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
                 Utilities.FixMixerGroups(item.spawnPrefab);
-                Items.RegisterScrap(item, scrap.rarity, Levels.LevelTypes.All);
+                Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
 
                 //// TEST
                 /*                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
