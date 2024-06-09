@@ -84,7 +84,8 @@ namespace PremiumScraps
                 if (scrap.behaviourId != 0) loadItemBehaviour(item, scrap.behaviourId);
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
                 Utilities.FixMixerGroups(item.spawnPrefab);
-                Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
+                int rarity = config.entries[i++].Value >= 0 ? config.entries[i++].Value : scrap.rarity;
+                Items.RegisterScrap(item, rarity, Levels.LevelTypes.All);
 
                 //// TEST
                 TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();

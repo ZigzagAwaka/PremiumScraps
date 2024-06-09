@@ -2,6 +2,7 @@
 - **Added**
 - **Updated**
 - **Fixed**
+    - Rarity in config file will now be ignored if it was set < 0
 
 ## 1.6.2
 - **Updated**
