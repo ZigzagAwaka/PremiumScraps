@@ -1,8 +1,8 @@
 # 1.7.0 New scraps
 - **Added**
 - **Updated**
+    - Updated dependencies
 - **Fixed**
-    - Rarity in config file will now be ignored if it was set < 0
 
 ## 1.6.2
 - **Updated**
