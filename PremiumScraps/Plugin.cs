@@ -73,7 +73,8 @@ namespace PremiumScraps
                 new Scrap("Spoon/SpoonItem.asset", 10),
                 new Scrap("Crouton/CroutonItem.asset", 5),
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 7, 1),
-                new Scrap("Balan/BalanItem.asset", 10)
+                new Scrap("Balan/BalanItem.asset", 10),
+                new Scrap("CustomFace/CustomFaceItem.asset", 9)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
