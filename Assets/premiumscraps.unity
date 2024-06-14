@@ -630,6 +630,22 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1639282630
       objectReference: {fileID: 0}
+    - target: {fileID: 6142389993752320024, guid: 6c2322edbd148fd46b44ddf267cdc3b5,
+        type: 3}
+      propertyPath: maskTypeId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142389993752320024, guid: 6c2322edbd148fd46b44ddf267cdc3b5,
+        type: 3}
+      propertyPath: mimicEnemy
+      value: 
+      objectReference: {fileID: 11400000, guid: 93b974ebd1aa4714aa834366df77c1bb,
+        type: 2}
+    - target: {fileID: 6142389993752320024, guid: 6c2322edbd148fd46b44ddf267cdc3b5,
+        type: 3}
+      propertyPath: maskIsHaunted
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

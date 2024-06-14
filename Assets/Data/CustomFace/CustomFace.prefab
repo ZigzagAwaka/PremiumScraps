@@ -83,10 +83,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1737667740291017987}
-  - component: {fileID: 7752826746939616298}
   - component: {fileID: 6046476127655035595}
   - component: {fileID: 8400424075821036916}
   - component: {fileID: 1239082723848849307}
+  - component: {fileID: 6142389993752320024}
   m_Layer: 6
   m_Name: CustomFace
   m_TagString: PhysicsProp
@@ -111,53 +111,6 @@ Transform:
   - {fileID: 6102835529467541360}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7752826746939616298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3253130535471918085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0cf24d2ccc3b7eab72048d0f57c437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbable: 1
-  isHeld: 0
-  isHeldByEnemy: 0
-  deactivated: 0
-  parentObject: {fileID: 0}
-  targetFloorPosition: {x: 0, y: 0, z: 0}
-  startFallingPosition: {x: 0, y: 0, z: 0}
-  floorYRot: 0
-  fallTime: 0
-  hasHitGround: 0
-  scrapValue: 0
-  itemUsedUp: 0
-  playerHeldBy: {fileID: 0}
-  isPocketed: 0
-  isBeingUsed: 0
-  isInElevator: 0
-  isInShipRoom: 0
-  isInFactory: 0
-  useCooldown: 0
-  currentUseCooldown: 0
-  itemProperties: {fileID: 11400000, guid: f6178609c4ccdd641a4b5990e10e2b8a, type: 2}
-  insertedBattery:
-    empty: 0
-    charge: 0
-  customGrabTooltip: 
-  propBody: {fileID: 0}
-  propColliders: []
-  originalScale: {x: 0, y: 0, z: 0}
-  wasOwnerLastFrame: 0
-  mainObjectRenderer: {fileID: 0}
-  scrapPersistedThroughRounds: 0
-  heldByPlayerOnServer: 0
-  radarIcon: {fileID: 0}
-  reachedFloorTarget: 0
-  grabbableToEnemies: 1
 --- !u!114 &6046476127655035595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +249,66 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7391424, y: 0.597517, z: 0.26820195}
   m_Center: {x: 0.026378155, y: 0.27370596, z: -0.10913783}
+--- !u!114 &6142389993752320024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3253130535471918085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56138581845c73f21ce1690f46c6c6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbable: 1
+  isHeld: 0
+  isHeldByEnemy: 0
+  deactivated: 0
+  parentObject: {fileID: 0}
+  targetFloorPosition: {x: 0, y: 0, z: 0}
+  startFallingPosition: {x: 0, y: 0, z: 0}
+  floorYRot: 0
+  fallTime: 0
+  hasHitGround: 0
+  scrapValue: 0
+  itemUsedUp: 0
+  playerHeldBy: {fileID: 0}
+  isPocketed: 0
+  isBeingUsed: 0
+  isInElevator: 0
+  isInShipRoom: 0
+  isInFactory: 0
+  useCooldown: 1
+  currentUseCooldown: 0
+  itemProperties: {fileID: 11400000, guid: f6178609c4ccdd641a4b5990e10e2b8a, type: 2}
+  insertedBattery:
+    empty: 0
+    charge: 0
+  customGrabTooltip: 
+  propBody: {fileID: 0}
+  propColliders: []
+  originalScale: {x: 0, y: 0, z: 0}
+  wasOwnerLastFrame: 0
+  mainObjectRenderer: {fileID: 0}
+  scrapPersistedThroughRounds: 0
+  heldByPlayerOnServer: 0
+  radarIcon: {fileID: 0}
+  reachedFloorTarget: 0
+  grabbableToEnemies: 1
+  maskAudio: {fileID: 8400424075821036916}
+  maskAttachAudio: {fileID: 8300000, guid: 01cc9757fd202794382a0eb7e1e9cbe5, type: 3}
+  maskAttachAudioLocal: {fileID: 8300000, guid: 01cc9757fd202794382a0eb7e1e9cbe5,
+    type: 3}
+  maskAnimator: {fileID: 0}
+  maskEyesFilled: {fileID: 0}
+  headMaskPrefab: {fileID: 0}
+  currentHeadMask: {fileID: 0}
+  headPositionOffset: {x: 0, y: 0, z: 0}
+  headRotationOffset: {x: 0, y: 0, z: 0}
+  mimicEnemy: {fileID: 11400000, guid: 93b974ebd1aa4714aa834366df77c1bb, type: 2}
+  maskIsHaunted: 1
+  maskTypeId: 5
 --- !u!1001 &8201900705220588739
 PrefabInstance:
   m_ObjectHideFlags: 0
