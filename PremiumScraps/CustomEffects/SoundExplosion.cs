@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
-    internal class Explosion : PhysicsProp
+    internal class SoundExplosion : PhysicsProp
     {
         public LethalClientMessage<Vector3> network, networkAudio;
-        Explosion()
+        public SoundExplosion()
         {
             useCooldown = 2;
             network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsExplosionID");
@@ -22,7 +22,7 @@ namespace PremiumScraps.CustomEffects
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
         {
-            AudioSource.PlayClipAtPoint(Plugin.sounds[0], position, 4f);
+            AudioSource.PlayClipAtPoint(Plugin.sounds[0], position + (Vector3.up * 2), 5f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)

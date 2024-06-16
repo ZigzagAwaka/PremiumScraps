@@ -43,7 +43,7 @@ namespace PremiumScraps
             PhysicsProp script;
             switch (behaviourId)
             {
-                case 1: script = item.spawnPrefab.AddComponent<Explosion>(); break;
+                case 1: script = item.spawnPrefab.AddComponent<SoundExplosion>(); break;
                 case 2: script = item.spawnPrefab.AddComponent<Troll>(); break;
                 default: return;
             }
