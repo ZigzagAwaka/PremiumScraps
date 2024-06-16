@@ -31,7 +31,7 @@ namespace PremiumScraps.CustomEffects
             if (buttonDown && playerHeldBy != null)
             {
                 networkAudio.SendAllClients(playerHeldBy.transform.position);
-                if (Random.Range(1, 11) < 4 && !StartOfRound.Instance.inShipPhase)
+                if (!StartOfRound.Instance.inShipPhase && Random.Range(1, 11) < 4)
                 {
                     network.SendAllClients(playerHeldBy.transform.position);
                 }
