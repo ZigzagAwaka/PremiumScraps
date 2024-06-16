@@ -1,4 +1,5 @@
 ﻿using LethalNetworkAPI;
+using PremiumScraps.Utils;
 using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
@@ -17,12 +18,12 @@ namespace PremiumScraps.CustomEffects
 
         private void SpawnExplosionNetwork(Vector3 position, ulong clientId)
         {
-            Landmine.SpawnExplosion(position, true, 4, 8, 50, 1);
+            Effects.Explosion(position, 4);
         }
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
         {
-            AudioSource.PlayClipAtPoint(Plugin.sounds[0], position + (Vector3.up * 2), 5f);
+            Effects.Audio(0, position, 5f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)

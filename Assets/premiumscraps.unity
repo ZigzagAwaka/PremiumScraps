@@ -830,12 +830,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocobo
       objectReference: {fileID: 0}
-    - target: {fileID: 8080494824006592650, guid: e79d2499564ffae46bd5411d92763d84,
-        type: 3}
-      propertyPath: itemProperties
-      value: 
-      objectReference: {fileID: 11400000, guid: ee68d3a7c7cfaac4690800337524e1d4,
-        type: 2}
     - target: {fileID: 8581278721548238009, guid: e79d2499564ffae46bd5411d92763d84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1055,16 +1049,6 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 227.44127
       objectReference: {fileID: 0}
-    - target: {fileID: 2604140157167888877, guid: b8ba01ca3b27d2945a19f45a5d03ead9,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.69043064
-      objectReference: {fileID: 0}
-    - target: {fileID: 2604140157167888877, guid: b8ba01ca3b27d2945a19f45a5d03ead9,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.073414326
-      objectReference: {fileID: 0}
     - target: {fileID: 4112019807137271994, guid: b8ba01ca3b27d2945a19f45a5d03ead9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1119,11 +1103,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AinzOoalGown
-      objectReference: {fileID: 0}
-    - target: {fileID: 8759788576912508589, guid: b8ba01ca3b27d2945a19f45a5d03ead9,
-        type: 3}
-      propertyPath: m_Range
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8759788576912508589, guid: b8ba01ca3b27d2945a19f45a5d03ead9,
         type: 3}
@@ -1732,6 +1711,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 493040006931888569, guid: 6c4ba9625cd80b84db1c0780b57b926d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f29f64a3157235c46867615e8f3b0854, type: 2}
     - target: {fileID: 6670798875263313001, guid: 6c4ba9625cd80b84db1c0780b57b926d,
         type: 3}
       propertyPath: GlobalObjectIdHash

@@ -3,9 +3,13 @@
     - Added The friendship ender, scroll, stick and book
 - **Updated**
     - Airhorn will now play the real Airhorn sound when used (but it's a little different)
+    - Removed the '?' from the Airhorn tooltip, use the sound to tell if it's the real one
     - Airhorn explosion is now random
     - Updated dependencies
 - **Fixed**
+    - Reduced Chocobo and Puppy Shark texture quality
+    - Fixed Ainz Ooal Gown grab animation
+    - Optimized again Ainz Ooal Gown model (it's now extremely low poly)
 
 ## 1.6.2
 - **Updated**

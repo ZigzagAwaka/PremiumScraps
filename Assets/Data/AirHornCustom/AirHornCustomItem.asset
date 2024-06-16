@@ -51,7 +51,7 @@ MonoBehaviour:
   saveItemVariable: 0
   isDefensiveWeapon: 0
   toolTips:
-  - 'Use airhorn? : [RMB]'
+  - 'Use airhorn : [RMB]'
   verticalOffset: 0.05
   floorYOffset: 90
   allowDroppingAheadOfPlayer: 0

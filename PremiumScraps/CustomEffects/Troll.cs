@@ -1,26 +1,30 @@
 ﻿using LethalNetworkAPI;
 using PremiumScraps.Utils;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
     internal class Troll : PhysicsProp
     {
-        public LethalClientMessage<Vector3> network;
+        public LethalClientMessage<Vector3> network, networkAudio;
         public Troll()
         {
-            useCooldown = 2;
+            useCooldown = 3;
             customGrabTooltip = "Friendship ends here : [E]";
             network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollID");
+            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollAudioID");
             network.OnReceivedFromClient += SpawnEnemyNetwork;
+            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
         }
 
         private void SpawnEnemyNetwork(Vector3 position, ulong clientId)
         {
-            GameObject gameObject = Instantiate(GetEnemies.Giant.enemyType.enemyPrefab, position, Quaternion.Euler(new Vector3(0f, 0f, 0f)));
-            gameObject.GetComponentInChildren<NetworkObject>().Spawn(true);
-            RoundManager.Instance.SpawnedEnemies.Add(gameObject.GetComponent<EnemyAI>());
+            Effects.Spawn(GetEnemies.Giant, position);
+        }
+
+        private void InvokeAudioNetwork(Vector3 position, ulong clientId)
+        {
+            Effects.Audio(1, position, 3f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -28,9 +32,23 @@ namespace PremiumScraps.CustomEffects
             base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded)
             {
-                AudioSource.PlayClipAtPoint(Plugin.sounds[1], playerHeldBy.transform.position, 3f);
-                if (Random.Range(1, 11) < 8)
-                    HUDManager.Instance.DisplayTip("Don't do this bro", "Don't listen to the voices in your head.", true);
+                networkAudio.SendAllClients(playerHeldBy.transform.position);
+                if (playerHeldBy.health > 90)
+                {
+                    playerHeldBy.DamagePlayer(10);
+                    Effects.Message("Don't do this bro", "Don't listen to the voices in your head.", true);
+                }
+                else if (playerHeldBy.health > 70 && playerHeldBy.health <= 90)
+                {
+                    playerHeldBy.DamagePlayer(20);
+                    Effects.Message("We warned you", "You know there's no turning back from what you're about to do, right?", true);
+                }
+                else if (playerHeldBy.health > 20 && playerHeldBy.health <= 70)
+                {
+                    playerHeldBy.bleedingHeavily = true;
+                    playerHeldBy.DamagePlayer(playerHeldBy.health - 10);
+                    Effects.Message("W̴ͪ̅e̤̲̞ ḏ͆ȍ̢̥ a̵̿͘ l̙ͭ͠ittle b̈́͠it of troll͢i̗̍͜n͙̆͠g", "", true);
+                }
                 else
                 {
                     var playerTmp = playerHeldBy;
