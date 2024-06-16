@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using HarmonyLib;
 using LethalLib.Modules;
 using PremiumScraps.CustomEffects;
 using System.Collections.Generic;
@@ -33,13 +34,17 @@ namespace PremiumScraps
         const string VERSION = "1.7.0";
 
         public static Plugin instance;
+        public static List<AudioClip> sounds;
+        private readonly Harmony harmony = new Harmony(GUID);
+        internal static Config config { get; private set; } = null!;
 
-        void loadItemBehaviour(Item item, int behaviourId)
+        void LoadItemBehaviour(Item item, int behaviourId)
         {
             PhysicsProp script;
             switch (behaviourId)
             {
                 case 1: script = item.spawnPrefab.AddComponent<Explosion>(); break;
+                case 2: script = item.spawnPrefab.AddComponent<Troll>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -47,7 +52,6 @@ namespace PremiumScraps
             script.itemProperties = item;
         }
 
-        internal static Config config { get; private set; } = null!;
         void Awake()
         {
             instance = this;
@@ -56,6 +60,11 @@ namespace PremiumScraps
             AssetBundle bundle = AssetBundle.LoadFromFile(assetDir);
 
             string directory = "Assets/Data/";
+
+            sounds = new List<AudioClip> {
+                bundle.LoadAsset<AudioClip>(directory + "_audio/AirHorn1.ogg"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/friendship_ends_here.wav")
+            };
 
             var scraps = new List<Scrap> {
                 new Scrap("Frieren/FrierenItem.asset", 10),
@@ -74,7 +83,7 @@ namespace PremiumScraps
                 new Scrap("Crouton/CroutonItem.asset", 5),
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 7, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
-                new Scrap("CustomFace/CustomFaceItem.asset", 9)
+                new Scrap("CustomFace/CustomFaceItem.asset", 8, 2)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
@@ -82,7 +91,7 @@ namespace PremiumScraps
             foreach (Scrap scrap in scraps)
             {
                 Item item = bundle.LoadAsset<Item>(directory + scrap.asset);
-                if (scrap.behaviourId != 0) loadItemBehaviour(item, scrap.behaviourId);
+                if (scrap.behaviourId != 0) LoadItemBehaviour(item, scrap.behaviourId);
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
                 Utilities.FixMixerGroups(item.spawnPrefab);
                 Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
@@ -94,6 +103,7 @@ namespace PremiumScraps
                 Items.RegisterShopItem(item, null, null, node, 0);
             }
 
+            harmony.PatchAll();
             Logger.LogInfo("PremiumScraps is loaded !");
         }
     }

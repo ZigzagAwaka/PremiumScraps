@@ -1,6 +1,9 @@
 # 1.7.0 New scraps
 - **Added**
+    - Added The friendship ender, scroll, stick and book
 - **Updated**
+    - Airhorn will now play the real Airhorn sound when used (but it's a little different)
+    - Airhorn explosion is now random
     - Updated dependencies
 - **Fixed**
 
@@ -36,7 +39,7 @@
     - Added a rare glowing color variation to Comically Large Spoon
     - HearthStone Card can now be inspected
     - Reduced Helm of Domination, Ea-Nasir Statue and Ainz Ooal Gown weight
-    - Updated last version of LethalLib, added LethalNetworkAPI
+    - Updated dependencies
     - Updated README (+github repo)
 - **Fixed**
     - Fixed Comically Large Spoon damage desync bug

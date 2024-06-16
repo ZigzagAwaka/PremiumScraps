@@ -1,6 +1,6 @@
 # PremiumScraps
 
-This mod currently adds **16 scrap items** to the game ! (some with custom effect 😎)
+This mod currently adds **20 scrap items** to the game ! (some with custom effect 😎)
 
 These items could be cute, funny or stylish but in any case they all have been cleaned to have no impact on performance.
 
@@ -47,6 +47,10 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - crouton
 - Airhorn *(can be used for a surprise effect... is this the real one?)*
 - Balan Statue *(2 colors)*
+- The friendship ender *(use it near your friends, I swear it's just for a good laugh)*
+- scroll *(consomable item, teleport the user to the ship)*
+- stick *(weapon, insane knockback)*
+- book
 
 </details>
 
@@ -77,3 +81,4 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
     - [sandenArt](https://sketchfab.com/3d-models/hearthstone-card-wisp-5c354d20122d4bdd946ca4b4f3c23ca9)
     - [Ruslan Abbasov](https://sketchfab.com/3d-models/psx-soda-can-2823eac5e9d14414a9577715274fd89f)
     - [OnOne Supplies](https://sketchfab.com/3d-models/spoon-lowpoly-9b3e16a7a2c04ca5907a09e4e4daaac7)
+    - [CGPlayz](https://sketchfab.com/3d-models/ive-never-thought-of-it-like-that-beforeface-98547873477c45168dce192a48b1e9a7)

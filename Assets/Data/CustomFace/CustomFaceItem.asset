@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CustomFaceItem
   m_EditorClassIdentifier: 
   itemId: 0
-  itemName: friendship ender
+  itemName: Friendship ender
   spawnPositionTypes: []
   twoHanded: 0
   twoHandedAnimation: 0
   canBeGrabbedBeforeGameStart: 1
   weight: 1.1
   itemIsTrigger: 0
-  holdButtonUse: 1
+  holdButtonUse: 0
   itemSpawnsOnGround: 1
   isConductiveMetal: 0
   isScrap: 1
@@ -28,20 +28,20 @@ MonoBehaviour:
   lockedInDemo: 0
   highestSalePercentage: 0
   maxValue: 180
-  minValue: 80
+  minValue: 100
   spawnPrefab: {fileID: 3253130535471918085, guid: 6c2322edbd148fd46b44ddf267cdc3b5,
     type: 3}
   requiresBattery: 0
   batteryUsage: 0
   automaticallySetUsingPower: 0
-  itemIcon: {fileID: 21300000, guid: 0ee9c9025887f2943aa6db6f64c237f5, type: 3}
+  itemIcon: {fileID: 21300000, guid: efa247684304ff54b9491053de297ec0, type: 3}
   grabAnim: 
   useAnim: 
   pocketAnim: 
   throwAnim: 
   grabAnimationTime: 0
-  grabSFX: {fileID: 8300000, guid: 40008576b48bdf248b8dcc158c117c94, type: 3}
-  dropSFX: {fileID: 8300000, guid: 7fdf0087c1b27da44b38a9dc788da3cd, type: 3}
+  grabSFX: {fileID: 8300000, guid: 9c4ae95da5a0e78428d01dc30484d615, type: 3}
+  dropSFX: {fileID: 8300000, guid: 50938e97a1ae21b4cb01c6a4a0dbc2e5, type: 3}
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
@@ -51,13 +51,13 @@ MonoBehaviour:
   saveItemVariable: 0
   isDefensiveWeapon: 0
   toolTips:
-  - 'Wear mask : [RMB]'
+  - 'Are you really sure about this one? : [RMB]'
   verticalOffset: 0
   floorYOffset: 90
   allowDroppingAheadOfPlayer: 0
   restingRotation: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 90, y: 0, z: -90}
-  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 140, y: 0, z: -90}
+  positionOffset: {x: -0.04, y: 0.1, z: -0.02}
   meshOffset: 0
   meshVariants: []
   materialVariants: []

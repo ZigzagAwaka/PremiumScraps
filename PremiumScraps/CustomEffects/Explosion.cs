@@ -1,27 +1,40 @@
 ﻿using LethalNetworkAPI;
+using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
     internal class Explosion : PhysicsProp
     {
-        public LethalClientMessage<UnityEngine.Vector3> network;
+        public LethalClientMessage<Vector3> network, networkAudio;
         Explosion()
         {
-            network = new LethalClientMessage<UnityEngine.Vector3>(identifier: "premiumscrapsExplosionID");
+            useCooldown = 2;
+            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsExplosionID");
+            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsExplosionAudioID");
             network.OnReceivedFromClient += SpawnExplosionNetwork;
+            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
         }
 
-        private void SpawnExplosionNetwork(UnityEngine.Vector3 position, ulong clientId)
+        private void SpawnExplosionNetwork(Vector3 position, ulong clientId)
         {
             Landmine.SpawnExplosion(position, true, 4, 8, 50, 1);
+        }
+
+        private void InvokeAudioNetwork(Vector3 position, ulong clientId)
+        {
+            AudioSource.PlayClipAtPoint(Plugin.sounds[0], position, 4f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             base.ItemActivate(used, buttonDown);
-            if (buttonDown)
+            if (buttonDown && playerHeldBy != null)
             {
-                if (playerHeldBy != null) network.SendAllClients(playerHeldBy.transform.position);
+                networkAudio.SendAllClients(playerHeldBy.transform.position);
+                if (Random.Range(1, 11) < 4 && !StartOfRound.Instance.inShipPhase)
+                {
+                    network.SendAllClients(playerHeldBy.transform.position);
+                }
             }
         }
     }
