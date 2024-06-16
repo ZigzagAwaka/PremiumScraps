@@ -9,8 +9,8 @@ namespace PremiumScraps.CustomEffects
         public SoundExplosion()
         {
             useCooldown = 2;
-            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsExplosionID");
-            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsExplosionAudioID");
+            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsSoundExplosionID");
+            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsSoundExplosionAudioID");
             network.OnReceivedFromClient += SpawnExplosionNetwork;
             networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
         }
