@@ -2,31 +2,31 @@
 
 This mod currently adds **20 scrap items** to the game ! 😎
 
-These items could be cute, funny or stylish but in any case they all have been cleaned to have no impact on performance.
+These items can be cute, funny or stylish. They all have been cleaned to have no impact on performance.
 
 Compatible with v50 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
-- Use it near your friends, I swear it's just for a good laugh.
+- Use it near your friends, I swear it's just for shits and giggles.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-troll.PNG)
 
 ### Scroll and book
-- consomable item, teleport the user to the ship
+- Consumable item, teleports its user to the ship.
 - todo
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-paperTODO.PNG)
 
 ### Fake Airhorn
-- Can be used to make sound just like a real airhorn
-- Sometimes it will trigger a custom *bad* effect, is this the real one?
+- Can be used to make loud annoying sounds, just like a real airhorn would.
+- Sometimes it will trigger a custom *bad* effect, are you sure that this is the real one?
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-airhorn.PNG)
 
 ### Weapons
 - **Comically Large Spoon**, a classic, does a little more damage than the shovel.
-- The legendary **stick**, a non-lethal weapon. But you should not use it on your friends...
+- The legendary **stick**, a non-lethal weapon, but you should not use it on your friends...
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-weaponsTODO.PNG)
 
@@ -40,11 +40,13 @@ Compatible with v50 of Lethal Company.
 - Scraps with no special effects, but they come with custom audio. Some can even glow in dark places.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview1.PNG)
+
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview2.PNG)
 
-<details><summary>More images? (click to reveal)</summary>
+<details><summary>Want to see some more images? (click to reveal)</summary>
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-rupees.PNG)
+
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-variant.PNG)
 
 </details>
@@ -54,7 +56,7 @@ Compatible with v50 of Lethal Company.
 ### Notes
 Each item has a low/medium spawn chance on all moons, you will not find them easily. This is to keep the game as vanilla as possible while adding some rare scraps to find if you are lucky !
 
-*You can modify any spawn chance in the config file, only for those who really want to.*
+*You can modify any spawn chance in the config file if you want to.*
 
 ### Feedback
 You can post some suggestions or issues in the [github](https://github.com/ZigzagAwaka/PremiumScraps).
