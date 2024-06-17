@@ -1,4 +1,5 @@
-﻿using Unity.Netcode;
+﻿using GameNetcodeStuff;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.Utils
@@ -10,12 +11,24 @@ namespace PremiumScraps.Utils
             Landmine.SpawnExplosion(position, true, range, range * 2, 50, 1);
         }
 
+        public static void Damage(PlayerControllerB player, int damageNb, int animation = 0, bool criticalBlood = true)
+        {
+            if (criticalBlood && player.health - damageNb <= 20)
+                player.bleedingHeavily = true;
+            player.DamagePlayer(damageNb, deathAnimation: animation);
+        }
+
+        public static void Knockback(PlayerControllerB player, Vector3 direction, int force)
+        {
+            new PhysicsKnockbackOnHit().Hit(force, direction, player);
+        }
+
         public static void Audio(int audioID, Vector3 position, float volume)
         {
             AudioSource.PlayClipAtPoint(Plugin.sounds[audioID], position + (Vector3.up * 2), volume);
         }
 
-        public static void Message(string title, string bottom, bool warning)
+        public static void Message(string title, string bottom, bool warning = false)
         {
             HUDManager.Instance.DisplayTip(title, bottom, warning);
         }

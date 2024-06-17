@@ -35,24 +35,23 @@ namespace PremiumScraps.CustomEffects
                 networkAudio.SendAllClients(playerHeldBy.transform.position);
                 if (playerHeldBy.health > 90)
                 {
-                    playerHeldBy.DamagePlayer(10);
+                    Effects.Damage(playerHeldBy, 10);
                     Effects.Message("Don't do this bro", "Don't listen to the voices in your head.", true);
                 }
                 else if (playerHeldBy.health > 70 && playerHeldBy.health <= 90)
                 {
-                    playerHeldBy.DamagePlayer(20);
+                    Effects.Damage(playerHeldBy, 20);
                     Effects.Message("We warned you", "You know there's no turning back from what you're about to do, right?", true);
                 }
                 else if (playerHeldBy.health > 20 && playerHeldBy.health <= 70)
                 {
-                    playerHeldBy.bleedingHeavily = true;
-                    playerHeldBy.DamagePlayer(playerHeldBy.health - 10);
+                    Effects.Damage(playerHeldBy, playerHeldBy.health - 10);
                     Effects.Message("W̴ͪ̅e̤̲̞ ḏ͆ȍ̢̥ a̵̿͘ l̙ͭ͠ittle b̈́͠it of troll͢i̗̍͜n͙̆͠g", "", true);
                 }
                 else
                 {
                     var playerTmp = playerHeldBy;
-                    playerHeldBy.DamagePlayer(100, deathAnimation: 1);
+                    Effects.Damage(playerHeldBy, 100, 1);
                     if (playerTmp.IsHost)
                         SpawnEnemyNetwork(playerTmp.transform.position, 0);
                     else

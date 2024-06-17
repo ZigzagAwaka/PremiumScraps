@@ -2,7 +2,7 @@
     "name": "PremiumScraps",
     "version_number": "1.7.0",
     "website_url": "https://github.com/ZigzagAwaka/PremiumScraps",
-    "description": "Adds several scrap items to the game, with custom audio and... some secrets!",
+    "description": "Adds several scrap items to the game, some with custom effect!",
     "dependencies": [
         "Evaisa-LethalLib-0.16.0",
         "xilophor-LethalNetworkAPI-2.2.0",
