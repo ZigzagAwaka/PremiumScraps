@@ -5,6 +5,7 @@
     - Airhorn will now play the real Airhorn sound when used (but it's a little different)
     - Removed the '?' from the Airhorn tooltip, use the sound to tell if it's the real one
     - Airhorn explosion is now random
+    - Updated some spawn chance
     - Updated dependencies
     - Updated README
 - **Fixed**
