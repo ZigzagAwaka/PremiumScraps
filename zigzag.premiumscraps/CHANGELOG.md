@@ -6,6 +6,7 @@
     - Removed the '?' from the Airhorn tooltip, use the sound to tell if it's the real one
     - Airhorn explosion is now random
     - Updated dependencies
+    - Updated README
 - **Fixed**
     - Reduced Chocobo and Puppy Shark texture quality
     - Fixed Ainz Ooal Gown grab animation

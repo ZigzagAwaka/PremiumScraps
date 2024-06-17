@@ -4,7 +4,7 @@ This is the repository for the "PremiumScraps" Lethal Company mod.
 
 You can post some suggestions or issues in the 'Issues' tab.
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview6.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-all-v6.PNG)
 
 ## More info
 You can check more info on Thunderstore:

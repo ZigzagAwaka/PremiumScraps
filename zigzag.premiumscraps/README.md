@@ -1,19 +1,55 @@
 # PremiumScraps
 
-This mod currently adds **20 scrap items** to the game ! (some with custom effect 😎)
+This mod currently adds **20 scrap items** to the game ! 😎
 
 These items could be cute, funny or stylish but in any case they all have been cleaned to have no impact on performance.
 
 Compatible with v50 of Lethal Company.
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview6.PNG)
+### The friendship ender
+- Can be used to do a special effect...
+- Use it near your friends, I swear it's just for a good laugh.
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-troll.PNG)
+
+### Scroll and book
+- consomable item, teleport the user to the ship
+- todo
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-paperTODO.PNG)
+
+### Fake Airhorn
+- Can be used to make sound just like a real airhorn
+- Sometimes it will trigger a custom *bad* effect, is this the real one?
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-airhorn.PNG)
+
+### Weapons
+- **Comically Large Spoon**, a classic, does a little more damage than the shovel.
+- The legendary **stick**, a non-lethal weapon. But you should not use it on your friends...
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-weaponsTODO.PNG)
+
+### Noisy items
+- **The King** and **Puppy Shark** can both be used to make some funny sounds !
+- The little orange square is called **crouton**, it's an obscure internet refererence that can be heard anywhere on the map when droped.
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-audio.PNG)
+
+### Classic items
+- Scraps with no special effects, but they come with custom audio. Some can even glow in dark places.
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview1.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview2.PNG)
 
 <details><summary>More images? (click to reveal)</summary>
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-rupees.PNG)
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-spoonbalan.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-variant.PNG)
 
 </details>
+
+##
 
 ### Notes
 Each item has a low/medium spawn chance on all moons, you will not find them easily. This is to keep the game as vanilla as possible while adding some rare scraps to find if you are lucky !
@@ -35,21 +71,21 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - Chocobo
 - Ainz Ooal Gown
 - Helm of Domination
-- The King *(can speak when used)*
+- The King
 - Harry Mason
 - Mystic Cristal
-- Puppy Shark *(can be squeezed)*
-- Rupee *(6 colors)*
+- Puppy Shark
+- Rupee
 - Ea-Nasir Statue
 - HearthStone Card
 - SODA
-- Comically Large Spoon *(weapon, 3 colors)*
+- Comically Large Spoon
 - crouton
-- Airhorn *(can be used for a surprise effect... is this the real one?)*
-- Balan Statue *(2 colors)*
-- The friendship ender *(use it near your friends, I swear it's just for a good laugh)*
-- scroll *(consomable item, teleport the user to the ship)*
-- stick *(weapon, insane knockback)*
+- Airhorn
+- Balan Statue
+- The friendship ender
+- scroll
+- stick
 - book
 
 </details>
