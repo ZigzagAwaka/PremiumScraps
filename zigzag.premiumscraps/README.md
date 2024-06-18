@@ -88,7 +88,7 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - The friendship ender
 - Scroll of Town Portal
 - stick
-- book
+- The basics of architecture
 
 </details>
 

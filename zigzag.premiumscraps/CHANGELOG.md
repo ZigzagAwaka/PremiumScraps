@@ -1,6 +1,6 @@
 # 1.7.0 New scraps
 - **Added**
-    - Added The friendship ender, scroll, stick and book
+    - Added The friendship ender, Scroll of Town Portal, stick and The basics of architecture
 - **Updated**
     - Airhorn will now play the real Airhorn sound when used (but it's a little different)
     - Removed the '?' from the Airhorn tooltip, use the sound to tell if it's the real one
