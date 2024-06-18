@@ -80,7 +80,7 @@ namespace PremiumScraps
                 new Scrap("HScard/HSCardItem.asset", 10),
                 new Scrap("SODA/SODAItem.asset", 8),
                 new Scrap("Spoon/SpoonItem.asset", 12),
-                new Scrap("Crouton/CroutonItem.asset", 7),
+                new Scrap("Crouton/CroutonItem.asset", 6),
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 8, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
                 new Scrap("CustomFace/CustomFaceItem.asset", 8, 2)
