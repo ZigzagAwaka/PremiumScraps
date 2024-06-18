@@ -120,3 +120,6 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
     - [Ruslan Abbasov](https://sketchfab.com/3d-models/psx-soda-can-2823eac5e9d14414a9577715274fd89f)
     - [OnOne Supplies](https://sketchfab.com/3d-models/spoon-lowpoly-9b3e16a7a2c04ca5907a09e4e4daaac7)
     - [CGPlayz](https://sketchfab.com/3d-models/ive-never-thought-of-it-like-that-beforeface-98547873477c45168dce192a48b1e9a7)
+    - [FlukierJupiter](https://sketchfab.com/3d-models/scroll-7450e494eb654e9b937bb52724220e77)
+    - [kayra23](https://sketchfab.com/3d-models/stick-d93365fe0cf54bac95b60027df67f179)
+    - [James.Moore](https://sketchfab.com/3d-models/book-28e028e981604aacb25766852aa279ed)
