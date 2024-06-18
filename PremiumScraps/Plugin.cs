@@ -45,6 +45,7 @@ namespace PremiumScraps
             {
                 case 1: script = item.spawnPrefab.AddComponent<SoundExplosion>(); break;
                 case 2: script = item.spawnPrefab.AddComponent<Troll>(); break;
+                case 3: script = item.spawnPrefab.AddComponent<Teleportation>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -63,7 +64,8 @@ namespace PremiumScraps
 
             sounds = new List<AudioClip> {
                 bundle.LoadAsset<AudioClip>(directory + "_audio/AirHorn1.ogg"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/friendship_ends_here.wav")
+                bundle.LoadAsset<AudioClip>(directory + "_audio/friendship_ends_here.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/scroll_tp.wav")
             };
 
             var scraps = new List<Scrap> {
@@ -83,7 +85,8 @@ namespace PremiumScraps
                 new Scrap("Crouton/CroutonItem.asset", 6),
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 8, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
-                new Scrap("CustomFace/CustomFaceItem.asset", 8, 2)
+                new Scrap("CustomFace/CustomFaceItem.asset", 8, 2),
+                new Scrap("Scroll/ScrollItem.asset", 8, 3)
             };
 
             int i = 0; config = new Config(base.Config, scraps);

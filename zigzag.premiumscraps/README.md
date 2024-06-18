@@ -12,11 +12,11 @@ Compatible with v50 of Lethal Company.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-troll.PNG)
 
-### Scroll and book
-- Consumable item, teleports its user to the ship.
-- todo
+### Custom effect items
+- **Scroll of Town Portal**, a consumable item, teleports its user to the ship.
+- **The basics of architecture**, a book filled with forbidden knowledge, you can read it to learn how to use those screws you borrowed from your aunt.
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-paperTODO.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-effects.PNG)
 
 ### Fake Airhorn
 - Can be used to make loud annoying sounds, just like a real airhorn would.
@@ -28,7 +28,7 @@ Compatible with v50 of Lethal Company.
 - **Comically Large Spoon**, a classic, does a little more damage than the shovel.
 - The legendary **stick**, a non-lethal weapon, but you should not use it on your friends...
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-weaponsTODO.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-weapons.PNG)
 
 ### Noisy items
 - **The King** and **Puppy Shark** can both be used to make some funny sounds !
@@ -86,7 +86,7 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - Airhorn
 - Balan Statue
 - The friendship ender
-- scroll
+- Scroll of Town Portal
 - stick
 - book
 

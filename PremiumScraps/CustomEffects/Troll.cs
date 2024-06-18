@@ -52,7 +52,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     var playerTmp = playerHeldBy;
                     Effects.Damage(playerHeldBy, 100, 1);
-                    if (playerTmp.IsHost)
+                    if (playerTmp.IsHost) // StartOfRound.Instance.allPlayerObjects
                         SpawnEnemyNetwork(playerTmp.transform.position, 0);
                     else
                         network.SendAllClients(playerTmp.transform.position, false);

@@ -6,11 +6,6 @@ namespace PremiumScraps.Utils
 {
     internal class Effects
     {
-        public static void Explosion(Vector3 position, int range)
-        {
-            Landmine.SpawnExplosion(position, true, range, range * 2, 50, 1);
-        }
-
         public static void Damage(PlayerControllerB player, int damageNb, int animation = 0, bool criticalBlood = true)
         {
             if (criticalBlood && player.health - damageNb <= 20)
@@ -21,6 +16,26 @@ namespace PremiumScraps.Utils
         public static void Knockback(PlayerControllerB player, Vector3 direction, int force)
         {
             new PhysicsKnockbackOnHit().Hit(force, direction, player);
+        }
+
+        public static void Teleportation(PlayerControllerB player, Vector3 position, bool toShip)
+        {
+            if (toShip)
+            {
+                player.isInElevator = true;
+                player.isInHangarShipRoom = true;
+                player.isInsideFactory = false;
+            }
+            player.averageVelocity = 0f;
+            player.velocityLastFrame = Vector3.zero;
+            player.TeleportPlayer(position, true);
+            player.beamUpParticle.Play();
+            HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
+        }
+
+        public static void Explosion(Vector3 position, int range)
+        {
+            Landmine.SpawnExplosion(position, true, range, range * 2, 50, 1);
         }
 
         public static void Audio(int audioID, Vector3 position, float volume)
