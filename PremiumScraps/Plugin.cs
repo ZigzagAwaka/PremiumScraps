@@ -34,7 +34,7 @@ namespace PremiumScraps
         const string VERSION = "1.7.0";
 
         public static Plugin instance;
-        public static List<AudioClip> sounds;
+        public static List<AudioClip> audioClips;
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
 
@@ -43,9 +43,10 @@ namespace PremiumScraps
             PhysicsProp script;
             switch (behaviourId)
             {
-                case 1: script = item.spawnPrefab.AddComponent<SoundExplosion>(); break;
-                case 2: script = item.spawnPrefab.AddComponent<Troll>(); break;
-                case 3: script = item.spawnPrefab.AddComponent<Teleportation>(); break;
+                case 1: script = item.spawnPrefab.AddComponent<FakeAirhorn>(); break;
+                case 2: script = item.spawnPrefab.AddComponent<TrollFace>(); break;
+                case 3: script = item.spawnPrefab.AddComponent<ScrollTP>(); break;
+                case 4: script = item.spawnPrefab.AddComponent<LegendaryStick>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -62,7 +63,7 @@ namespace PremiumScraps
 
             string directory = "Assets/Data/";
 
-            sounds = new List<AudioClip> {
+            audioClips = new List<AudioClip> {
                 bundle.LoadAsset<AudioClip>(directory + "_audio/AirHorn1.ogg"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/friendship_ends_here.wav"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/scroll_tp.wav")
@@ -83,10 +84,10 @@ namespace PremiumScraps
                 new Scrap("SODA/SODAItem.asset", 8),
                 new Scrap("Spoon/SpoonItem.asset", 12),
                 new Scrap("Crouton/CroutonItem.asset", 6),
-                new Scrap("AirHornCustom/AirHornCustomItem.asset", 8, 1),
+                new Scrap("AirHornCustom/AirHornCustomItem.asset", 9, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
                 new Scrap("CustomFace/CustomFaceItem.asset", 8, 2),
-                new Scrap("Scroll/ScrollItem.asset", 8, 3)
+                new Scrap("Scroll/ScrollItem.asset", 7, 3)
             };
 
             int i = 0; config = new Config(base.Config, scraps);

@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
-    internal class Troll : PhysicsProp
+    internal class TrollFace : PhysicsProp
     {
         public LethalClientMessage<Vector3> network, networkAudio;
-        public Troll()
+        public TrollFace()
         {
             useCooldown = 3;
             customGrabTooltip = "Friendship ends here : [E]";
-            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollID");
-            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollAudioID");
+            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollFaceID");
+            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollFaceAudioID");
             network.OnReceivedFromClient += SpawnEnemyNetwork;
             networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
         }
@@ -24,7 +24,7 @@ namespace PremiumScraps.CustomEffects
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
         {
-            Effects.Audio(1, position, 3f);
+            Effects.Audio(1, position, 2.5f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -52,8 +52,9 @@ namespace PremiumScraps.CustomEffects
                 {
                     var playerTmp = playerHeldBy;
                     Effects.Damage(playerHeldBy, 100, 1);
-                    if (playerTmp.IsHost) // StartOfRound.Instance.allPlayerObjects
-                        SpawnEnemyNetwork(playerTmp.transform.position, 0);
+                    if (playerTmp.IsHost)  // Multiple spawn, feature for host, bug for clients
+                        for (int i = 0; i < 4; i++)
+                            SpawnEnemyNetwork(playerTmp.transform.position, 0);
                     else
                         network.SendAllClients(playerTmp.transform.position, false);
                 }

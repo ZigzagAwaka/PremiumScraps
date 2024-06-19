@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
-    internal class SoundExplosion : PhysicsProp
+    internal class FakeAirhorn : PhysicsProp
     {
         public LethalClientMessage<Vector3> network, networkAudio;
-        public SoundExplosion()
+        public FakeAirhorn()
         {
             useCooldown = 2;
-            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsSoundExplosionID");
-            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsSoundExplosionAudioID");
+            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornID");
+            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornAudioID");
             network.OnReceivedFromClient += SpawnExplosionNetwork;
             networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
         }
@@ -32,7 +32,7 @@ namespace PremiumScraps.CustomEffects
             if (buttonDown && playerHeldBy != null)
             {
                 networkAudio.SendAllClients(playerHeldBy.transform.position);
-                if (!StartOfRound.Instance.inShipPhase && Random.Range(1, 11) < 4)
+                if (!StartOfRound.Instance.inShipPhase && Random.Range(1, 11) < 4)  // 30% explosion
                 {
                     network.SendAllClients(playerHeldBy.transform.position);
                 }
