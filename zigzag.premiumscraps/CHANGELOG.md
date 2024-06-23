@@ -10,6 +10,7 @@
     - Updated README
 - **Fixed**
     - Reduced Chocobo and Puppy Shark texture quality
+    - Reduced every audio imported quality
     - Fixed Ainz Ooal Gown grab animation
     - Optimized again Ainz Ooal Gown model (it's now extremely low poly)
 
