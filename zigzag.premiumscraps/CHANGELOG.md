@@ -1,6 +1,6 @@
 # 1.7.0 New scraps
 - **Added**
-    - Added The friendship ender, Scroll of Town Portal, Stick and The basics of architecture
+    - Added The friendship ender, Scroll of Town Portal, Stick and Basics of architecture
 - **Updated**
     - Airhorn will now play the real Airhorn sound when used (but it's a little different)
     - Removed the '?' from the Airhorn tooltip, use the sound to tell if it's the real one
@@ -9,8 +9,8 @@
     - Updated dependencies
     - Updated README
 - **Fixed**
-    - Reduced Chocobo and Puppy Shark texture quality
     - Reduced every audio imported quality
+    - Reduced Chocobo and Puppy Shark texture quality
     - Fixed Ainz Ooal Gown grab animation
     - Optimized again Ainz Ooal Gown model (it's now extremely low poly)
 

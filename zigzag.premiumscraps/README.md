@@ -14,7 +14,7 @@ Compatible with v50 of Lethal Company.
 
 ### Custom effect items
 - **Scroll of Town Portal**, a rare consumable item, teleports its user to the ship.
-- **The basics of architecture**, a book filled with forbidden knowledge, you can read it to learn how to use those screws you borrowed from your aunt.
+- **Basics of architecture**, a book filled with forbidden knowledge, you can read it to learn how to use those screws you borrowed from your aunt.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-effects.PNG)
 
@@ -83,12 +83,12 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - SODA
 - Comically Large Spoon
 - crouton
-- Airhorn
+- Fake Airhorn
 - Balan Statue
 - The friendship ender
 - Scroll of Town Portal
 - Stick
-- The basics of architecture
+- Basics of architecture
 
 </details>
 

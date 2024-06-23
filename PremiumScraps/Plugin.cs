@@ -33,6 +33,7 @@ namespace PremiumScraps
                 case 2: script = item.spawnPrefab.AddComponent<TrollFace>(); break;
                 case 3: script = item.spawnPrefab.AddComponent<ScrollTP>(); break;
                 case 4: script = item.spawnPrefab.AddComponent<LegendaryStick>(); break;
+                case 5: script = item.spawnPrefab.AddComponent<StupidBook>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -56,7 +57,8 @@ namespace PremiumScraps
                 bundle.LoadAsset<AudioClip>(directory + "_audio/ShovelReelUp.ogg"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/ShovelSwing.ogg"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/wooden-staff-hit.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/MineTrigger.ogg")
+                bundle.LoadAsset<AudioClip>(directory + "_audio/MineTrigger.ogg"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/book_page.wav")
             };
 
             var scraps = new List<Scrap> {
@@ -77,8 +79,9 @@ namespace PremiumScraps
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 9, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
                 new Scrap("CustomFace/CustomFaceItem.asset", 8, 2),
-                new Scrap("Scroll/ScrollItem.asset", 7, 3),
-                new Scrap("Stick/StickItem.asset", 8, 4)
+                new Scrap("Scroll/ScrollItem.asset", 6, 3),
+                new Scrap("Stick/StickItem.asset", 10, 4),
+                new Scrap("BookCustom/BookCustomItem.asset", 11, 5)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
