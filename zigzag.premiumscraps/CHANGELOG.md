@@ -1,10 +1,10 @@
 # 1.7.0 New scraps
 - **Added**
-    - Added The friendship ender, Scroll of Town Portal, stick and The basics of architecture
+    - Added The friendship ender, Scroll of Town Portal, Stick and The basics of architecture
 - **Updated**
     - Airhorn will now play the real Airhorn sound when used (but it's a little different)
     - Removed the '?' from the Airhorn tooltip, use the sound to tell if it's the real one
-    - Airhorn explosion is now random
+    - Improved Airhorn explosion to be more realistic, more dangerous and random
     - Updated some spawn chance
     - Updated dependencies
     - Updated README
@@ -37,6 +37,12 @@
     - Reduced Airhorn explosion range
     - Reduced Mystic Cristal texture quality
     - Optimized Helm of Domination model
+
+##
+
+<details><summary>Old versions (click to reveal)</summary>
+
+###
 
 # 1.5.0 New scraps
 - **Added**
@@ -116,3 +122,5 @@
 # 1.0.0 Initial release
 - **Added**
     - Added Frieren
+
+</details>

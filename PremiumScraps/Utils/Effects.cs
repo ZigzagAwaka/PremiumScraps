@@ -1,4 +1,5 @@
 ﻿using GameNetcodeStuff;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -26,9 +27,22 @@ namespace PremiumScraps.Utils
             player.DamagePlayer(damageNb, deathAnimation: animation);
         }
 
-        public static void Knockback(PlayerControllerB player, Vector3 direction, int force)
+        // modified from https://github.com/Cedeli/PushCompany/blob/master/Assets/Scripts/PushComponent.cs
+        public static IEnumerator Knockback(PlayerControllerB player, Vector3 direction, float force)
         {
-            new PhysicsKnockbackOnHit().Hit(force, direction, player);
+            Vector3 knockback = direction * force * Time.fixedDeltaTime;
+            float smoothTime = knockback.magnitude / (force / 12.5f);
+
+            Vector3 targetPosition = player.thisController.transform.position + knockback;
+            Vector3 targetDirection = (targetPosition - player.thisController.transform.position).normalized;
+            float distance = Vector3.Distance(player.thisController.transform.position, targetPosition);
+
+            for (float currentTime = 0; currentTime < smoothTime; currentTime += Time.fixedDeltaTime)
+            {
+                float currentDistance = distance * Mathf.Min(currentTime, smoothTime) / smoothTime;
+                player.thisController.Move(targetDirection * currentDistance);
+                yield return null;
+            }
         }
 
         public static void Teleportation(PlayerControllerB player, Vector3 position)
@@ -46,19 +60,23 @@ namespace PremiumScraps.Utils
             HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
         }
 
-        public static void Explosion(Vector3 position, int range)
+        public static IEnumerator Explosion(Vector3 position, int range, float waitTime = 0f)
         {
+            yield return new WaitForSeconds(waitTime);
             Landmine.SpawnExplosion(position, true, range, range * 2, 50, 1);
         }
 
         public static void DropItem(bool destroy = false)
         {
-            GameNetworkManager.Instance.localPlayerController.DiscardHeldObject(true, placePosition: destroy ? StartOfRound.Instance.middleOfShipNode.position - (Vector3.up * 100) : default);
+            GameNetworkManager.Instance.localPlayerController.DiscardHeldObject(true, placePosition: destroy ? RoundManager.Instance.insideAINodes[^1].transform.position - (Vector3.up * 100) : default);
         }
 
-        public static void Audio(int audioID, Vector3 position, float volume)
+        public static void Audio(int audioID, Vector3 position, float volume, bool adjust = true)
         {
-            AudioSource.PlayClipAtPoint(Plugin.audioClips[audioID], position + (Vector3.up * 2), volume);
+            var finalPosition = position;
+            if (adjust)
+                finalPosition += (Vector3.up * 2);
+            AudioSource.PlayClipAtPoint(Plugin.audioClips[audioID], finalPosition, volume);
         }
 
         public static void Message(string title, string bottom, bool warning = false)

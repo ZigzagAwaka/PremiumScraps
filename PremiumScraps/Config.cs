@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using PremiumScraps.Utils;
 using System.Collections.Generic;
 
 namespace PremiumScraps

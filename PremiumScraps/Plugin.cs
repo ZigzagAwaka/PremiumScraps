@@ -2,6 +2,7 @@
 using HarmonyLib;
 using LethalLib.Modules;
 using PremiumScraps.CustomEffects;
+using PremiumScraps.Utils;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -10,21 +11,6 @@ using UnityEngine;
 
 namespace PremiumScraps
 {
-    public class Scrap
-    {
-        public string asset;
-        public int rarity;
-        public int behaviourId;
-        public Scrap(string asset, int rarity) : this(asset, rarity, 0) { }
-        public Scrap(string asset, int rarity, int behaviourId)
-        {
-            this.asset = asset;
-            this.rarity = rarity;
-            this.behaviourId = behaviourId;
-        }
-    }
-
-
     [BepInDependency("LethalNetworkAPI")]
     [BepInPlugin(GUID, NAME, VERSION)]
     public class Plugin : BaseUnityPlugin
@@ -66,7 +52,11 @@ namespace PremiumScraps
             audioClips = new List<AudioClip> {
                 bundle.LoadAsset<AudioClip>(directory + "_audio/AirHorn1.ogg"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/friendship_ends_here.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/scroll_tp.wav")
+                bundle.LoadAsset<AudioClip>(directory + "_audio/scroll_tp.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/ShovelReelUp.ogg"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/ShovelSwing.ogg"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/wooden-staff-hit.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/MineTrigger.ogg")
             };
 
             var scraps = new List<Scrap> {
@@ -87,7 +77,8 @@ namespace PremiumScraps
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 9, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
                 new Scrap("CustomFace/CustomFaceItem.asset", 8, 2),
-                new Scrap("Scroll/ScrollItem.asset", 7, 3)
+                new Scrap("Scroll/ScrollItem.asset", 7, 3),
+                new Scrap("Stick/StickItem.asset", 8, 4)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
@@ -104,7 +95,7 @@ namespace PremiumScraps
                 TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
                 node.clearPreviousText = true;
                 node.displayText = "test";
-                Items.RegisterShopItem(item, null, null, node, 0);
+                Items.RegisterShopItem(item, itemInfo: node, price: 0);
             }
 
             harmony.PatchAll();

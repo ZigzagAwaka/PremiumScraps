@@ -18,7 +18,8 @@ namespace PremiumScraps.CustomEffects
 
         private void SpawnExplosionNetwork(Vector3 position, ulong clientId)
         {
-            Effects.Explosion(position, 4);
+            Effects.Audio(6, position, 4f);
+            StartCoroutine(Effects.Explosion(position, 5, 0.5f));
         }
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
@@ -31,11 +32,10 @@ namespace PremiumScraps.CustomEffects
             base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null)
             {
-                networkAudio.SendAllClients(playerHeldBy.transform.position);
-                if (!StartOfRound.Instance.inShipPhase && Random.Range(1, 11) < 4)  // 30% explosion
-                {
+                if (StartOfRound.Instance.inShipPhase || Random.Range(1, 11) >= 4)  // 30% explosion
+                    networkAudio.SendAllClients(playerHeldBy.transform.position);
+                else
                     network.SendAllClients(playerHeldBy.transform.position);
-                }
             }
         }
     }
