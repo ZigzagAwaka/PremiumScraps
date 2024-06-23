@@ -27,14 +27,14 @@ MonoBehaviour:
   creditsWorth: 0
   lockedInDemo: 0
   highestSalePercentage: 0
-  maxValue: 120
-  minValue: 80
+  maxValue: 0
+  minValue: 0
   spawnPrefab: {fileID: 2143295183578386719, guid: 3581da4993400ce4f9cf832aaefa79c5,
     type: 3}
   requiresBattery: 0
   batteryUsage: 0
   automaticallySetUsingPower: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: d450967014ca56145b309bcc8c4fbfaa, type: 3}
   grabAnim: HoldLung
   useAnim: 
   pocketAnim: 
