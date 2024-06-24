@@ -22,7 +22,7 @@ namespace PremiumScraps.CustomEffects
             base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null)
             {
-                Effects.Audio(7, playerHeldBy.transform.position, 2.5f);
+                Effects.Audio(7, playerHeldBy.transform.position, 2f);
                 if (actualPage == 6)
                 {
                     actualPage = -1;

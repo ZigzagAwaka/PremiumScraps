@@ -153,9 +153,9 @@ namespace PremiumScraps.CustomEffects
                             if (!((PlayerControllerB)component).inSpecialInteractAnimation)
                             {
                                 if (playerHeldBy.IsHost)
-                                    ReceiveKnockbackInfoNetwork(new PlayerDir(((PlayerControllerB)component).GetClientId(), forward), playerHeldBy.GetClientId());
+                                    ReceiveKnockbackInfoNetwork(new PlayerDir(((PlayerControllerB)component).playerClientId, forward), playerHeldBy.playerClientId);
                                 else
-                                    network.SendServer(new PlayerDir(((PlayerControllerB)component).GetClientId(), forward));
+                                    network.SendServer(new PlayerDir(((PlayerControllerB)component).playerClientId, forward));
                             }
                         }
                         else
