@@ -11,7 +11,7 @@ You can check more info on Thunderstore:
 https://thunderstore.io/c/lethal-company/p/Zigzag/PremiumScraps/
 
 ## Known issues
-If you can help with some of them, please contact me by posting a new github issue.
+I'm not an expert with custom code so if you can help with some of them, please contact me by posting a new github issue.
 - When the host player is killed by the Fake Airhorn or The friendship ender, his dead body gets teleported in the void
 - The friendship ender is anormaly spawning more enemies than wanted for non-host players
 - The glowing rainbow variant for Balan Statue have a base of the wrong material
