@@ -25,6 +25,7 @@ namespace PremiumScraps.CustomEffects
             {
                 var player = playerHeldBy;
                 Effects.DropItem(true);
+                grabbable = false;
                 Effects.Teleportation(player, StartOfRound.Instance.middleOfShipNode.position);
                 networkAudio.SendAllClients(player.transform.position);
             }

@@ -14,8 +14,9 @@ namespace PremiumScraps.CustomEffects
 {
     internal class LegendaryStick : PhysicsProp
     {
-        public int knockbackPowerMin = 10;
-        public int knockbackPowerMax = 60;
+        public int knockbackPowerMin = 20;
+        public int knockbackPowerMax = 80;
+        public int knockbackPowerUlt = 180;
         public int weaponHitForce = 1;
         public bool reelingUp;
         public bool isHoldingButton;
@@ -41,7 +42,9 @@ namespace PremiumScraps.CustomEffects
         {
             if (playerDir.playerId.GetPlayerController() != null)
             {
-                StartCoroutine(Effects.Knockback(playerDir.playerId.GetPlayerController(), playerDir.direction, Random.Range(knockbackPowerMin, knockbackPowerMax)));
+                int power = Random.Range(knockbackPowerMin, knockbackPowerMax);
+                if (power >= 70) power = knockbackPowerUlt;
+                StartCoroutine(Effects.Knockback(playerDir.playerId.GetPlayerController(), playerDir.direction, power));
             }
         }
 

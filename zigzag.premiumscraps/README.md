@@ -98,7 +98,7 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 
 - Thanks [XyphireTV](https://www.twitch.tv/xyphiretv) for helping with some custom made 3D models, shaders and other stuff!
 
-- Thanks Leaucard for helping with custom sounds, assets and some ideas!
+- Thanks **Leaucard** for helping with custom sounds, assets and some ideas!
 
 - One scrap uses voice acting by [Zedahu](https://www.twitch.tv/zedahu)
 
