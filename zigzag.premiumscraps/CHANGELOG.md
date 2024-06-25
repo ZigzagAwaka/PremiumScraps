@@ -1,3 +1,7 @@
+## 1.7.1
+- **Fixed**
+    - Removed items left accidentaly in the shop
+
 # 1.7.0 New scraps
 - **Added**
     - Added The friendship ender, Scroll of Town Portal, Stick and Basics of architecture

@@ -17,7 +17,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.7.0";
+        const string VERSION = "1.7.1";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -95,10 +95,10 @@ namespace PremiumScraps
                 Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
 
                 //// TEST
-                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
-                node.clearPreviousText = true;
-                node.displayText = "test";
-                Items.RegisterShopItem(item, itemInfo: node, price: 0);
+                /*                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
+                                node.clearPreviousText = true;
+                                node.displayText = "test";
+                                Items.RegisterShopItem(item, itemInfo: node, price: 0);*/
             }
 
             harmony.PatchAll();
