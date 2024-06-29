@@ -1,3 +1,7 @@
+## 1.7.2
+- **Updated**
+    - Updated to v55
+
 ## 1.7.1
 - **Fixed**
     - Removed items left accidentaly in the shop

@@ -4,7 +4,7 @@ This mod currently adds **20 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish. They all have been cleaned to have no impact on performance.
 
-Compatible with v50 of Lethal Company.
+Compatible with v55 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
