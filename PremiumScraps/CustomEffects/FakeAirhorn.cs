@@ -19,7 +19,7 @@ namespace PremiumScraps.CustomEffects
         private void SpawnExplosionNetwork(Vector3 position, ulong clientId)
         {
             Effects.Audio(6, position, 4f);
-            StartCoroutine(Effects.Explosion(position, 5, 0.5f));
+            StartCoroutine(Effects.Explosion(position, 4, 0.5f));
         }
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)

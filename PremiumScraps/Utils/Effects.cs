@@ -90,5 +90,12 @@ namespace PremiumScraps.Utils
             gameObject.GetComponentInChildren<NetworkObject>().Spawn(true);
             RoundManager.Instance.SpawnedEnemies.Add(gameObject.GetComponent<EnemyAI>());
         }
+
+        public static void Spawn(Item item, Vector3 position)
+        {
+            GameObject gameObject = Object.Instantiate(item.spawnPrefab, position, Quaternion.identity, RoundManager.Instance.playersManager.propsContainer);
+            gameObject.GetComponent<GrabbableObject>().fallTime = 0f;
+            gameObject.GetComponent<NetworkObject>().Spawn();
+        }
     }
 }

@@ -1,6 +1,13 @@
+## 1.7.3
+- **Updated**
+    - Updated to v55/v56
+    - Reduced Stick audio
+- **Fixed**
+    - Reverted Airhorn explosion range back to version 1.6.0
+
 ## 1.7.2
 - **Updated**
-    - Updated to v55
+    - Updated to v55-beta
 
 ## 1.7.1
 - **Fixed**

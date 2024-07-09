@@ -34,6 +34,8 @@ namespace PremiumScraps.CustomEffects
                     itemProperties.toolTips[^1] = pages[actualPage];
                 }
                 base.SetControlTipsForItem();
+                //var items = UnityEngine.Resources.FindObjectsOfTypeAll<Item>().ToList();
+                //Effects.Spawn(items.FirstOrDefault(i => i.name.Equals("Shotgun")), playerHeldBy.transform.position);
             }
         }
     }
