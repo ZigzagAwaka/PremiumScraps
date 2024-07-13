@@ -18,4 +18,4 @@ I'm not an expert with custom Lethal Company code so if you can help with some o
 - Audio clips are played at a given position instead of coming from an audio source
 - When using the Scroll of Town Portal, instead of being destroyed, the item gets teleported/moved under the map
 - Some coroutines functions print errors in the console even if they are working as intended
-- Sometimes, the Stick effect doesn't do anything but sometimes it works
+- Sometimes, the Stick effect doesn't do anything but sometimes it works (also sometimes hits the wrong player?)
