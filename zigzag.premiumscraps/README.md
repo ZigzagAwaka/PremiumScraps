@@ -1,10 +1,10 @@
 # PremiumScraps
 
-This mod currently adds **20 scrap items** to the game ! 😎
+This mod currently adds **21 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish. They all have been cleaned to have no impact on performance.
 
-Compatible with v55/v56 of Lethal Company.
+Compatible with v60/v61 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
@@ -90,6 +90,7 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 - Scroll of Town Portal
 - Stick
 - Basics of architecture
+- Galvanized square steel
 
 </details>
 
@@ -105,7 +106,7 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
 
 - Some assets are ripped from [Lethal Company](https://store.steampowered.com/app/1966720/Lethal_Company/) and [Balan Wonderworld](https://store.steampowered.com/app/1341050/BALAN_WONDERWORLD/)
 
-- Free 3D models on sketchfab are licensed under Creative Commons Attribution, all credits goes to their respective creators. Support them if you like this mod!
+- Free 3D models used are licensed under Creative Commons Attribution, all credits goes to their respective creators. Support them if you like this mod!
 
     - [Gintoki1234](https://sketchfab.com/3d-models/frieren-plushie-209c79c641164b38a81e145b6af3f890)
     - [Robukan](https://sketchfab.com/3d-models/chocobo-from-world-of-final-fantasy-329f0b6d71f245e89ff6cf8371180025)
@@ -124,3 +125,4 @@ You can post some suggestions or issues in the [github](https://github.com/Zigza
     - [FlukierJupiter](https://sketchfab.com/3d-models/scroll-7450e494eb654e9b937bb52724220e77)
     - [kayra23](https://sketchfab.com/3d-models/stick-d93365fe0cf54bac95b60027df67f179)
     - [James.Moore](https://sketchfab.com/3d-models/book-28e028e981604aacb25766852aa279ed)
+    - [Henry Levesque](https://www.printables.com/en/model/961166-scale-14-gauge-2x2-square-steel-tubing)

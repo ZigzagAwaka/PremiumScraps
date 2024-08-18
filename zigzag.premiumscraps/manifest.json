@@ -1,11 +1,11 @@
 {
     "name": "PremiumScraps",
-    "version_number": "1.7.3",
+    "version_number": "1.8.0",
     "website_url": "https://github.com/ZigzagAwaka/PremiumScraps",
     "description": "Adds several scrap items to the game, some with custom effect!",
     "dependencies": [
-        "Evaisa-LethalLib-0.16.0",
-        "xilophor-LethalNetworkAPI-2.2.0",
+        "Evaisa-LethalLib-0.16.1",
+        "xilophor-LethalNetworkAPI-3.2.0",
         "BepInEx-BepInExPack-5.4.2100"
     ]
 }

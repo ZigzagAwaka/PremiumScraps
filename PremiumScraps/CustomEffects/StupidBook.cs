@@ -5,6 +5,8 @@ namespace PremiumScraps.CustomEffects
 {
     internal class StupidBook : PhysicsProp
     {
+        public bool finish = false;
+        public int nbFinish = 0;
         public int actualPage = -1;
         public List<string> pages = new List<string> {
             "How to design a 0.1 square meter apartment into a functional house? liam worked hard for 10 years in new york and finally saved up to buy this tiny 0.1 square meter apartment. every night he had to tie himself to the door with steel wire to sleep. eventually, it broke down and needed an absolute redesign.",
@@ -23,19 +25,40 @@ namespace PremiumScraps.CustomEffects
             if (buttonDown && playerHeldBy != null)
             {
                 Effects.Audio(7, playerHeldBy.transform.position, 2f);
-                if (actualPage == 6)
+                actualPage++;
+                if (actualPage == 7)
                 {
                     actualPage = -1;
                     itemProperties.toolTips[^1] = "";
+                    if (!StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded && StartOfRound.Instance.currentLevel.PlanetName != "71 Gordion")
+                    {
+                        finish = true;
+                        nbFinish++;
+                    }
                 }
                 else
                 {
-                    actualPage++;
                     itemProperties.toolTips[^1] = pages[actualPage];
                 }
                 base.SetControlTipsForItem();
-                //var items = UnityEngine.Resources.FindObjectsOfTypeAll<Item>().ToList();
-                //Effects.Spawn(items.FirstOrDefault(i => i.name.Equals("Shotgun")), playerHeldBy.transform.position);
+                if (finish)
+                {
+                    if (playerHeldBy.IsHost)
+                    {
+                        Effects.Spawn("SquareSteelItem", playerHeldBy.transform.position);
+                        if (nbFinish == 4)
+                        {
+                            Effects.DropItem(true);
+                            grabbable = false;
+                        }
+                    }
+                    else
+                    {
+                        Effects.Message("Unworthy", "Try giving it to someone else.");
+                        nbFinish = 0;
+                    }
+                    finish = false;
+                }
             }
         }
     }

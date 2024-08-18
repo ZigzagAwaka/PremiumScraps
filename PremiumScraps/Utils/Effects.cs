@@ -1,6 +1,7 @@
 ﻿using GameNetcodeStuff;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -91,11 +92,17 @@ namespace PremiumScraps.Utils
             RoundManager.Instance.SpawnedEnemies.Add(gameObject.GetComponent<EnemyAI>());
         }
 
-        public static void Spawn(Item item, Vector3 position)
+        public static void Spawn(string scrapName, Vector3 position)
         {
-            GameObject gameObject = Object.Instantiate(item.spawnPrefab, position, Quaternion.identity, RoundManager.Instance.playersManager.propsContainer);
-            gameObject.GetComponent<GrabbableObject>().fallTime = 0f;
-            gameObject.GetComponent<NetworkObject>().Spawn();
+            var scrap = RoundManager.Instance.currentLevel.spawnableScrap.FirstOrDefault(i => i.spawnableItem.name.Equals(scrapName));
+            GameObject gameObject = Object.Instantiate(scrap.spawnableItem.spawnPrefab, position, Quaternion.identity, RoundManager.Instance.spawnedScrapContainer);
+            GrabbableObject component = gameObject.GetComponent<GrabbableObject>();
+            component.transform.rotation = Quaternion.Euler(component.itemProperties.restingRotation);
+            component.fallTime = 0f;
+            component.scrapValue = (int)(Random.Range(scrap.spawnableItem.minValue, scrap.spawnableItem.maxValue) * RoundManager.Instance.scrapValueMultiplier);
+            NetworkObject network = gameObject.GetComponent<NetworkObject>();
+            network.Spawn();
+            component.FallToGround(true);
         }
     }
 }

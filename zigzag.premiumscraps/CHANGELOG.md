@@ -1,3 +1,14 @@
+# 1.8.0 Improvements
+- **Added**
+    - Added Galvanized square steel
+- **Updated**
+    - Updated to v60/v61
+    - Basics of architecture update: something special will happen when you have finished reading the book
+    - Increased Airhorn spawn chance
+    - Updated dependencies
+- **Fixed**
+    - Fixed issues with LethalNetworkAPI new versions 3.0.0+ (I'm still using the old structure but it's working as intended)
+
 ## 1.7.3
 - **Updated**
     - Updated to v55/v56
@@ -29,6 +40,12 @@
     - Fixed Ainz Ooal Gown grab animation
     - Optimized again Ainz Ooal Gown model (it's now extremely low poly)
 
+##
+
+<details><summary>Old versions (click to reveal)</summary>
+
+###
+
 ## 1.6.2
 - **Updated**
     - Added a config file to set every spawn chance as you like
@@ -53,12 +70,6 @@
     - Reduced Airhorn explosion range
     - Reduced Mystic Cristal texture quality
     - Optimized Helm of Domination model
-
-##
-
-<details><summary>Old versions (click to reveal)</summary>
-
-###
 
 # 1.5.0 New scraps
 - **Added**
