@@ -1,10 +1,13 @@
 ## 1.8.1
-- **Added**
-    - Added My ■■■■■■th job application
 - **Updated**
-    - 
+    - Added 3 color variations to SODA and 3 new color for the Rupee
+    - Ea-Nasir Statue now has a custom grab tooltip
+    - Increased Airhorn explosion range but it will deal 30 damage instead of killing players if they are a little bit far from the origin
+    - Updated some spawn chance
+    - Reduced The friendship ender audio
 - **Fixed**
-    - 
+    - Temporarily disabled the Stick special effect since it's a little unstable, you can still find the item but it will not have any special effect for now
+    - Fixed Galvanized square steel material
 
 # 1.8.0 Improvements
 - **Added**

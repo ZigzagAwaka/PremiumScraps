@@ -17,6 +17,7 @@ namespace PremiumScraps.CustomEffects
         public int knockbackPowerMin = 20;
         public int knockbackPowerMax = 80;
         public int knockbackPowerUlt = 180;
+        public bool specialEffectEnabled = false;
         public int weaponHitForce = 1;
         public bool reelingUp;
         public bool isHoldingButton;
@@ -151,7 +152,7 @@ namespace PremiumScraps.CustomEffects
                         flag = true;
                         Vector3 forward = previousPlayerHeldBy.gameplayCamera.transform.forward.normalized;
 
-                        if (component.GetType() == typeof(PlayerControllerB))
+                        if (specialEffectEnabled && component.GetType() == typeof(PlayerControllerB))
                         {
                             if (!((PlayerControllerB)component).inSpecialInteractAnimation)
                             {

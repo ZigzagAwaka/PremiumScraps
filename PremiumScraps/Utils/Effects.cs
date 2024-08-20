@@ -64,7 +64,7 @@ namespace PremiumScraps.Utils
         public static IEnumerator Explosion(Vector3 position, int range, float waitTime = 0f)
         {
             yield return new WaitForSeconds(waitTime);
-            Landmine.SpawnExplosion(position, true, range, range * 2, 50, 1);
+            Landmine.SpawnExplosion(position, true, range, range * 3, 30, 1);
         }
 
         public static void DropItem(bool destroy = false)

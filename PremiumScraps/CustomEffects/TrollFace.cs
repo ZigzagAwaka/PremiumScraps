@@ -24,7 +24,7 @@ namespace PremiumScraps.CustomEffects
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
         {
-            Effects.Audio(1, position, 2.5f);
+            Effects.Audio(1, position, 2.0f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)

@@ -17,7 +17,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.8.0";
+        const string VERSION = "1.8.1";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -71,18 +71,18 @@ namespace PremiumScraps
                 new Scrap("Cristal/CristalItem.asset", 9),
                 new Scrap("PuppyShark/PuppySharkItem.asset", 10),
                 new Scrap("Rupee/RupeeItem.asset", 15),
-                new Scrap("EaNasir/EaNasirItem.asset", 8),
+                new Scrap("EaNasir/EaNasirItem.asset", 9),
                 new Scrap("HScard/HSCardItem.asset", 10),
                 new Scrap("SODA/SODAItem.asset", 8),
                 new Scrap("Spoon/SpoonItem.asset", 12),
                 new Scrap("Crouton/CroutonItem.asset", 6),
-                new Scrap("AirHornCustom/AirHornCustomItem.asset", 12, 1),
+                new Scrap("AirHornCustom/AirHornCustomItem.asset", 11, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
                 new Scrap("CustomFace/CustomFaceItem.asset", 8, 2),
-                new Scrap("Scroll/ScrollItem.asset", 6, 3),
-                new Scrap("Stick/StickItem.asset", 10, 4),
+                new Scrap("Scroll/ScrollItem.asset", 7, 3),
+                new Scrap("Stick/StickItem.asset", 11, 4),
                 new Scrap("BookCustom/BookCustomItem.asset", 11, 5),
-                new Scrap("SquareSteel/SquareSteelItem.asset", 9)
+                new Scrap("SquareSteel/SquareSteelItem.asset", 10)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
