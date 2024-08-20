@@ -1,3 +1,11 @@
+## 1.8.1
+- **Added**
+    - Added My ■■■■■■th job application
+- **Updated**
+    - 
+- **Fixed**
+    - 
+
 # 1.8.0 Improvements
 - **Added**
     - Added Galvanized square steel
