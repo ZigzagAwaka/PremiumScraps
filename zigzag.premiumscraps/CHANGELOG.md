@@ -1,7 +1,13 @@
+## 1.8.2
+- **Updated**
+    - Changed the Chocobo audio to be the one from FF7
+- **Fixed**
+    - Fixed the new colors of SODA not beeing metalic
+
 ## 1.8.1
 - **Updated**
-    - Added 3 color variations to SODA and 3 new color for the Rupee
-    - Ea-Nasir Statue now has a custom grab tooltip
+    - Added 3 color variations to SODA and 3 new colors for the Rupee (9 in total)
+    - Added a custom grab tooltip to Ea-Nasir Statue
     - Increased Airhorn explosion range but it will deal 30 damage instead of killing players if they are a little bit far from the origin
     - Updated some spawn chance
     - Reduced The friendship ender audio
