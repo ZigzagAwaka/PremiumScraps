@@ -59,7 +59,7 @@ Each item has a low/medium spawn chance on all moons, you will not find them eas
 *You can modify any spawn chance in the config file if you want to.*
 
 ### Feedback
-You can post some suggestions or issues in the [github](https://github.com/ZigzagAwaka/PremiumScraps).
+You can post some suggestions or issues in the mod release page in the [modding discord](https://discord.com/invite/lcmod) or as a [github](https://github.com/ZigzagAwaka/PremiumScraps) issue.
 
 ### ToDo
 - More scraps
