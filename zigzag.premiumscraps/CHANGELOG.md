@@ -1,3 +1,12 @@
+## 1.8.3
+- **Updated**
+    - Added an additional *bad* effect for the Fake airhorn, it will be randomnly triggered when used
+    - Increased Fake airhorn explosion non-lethal damage to 50
+    - Reduced Basics of architecture scrap value
+- **Fixed**
+    - Fixed Basics of architecture bug where it could spawn on the ship after beeing used despite vanishing, it will now never disapear even if used
+    - Fixed Fake airhorn sometimes not working for other players
+
 ## 1.8.2
 - **Updated**
     - Changed the Chocobo audio to be the one from FF7
@@ -8,7 +17,7 @@
 - **Updated**
     - Added 3 color variations to SODA and 3 new colors for the Rupee (9 in total)
     - Added a custom grab tooltip to Ea-Nasir Statue
-    - Increased Airhorn explosion range but it will deal 30 damage instead of killing players if they are a little bit far from the origin
+    - Increased Fake airhorn explosion range but it will deal 30 damage instead of killing players if they are a little bit far from the origin
     - Updated some spawn chance
     - Reduced The friendship ender audio
 - **Fixed**
@@ -21,7 +30,7 @@
 - **Updated**
     - Updated to v60/v61
     - Basics of architecture update: something special will happen when you have finished reading the book
-    - Increased Airhorn spawn chance
+    - Increased Fake airhorn spawn chance
     - Updated dependencies
 - **Fixed**
     - Fixed issues with LethalNetworkAPI new versions 3.0.0+ (I'm still using the old structure but it's working as intended)
@@ -31,7 +40,7 @@
     - Updated to v55/v56
     - Reduced Stick audio
 - **Fixed**
-    - Reverted Airhorn explosion range back to version 1.6.0
+    - Reverted Fake airhorn explosion range back to version 1.6.0
 
 ## 1.7.2
 - **Updated**
@@ -45,9 +54,9 @@
 - **Added**
     - Added The friendship ender, Scroll of Town Portal, Stick and Basics of architecture
 - **Updated**
-    - Airhorn will now play the real Airhorn sound when used (but it's a little different)
-    - Removed the '?' from the Airhorn tooltip, use the sound to tell if it's the real one
-    - Improved Airhorn explosion to be more realistic, more dangerous and random
+    - Fake airhorn will now play the real Airhorn sound when used (but it's a little different)
+    - Removed the '?' from the Fake airhorn tooltip, use the sound to tell if it's the real one
+    - Improved Fake airhorn explosion to be more dangerous and random
     - Updated some spawn chance
     - Updated dependencies
     - Updated README
@@ -84,13 +93,13 @@
     - Increased The King audio
 - **Fixed**
     - Fixed Chocobo, The King and Puppy Shark grab animation
-    - Reduced Airhorn explosion range
+    - Reduced Fake airhorn explosion range
     - Reduced Mystic Cristal texture quality
     - Optimized Helm of Domination model
 
 # 1.5.0 New scraps
 - **Added**
-    - Added crouton, Airhorn and Balan Statue
+    - Added crouton, Fake airhorn and Balan Statue
 - **Updated**
     - Added a rare glowing color variation to Comically Large Spoon
     - HearthStone Card can now be inspected

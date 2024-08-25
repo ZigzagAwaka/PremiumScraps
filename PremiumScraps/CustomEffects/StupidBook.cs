@@ -45,11 +45,13 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (playerHeldBy.IsHost)
                     {
-                        Effects.Spawn("SquareSteelItem", playerHeldBy.transform.position);
-                        if (nbFinish == 4)
+                        if (nbFinish <= 4)
                         {
-                            Effects.DropItem(true);
-                            grabbable = false;
+                            Effects.Spawn("SquareSteelItem", playerHeldBy.transform.position);
+                        }
+                        else
+                        {
+                            Effects.Message("Get back to work !", "");
                         }
                     }
                     else

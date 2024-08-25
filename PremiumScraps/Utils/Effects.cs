@@ -61,10 +61,15 @@ namespace PremiumScraps.Utils
             HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
         }
 
-        public static IEnumerator Explosion(Vector3 position, int range, float waitTime = 0f)
+        public static IEnumerator Explosion(Vector3 position, int range, float waitTime = 0.5f)
         {
             yield return new WaitForSeconds(waitTime);
-            Landmine.SpawnExplosion(position, true, range, range * 3, 30, 1);
+            Landmine.SpawnExplosion(position, true, range, range * 3, 50, 1);
+        }
+
+        public static void ExplosionDirect(Vector3 position, int range)
+        {
+            Landmine.SpawnExplosion(position, true, range, range * 3, 50, 1);
         }
 
         public static void DropItem(bool destroy = false)

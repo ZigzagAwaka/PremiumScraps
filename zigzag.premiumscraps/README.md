@@ -4,7 +4,7 @@ This mod currently adds **21 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish. They all have been cleaned to have no impact on performance.
 
-Compatible with v60/v61 of Lethal Company.
+Compatible with v60/v61/v62 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
@@ -57,6 +57,11 @@ Compatible with v60/v61 of Lethal Company.
 Each item has a low/medium spawn chance on all moons, you will not find them easily. This is to keep the game as vanilla as possible while adding some rare scraps to find if you are lucky !
 
 *You can modify any spawn chance in the config file if you want to.*
+
+#### Informations
+
+- The Stick special effect has been temporarily disabled because it's unstable.
+- It's recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed but I will not spoil why... 🤫
 
 ### Feedback
 You can post some suggestions or issues in the mod release page in the [modding discord](https://discord.com/invite/lcmod) or as a [github](https://github.com/ZigzagAwaka/PremiumScraps) issue.
