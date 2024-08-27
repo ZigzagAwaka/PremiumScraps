@@ -1,3 +1,11 @@
+# 1.9.0 New scraps
+- **Added**
+    - t
+- **Updated**
+    - t
+- **Fixed**
+    - t
+
 ## 1.8.3
 - **Updated**
     - Added an additional *bad* effect for the Fake airhorn, it will be randomnly triggered when used

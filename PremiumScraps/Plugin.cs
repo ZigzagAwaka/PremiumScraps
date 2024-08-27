@@ -26,7 +26,7 @@ namespace PremiumScraps
 
         void LoadItemBehaviour(Item item, int behaviourId)
         {
-            PhysicsProp script;
+            GrabbableObject script;
             switch (behaviourId)
             {
                 case 1: script = item.spawnPrefab.AddComponent<FakeAirhorn>(); break;
