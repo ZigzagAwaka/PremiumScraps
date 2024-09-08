@@ -2,6 +2,7 @@
 - **Updated**
     - Updated Frieren, Ainz Ooal Gown, Mystic Cristal and The friendship ender grab animation
     - All scraps will now drop ahead of players (not directly below them) when not in the ship
+    - Added some cause of deaths for certain items and camera shake for The friendship ender
 - **Fixed**
     - Fixed Fake airhorn and The friendship ender killing the host player by sending the dead body in the void
 

@@ -36,16 +36,19 @@ namespace PremiumScraps.CustomEffects
                 if (playerHeldBy.health > 90)
                 {
                     Effects.Damage(playerHeldBy, 10);
+                    HUDManager.Instance.ShakeCamera(ScreenShakeType.Small);
                     Effects.Message("Don't do this bro", "Don't listen to the voices in your head.", true);
                 }
                 else if (playerHeldBy.health > 70 && playerHeldBy.health <= 90)
                 {
                     Effects.Damage(playerHeldBy, 20);
+                    HUDManager.Instance.ShakeCamera(ScreenShakeType.Small);
                     Effects.Message("We warned you", "You know there's no turning back from what you're about to do, right?", true);
                 }
                 else if (playerHeldBy.health > 20 && playerHeldBy.health <= 70)
                 {
                     Effects.Damage(playerHeldBy, playerHeldBy.health - 10);
+                    HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
                     Effects.Message("W̴ͪ̅e̤̲̞ ḏ͆ȍ̢̥ a̵̿͘ l̙ͭ͠ittle b̈́͠it of troll͢i̗̍͜n͙̆͠g", "", true);
                 }
                 else
