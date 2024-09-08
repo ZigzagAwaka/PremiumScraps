@@ -630,6 +630,11 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1639282630
       objectReference: {fileID: 0}
+    - target: {fileID: 8505965678641437489, guid: 6c2322edbd148fd46b44ddf267cdc3b5,
+        type: 3}
+      propertyPath: creatureScanID
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1551,11 +1556,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crouton
-      objectReference: {fileID: 0}
-    - target: {fileID: 7489578232780143942, guid: b7ffab121a8d56147bc1508f94f7cb68,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
-      value: 0.14821962
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

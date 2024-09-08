@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Frieren
   spawnPositionTypes: []
   twoHanded: 0
-  twoHandedAnimation: 0
+  twoHandedAnimation: 1
   canBeGrabbedBeforeGameStart: 1
   weight: 1.02
   itemIsTrigger: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   batteryUsage: 0
   automaticallySetUsingPower: 0
   itemIcon: {fileID: 21300000, guid: 0ee9c9025887f2943aa6db6f64c237f5, type: 3}
-  grabAnim: 
+  grabAnim: HoldForward
   useAnim: 
   pocketAnim: 
   throwAnim: 
@@ -53,10 +53,10 @@ MonoBehaviour:
   toolTips: []
   verticalOffset: 0
   floorYOffset: 90
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 90, y: 0, z: -90}
-  positionOffset: {x: -0.01, y: 0.1, z: 0}
+  rotationOffset: {x: 0, y: 90, z: 7}
+  positionOffset: {x: 0.15, y: -0.2, z: 0.37}
   meshOffset: 0
   meshVariants: []
   materialVariants: []

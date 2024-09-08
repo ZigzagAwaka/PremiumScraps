@@ -17,7 +17,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.8.3";
+        const string VERSION = "1.8.4";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -34,6 +34,7 @@ namespace PremiumScraps
                 case 3: script = item.spawnPrefab.AddComponent<ScrollTP>(); break;
                 case 4: script = item.spawnPrefab.AddComponent<LegendaryStick>(); break;
                 case 5: script = item.spawnPrefab.AddComponent<StupidBook>(); break;
+                case 6: script = item.spawnPrefab.AddComponent<JobDark>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -82,7 +83,8 @@ namespace PremiumScraps
                 new Scrap("Scroll/ScrollItem.asset", 7, 3),
                 new Scrap("Stick/StickItem.asset", 11, 4),
                 new Scrap("BookCustom/BookCustomItem.asset", 11, 5),
-                new Scrap("SquareSteel/SquareSteelItem.asset", 10)
+                new Scrap("SquareSteel/SquareSteelItem.asset", 10),
+                new Scrap("DarkJobApplication/JobApplicationItem.asset", 0)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
@@ -94,12 +96,6 @@ namespace PremiumScraps
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
                 Utilities.FixMixerGroups(item.spawnPrefab);
                 Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
-
-                //// TEST
-                /*                TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
-                                node.clearPreviousText = true;
-                                node.displayText = "test";
-                                Items.RegisterShopItem(item, itemInfo: node, price: 0);*/
             }
 
             harmony.PatchAll();

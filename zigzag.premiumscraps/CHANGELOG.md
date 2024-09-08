@@ -1,10 +1,9 @@
-# 1.9.0 New scraps
-- **Added**
-    - t
+## 1.8.4
 - **Updated**
-    - t
+    - Updated Frieren, Ainz Ooal Gown, Mystic Cristal and The friendship ender grab animation
+    - All scraps will now drop ahead of players (not directly below them) when not in the ship
 - **Fixed**
-    - t
+    - Fixed Fake airhorn and The friendship ender killing the host player by sending the dead body in the void
 
 ## 1.8.3
 - **Updated**
@@ -43,6 +42,12 @@
 - **Fixed**
     - Fixed issues with LethalNetworkAPI new versions 3.0.0+ (I'm still using the old structure but it's working as intended)
 
+##
+
+<details><summary>Old versions (click to reveal)</summary>
+
+###
+
 ## 1.7.3
 - **Updated**
     - Updated to v55/v56
@@ -73,12 +78,6 @@
     - Reduced Chocobo and Puppy Shark texture quality
     - Fixed Ainz Ooal Gown grab animation
     - Optimized again Ainz Ooal Gown model (it's now extremely low poly)
-
-##
-
-<details><summary>Old versions (click to reveal)</summary>
-
-###
 
 ## 1.6.2
 - **Updated**

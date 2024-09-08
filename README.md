@@ -13,7 +13,6 @@ https://thunderstore.io/c/lethal-company/p/Zigzag/PremiumScraps/
 ## Known issues
 I'm not an expert at modding Lethal Company so if you can help with some of the following issues, please contact me in the Lethal Modding Discord server.
 - **Low impact**
-    - When the host player is killed by the Fake Airhorn or The friendship ender he, the dead body, gets teleported in the void
     - The glowing rainbow variant for Balan Statue has a lower part of the wrong material
     - Audio clips are played at a given position instead of coming from an audio source
     - When using the Scroll of Town Portal, instead of being destroyed, the item gets teleported/moved under the map

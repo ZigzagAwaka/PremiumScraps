@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8199613887750927226}
   - component: {fileID: 2342386075424709459}
   - component: {fileID: 497075846139055964}
-  - component: {fileID: 4208247886608702524}
+  - component: {fileID: 7905631059702208692}
   m_Layer: 6
   m_Name: DarkJobApplication
   m_TagString: PhysicsProp
@@ -249,7 +249,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.45886612, y: 0.016525688, z: 0.66627693}
   m_Center: {x: -0.00067806244, y: -0.0006118426, z: 0.00258255}
---- !u!114 &4208247886608702524
+--- !u!114 &7905631059702208692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7199042031630136095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47a20a28c3465c9e978f827ff3840ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d0cf24d2ccc3b7eab72048d0f57c437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabbable: 1
@@ -296,17 +296,6 @@ MonoBehaviour:
   radarIcon: {fileID: 0}
   reachedFloorTarget: 0
   grabbableToEnemies: 1
-  noiseAudio: {fileID: 2342386075424709459}
-  noiseAudioFar: {fileID: 0}
-  noiseSFX:
-  - {fileID: 8300000, guid: 2a5437ed79ac35a40b46f825f7210ace, type: 3}
-  noiseSFXFar: []
-  noiseRange: 50
-  maxLoudness: 1
-  minLoudness: 0.9
-  minPitch: 0.4
-  maxPitch: 0.9
-  triggerAnimator: {fileID: 0}
 --- !u!1001 &7093213571374074375
 PrefabInstance:
   m_ObjectHideFlags: 0

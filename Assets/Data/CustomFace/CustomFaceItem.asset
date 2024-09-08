@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Friendship ender
   spawnPositionTypes: []
   twoHanded: 0
-  twoHandedAnimation: 0
+  twoHandedAnimation: 1
   canBeGrabbedBeforeGameStart: 1
   weight: 1.09
   itemIsTrigger: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   batteryUsage: 0
   automaticallySetUsingPower: 0
   itemIcon: {fileID: 21300000, guid: efa247684304ff54b9491053de297ec0, type: 3}
-  grabAnim: 
+  grabAnim: HoldForward
   useAnim: 
   pocketAnim: 
   throwAnim: 
@@ -54,10 +54,10 @@ MonoBehaviour:
   - 'Are you really sure about this one? : [RMB]'
   verticalOffset: 0
   floorYOffset: 90
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 140, y: 0, z: -90}
-  positionOffset: {x: -0.04, y: 0.1, z: -0.02}
+  rotationOffset: {x: 0, y: 97, z: 15}
+  positionOffset: {x: 0.18, y: -0.23, z: 0.25}
   meshOffset: 0
   meshVariants: []
   materialVariants: []

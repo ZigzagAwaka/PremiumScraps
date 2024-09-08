@@ -54,7 +54,7 @@ MonoBehaviour:
   - 'Use airhorn : [RMB]'
   verticalOffset: 0.05
   floorYOffset: 90
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 90}
   rotationOffset: {x: -94, y: 0, z: -88}
   positionOffset: {x: -0.16, y: 0.155, z: 0.01}

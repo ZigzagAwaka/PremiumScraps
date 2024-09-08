@@ -20,7 +20,7 @@ namespace PremiumScraps.CustomEffects
 
         private void SpawnExplosionNetwork(Vector3 position, ulong clientId)
         {
-            Effects.ExplosionDirect(position, 4);
+            Effects.Explosion(position, 4f);
         }
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
@@ -45,11 +45,22 @@ namespace PremiumScraps.CustomEffects
                     if (Random.Range(1, 11) >= 6)  // 50%
                     {
                         networkAudio2.SendAllClients(playerHeldBy.transform.position);  // landmine audio
-                        Effects.Damage(playerHeldBy, 100);  // death
+                        if (playerHeldBy.IsHost)
+                            StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Crushing));  // death (host)
+                        else
+                            Effects.Damage(playerHeldBy, 100, CauseOfDeath.Crushing);  // death
                     }
                     else  // 50%
                     {
-                        network.SendAllClients(playerHeldBy.transform.position);  // explosion
+                        var playerTmp = playerHeldBy;
+                        if (playerHeldBy.IsHost)
+                        {
+                            StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Blast));  // death (host)
+                            Landmine.SpawnExplosion(playerTmp.transform.position, true, 0, 0, 0, 0);  // fake explosion for host
+                            network.SendAllClients(playerTmp.transform.position, false);  // explosion for other players
+                        }
+                        else
+                            network.SendAllClients(playerTmp.transform.position);  // explosion
                     }
                 }
             }

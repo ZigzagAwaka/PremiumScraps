@@ -54,7 +54,7 @@ MonoBehaviour:
   - 'Squeeze : [RMB]'
   verticalOffset: 0
   floorYOffset: 90
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 80, y: 0, z: -100}
   positionOffset: {x: -0.05, y: 0.13, z: -0.03}

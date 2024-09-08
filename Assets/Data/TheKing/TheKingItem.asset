@@ -55,7 +55,7 @@ MonoBehaviour:
   - This peace is what all true warriors strive for!
   verticalOffset: 0
   floorYOffset: 100
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 100, y: 0, z: -95}
   positionOffset: {x: -0.07, y: 0.09, z: -0.08}

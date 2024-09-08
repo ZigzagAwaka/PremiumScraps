@@ -29,16 +29,8 @@ public class SoccerBallProp : GrabbableObject
     public AudioClip[] ballHitFloorSFX;
 
     public AudioSource soccerBallAudio;
-
-    public override void ActivatePhysicsTrigger(Collider other)
-    {
-    }
-
+    
     public override void FallWithCurve()
-    {
-    }
-
-    public override void PlayDropSFX()
     {
     }
 }

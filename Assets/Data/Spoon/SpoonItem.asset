@@ -54,7 +54,7 @@ MonoBehaviour:
   - 'Swing spoon : [RMB]'
   verticalOffset: 0.03
   floorYOffset: 90
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 7, y: 0, z: 7}
   rotationOffset: {x: 90, y: 0, z: -110}
   positionOffset: {x: -0.05, y: -0.03, z: 0}

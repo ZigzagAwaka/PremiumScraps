@@ -1,6 +1,5 @@
 ﻿using GameNetcodeStuff;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
@@ -9,23 +8,17 @@ namespace PremiumScraps.Utils
 {
     internal class Effects
     {
-        public static List<PlayerControllerB> GetPlayers(bool includeDead = false)
-        {
-            var allPlayers = new List<PlayerControllerB>();
-            foreach (GameObject playerObj in StartOfRound.Instance.allPlayerObjects)
-            {
-                PlayerControllerB player = playerObj.GetComponent<PlayerControllerB>();
-                if (player.isActiveAndEnabled && player.IsSpawned && player.isPlayerControlled && (includeDead || !player.isPlayerDead))
-                    allPlayers.Add(player);
-            }
-            return allPlayers;
-        }
-
-        public static void Damage(PlayerControllerB player, int damageNb, int animation = 0, bool criticalBlood = true)
+        public static void Damage(PlayerControllerB player, int damageNb, CauseOfDeath cause = 0, int animation = 0, bool criticalBlood = true)
         {
             if (criticalBlood && player.health - damageNb <= 20)
                 player.bleedingHeavily = true;
-            player.DamagePlayer(damageNb, deathAnimation: animation);
+            player.DamagePlayer(damageNb, causeOfDeath: cause, deathAnimation: animation);
+        }
+
+        public static IEnumerator DamageHost(PlayerControllerB player, int damageNb, CauseOfDeath cause = 0, int animation = 0, bool criticalBlood = true)
+        {
+            yield return new WaitForEndOfFrame();
+            Damage(player, damageNb, cause, animation, criticalBlood);
         }
 
         // modified from https://github.com/Cedeli/PushCompany/blob/master/Assets/Scripts/PushComponent.cs
@@ -61,15 +54,9 @@ namespace PremiumScraps.Utils
             HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
         }
 
-        public static IEnumerator Explosion(Vector3 position, int range, float waitTime = 0.5f)
+        public static void Explosion(Vector3 position, float range)
         {
-            yield return new WaitForSeconds(waitTime);
-            Landmine.SpawnExplosion(position, true, range, range * 3, 50, 1);
-        }
-
-        public static void ExplosionDirect(Vector3 position, int range)
-        {
-            Landmine.SpawnExplosion(position, true, range, range * 3, 50, 1);
+            Landmine.SpawnExplosion(position, true, range, range * 2.5f, 50, 1);
         }
 
         public static void DropItem(bool destroy = false)
@@ -83,6 +70,23 @@ namespace PremiumScraps.Utils
             if (adjust)
                 finalPosition += (Vector3.up * 2);
             AudioSource.PlayClipAtPoint(Plugin.audioClips[audioID], finalPosition, volume);
+        }
+
+        public static void Audio(int audioID, Vector3 position, float volume, float pitch, bool adjust = true)
+        {
+            var clip = Plugin.audioClips[audioID];
+            var finalPosition = position;
+            if (adjust)
+                finalPosition += (Vector3.up * 2);
+            GameObject gameObject = new GameObject("One shot audio");
+            gameObject.transform.position = finalPosition;
+            AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
+            audioSource.clip = clip;
+            audioSource.spatialBlend = 1f;
+            audioSource.volume = volume;
+            audioSource.pitch = pitch;
+            audioSource.Play();
+            Object.Destroy(gameObject, clip.length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
         }
 
         public static void Message(string title, string bottom, bool warning = false)

@@ -55,7 +55,7 @@ MonoBehaviour:
   - 
   verticalOffset: 0.05
   floorYOffset: 90
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 180, y: 0, z: 0}
   rotationOffset: {x: -120, y: 40, z: 80}
   positionOffset: {x: 0, y: -0.13, z: -0.03}

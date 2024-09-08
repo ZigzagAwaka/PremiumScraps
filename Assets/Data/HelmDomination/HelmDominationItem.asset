@@ -53,7 +53,7 @@ MonoBehaviour:
   toolTips: []
   verticalOffset: 0
   floorYOffset: 90
-  allowDroppingAheadOfPlayer: 0
+  allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
   rotationOffset: {x: -70, y: 90, z: -100}
   positionOffset: {x: -0.15, y: 0.13, z: 0.1}
