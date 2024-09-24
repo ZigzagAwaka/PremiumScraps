@@ -10,7 +10,7 @@ namespace PremiumScraps.Utils
     internal class GetEnemies
     {
         public static SpawnableEnemyWithRarity Masked, HoardingBug, Centipede, Jester, Bracken, Stomper,
-                                                Coilhead, Beehive, Sandworm, Spider, Giant;
+                                                Coilhead, Beehive, Sandworm, Spider, Giant, Girl;
         public static SpawnableMapObject Landmine, Turret;
 
         [HarmonyPatch("Start")]
@@ -37,6 +37,8 @@ namespace PremiumScraps.Utils
                         Coilhead = enemy;
                     else if (enemy.enemyType.enemyName == "Bunker Spider" && Spider == null)
                         Spider = enemy;
+                    else if (enemy.enemyType.enemyName == "Girl" && Girl == null)
+                        Girl = enemy;
                 }
 
                 foreach (var enemy in level.DaytimeEnemies)
@@ -64,7 +66,7 @@ namespace PremiumScraps.Utils
                 if (Masked != null && HoardingBug != null && Centipede != null && Jester != null
                     && Bracken != null && Stomper != null && Coilhead != null && Beehive != null
                     && Sandworm != null && Spider != null && Giant != null && Landmine != null
-                    && Turret != null)
+                    && Turret != null && Girl != null)
                     break;
             }
         }

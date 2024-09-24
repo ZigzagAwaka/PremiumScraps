@@ -55,11 +55,11 @@ namespace PremiumScraps.CustomEffects
                 {
                     var playerTmp = playerHeldBy;
                     if (playerHeldBy.IsHost)
-                        StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Strangulation, 1));
+                        StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1));
                     else
-                        Effects.Damage(playerHeldBy, 100, CauseOfDeath.Strangulation, 1);
+                        Effects.Damage(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1);
                     if (playerTmp.IsHost)  // Multiple spawn, feature for host, bug for clients
-                        for (int i = 0; i < 4; i++)
+                        for (int i = 0; i < Effects.NbOfPlayers(); i++)
                             SpawnEnemyNetwork(playerTmp.transform.position, 0);
                     else
                         network.SendAllClients(playerTmp.transform.position, false);

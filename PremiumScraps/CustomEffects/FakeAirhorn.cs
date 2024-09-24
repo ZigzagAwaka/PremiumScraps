@@ -20,12 +20,13 @@ namespace PremiumScraps.CustomEffects
 
         private void SpawnExplosionNetwork(Vector3 position, ulong clientId)
         {
-            Effects.Explosion(position, 4f);
+            Effects.Explosion(position, 4f, 50, 2);
         }
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
         {
             Effects.Audio(0, position, 5f);
+            RoundManager.Instance.PlayAudibleNoise(position, 60, 0.9f);
         }
 
         private void InvokeAudioNetwork2(Vector3 position, ulong clientId)
@@ -46,17 +47,16 @@ namespace PremiumScraps.CustomEffects
                     {
                         networkAudio2.SendAllClients(playerHeldBy.transform.position);  // landmine audio
                         if (playerHeldBy.IsHost)
-                            StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Crushing));  // death (host)
+                            StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Burning, (int)Effects.DeathAnimation.Fire));  // death (host)
                         else
-                            Effects.Damage(playerHeldBy, 100, CauseOfDeath.Crushing);  // death
+                            Effects.Damage(playerHeldBy, 100, CauseOfDeath.Burning, (int)Effects.DeathAnimation.Fire);  // death
                     }
                     else  // 50%
                     {
                         var playerTmp = playerHeldBy;
                         if (playerHeldBy.IsHost)
                         {
-                            StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Blast));  // death (host)
-                            Landmine.SpawnExplosion(playerTmp.transform.position, true, 0, 0, 0, 0);  // fake explosion for host
+                            StartCoroutine(Effects.ExplosionHostDeath(playerHeldBy.transform.position, 4f, 50, 10));  // explosion (host)
                             network.SendAllClients(playerTmp.transform.position, false);  // explosion for other players
                         }
                         else

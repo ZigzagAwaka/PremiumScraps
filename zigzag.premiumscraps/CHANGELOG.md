@@ -1,3 +1,18 @@
+# 1.9.0 New scraps
+- **Added**
+    - Added My ■■■■■■th job application, Moogle, El Gazpacho and ABIBABOU
+- **Updated**
+    - New effect for crouton: you can now walk on it to make some funny sound
+    - When Basics of architecture is spawning an item, it will now also play a special sound
+    - Fake airhorn's second effect has a new animation
+    - Fake airhorn audio can now be heard by monsters
+    - Reduced Stick spawn chance
+    - Updated README
+- **Fixed**
+    - The Stick special effect has been completely fixed and is now re-enabled
+    - Basics of architecture 'turning page' audio is now properly assigned to the item and is synced to all players
+    - Optimization of custom effects code
+
 ## 1.8.4
 - **Updated**
     - Updated Frieren, Ainz Ooal Gown, Mystic Cristal and The friendship ender grab animation
@@ -36,8 +51,8 @@
 - **Added**
     - Added Galvanized square steel
 - **Updated**
-    - Updated to v60/v61
-    - Basics of architecture update: something special will happen when you have finished reading the book
+    - Updated to v60/v61+
+    - New effect for Basics of architecture: something special will happen when you have finished reading the book
     - Increased Fake airhorn spawn chance
     - Updated dependencies
 - **Fixed**
@@ -94,7 +109,7 @@
 
 # 1.6.0 Improvements
 - **Updated**
-    - The King and Puppy Shark can now be used to make some funny sound
+    - New effect for The King and Puppy Shark: they can now be used to make some funny sound
     - Added an emissive texture for Helm of Domination and HearthStone Card
     - Increased Comically Large Spoon damage and weight
     - Reduced Comically Large Spoon spawn chance
@@ -112,7 +127,7 @@
     - Added a rare glowing color variation to Comically Large Spoon
     - HearthStone Card can now be inspected
     - Reduced Helm of Domination, Ea-Nasir Statue and Ainz Ooal Gown weight
-    - Updated dependencies
+    - Updated dependencies (added LethalNetworkAPI)
     - Updated README (+github repo)
 - **Fixed**
     - Fixed Comically Large Spoon damage desync bug

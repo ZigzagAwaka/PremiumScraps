@@ -74,6 +74,101 @@ MonoBehaviour:
   scrapValue: 0
   creatureScanID: -1
   nodeType: 2
+--- !u!1 &4231107309840460996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6230840529948327295}
+  - component: {fileID: 1356248404756790639}
+  - component: {fileID: 2123829815214722019}
+  - component: {fileID: 7167008775748817158}
+  m_Layer: 13
+  m_Name: Trigger
+  m_TagString: DoNotSet
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6230840529948327295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231107309840460996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.114, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4472393846542228381}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1356248404756790639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231107309840460996}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32465124, y: 0.88170755, z: 0.3461765}
+  m_Center: {x: 0.0005643368, y: 0.27360612, z: -0.009576738}
+--- !u!114 &2123829815214722019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231107309840460996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8dced8dbbf861f4498d648dbca86fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScript: {fileID: 2938005433545975556}
+--- !u!54 &7167008775748817158
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231107309840460996}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &7442521471942543282
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +181,7 @@ GameObject:
   - component: {fileID: 377411724108296447}
   - component: {fileID: 7489578232780143942}
   - component: {fileID: 4695952171690381900}
-  - component: {fileID: 2708264826616476291}
+  - component: {fileID: 2938005433545975556}
   m_Layer: 6
   m_Name: Crouton
   m_TagString: PhysicsProp
@@ -109,6 +204,7 @@ Transform:
   m_Children:
   - {fileID: 3715809050172741482}
   - {fileID: 9085042742423305257}
+  - {fileID: 6230840529948327295}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &377411724108296447
@@ -212,7 +308,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.027777778
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -258,7 +354,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13030541, y: 0.114409655, z: 0.14768934}
   m_Center: {x: 0.00011652708, y: 0.049434826, z: 0.0014107227}
---- !u!114 &2708264826616476291
+--- !u!114 &2938005433545975556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7442521471942543282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0cf24d2ccc3b7eab72048d0f57c437, type: 3}
+  m_Script: {fileID: 11500000, guid: d3414987013c31dfad6ee7500f0c60c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabbable: 1
@@ -305,6 +401,12 @@ MonoBehaviour:
   radarIcon: {fileID: 0}
   reachedFloorTarget: 0
   grabbableToEnemies: 1
+  whoopieCushionAudio: {fileID: 7489578232780143942}
+  fartAudios:
+  - {fileID: 8300000, guid: 87e9c2b717eaa5f4d909d9214853317e, type: 3}
+  - {fileID: 8300000, guid: 284072c1b7ea3094d992b173b8d9f4a4, type: 3}
+  - {fileID: 8300000, guid: 1ef61a66d96ded84b9e088b40faeb9fd, type: 3}
+  - {fileID: 8300000, guid: 51579fea0d1cf66478f79f08098e7dba, type: 3}
 --- !u!1001 &3754750680276349057
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using PremiumScraps.Utils;
+﻿using LethalNetworkAPI;
+using PremiumScraps.Utils;
 using System.Collections.Generic;
 
 namespace PremiumScraps.CustomEffects
@@ -8,6 +9,7 @@ namespace PremiumScraps.CustomEffects
         public bool finish = false;
         public int nbFinish = 0;
         public int actualPage = -1;
+        public LethalClientMessage<PosId> networkAudio;
         public List<string> pages = new List<string> {
             "How to design a 0.1 square meter apartment into a functional house? liam worked hard for 10 years in new york and finally saved up to buy this tiny 0.1 square meter apartment. every night he had to tie himself to the door with steel wire to sleep. eventually, it broke down and needed an absolute redesign.",
             "firstly, he welded a frame from galvanized square steel, and borrowed some expansion screws from his aunt to secure it to the wall. he covered it with wood veneers durable for 10,000 years and installed large floor to ceiling windows made of broken bridge aluminium for a stylish look.",
@@ -17,14 +19,25 @@ namespace PremiumScraps.CustomEffects
             "he placed an induction cooker nearby with a mirror cabinet above and compartments below for seasonings and toiletries. a wall mounted toilet is installed next to the door, perfect for sitting comfortably and taking a shower. liam hung an overhead curtain at the end of the bed to watch korean dramas daily.",
             "with this setup, even limited space can offer unlimited possibilities."
         };
-        public StupidBook() { }
+
+        public StupidBook()
+        {
+            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsLiamConstructionAudioID");
+            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
+        }
+
+        private void InvokeAudioNetwork(PosId posId, ulong clientId)
+        {
+            Effects.Audio(posId.Id, posId.position, 2f);
+        }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null)
             {
-                Effects.Audio(7, playerHeldBy.transform.position, 2f);
+                Effects.Audio(7, 1f);
+                networkAudio.SendAllClients(new PosId(7, playerHeldBy.transform.position), false);
                 actualPage++;
                 if (actualPage == 7)
                 {
@@ -48,6 +61,7 @@ namespace PremiumScraps.CustomEffects
                         if (nbFinish <= 4)
                         {
                             Effects.Spawn("SquareSteelItem", playerHeldBy.transform.position);
+                            networkAudio.SendAllClients(new PosId(15, playerHeldBy.transform.position));
                         }
                         else
                         {

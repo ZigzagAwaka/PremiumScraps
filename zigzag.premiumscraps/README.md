@@ -1,10 +1,10 @@
 # PremiumScraps
 
-This mod currently adds **21 scrap items** to the game ! 😎
+This mod currently adds **25 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish. They all have been cleaned to have no impact on performance.
 
-Compatible with v60/v61/v62 of Lethal Company.
+Compatible with v60/v61/v62/v64 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
@@ -58,10 +58,7 @@ Each item has a low/medium spawn chance on all moons, you will not find them eas
 
 *You can modify any spawn chance in the config file if you want to.*
 
-#### Informations
-
-- The Stick special effect has been temporarily disabled because it's unstable.
-- It's recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed but I will not spoil why... 🤫
+It's recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed but I will not spoil why... 🤫
 
 ### Feedback
 You can post some suggestions or issues in the mod release page in the [modding discord](https://discord.com/invite/lcmod) or as a [github](https://github.com/ZigzagAwaka/PremiumScraps) issue.
@@ -69,7 +66,6 @@ You can post some suggestions or issues in the mod release page in the [modding 
 ### ToDo
 - More scraps
 - More custom effects
-- Improve and clean custom effects code
 
 ###
 
@@ -96,6 +92,10 @@ You can post some suggestions or issues in the mod release page in the [modding 
 - Stick
 - Basics of architecture
 - Galvanized square steel
+- My ■■■■■■th job application
+- Moogle
+- El Gazpacho
+- ABIBABOU
 
 </details>
 
@@ -131,3 +131,4 @@ You can post some suggestions or issues in the mod release page in the [modding 
     - [kayra23](https://sketchfab.com/3d-models/stick-d93365fe0cf54bac95b60027df67f179)
     - [James.Moore](https://sketchfab.com/3d-models/book-28e028e981604aacb25766852aa279ed)
     - [Henry Levesque](https://www.printables.com/en/model/961166-scale-14-gauge-2x2-square-steel-tubing)
+    - [Ether Penguin](https://www.turbosquid.com/fr/3d-models/3d-moogle-1360579)

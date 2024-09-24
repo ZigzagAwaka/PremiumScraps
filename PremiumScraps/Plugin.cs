@@ -17,7 +17,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.8.4";
+        const string VERSION = "1.9.0";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -35,6 +35,8 @@ namespace PremiumScraps
                 case 4: script = item.spawnPrefab.AddComponent<LegendaryStick>(); break;
                 case 5: script = item.spawnPrefab.AddComponent<StupidBook>(); break;
                 case 6: script = item.spawnPrefab.AddComponent<JobDark>(); break;
+                case 7: script = item.spawnPrefab.AddComponent<SpanishDrink>(); break;
+                case 8: script = item.spawnPrefab.AddComponent<FocusInspect>(); SetupScript.Copy((SoccerBallProp)script, item); break;
                 default: return;
             }
             script.grabbable = true;
@@ -59,7 +61,15 @@ namespace PremiumScraps
                 bundle.LoadAsset<AudioClip>(directory + "_audio/ShovelSwing.ogg"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/wooden-staff-hit.wav"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/MineTrigger.ogg"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/book_page.wav")
+                bundle.LoadAsset<AudioClip>(directory + "_audio/book_page.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse1.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse2.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse3.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse4.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/TerminalAlarm.ogg"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/heart-beat.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/horror.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/book_use_redesign.wav")
             };
 
             var scraps = new List<Scrap> {
@@ -81,10 +91,13 @@ namespace PremiumScraps
                 new Scrap("Balan/BalanItem.asset", 10),
                 new Scrap("CustomFace/CustomFaceItem.asset", 8, 2),
                 new Scrap("Scroll/ScrollItem.asset", 7, 3),
-                new Scrap("Stick/StickItem.asset", 11, 4),
+                new Scrap("Stick/StickItem.asset", 9, 4),
                 new Scrap("BookCustom/BookCustomItem.asset", 11, 5),
                 new Scrap("SquareSteel/SquareSteelItem.asset", 10),
-                new Scrap("DarkJobApplication/JobApplicationItem.asset", 0)
+                new Scrap("DarkJobApplication/JobApplicationItem.asset", 8, 6),
+                new Scrap("Moogle/MoogleItem.asset", 10),
+                new Scrap("Gazpacho/GazpachoItem.asset", 10, 7),
+                new Scrap("Abi/AbiItem.asset", 4, 8)
             };
 
             int i = 0; config = new Config(base.Config, scraps);

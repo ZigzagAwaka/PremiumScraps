@@ -73,7 +73,7 @@ MonoBehaviour:
   subText: 
   scrapValue: 0
   creatureScanID: -1
-  nodeType: 2
+  nodeType: 1
 --- !u!1 &7199042031630136095
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 8199613887750927226}
   - component: {fileID: 2342386075424709459}
   - component: {fileID: 497075846139055964}
-  - component: {fileID: 7905631059702208692}
   m_Layer: 6
   m_Name: DarkJobApplication
   m_TagString: PhysicsProp
@@ -153,7 +152,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 20
+  MaxDistance: 40
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -247,55 +246,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.45886612, y: 0.016525688, z: 0.66627693}
-  m_Center: {x: -0.00067806244, y: -0.0006118426, z: 0.00258255}
---- !u!114 &7905631059702208692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7199042031630136095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0cf24d2ccc3b7eab72048d0f57c437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbable: 1
-  isHeld: 0
-  isHeldByEnemy: 0
-  deactivated: 0
-  parentObject: {fileID: 0}
-  targetFloorPosition: {x: 0, y: 0, z: 0}
-  startFallingPosition: {x: 0, y: 0, z: 0}
-  floorYRot: 0
-  fallTime: 0
-  hasHitGround: 0
-  scrapValue: 0
-  itemUsedUp: 0
-  playerHeldBy: {fileID: 0}
-  isPocketed: 0
-  isBeingUsed: 0
-  isInElevator: 0
-  isInShipRoom: 0
-  isInFactory: 0
-  useCooldown: 0
-  currentUseCooldown: 0
-  itemProperties: {fileID: 11400000, guid: 05b1515b9ff5df541864b7d7e92c98df, type: 2}
-  insertedBattery:
-    empty: 0
-    charge: 0
-  customGrabTooltip: 
-  propBody: {fileID: 0}
-  propColliders: []
-  originalScale: {x: 0, y: 0, z: 0}
-  wasOwnerLastFrame: 0
-  mainObjectRenderer: {fileID: 0}
-  scrapPersistedThroughRounds: 0
-  heldByPlayerOnServer: 0
-  radarIcon: {fileID: 0}
-  reachedFloorTarget: 0
-  grabbableToEnemies: 1
+  m_Size: {x: 0.5132952, y: 0.061726924, z: 0.706429}
+  m_Center: {x: -0.0035467148, y: 0.0051676687, z: 0.0016219616}
 --- !u!1001 &7093213571374074375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -307,17 +259,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c8b908f119060c04e825d38e238baf2f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8b908f119060c04e825d38e238baf2f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.2
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8b908f119060c04e825d38e238baf2f,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.2
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8b908f119060c04e825d38e238baf2f,
         type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: JobApplicationItem
   m_EditorClassIdentifier: 
   itemId: 0
-  itemName: Dark job application
+  itemName: Job application
   spawnPositionTypes: []
   twoHanded: 0
   twoHandedAnimation: 0
@@ -35,31 +35,31 @@ MonoBehaviour:
   batteryUsage: 0
   automaticallySetUsingPower: 0
   itemIcon: {fileID: 21300000, guid: bf59a3a3db08a3a4db75d8b8ab0943fc, type: 3}
-  grabAnim: 
+  grabAnim: GrabClipboard
   useAnim: 
   pocketAnim: 
   throwAnim: 
   grabAnimationTime: 0
-  grabSFX: {fileID: 8300000, guid: cfe592f34056a394e8e9a6747191bdb8, type: 3}
-  dropSFX: {fileID: 8300000, guid: 51579fea0d1cf66478f79f08098e7dba, type: 3}
+  grabSFX: {fileID: 8300000, guid: 3f4e2ab7c7a7ab747a599e4e5bbf7083, type: 3}
+  dropSFX: {fileID: 8300000, guid: 1275a7cae8ed33e43bddee83232e38d3, type: 3}
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
-  syncUseFunction: 1
+  syncUseFunction: 0
   syncDiscardFunction: 0
   syncInteractLRFunction: 0
   saveItemVariable: 0
   isDefensiveWeapon: 0
   toolTips:
-  - 'Use? : [RMB]'
+  - 'Read: [Z]'
   verticalOffset: 0
   floorYOffset: 90
   allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 90, y: 0, z: -90}
-  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 180, y: 90, z: 0}
+  positionOffset: {x: 0.2, y: 0, z: -0.16}
   meshOffset: 0
   meshVariants: []
   materialVariants: []
   usableInSpecialAnimations: 0
-  canBeInspected: 0
+  canBeInspected: 1

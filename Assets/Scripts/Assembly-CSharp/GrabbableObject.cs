@@ -145,6 +145,10 @@ public abstract class GrabbableObject : NetworkBehaviour
 	{
 	}
 
+	public virtual void ActivatePhysicsTrigger(Collider other)	
+	{
+	}
+
 	public virtual void UseUpBatteries()
 	{
 	}
@@ -215,7 +219,7 @@ public abstract class GrabbableObject : NetworkBehaviour
 	{
 	}
 
-	private void PlayDropSFX()
+	public virtual void PlayDropSFX()
 	{
 	}
 

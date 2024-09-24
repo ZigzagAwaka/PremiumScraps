@@ -1,8 +1,4 @@
-﻿/*
- Modified from https://github.com/EvaisaDev/LethalThings/blob/main/LethalThings/MonoBehaviours/ToyHammer.cs
-*/
-
-using GameNetcodeStuff;
+﻿using GameNetcodeStuff;
 using LethalNetworkAPI;
 using PremiumScraps.Utils;
 using System.Collections;
@@ -14,10 +10,9 @@ namespace PremiumScraps.CustomEffects
 {
     internal class LegendaryStick : PhysicsProp
     {
-        public int knockbackPowerMin = 20;
-        public int knockbackPowerMax = 80;
-        public int knockbackPowerUlt = 180;
-        public bool specialEffectEnabled = false;
+        public int knockbackPowerMin = 1;
+        public int knockbackPowerMax = 10;
+        public readonly bool specialEffectEnabled = true;
         public int weaponHitForce = 1;
         public bool reelingUp;
         public bool isHoldingButton;
@@ -25,38 +20,25 @@ namespace PremiumScraps.CustomEffects
         private RaycastHit[] objectsHitByWeapon;
         private List<RaycastHit> objectsHitByWeaponList = new List<RaycastHit>();
         private PlayerControllerB previousPlayerHeldBy;
-        private int weaponMask = 11012424;
-        public LethalClientMessage<PlayerDir> network;
-        public LethalServerMessage<PlayerDir> networkServer;
-        public LethalClientMessage<SfxId> networkAudio;
+        private readonly int weaponMask = 11012424;
+        public LethalClientMessage<PosId> network;
+        public LethalClientMessage<PosId> networkAudio;
         public LegendaryStick()
         {
-            network = new LethalClientMessage<PlayerDir>(identifier: "premiumscrapsStickID");
-            networkServer = new LethalServerMessage<PlayerDir>(identifier: "premiumscrapsStickID");
-            networkAudio = new LethalClientMessage<SfxId>(identifier: "premiumscrapsStickAudioID");
-            network.OnReceived += KnockbackNetwork;
-            networkServer.OnReceived += ReceiveKnockbackInfoNetwork;
+            network = new LethalClientMessage<PosId>(identifier: "premiumscrapsStickID");
+            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsStickAudioID");
+            network.OnReceivedFromClient += KnockbackNetwork;
             networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
         }
 
-        private void KnockbackNetwork(PlayerDir playerDir)
+        private void KnockbackNetwork(PosId info, ulong clientId)
         {
-            if (playerDir.playerId.GetPlayerController() != null)
-            {
-                int power = Random.Range(knockbackPowerMin, knockbackPowerMax);
-                if (power >= 70) power = knockbackPowerUlt;
-                StartCoroutine(Effects.Knockback(playerDir.playerId.GetPlayerController(), playerDir.direction, power));
-            }
+            Effects.Knockback(info.position, 1, 0, info.Id);
         }
 
-        private void ReceiveKnockbackInfoNetwork(PlayerDir playerDir, ulong clientId)
+        private void InvokeAudioNetwork(PosId posId, ulong clientId)
         {
-            networkServer.SendClient(playerDir, playerDir.playerId);
-        }
-
-        private void InvokeAudioNetwork(SfxId sfxId, ulong clientId)
-        {
-            Effects.Audio(sfxId.audioId, sfxId.position, 2.5f);
+            Effects.Audio(posId.Id, posId.position, 2.5f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -90,7 +72,7 @@ namespace PremiumScraps.CustomEffects
             playerHeldBy.twoHanded = true;
             playerHeldBy.playerBodyAnimator.ResetTrigger("stickHit");
             playerHeldBy.playerBodyAnimator.SetBool("reelingUp", true);
-            networkAudio.SendAllClients(new SfxId(3, playerHeldBy.transform.position));
+            networkAudio.SendAllClients(new PosId(3, playerHeldBy.transform.position));
             yield return new WaitForSeconds(0.35f);
             yield return new WaitUntil(() => !isHoldingButton || !isHeld);
             SwingWeapon(!isHeld);
@@ -106,7 +88,7 @@ namespace PremiumScraps.CustomEffects
             previousPlayerHeldBy.playerBodyAnimator.SetBool("reelingUp", value: false);
             if (!cancel)
             {
-                networkAudio.SendAllClients(new SfxId(4, previousPlayerHeldBy.transform.position));
+                networkAudio.SendAllClients(new PosId(4, previousPlayerHeldBy.transform.position));
                 previousPlayerHeldBy.UpdateSpecialAnimationValue(specialAnimation: true, (short)previousPlayerHeldBy.transform.localEulerAngles.y, 0.4f);
             }
         }
@@ -150,22 +132,19 @@ namespace PremiumScraps.CustomEffects
                         && !StartOfRound.Instance.inShipPhase)
                     {
                         flag = true;
-                        Vector3 forward = previousPlayerHeldBy.gameplayCamera.transform.forward.normalized;
 
                         if (specialEffectEnabled && component.GetType() == typeof(PlayerControllerB))
                         {
                             if (!((PlayerControllerB)component).inSpecialInteractAnimation)
                             {
-                                if (playerHeldBy.IsHost)
-                                    ReceiveKnockbackInfoNetwork(new PlayerDir(((PlayerControllerB)component).playerClientId, forward), playerHeldBy.playerClientId);
-                                else
-                                    network.SendServer(new PlayerDir(((PlayerControllerB)component).playerClientId, forward));
+                                int power = Random.Range(knockbackPowerMin, knockbackPowerMax);
+                                network.SendAllClients(new PosId(power, previousPlayerHeldBy.transform.position), false);
                             }
                         }
-                        else
-                        {
-                            //component.Hit(weaponHitForce, forward, previousPlayerHeldBy, true);
-                        }
+                        //else
+                        //{
+                        //component.Hit(weaponHitForce, forward, previousPlayerHeldBy, true);
+                        //}
                     }
                 }
             }
@@ -173,7 +152,7 @@ namespace PremiumScraps.CustomEffects
             {
                 FindObjectOfType<RoundManager>().PlayAudibleNoise(transform.position, 17f, 0.8f);
                 playerHeldBy.playerBodyAnimator.SetTrigger("stickHit");
-                networkAudio.SendAllClients(new SfxId(5, playerHeldBy.transform.position));
+                networkAudio.SendAllClients(new PosId(5, playerHeldBy.transform.position));
             }
         }
     }
