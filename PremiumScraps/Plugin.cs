@@ -96,7 +96,7 @@ namespace PremiumScraps
                 new Scrap("SquareSteel/SquareSteelItem.asset", 10),
                 new Scrap("DarkJobApplication/JobApplicationItem.asset", 8, 6),
                 new Scrap("Moogle/MoogleItem.asset", 10),
-                new Scrap("Gazpacho/GazpachoItem.asset", 10, 7),
+                new Scrap("Gazpacho/GazpachoItem.asset", 9, 7),
                 new Scrap("Abi/AbiItem.asset", 4, 8)
             };
 

@@ -27,21 +27,21 @@ MonoBehaviour:
   creditsWorth: 0
   lockedInDemo: 0
   highestSalePercentage: 0
-  maxValue: 100
-  minValue: 50
-  spawnPrefab: {fileID: 8422475718674580620, guid: 88b9b5f9b27ecb24ea892fc768bcde71,
+  maxValue: 150
+  minValue: 100
+  spawnPrefab: {fileID: 328864761624936818, guid: 30185a99626c1a04688892685b4c78bc,
     type: 3}
   requiresBattery: 0
   batteryUsage: 0
   automaticallySetUsingPower: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   grabAnim: 
   useAnim: 
   pocketAnim: 
   throwAnim: 
   grabAnimationTime: 0
-  grabSFX: {fileID: 0}
-  dropSFX: {fileID: 0}
+  grabSFX: {fileID: 8300000, guid: 1ef61a66d96ded84b9e088b40faeb9fd, type: 3}
+  dropSFX: {fileID: 8300000, guid: 99a76630fc799b04b81fc7c4c4d1c99b, type: 3}
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
@@ -50,12 +50,13 @@ MonoBehaviour:
   syncInteractLRFunction: 0
   saveItemVariable: 0
   isDefensiveWeapon: 0
-  toolTips: []
+  toolTips:
+  - 'Drink : [RMB]'
   verticalOffset: 0
-  floorYOffset: 0
+  floorYOffset: 90
   allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 90, y: 0, z: -90}
   positionOffset: {x: 0, y: 0, z: 0}
   meshOffset: 0
   meshVariants: []

@@ -111,10 +111,10 @@ namespace PremiumScraps.CustomEffects
             OneTimeUse = true;
             if (!player.isInsideFactory)
                 yield return new WaitUntil(() => player.isInsideFactory == true || StartOfRound.Instance.shipIsLeaving == true);
-            if (!StartOfRound.Instance.shipIsLeaving && player.health > 0)
+            if (!StartOfRound.Instance.shipIsLeaving && !player.isPlayerDead)
             {
                 yield return new WaitForSeconds(5);
-                if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && player.health > 0)
+                if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                 {
                     if (player.IsHost)
                         for (int i = 0; i < Effects.NbOfPlayers(); i++)
@@ -128,7 +128,7 @@ namespace PremiumScraps.CustomEffects
         private IEnumerator HauntedHallucination(PlayerControllerB player)
         {
             yield return new WaitForSeconds(0.2f);
-            if (player.health <= 0)
+            if (player.isPlayerDead)
                 yield return new WaitForSeconds(1);
             else if (player.isInHangarShipRoom || player.isInsideFactory)
             {
@@ -206,21 +206,21 @@ namespace PremiumScraps.CustomEffects
             OneTimeUse = true;
             if (!player.isInsideFactory)
                 yield return new WaitUntil(() => player.isInsideFactory == true || StartOfRound.Instance.shipIsLeaving == true);
-            if (!StartOfRound.Instance.shipIsLeaving && player.health > 0)
+            if (!StartOfRound.Instance.shipIsLeaving && !player.isPlayerDead)
             {
                 yield return new WaitForSeconds(20);
-                if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && player.health > 0)
+                if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                 {
                     player.JumpToFearLevel(1);
                     player.playersManager.fearLevelIncreasing = false;
                     yield return new WaitForSeconds(30);
-                    if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && player.health > 0)
+                    if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                     {
                         Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 6f);
                         player.JumpToFearLevel(1.5f);
                         player.playersManager.fearLevelIncreasing = false;
                         yield return new WaitForSeconds(30);
-                        if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && player.health > 0)
+                        if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                         {
                             var statusCoroutine = StartCoroutine(Effects.Status("CRITICAL ! HEART SLOWING DOWN ! GO BACK TO THE SHIP IMMEDIATELY."));
                             player.JumpToFearLevel(4);
@@ -234,7 +234,7 @@ namespace PremiumScraps.CustomEffects
                                     {
                                         Effects.Audio(12, 10f);
                                         yield return new WaitForSeconds(3);
-                                        if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player.health <= 0)
+                                        if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player.isPlayerDead)
                                         { i = 0; break; }
                                         if (player.isInHangarShipRoom)
                                             break;
@@ -245,7 +245,7 @@ namespace PremiumScraps.CustomEffects
                                     Effects.Audio(12, 10f);
                                     yield return new WaitForSeconds(10);
                                 }
-                                if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player.health <= 0)
+                                if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player.isPlayerDead)
                                 { i = 0; break; }
                                 if (player.isInHangarShipRoom)
                                     break;
@@ -284,7 +284,7 @@ namespace PremiumScraps.CustomEffects
             while (true)
             {
                 yield return new WaitForSeconds(1);
-                if (StartOfRound.Instance.shipIsLeaving || player.health <= 0)
+                if (StartOfRound.Instance.shipIsLeaving || player.isPlayerDead)
                     yield return new WaitUntil(() => StartOfRound.Instance.inShipPhase == true);
                 if (StartOfRound.Instance.inShipPhase)
                 {
@@ -302,7 +302,7 @@ namespace PremiumScraps.CustomEffects
                     }
                     yield return new WaitUntil(() => StartOfRound.Instance.inShipPhase == false);
                 }
-                else if (player.health <= 0)
+                else if (player.isPlayerDead)
                     yield return new WaitUntil(() => StartOfRound.Instance.shipIsLeaving == true);
                 else if (!OneTimeUse)
                 {
