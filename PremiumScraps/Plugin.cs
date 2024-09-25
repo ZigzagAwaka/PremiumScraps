@@ -29,7 +29,7 @@ namespace PremiumScraps
             GrabbableObject script;
             switch (behaviourId)
             {
-                case 1: script = item.spawnPrefab.AddComponent<FakeAirhorn>(); break;
+                case 1: script = item.spawnPrefab.AddComponent<FakeAirhorn>(); SetupScript.Copy((NoisemakerProp)script, item); break;
                 case 2: script = item.spawnPrefab.AddComponent<TrollFace>(); break;
                 case 3: script = item.spawnPrefab.AddComponent<ScrollTP>(); break;
                 case 4: script = item.spawnPrefab.AddComponent<LegendaryStick>(); break;

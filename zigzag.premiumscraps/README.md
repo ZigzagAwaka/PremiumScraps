@@ -105,9 +105,9 @@ You can post some suggestions or issues in the mod release page in the [modding 
 
 - Thanks [XyphireTV](https://www.twitch.tv/xyphiretv) for helping with some custom made 3D models, shaders and other stuff!
 
-- Thanks **Leaucard** for helping with custom sounds, assets and some ideas!
+- Thanks **Leaucard** for helping with custom sounds, assets research and some ideas!
 
-- One scrap uses voice acting by [Zedahu](https://www.twitch.tv/zedahu)
+- Some scraps are packed with voice acting by [Zedahu](https://www.twitch.tv/zedahu) and **Abi**
 
 - Some assets are ripped from [Lethal Company](https://store.steampowered.com/app/1966720/Lethal_Company/) and [Balan Wonderworld](https://store.steampowered.com/app/1341050/BALAN_WONDERWORLD/)
 

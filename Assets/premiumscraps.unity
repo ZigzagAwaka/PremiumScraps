@@ -1171,6 +1171,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1022703413802715994, guid: 0146255d9c4373746908e4e55eda46cd,
+        type: 3}
+      propertyPath: maxPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022703413802715994, guid: 0146255d9c4373746908e4e55eda46cd,
+        type: 3}
+      propertyPath: minPitch
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5164961821495460389, guid: 0146255d9c4373746908e4e55eda46cd,
         type: 3}
       propertyPath: m_Name
@@ -1937,11 +1947,6 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1307255722
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508234540355954005, guid: 060c4ebdcba146a489ae50d4800d09c2,
-        type: 3}
-      propertyPath: useCooldown
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,15 +2,16 @@
 - **Added**
     - Added My ■■■■■■th job application, Moogle, El Gazpacho and ABIBABOU
 - **Updated**
-    - New effect for crouton: you can now walk on it to make some funny sound
-    - When Basics of architecture is spawning an item, it will now also play a special sound
+    - New effect for crouton: you can now walk on it to make a *special* sound
+    - When Basics of architecture is spawning an item, it will now also play a funny sound
     - Fake airhorn's second effect has a new animation
-    - Fake airhorn audio can now be heard by monsters
+    - Fake airhorn audio now has some sound variation just like the real airhorn. But I'm not that evil so the variations are *not exactly* the same as the real one... anyways good luck !
     - Reduced Stick spawn chance
     - Updated README
 - **Fixed**
-    - The Stick special effect has been completely fixed and is now re-enabled
+    - The Stick special effect has been completely fixed and is now re-enabled !
     - Basics of architecture 'turning page' audio is now properly assigned to the item and is synced to all players
+    - Fake airhorn audio is now properly assigned to the item and can be heard by monsters
     - Optimization of custom effects code
 
 ## 1.8.4

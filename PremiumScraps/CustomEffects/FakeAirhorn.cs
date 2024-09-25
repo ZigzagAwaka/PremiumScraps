@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
-    internal class FakeAirhorn : PhysicsProp
+    internal class FakeAirhorn : NoisemakerProp
     {
         public LethalClientMessage<Vector3> network, networkAudio, networkAudio2;
+
         public FakeAirhorn()
         {
-            useCooldown = 2;
             network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornID");
             networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornAudioID");
             networkAudio2 = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornAudio2ID");
@@ -25,7 +25,7 @@ namespace PremiumScraps.CustomEffects
 
         private void InvokeAudioNetwork(Vector3 position, ulong clientId)
         {
-            Effects.Audio(0, position, 5f);
+            Effects.Audio(0, position, 8f, Random.Range(minPitch, maxPitch));
             RoundManager.Instance.PlayAudibleNoise(position, 60, 0.9f);
         }
 
@@ -36,11 +36,13 @@ namespace PremiumScraps.CustomEffects
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
-            base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null)
             {
                 if (StartOfRound.Instance.inShipPhase || Random.Range(1, 11) >= 4)  // 70%
-                    networkAudio.SendAllClients(playerHeldBy.transform.position);  // airhorn audio
+                {
+                    base.ItemActivate(used, buttonDown);  // airhorn audio local player
+                    networkAudio.SendAllClients(playerHeldBy.transform.position, false);  // sync airhorn audio
+                }
                 else  // 30%
                 {
                     if (Random.Range(1, 11) >= 6)  // 50%

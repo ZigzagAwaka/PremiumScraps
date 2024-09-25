@@ -33,6 +33,7 @@ namespace PremiumScraps.Utils
         public static void Copy(NoisemakerProp target, Item item)
         {
             var source = item.spawnPrefab.GetComponent<NoisemakerProp>();
+            target.useCooldown = source.useCooldown;
             target.noiseAudio = source.noiseAudio;
             target.noiseAudioFar = source.noiseAudioFar;
             target.noiseSFX = new AudioClip[source.noiseSFX.Length];

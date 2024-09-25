@@ -47,6 +47,7 @@ namespace PremiumScraps.Utils
             player.criticallyInjured = false;
             player.bleedingHeavily = false;
             player.playerBodyAnimator.SetBool("Limp", false);
+            HUDManager.Instance.UpdateHealthUI(health, false);
         }
 
         public static void Teleportation(PlayerControllerB player, Vector3 position, bool exterior = false, bool interior = false)
@@ -113,6 +114,23 @@ namespace PremiumScraps.Utils
             if (adjust)
                 finalPosition += (Vector3.up * 2);
             AudioSource.PlayClipAtPoint(Plugin.audioClips[audioID], finalPosition, volume);
+        }
+
+        public static void Audio(int audioID, Vector3 position, float volume, float pitch, bool adjust = true)
+        {
+            var clip = Plugin.audioClips[audioID];
+            var finalPosition = position;
+            if (adjust)
+                finalPosition += (Vector3.up * 2);
+            GameObject gameObject = new GameObject("One shot audio");
+            gameObject.transform.position = finalPosition;
+            AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
+            audioSource.clip = clip;
+            audioSource.spatialBlend = 1f;
+            audioSource.volume = volume;
+            audioSource.pitch = pitch;
+            audioSource.Play();
+            Object.Destroy(gameObject, clip.length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
         }
 
         public static void Audio(int[] audioIDs, Vector3 position, float volume, bool adjust = true)

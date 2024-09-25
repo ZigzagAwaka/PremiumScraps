@@ -329,7 +329,7 @@ MonoBehaviour:
   noiseSFXFar: []
   noiseRange: 35
   maxLoudness: 0.95
-  minLoudness: 0.8
+  minLoudness: 0.85
   minPitch: 0.9
   maxPitch: 1
   triggerAnimator: {fileID: 0}
