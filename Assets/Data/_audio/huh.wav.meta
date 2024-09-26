@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8596e7ff45f36934d9c21d8837bd9b14
+guid: ce13ca60e25433846b8a98765d0eb699
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7
@@ -19,5 +19,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: premiumscraps
   assetBundleVariant: 

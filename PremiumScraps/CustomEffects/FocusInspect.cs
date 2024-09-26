@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using LethalNetworkAPI;
+using PremiumScraps.Utils;
+using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
@@ -8,8 +10,18 @@ namespace PremiumScraps.CustomEffects
         public float originalSpeed = 0.3f;
         public bool getOriginalSpeed = false;
         public Vector3? originalPosition = null;
+        public LethalClientMessage<PosId> networkAudio;
 
-        public FocusInspect() { }
+        public FocusInspect()
+        {
+            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsAbiAudioID");
+            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
+        }
+
+        private void InvokeAudioNetwork(PosId posId, ulong clientId)
+        {
+            Effects.Audio(posId.Id, posId.position, 3f);
+        }
 
         public override void InspectItem()
         {
@@ -26,6 +38,13 @@ namespace PremiumScraps.CustomEffects
                         originalSpeed = itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.GetFloat("_Speed");
                     }
                     itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.SetFloat("_Speed", 0f);
+                    if (Random.Range(0, 10) >= 3)  // 70%
+                        Effects.Audio(14, 1.5f);  // huh audio
+                    else  // 30%
+                    {
+                        Effects.Audio(16, 1.5f);  // uwu audio
+                        networkAudio.SendAllClients(new PosId(16, playerHeldBy.transform.position), false);  // sync uwu audio
+                    }
                 }
                 else
                 {

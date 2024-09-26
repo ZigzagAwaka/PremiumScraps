@@ -68,8 +68,9 @@ namespace PremiumScraps
                 bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse4.wav"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/TerminalAlarm.ogg"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/Breathing.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/horror.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/book_use_redesign.wav")
+                bundle.LoadAsset<AudioClip>(directory + "_audio/huh.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/book_use_redesign.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/uwu.wav")
             };
 
             var scraps = new List<Scrap> {

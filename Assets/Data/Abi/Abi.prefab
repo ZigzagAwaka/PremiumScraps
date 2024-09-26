@@ -239,13 +239,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   hitBallSFX:
-  - {fileID: 8300000, guid: 51579fea0d1cf66478f79f08098e7dba, type: 3}
-  - {fileID: 8300000, guid: 51579fea0d1cf66478f79f08098e7dba, type: 3}
-  - {fileID: 8300000, guid: 51579fea0d1cf66478f79f08098e7dba, type: 3}
+  - {fileID: 8300000, guid: b9aba6ed25430074fab56619d31c6f68, type: 3}
+  - {fileID: 8300000, guid: c0be8b40ae2fbc54486584eb49fc6c72, type: 3}
+  - {fileID: 8300000, guid: 397979a02f51ca04480fc613625009bf, type: 3}
   ballHitFloorSFX:
-  - {fileID: 8300000, guid: 872cd32f30df02948854b455059b8b7a, type: 3}
-  - {fileID: 8300000, guid: 872cd32f30df02948854b455059b8b7a, type: 3}
-  - {fileID: 8300000, guid: 872cd32f30df02948854b455059b8b7a, type: 3}
+  - {fileID: 8300000, guid: cbb6bfdd93170094897854156b876220, type: 3}
+  - {fileID: 8300000, guid: e3349e9d86627444bbcaa5275dcb08a4, type: 3}
+  - {fileID: 8300000, guid: f40330b7a40c0a94ca4b1a9985b19519, type: 3}
   soccerBallAudio: {fileID: 8839319424421110958}
   ballCollider: {fileID: 5786594089722736389}
 --- !u!114 &5472334554773321650

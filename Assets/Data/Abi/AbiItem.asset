@@ -40,8 +40,8 @@ MonoBehaviour:
   pocketAnim: 
   throwAnim: 
   grabAnimationTime: 0
-  grabSFX: {fileID: 8300000, guid: 2a5437ed79ac35a40b46f825f7210ace, type: 3}
-  dropSFX: {fileID: 8300000, guid: 5d728c23c20b0d543801ecc99a778451, type: 3}
+  grabSFX: {fileID: 8300000, guid: 9a5f4e8d2cbdea94db63f520e885c862, type: 3}
+  dropSFX: {fileID: 8300000, guid: cbb6bfdd93170094897854156b876220, type: 3}
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
