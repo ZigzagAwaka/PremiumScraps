@@ -15,8 +15,8 @@ namespace PremiumScraps.CustomEffects
         private Coroutine? darkEffectCoroutine;
         private bool OneTimeUse = false;
         private bool OneTimeActionSp = false;
+        private readonly int debug = -1;  // force choose hallucination if not -1
         public LethalClientMessage<PosId> network;
-        public readonly int debug = -1;  // force choose hallucination if not -1
 
         public JobDark()
         {
@@ -31,7 +31,7 @@ namespace PremiumScraps.CustomEffects
             {
                 case 0: Effects.Spawn(GetEnemies.Girl, posId.position); break;
                 case 1: Effects.Spawn(GetEnemies.Masked, posId.position); break;
-                case 2: Effects.Message("Warning", "Abnormal number of life forms detected !", true); break;
+                case 2: Effects.Message("Warning", "Abnormal amount of employees detected !", true); break;
                 default: return;
             }
         }
@@ -133,7 +133,7 @@ namespace PremiumScraps.CustomEffects
             else if (player.isInHangarShipRoom || player.isInsideFactory)
             {
                 yield return new WaitUntil(() => player.isInHangarShipRoom == false || player.isInsideFactory == false || StartOfRound.Instance.shipIsLeaving == true);
-                for (int n = 0; n < 4; n++)
+                for (int n = 0; n < 3; n++)
                 {
                     if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase)
                         break;
@@ -148,7 +148,7 @@ namespace PremiumScraps.CustomEffects
                         HUDManager.Instance.RadiationWarningHUD();
                         yield return new WaitForSeconds(3);
                         player.beamUpParticle.Play();
-                        yield return new WaitForSeconds(10);
+                        yield return new WaitForSeconds(8);
                         break;
                     case 1:
                         Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 8f);
@@ -170,6 +170,7 @@ namespace PremiumScraps.CustomEffects
                         yield return new WaitForSeconds(20);
                         break;
                     case 4:
+                        Effects.Audio(13, 2f);
                         player.drunkness = 1;
                         player.drunknessInertia = 1;
                         player.drunknessSpeed = 1;
@@ -208,21 +209,21 @@ namespace PremiumScraps.CustomEffects
                 yield return new WaitUntil(() => player.isInsideFactory == true || StartOfRound.Instance.shipIsLeaving == true);
             if (!StartOfRound.Instance.shipIsLeaving && !player.isPlayerDead)
             {
-                yield return new WaitForSeconds(20);
+                yield return new WaitForSeconds(15);
                 if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                 {
                     player.JumpToFearLevel(1);
                     player.playersManager.fearLevelIncreasing = false;
-                    yield return new WaitForSeconds(30);
+                    yield return new WaitForSeconds(25);
                     if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                     {
                         Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 6f);
                         player.JumpToFearLevel(1.5f);
                         player.playersManager.fearLevelIncreasing = false;
-                        yield return new WaitForSeconds(30);
+                        yield return new WaitForSeconds(25);
                         if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                         {
-                            var statusCoroutine = StartCoroutine(Effects.Status("CRITICAL ! HEART SLOWING DOWN ! GO BACK TO THE SHIP IMMEDIATELY."));
+                            var statusCoroutine = StartCoroutine(Effects.Status("WARNING ! UNSTABLE HEART RATE DETECTED. RETURN TO YOUR ASSIGNED SHIP IMMEDIATELY !"));
                             player.JumpToFearLevel(4);
                             player.playersManager.fearLevelIncreasing = true;
                             int i = 0;
@@ -234,7 +235,7 @@ namespace PremiumScraps.CustomEffects
                                     {
                                         Effects.Audio(12, 10f);
                                         yield return new WaitForSeconds(3);
-                                        if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player.isPlayerDead)
+                                        if (StartOfRound.Instance.inShipPhase || player.isPlayerDead)
                                         { i = 0; break; }
                                         if (player.isInHangarShipRoom)
                                             break;
@@ -245,7 +246,7 @@ namespace PremiumScraps.CustomEffects
                                     Effects.Audio(12, 10f);
                                     yield return new WaitForSeconds(10);
                                 }
-                                if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player.isPlayerDead)
+                                if (StartOfRound.Instance.inShipPhase || player.isPlayerDead)
                                 { i = 0; break; }
                                 if (player.isInHangarShipRoom)
                                     break;
@@ -274,7 +275,7 @@ namespace PremiumScraps.CustomEffects
             yield return new WaitForSeconds(timeUntilItsTooLate);
             itsTooLate = true;
             playerHeldBy.playersManager.fearLevelIncreasing = false;
-            Effects.Message("You have been cursed !", "", true);
+            Effects.Message("The air feels different...", "Something terrible has been done to you", true);
             var player = playerHeldBy;
             Effects.DropItem(placingPosition: player.transform.position);
             grabbable = false;
@@ -297,8 +298,8 @@ namespace PremiumScraps.CustomEffects
                         grabbable = true;
                         itemProperties.canBeInspected = false;
                         itemProperties.toolTips[0] = "Summon friends : [RMB]";
-                        Effects.Message("You can now summon some friends...",
-                            "                                Grab the Job Application and use it while on a moon.");
+                        Effects.Message("You can finally meet your c̷̿̂o-̶̔͆w̴̿͜or̵͇̾k̴̹̂er̸̺͋s !",
+                            "                                You should use the Job Application next time you're on a moon :)");
                     }
                     yield return new WaitUntil(() => StartOfRound.Instance.inShipPhase == false);
                 }
