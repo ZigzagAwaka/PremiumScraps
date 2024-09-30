@@ -243,9 +243,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c0be8b40ae2fbc54486584eb49fc6c72, type: 3}
   - {fileID: 8300000, guid: 397979a02f51ca04480fc613625009bf, type: 3}
   ballHitFloorSFX:
-  - {fileID: 8300000, guid: cbb6bfdd93170094897854156b876220, type: 3}
-  - {fileID: 8300000, guid: e3349e9d86627444bbcaa5275dcb08a4, type: 3}
-  - {fileID: 8300000, guid: f40330b7a40c0a94ca4b1a9985b19519, type: 3}
+  - {fileID: 8300000, guid: dc6047985ca10bb4299983c2ff895e4a, type: 3}
+  - {fileID: 8300000, guid: 0f2c96cc1884359429c51d8d6de5e701, type: 3}
+  - {fileID: 8300000, guid: c927486ee16857944aedf897b3fa83e6, type: 3}
+  - {fileID: 8300000, guid: 038a2ca5468e63d4baa87acc394abdcc, type: 3}
+  - {fileID: 8300000, guid: 25b65ae9b1d91fe4db9b6db1b7c96279, type: 3}
   soccerBallAudio: {fileID: 8839319424421110958}
   ballCollider: {fileID: 5786594089722736389}
 --- !u!114 &5472334554773321650
@@ -279,11 +281,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300008, guid: cb9fb87df5ca10840a2a5b2dc5a4284c,
     type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: f2c2f8d7cae5063449b60b175b9bcc9e, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

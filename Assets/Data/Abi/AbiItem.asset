@@ -44,7 +44,7 @@ MonoBehaviour:
   dropSFX: {fileID: 8300000, guid: cbb6bfdd93170094897854156b876220, type: 3}
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
-  syncGrabFunction: 0
+  syncGrabFunction: 1
   syncUseFunction: 0
   syncDiscardFunction: 0
   syncInteractLRFunction: 0

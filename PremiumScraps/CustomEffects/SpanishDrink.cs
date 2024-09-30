@@ -10,9 +10,9 @@ namespace PremiumScraps.CustomEffects
     {
         public bool isDrunk = false;
         public int usage = 0;
-        public int usageBeforeDrunk = 3;
+        public int usageBeforeDrunk = 7;
         private readonly int usageBeforeDrunkMin = 0;
-        private readonly int usageBeforeDrunkMax = 6;
+        private readonly int usageBeforeDrunkMax = 7;
         public LethalClientMessage<ulong> network;
         public LethalClientMessage<PosId> networkAudio;
         public LethalClientMessage<PosId> networkAudio2;
@@ -92,7 +92,7 @@ namespace PremiumScraps.CustomEffects
                 }
                 if (!isDrunk && usage >= usageBeforeDrunk)
                 {
-                    StartCoroutine(SpanishDrunk(player)); // drunk effect
+                    StartCoroutine(SpanishDrunk(player));  // drunk effect
                     isDrunk = true;
                 }
                 else if (!isDrunk)

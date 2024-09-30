@@ -36,7 +36,7 @@ namespace PremiumScraps
                 case 5: script = item.spawnPrefab.AddComponent<StupidBook>(); break;
                 case 6: script = item.spawnPrefab.AddComponent<JobDark>(); break;
                 case 7: script = item.spawnPrefab.AddComponent<SpanishDrink>(); break;
-                case 8: script = item.spawnPrefab.AddComponent<FocusInspect>(); SetupScript.Copy((SoccerBallProp)script, item); break;
+                case 8: script = item.spawnPrefab.AddComponent<TalkingBall>(); SetupScript.Copy((SoccerBallProp)script, item); break;
                 default: return;
             }
             script.grabbable = true;
@@ -70,7 +70,8 @@ namespace PremiumScraps
                 bundle.LoadAsset<AudioClip>(directory + "_audio/Breathing.wav"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/huh.wav"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/book_use_redesign.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/uwu.wav")
+                bundle.LoadAsset<AudioClip>(directory + "_audio/uwu.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/uwu-rot.wav")
             };
 
             var scraps = new List<Scrap> {

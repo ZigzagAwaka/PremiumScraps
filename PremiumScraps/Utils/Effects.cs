@@ -103,6 +103,12 @@ namespace PremiumScraps.Utils
             GameNetworkManager.Instance.localPlayerController.DiscardHeldObject(true, placePosition: destroy ? RoundManager.Instance.insideAINodes[^1].transform.position - (Vector3.up * 100) : placingPosition);
         }
 
+        public static IEnumerator DestroyItem(GrabbableObject item)
+        {
+            yield return new WaitForSeconds(0.5f);
+            item.GetComponent<NetworkObject>().Despawn();
+        }
+
         public static void Audio(int audioID, float volume)
         {
             RoundManager.PlayRandomClip(HUDManager.Instance.UIAudio, new AudioClip[] { Plugin.audioClips[audioID] }, randomize: false, oneShotVolume: volume);

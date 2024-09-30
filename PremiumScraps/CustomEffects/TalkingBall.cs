@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
-    // special ABIBABOU inspect item code
-    internal class FocusInspect : SoccerBallProp
+    internal class TalkingBall : SoccerBallProp
     {
+        public bool isSpeaking = true;
         public float originalSpeed = 0.3f;
         public bool getOriginalSpeed = false;
         public Vector3? originalPosition = null;
         public LethalClientMessage<PosId> networkAudio;
 
-        public FocusInspect()
+        public TalkingBall()
         {
             networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsAbiAudioID");
             networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
@@ -21,6 +21,20 @@ namespace PremiumScraps.CustomEffects
         private void InvokeAudioNetwork(PosId posId, ulong clientId)
         {
             Effects.Audio(posId.Id, posId.position, 3f);
+        }
+
+        public override void GrabItem()
+        {
+            base.GrabItem();
+            if (isSpeaking && isHeld)
+            {
+                isSpeaking = false;
+                var audio = GetComponent<AudioSource>();
+                audio.Pause();
+                audio.loop = false;
+                audio.clip = null;
+                audio.UnPause();
+            }
         }
 
         public override void InspectItem()
@@ -38,12 +52,15 @@ namespace PremiumScraps.CustomEffects
                         originalSpeed = itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.GetFloat("_Speed");
                     }
                     itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.SetFloat("_Speed", 0f);
-                    if (Random.Range(0, 10) >= 3)  // 70%
+                    if (Random.Range(0, 10) >= 1)  // 90%
                         Effects.Audio(14, 1.5f);  // huh audio
-                    else  // 30%
+                    else  // 10%
                     {
-                        Effects.Audio(16, 1.5f);  // uwu audio
-                        networkAudio.SendAllClients(new PosId(16, playerHeldBy.transform.position), false);  // sync uwu audio
+                        int audioID = 16;
+                        if (Random.Range(0, 10) <= 1)  // 20% rare uwu
+                            audioID = 17;
+                        Effects.Audio(audioID, 1.5f);  // uwu audio
+                        networkAudio.SendAllClients(new PosId(audioID, playerHeldBy.transform.position), false);  // sync uwu audio
                     }
                 }
                 else
@@ -51,7 +68,6 @@ namespace PremiumScraps.CustomEffects
                     StopInspect();
                 }
             }
-
         }
 
         public override void PocketItem()

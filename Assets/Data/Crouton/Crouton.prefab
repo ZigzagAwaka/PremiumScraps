@@ -403,10 +403,10 @@ MonoBehaviour:
   grabbableToEnemies: 1
   whoopieCushionAudio: {fileID: 7489578232780143942}
   fartAudios:
-  - {fileID: 8300000, guid: 87e9c2b717eaa5f4d909d9214853317e, type: 3}
-  - {fileID: 8300000, guid: 284072c1b7ea3094d992b173b8d9f4a4, type: 3}
-  - {fileID: 8300000, guid: 1ef61a66d96ded84b9e088b40faeb9fd, type: 3}
-  - {fileID: 8300000, guid: 51579fea0d1cf66478f79f08098e7dba, type: 3}
+  - {fileID: 8300000, guid: 655d0988a82e805429e9928f6ae13efb, type: 3}
+  - {fileID: 8300000, guid: aa43608a6ed795b499f04d30e214b2d6, type: 3}
+  - {fileID: 8300000, guid: 08963e4c48764ff44aa8047ec48744bf, type: 3}
+  - {fileID: 8300000, guid: a2ee4fb394d156c409de2c76f67b22bd, type: 3}
 --- !u!1001 &3754750680276349057
 PrefabInstance:
   m_ObjectHideFlags: 0

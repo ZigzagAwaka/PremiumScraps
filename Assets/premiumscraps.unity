@@ -1530,36 +1530,26 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1605783175
       objectReference: {fileID: 0}
-    - target: {fileID: 1356248404756790639, guid: b7ffab121a8d56147bc1508f94f7cb68,
+    - target: {fileID: 2938005433545975556, guid: b7ffab121a8d56147bc1508f94f7cb68,
         type: 3}
-      propertyPath: m_Size.x
-      value: 0.32465124
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356248404756790639, guid: b7ffab121a8d56147bc1508f94f7cb68,
+      propertyPath: fartAudios.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 655d0988a82e805429e9928f6ae13efb, type: 3}
+    - target: {fileID: 2938005433545975556, guid: b7ffab121a8d56147bc1508f94f7cb68,
         type: 3}
-      propertyPath: m_Size.y
-      value: 0.88170755
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356248404756790639, guid: b7ffab121a8d56147bc1508f94f7cb68,
+      propertyPath: fartAudios.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: aa43608a6ed795b499f04d30e214b2d6, type: 3}
+    - target: {fileID: 2938005433545975556, guid: b7ffab121a8d56147bc1508f94f7cb68,
         type: 3}
-      propertyPath: m_Size.z
-      value: 0.3461765
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356248404756790639, guid: b7ffab121a8d56147bc1508f94f7cb68,
+      propertyPath: fartAudios.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 08963e4c48764ff44aa8047ec48744bf, type: 3}
+    - target: {fileID: 2938005433545975556, guid: b7ffab121a8d56147bc1508f94f7cb68,
         type: 3}
-      propertyPath: m_Center.x
-      value: 0.0005643368
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356248404756790639, guid: b7ffab121a8d56147bc1508f94f7cb68,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.27360612
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356248404756790639, guid: b7ffab121a8d56147bc1508f94f7cb68,
-        type: 3}
-      propertyPath: m_Center.z
-      value: -0.009576738
-      objectReference: {fileID: 0}
+      propertyPath: fartAudios.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: a2ee4fb394d156c409de2c76f67b22bd, type: 3}
     - target: {fileID: 4472393846542228381, guid: b7ffab121a8d56147bc1508f94f7cb68,
         type: 3}
       propertyPath: m_LocalPosition.x
