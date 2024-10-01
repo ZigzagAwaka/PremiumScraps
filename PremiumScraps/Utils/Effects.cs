@@ -47,7 +47,6 @@ namespace PremiumScraps.Utils
             player.criticallyInjured = false;
             player.bleedingHeavily = false;
             player.playerBodyAnimator.SetBool("Limp", false);
-            HUDManager.Instance.UpdateHealthUI(health, false);
         }
 
         public static void Teleportation(PlayerControllerB player, Vector3 position, bool exterior = false, bool interior = false)
@@ -101,12 +100,6 @@ namespace PremiumScraps.Utils
         public static void DropItem(bool destroy = false, Vector3 placingPosition = default)
         {
             GameNetworkManager.Instance.localPlayerController.DiscardHeldObject(true, placePosition: destroy ? RoundManager.Instance.insideAINodes[^1].transform.position - (Vector3.up * 100) : placingPosition);
-        }
-
-        public static IEnumerator DestroyItem(GrabbableObject item)
-        {
-            yield return new WaitForSeconds(0.5f);
-            item.GetComponent<NetworkObject>().Despawn();
         }
 
         public static void Audio(int audioID, float volume)

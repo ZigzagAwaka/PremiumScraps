@@ -10,12 +10,14 @@ namespace PremiumScraps.CustomEffects
     {
         public bool isDrunk = false;
         public int usage = 0;
-        public int usageBeforeDrunk = 7;
+        public int usageBeforeDrunk = 1;
         private readonly int usageBeforeDrunkMin = 0;
-        private readonly int usageBeforeDrunkMax = 7;
+        private readonly int usageBeforeDrunkMax = 6;
+        public Vector3? originalPosition = null;
+        public Vector3? originalRotation = null;
         public LethalClientMessage<ulong> network;
         public LethalClientMessage<PosId> networkAudio;
-        public LethalClientMessage<PosId> networkAudio2;
+        public LethalClientMessage<PosId> networkPosition;
 
         public SpanishDrink()
         {
@@ -23,10 +25,10 @@ namespace PremiumScraps.CustomEffects
             customGrabTooltip = "Coger : [E]";
             network = new LethalClientMessage<ulong>(identifier: "premiumscrapsSpanishID");
             networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsSpanishAudioID");
-            networkAudio2 = new LethalClientMessage<PosId>(identifier: "premiumscrapsSpanishAudio2ID");
+            networkPosition = new LethalClientMessage<PosId>(identifier: "premiumscrapsSpanishPositionID");
             network.OnReceivedFromClient += HealPlayerNetwork;
             networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
-            networkAudio2.OnReceivedFromClient += InvokeAudioNetwork2;
+            networkPosition.OnReceivedFromClient += InvokePositionNetwork;
         }
 
         private void HealPlayerNetwork(ulong playerID, ulong clientId)
@@ -36,12 +38,15 @@ namespace PremiumScraps.CustomEffects
 
         private void InvokeAudioNetwork(PosId posId, ulong clientId)
         {
-            Effects.Audio(posId.Id, posId.position, 3f);
+            Effects.Audio(posId.Id, posId.position, 1.8f);
         }
 
-        private void InvokeAudioNetwork2(PosId posId, ulong clientId)
+        private void InvokePositionNetwork(PosId posId, ulong clientId)
         {
-            Effects.Audio(posId.Id, posId.position, 5f);
+            if (posId.Id == 0)
+                itemProperties.positionOffset = posId.position;
+            else
+                itemProperties.rotationOffset = posId.position;
         }
 
         private void SelectUsageBeforeDrunk()
@@ -60,10 +65,12 @@ namespace PremiumScraps.CustomEffects
             base.ItemActivate(used, buttonDown);
             if (playerHeldBy != null)
             {
-                Effects.Audio(7, 1f);  // drink audio local player
-                networkAudio.SendAllClients(new PosId(7, playerHeldBy.transform.position), false);  // sync drink audio
                 if (IsOwner)
                 {
+                    originalPosition = itemProperties.positionOffset;
+                    originalRotation = itemProperties.rotationOffset;
+                    networkPosition.SendAllClients(new PosId(0, new Vector3(0.05f, 0.1f, 0.05f)));
+                    networkPosition.SendAllClients(new PosId(1, new Vector3(-50, 10, 0)));
                     playerHeldBy.activatingItem = buttonDown;
                     playerHeldBy.playerBodyAnimator.SetBool("useTZPItem", buttonDown);  // start drink animation
                 }
@@ -75,49 +82,56 @@ namespace PremiumScraps.CustomEffects
 
         private IEnumerator SpanishEffect(PlayerControllerB player)
         {
-            yield return new WaitForSeconds(3);
             if (IsOwner)
             {
+                yield return new WaitForSeconds(0.8f);
+                Effects.Audio(18, 1f);  // drink audio local player
+                networkAudio.SendAllClients(new PosId(18, playerHeldBy.transform.position), false);  // sync drink audio
+                yield return new WaitForSeconds(1.8f);
+                networkPosition.SendAllClients(new PosId(0, originalPosition != null ? originalPosition.Value : default));
+                networkPosition.SendAllClients(new PosId(1, originalRotation != null ? originalRotation.Value : default));
                 player.playerBodyAnimator.SetBool("useTZPItem", false);  // stop drink animation
                 player.activatingItem = false;
-                Effects.Audio(6, 1f);  // spanish audio local player
-                networkAudio.SendAllClients(new PosId(6, player.transform.position), false);  // sync spanish audio
                 yield return new WaitForSeconds(0.2f);
-                if (usage >= usageBeforeDrunk)
+                if (!player.isPlayerDead)
                 {
-                    if (player.IsHost)
-                        StartCoroutine(Effects.DamageHost(player, 10, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf));  // damage or death (host)
-                    else
-                        Effects.Damage(player, 10, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf);  // damage or death
-                }
-                if (!isDrunk && usage >= usageBeforeDrunk)
-                {
-                    StartCoroutine(SpanishDrunk(player));  // drunk effect
-                    isDrunk = true;
-                }
-                else if (!isDrunk)
-                {
-                    network.SendAllClients(StartOfRound.Instance.localPlayerController.playerClientId);  // heal
+                    if (usage >= usageBeforeDrunk)
+                    {
+                        Effects.Audio(19, 1f);  // spanish audio local player
+                        networkAudio.SendAllClients(new PosId(19, player.transform.position), false);  // sync spanish audio
+                        if (player.IsHost)
+                            StartCoroutine(Effects.DamageHost(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf));  // damage or death (host)
+                        else
+                            Effects.Damage(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf);  // damage or death
+                    }
+                    if (!isDrunk && usage >= usageBeforeDrunk)
+                    {
+                        Effects.Message("You were poisoned !", "");
+                        yield return new WaitForSeconds(2f);
+                        StartCoroutine(SpanishDrunk(player));  // drunk effect
+                        isDrunk = true;
+                    }
+                    else if (!isDrunk)
+                    {
+                        network.SendAllClients(StartOfRound.Instance.localPlayerController.playerClientId);  // heal
+                        HUDManager.Instance.UpdateHealthUI(100, false);
+                    }
                 }
             }
         }
 
         private IEnumerator SpanishDrunk(PlayerControllerB player)
         {
-            while (true)
+            for (int n = 0; n < 240; n++)  // 2 minutes
             {
                 yield return new WaitForSeconds(0.5f);
-                if (player.isPlayerDead)
-                {
-                    isDrunk = false;
-                    usage = 0;
-                    SelectUsageBeforeDrunk();
+                if (player == null || player.isPlayerDead)
                     break;
-                }
                 player.drunkness = 1;
                 player.drunknessInertia = 1;
                 player.drunknessSpeed = 1;
             }
+            isDrunk = false;
         }
     }
 }

@@ -148,7 +148,7 @@ namespace PremiumScraps.CustomEffects
                         HUDManager.Instance.RadiationWarningHUD();
                         yield return new WaitForSeconds(3);
                         player.beamUpParticle.Play();
-                        yield return new WaitForSeconds(8);
+                        yield return new WaitForSeconds(5);
                         break;
                     case 1:
                         Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 8f);
@@ -167,7 +167,7 @@ namespace PremiumScraps.CustomEffects
                         Effects.Knockback(player.transform.position + Vector3.forward, 1, 0, 30);
                         yield return new WaitForSeconds(10);
                         Effects.Knockback(player.transform.position + Vector3.right, 1, 0, 40);
-                        yield return new WaitForSeconds(20);
+                        yield return new WaitForSeconds(10);
                         break;
                     case 4:
                         Effects.Audio(13, 2f);
@@ -176,7 +176,7 @@ namespace PremiumScraps.CustomEffects
                         player.drunknessSpeed = 1;
                         player.JumpToFearLevel(1f);
                         player.playersManager.fearLevelIncreasing = false;
-                        yield return new WaitForSeconds(20);
+                        yield return new WaitForSeconds(15);
                         break;
                     case 5:
                         var original = player.movementSpeed;
