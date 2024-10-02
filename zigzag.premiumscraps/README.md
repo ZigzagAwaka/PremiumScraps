@@ -27,7 +27,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 
 ### Fake airhorn
 - Can be used to make loud annoying sounds, just like a real airhorn would.
-- Sometimes it will trigger a custom *bad* effect, are you sure that this is the real one?
+- Sometimes it will trigger a custom *bad effect*, are you sure that this is the real one?
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-airhorn.PNG)
 
@@ -35,7 +35,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 - Are you pondering the orb? Or is it the orb that is pondering you? Do not be surprised, for this orb will scream, speak and laugh at you.
 - I'm keeping this one's appearance a secret since it's the rarest scrap in the mod. 
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-orb.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-orb.png)
 
 ### Weapons
 - **Comically Large Spoon**, a classic, does a little more damage than the shovel.
