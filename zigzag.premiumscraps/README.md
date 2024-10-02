@@ -95,7 +95,7 @@ You can post some suggestions or issues in the mod release page in the [modding 
 - My ■■■■■■th job application
 - Moogle
 - El Gazpacho
-- ABIBABOU
+- The talking orb
 
 </details>
 

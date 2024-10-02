@@ -7,7 +7,7 @@
     - Fake airhorn's second effect has a new animation
     - Fake airhorn audio now has some sound variation just like the real airhorn. But I'm not that evil so the variations are *not exactly* the same as the real one... anyways good luck !
     - Reduced Stick spawn chance
-    - Updated README
+    - Updated README and mod icon
 - **Fixed**
     - The Stick special effect has been completely fixed and is now re-enabled !
     - Basics of architecture 'turning page' audio is now properly assigned to the item and is synced to all players

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AbiItem
   m_EditorClassIdentifier: 
   itemId: 0
-  itemName: ABIBABOU
+  itemName: The talking orb
   spawnPositionTypes: []
   twoHanded: 1
   twoHandedAnimation: 0
