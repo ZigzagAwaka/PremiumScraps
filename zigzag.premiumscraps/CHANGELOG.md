@@ -1,6 +1,6 @@
 # 1.9.0 New scraps
 - **Added**
-    - Added My ■■■■■■th job application, Moogle, El Gazpacho and ABIBABOU
+    - Added My ■■■■■■th job application, Moogle, El Gazpacho and The talking orb
 - **Updated**
     - New effect for crouton: you can now walk on it to make a *special* sound
     - When Basics of architecture is spawning an item, it will now also play a funny sound

@@ -12,9 +12,16 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-troll.PNG)
 
+### My ■■■■■■th job application
+- Although you're not a recruiter, it really shouldn't hurt if you're the one inspecting it.
+- If horror movies taught you one thing however, it is that reading strange out of place objects from forgotten facilities in obscure planets really isn't the safest idea for you and your f̣̓̊eͦ́ͦllo̵̶̍w͛ͮ͒ c͍o-̖̋w̸̱͎or̬͗kers... you can already picture everyone *diseappearing* or dying from *heart attacks*.
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-darkjob.png)
+
 ### Custom effect items
 - **Scroll of Town Portal**, a rare consumable item, teleports its user to the ship.
 - **Basics of architecture**, a book filled with forbidden knowledge, you can read it to learn how to use those screws you borrowed from your aunt.
+- **El Gazpacho**, a tasty drink, will heal you when consumed but with a risk of having *"side-effects"*. How long will your body be able to stand up after a sip of this common spanish drink?
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-effects.PNG)
 
@@ -24,6 +31,12 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-airhorn.PNG)
 
+### The talking orb
+- Are you pondering the orb? Or is it the orb that is pondering you? Do not be surprised, for this orb will scream, speak and laugh at you.
+- I'm keeping this one's appearance a secret since it's the rarest scrap in the mod. 
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-orb.PNG)
+
 ### Weapons
 - **Comically Large Spoon**, a classic, does a little more damage than the shovel.
 - The legendary **Stick**, a non-lethal weapon, but you should not use it on your friends...
@@ -31,7 +44,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-weapons.PNG)
 
 ### Noisy items
-- **The King** and **Puppy Shark** can both be used to make some funny sounds !
+- **The King**, **Puppy Shark** and **Moogle** can all be used to make some funny sounds !
 - The little orange square is called **crouton**, it's an obscure internet refererence that can be heard anywhere on the map when droped.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-audio.PNG)
@@ -45,7 +58,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 
 <details><summary>Want to see some more images? (click to reveal)</summary>
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-rupees.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview3.PNG)
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-variant.PNG)
 
