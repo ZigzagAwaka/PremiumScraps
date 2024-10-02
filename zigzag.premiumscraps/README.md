@@ -35,7 +35,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 - Are you pondering the orb? Or is it the orb that is pondering you? Do not be surprised, for this orb will scream, speak and laugh at you.
 - I'm keeping this one's appearance a secret since it's the rarest scrap in the mod. 
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-orb.png)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-orb.PNG)
 
 ### Weapons
 - **Comically Large Spoon**, a classic, does a little more damage than the shovel.
