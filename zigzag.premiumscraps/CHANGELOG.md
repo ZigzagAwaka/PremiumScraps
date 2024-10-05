@@ -1,3 +1,7 @@
+## 1.9.1
+- **Fixed**
+    - Fixed Fake airhorn audio playing twice for other players
+
 # 1.9.0 New scraps
 - **Added**
     - Added My ■■■■■■th job application, Moogle, El Gazpacho and The talking orb

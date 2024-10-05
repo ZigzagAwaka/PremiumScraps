@@ -17,7 +17,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.9.0";
+        const string VERSION = "1.9.1";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;

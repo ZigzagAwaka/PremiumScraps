@@ -6,12 +6,13 @@ namespace PremiumScraps.CustomEffects
 {
     internal class FakeAirhorn : NoisemakerProp
     {
-        public LethalClientMessage<Vector3> network, networkAudio, networkAudio2;
+        public LethalClientMessage<Vector3> network, networkAudio2;
+        public LethalClientMessage<PosId> networkAudio;
 
         public FakeAirhorn()
         {
             network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornID");
-            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornAudioID");
+            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsFakeAirhornAudioID");
             networkAudio2 = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornAudio2ID");
             network.OnReceivedFromClient += SpawnExplosionNetwork;
             networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
@@ -23,10 +24,10 @@ namespace PremiumScraps.CustomEffects
             Effects.Explosion(position, 4f, 50, 2);
         }
 
-        private void InvokeAudioNetwork(Vector3 position, ulong clientId)
+        private void InvokeAudioNetwork(PosId posId, ulong clientId)
         {
-            Effects.Audio(0, position, 8f, Random.Range(minPitch, maxPitch));
-            RoundManager.Instance.PlayAudibleNoise(position, 60, 0.9f);
+            Effects.Audio(0, posId.position, 8f, posId.Id / 10f);
+            RoundManager.Instance.PlayAudibleNoise(posId.position, 60, 0.9f);
         }
 
         private void InvokeAudioNetwork2(Vector3 position, ulong clientId)
@@ -41,7 +42,10 @@ namespace PremiumScraps.CustomEffects
                 if (StartOfRound.Instance.inShipPhase || Random.Range(1, 11) >= 4)  // 70%
                 {
                     base.ItemActivate(used, buttonDown);  // airhorn audio local player
-                    networkAudio.SendAllClients(playerHeldBy.transform.position, false);  // sync airhorn audio
+                    float pitch = minPitch * 10f;
+                    if (Random.Range(1, 11) >= 6)
+                        pitch = maxPitch * 10f;
+                    networkAudio.SendAllClients(new PosId((int)pitch, playerHeldBy.transform.position), false);  // sync airhorn audio
                 }
                 else  // 30%
                 {
