@@ -1,39 +1,12 @@
-﻿using LethalNetworkAPI;
-using PremiumScraps.Utils;
+﻿using PremiumScraps.Utils;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
     internal class FakeAirhorn : NoisemakerProp
     {
-        public LethalClientMessage<Vector3> network, networkAudio2;
-        public LethalClientMessage<PosId> networkAudio;
-
-        public FakeAirhorn()
-        {
-            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornID");
-            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsFakeAirhornAudioID");
-            networkAudio2 = new LethalClientMessage<Vector3>(identifier: "premiumscrapsFakeAirhornAudio2ID");
-            network.OnReceivedFromClient += SpawnExplosionNetwork;
-            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
-            networkAudio2.OnReceivedFromClient += InvokeAudioNetwork2;
-        }
-
-        private void SpawnExplosionNetwork(Vector3 position, ulong clientId)
-        {
-            Effects.Explosion(position, 4f, 50, 2);
-        }
-
-        private void InvokeAudioNetwork(PosId posId, ulong clientId)
-        {
-            Effects.Audio(0, posId.position, 8f, posId.Id / 10f);
-            RoundManager.Instance.PlayAudibleNoise(posId.position, 60, 0.9f);
-        }
-
-        private void InvokeAudioNetwork2(Vector3 position, ulong clientId)
-        {
-            Effects.Audio(6, position, 4f);
-        }
+        public FakeAirhorn() { }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
@@ -41,17 +14,13 @@ namespace PremiumScraps.CustomEffects
             {
                 if (StartOfRound.Instance.inShipPhase || Random.Range(1, 11) >= 4)  // 70%
                 {
-                    base.ItemActivate(used, buttonDown);  // airhorn audio local player
-                    float pitch = minPitch * 10f;
-                    if (Random.Range(1, 11) >= 6)
-                        pitch = maxPitch * 10f;
-                    networkAudio.SendAllClients(new PosId((int)pitch, playerHeldBy.transform.position), false);  // sync airhorn audio
+                    BaseItemActivateServerRpc(used, buttonDown);  // airhorn audio
                 }
                 else  // 30%
                 {
                     if (Random.Range(1, 11) >= 6)  // 50%
                     {
-                        networkAudio2.SendAllClients(playerHeldBy.transform.position);  // landmine audio
+                        AudioServerRpc(6, playerHeldBy.transform.position, 1f, 4f);  // landmine audio
                         if (playerHeldBy.IsHost)
                             StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Burning, (int)Effects.DeathAnimation.Fire));  // death (host)
                         else
@@ -59,17 +28,49 @@ namespace PremiumScraps.CustomEffects
                     }
                     else  // 50%
                     {
-                        var playerTmp = playerHeldBy;
-                        if (playerHeldBy.IsHost)
-                        {
-                            StartCoroutine(Effects.ExplosionHostDeath(playerHeldBy.transform.position, 4f, 50, 10));  // explosion (host)
-                            network.SendAllClients(playerTmp.transform.position, false);  // explosion for other players
-                        }
-                        else
-                            network.SendAllClients(playerTmp.transform.position);  // explosion
+                        ExplosionServerRpc(playerHeldBy.transform.position);  // explosion
                     }
                 }
             }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void BaseItemActivateServerRpc(bool used, bool buttonDown)
+        {
+            BaseItemActivateClientRpc(used, buttonDown);
+        }
+
+        [ClientRpc]
+        private void BaseItemActivateClientRpc(bool used, bool buttonDown)
+        {
+            base.ItemActivate(used, buttonDown);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        {
+            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+        }
+
+        [ClientRpc]
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        {
+            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ExplosionServerRpc(Vector3 position)
+        {
+            ExplosionClientRpc(position);
+        }
+
+        [ClientRpc]
+        private void ExplosionClientRpc(Vector3 position)
+        {
+            if (IsHost)
+                StartCoroutine(Effects.ExplosionHostDeath(position, 4f, 50, 2));
+            else
+                Effects.Explosion(position, 4f, 50, 2);
         }
     }
 }

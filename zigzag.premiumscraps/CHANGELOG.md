@@ -1,3 +1,12 @@
+# 2.0.0 Improvements
+- **Added**
+    - Added Bomb
+- **Updated**
+    - New effect for Harry Mason: when you drop it, you have 2% chance of *something* happening hehehe
+    - Removed LethalNetworkAPI dependency, every network effect is now managed by classic unity netcode, this allows all sort of fixes
+- **Fixed**
+    - Fixed position of Rupee, SODA, Basics of architecture and Galvanized square steel when they are droped in the ship's cupboard
+
 ## 1.9.1
 - **Fixed**
     - Fixed Fake airhorn audio playing twice for other players
@@ -17,6 +26,12 @@
     - Basics of architecture 'turning page' audio is now properly assigned to the item and is synced to all players
     - Fake airhorn audio is now properly assigned to the item and can be heard by monsters
     - Optimization of custom effects code
+
+##
+
+<details><summary>Old versions (click to reveal)</summary>
+
+###
 
 ## 1.8.4
 - **Updated**
@@ -62,12 +77,6 @@
     - Updated dependencies
 - **Fixed**
     - Fixed issues with LethalNetworkAPI new versions 3.0.0+ (I'm still using the old structure but it's working as intended)
-
-##
-
-<details><summary>Old versions (click to reveal)</summary>
-
-###
 
 ## 1.7.3
 - **Updated**

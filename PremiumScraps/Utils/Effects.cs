@@ -1,5 +1,6 @@
 ﻿using GameNetcodeStuff;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
@@ -27,6 +28,36 @@ namespace PremiumScraps.Utils
             return StartOfRound.Instance.connectedPlayersAmount + 1;
         }
 
+        public static List<PlayerControllerB> GetPlayers(bool includeDead = false)
+        {
+            List<PlayerControllerB> rawList = Object.FindObjectsOfType<PlayerControllerB>().ToList();
+            List<PlayerControllerB> updatedList = new List<PlayerControllerB>(rawList);
+            foreach (var p in rawList)
+            {
+                if (p.playerSteamId <= 0 || (!includeDead && p.isPlayerDead))
+                {
+                    updatedList.Remove(p);
+                }
+            }
+            return updatedList;
+        }
+
+        public static List<EnemyAI> GetEnemies(bool includeDead = false, bool includeCanDie = false)
+        {
+            List<EnemyAI> rawList = Object.FindObjectsOfType<EnemyAI>().ToList();
+            List<EnemyAI> updatedList = new List<EnemyAI>(rawList);
+            if (includeDead)
+                return updatedList;
+            foreach (var e in rawList)
+            {
+                if (e.isEnemyDead || (!includeCanDie && !e.enemyType.canDie))
+                {
+                    updatedList.Remove(e);
+                }
+            }
+            return updatedList;
+        }
+
         public static void Damage(PlayerControllerB player, int damageNb, CauseOfDeath cause = 0, int animation = 0, bool criticalBlood = true)
         {
             if (criticalBlood && player.health - damageNb <= 20)
@@ -49,9 +80,10 @@ namespace PremiumScraps.Utils
             player.playerBodyAnimator.SetBool("Limp", false);
         }
 
-        public static void Teleportation(PlayerControllerB player, Vector3 position, bool exterior = false, bool interior = false)
+
+        public static void Teleportation(PlayerControllerB player, Vector3 position, bool ship = false, bool exterior = false, bool interior = false)
         {
-            if (position == StartOfRound.Instance.middleOfShipNode.position)
+            if (ship)
             {
                 player.isInElevator = true;
                 player.isInHangarShipRoom = true;
@@ -97,9 +129,9 @@ namespace PremiumScraps.Utils
             Landmine.SpawnExplosion(position, false, 0, range, damage, physicsForce);
         }
 
-        public static void DropItem(bool destroy = false, Vector3 placingPosition = default)
+        public static void DropItem(Vector3 placingPosition = default)
         {
-            GameNetworkManager.Instance.localPlayerController.DiscardHeldObject(true, placePosition: destroy ? RoundManager.Instance.insideAINodes[^1].transform.position - (Vector3.up * 100) : placingPosition);
+            GameNetworkManager.Instance.localPlayerController.DiscardHeldObject(true, placePosition: placingPosition);
         }
 
         public static void Audio(int audioID, float volume)
@@ -113,6 +145,14 @@ namespace PremiumScraps.Utils
             if (adjust)
                 finalPosition += (Vector3.up * 2);
             AudioSource.PlayClipAtPoint(Plugin.audioClips[audioID], finalPosition, volume);
+        }
+
+        public static void Audio(int audioID, Vector3 clientPosition, float localVolume, float clientVolume, PlayerControllerB player)
+        {
+            if (player != null && GameNetworkManager.Instance.localPlayerController.playerClientId == player.playerClientId)
+                Audio(audioID, localVolume);
+            else
+                Audio(audioID, clientPosition, clientVolume);
         }
 
         public static void Audio(int audioID, Vector3 position, float volume, float pitch, bool adjust = true)

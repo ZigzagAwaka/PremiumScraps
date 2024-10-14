@@ -17,10 +17,11 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "1.9.1";
+        const string VERSION = "2.0.0";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
+        //public static List<GameObject> gameObjects;
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
 
@@ -52,6 +53,10 @@ namespace PremiumScraps
             AssetBundle bundle = AssetBundle.LoadFromFile(assetDir);
 
             string directory = "Assets/Data/";
+
+            /*gameObjects = new List<GameObject> {
+                bundle.LoadAsset<GameObject>(directory + "DeathNote/DeathNoteCanvas.prefab")
+            };*/
 
             audioClips = new List<AudioClip> {
                 bundle.LoadAsset<AudioClip>(directory + "_audio/AirHorn1.ogg"),
@@ -105,6 +110,7 @@ namespace PremiumScraps
             };
 
             int i = 0; config = new Config(base.Config, scraps);
+            SetupScript.Network();
 
             foreach (Scrap scrap in scraps)
             {

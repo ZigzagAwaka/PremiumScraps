@@ -24,7 +24,7 @@ namespace PremiumScraps.CustomEffects
             if (buttonDown && playerHeldBy != null && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded)
             {
                 var player = playerHeldBy;
-                Effects.DropItem(true);
+                Effects.DropItem(); // to rework
                 grabbable = false;
                 Effects.Teleportation(player, StartOfRound.Instance.middleOfShipNode.position);
                 networkAudio.SendAllClients(player.transform.position);

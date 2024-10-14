@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Reflection;
+using UnityEngine;
 
 namespace PremiumScraps.Utils
 {
@@ -30,6 +31,23 @@ namespace PremiumScraps.Utils
 
     public class SetupScript
     {
+        public static void Network()
+        {
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+            foreach (var type in types)
+            {
+                var methods = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+                foreach (var method in methods)
+                {
+                    var attributes = method.GetCustomAttributes(typeof(RuntimeInitializeOnLoadMethodAttribute), false);
+                    if (attributes.Length > 0)
+                    {
+                        method.Invoke(null, null);
+                    }
+                }
+            }
+        }
+
         public static void Copy(NoisemakerProp target, Item item)
         {
             var source = item.spawnPrefab.GetComponent<NoisemakerProp>();

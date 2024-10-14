@@ -277,7 +277,7 @@ namespace PremiumScraps.CustomEffects
             playerHeldBy.playersManager.fearLevelIncreasing = false;
             Effects.Message("The air feels different...", "Something terrible has been done to you", true);
             var player = playerHeldBy;
-            Effects.DropItem(placingPosition: player.transform.position);
+            Effects.DropItem(player.transform.position);
             grabbable = false;
             if (StartOfRound.Instance.inShipPhase)
                 summonFriends = -1;
