@@ -1,5 +1,5 @@
-﻿using LethalNetworkAPI;
-using PremiumScraps.Utils;
+﻿using PremiumScraps.Utils;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
@@ -10,18 +10,8 @@ namespace PremiumScraps.CustomEffects
         public float originalSpeed = 0.3f;
         public bool getOriginalSpeed = false;
         public Vector3? originalPosition = null;
-        public LethalClientMessage<PosId> networkAudio;
 
-        public TalkingBall()
-        {
-            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsAbiAudioID");
-            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
-        }
-
-        private void InvokeAudioNetwork(PosId posId, ulong clientId)
-        {
-            Effects.Audio(posId.Id, posId.position, 3f);
-        }
+        public TalkingBall() { }
 
         public override void GrabItem()
         {
@@ -59,8 +49,7 @@ namespace PremiumScraps.CustomEffects
                         int audioID = 16;
                         if (Random.Range(0, 10) <= 1)  // 20% rare uwu
                             audioID = 17;
-                        Effects.Audio(audioID, 1.5f);  // uwu audio
-                        networkAudio.SendAllClients(new PosId(audioID, playerHeldBy.transform.position), false);  // sync uwu audio
+                        AudioServerRpc(audioID, playerHeldBy.transform.position, 1.5f, 3f);  // uwu audio
                     }
                 }
                 else
@@ -89,6 +78,18 @@ namespace PremiumScraps.CustomEffects
                 itemProperties.positionOffset = originalPosition.Value;
             if (fixHUD)
                 HUDManager.Instance.HideHUD(false);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        {
+            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+        }
+
+        [ClientRpc]
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        {
+            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
         }
     }
 }

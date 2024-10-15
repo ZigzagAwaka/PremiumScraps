@@ -51,6 +51,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 
 ### Classic items
 - Scraps with no special effects, but they come with custom audio. Some can even glow in dark places.
+- Watch out, some of these items may have a *secret custom effect* that no one knows about hehehe...
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview1.PNG)
 

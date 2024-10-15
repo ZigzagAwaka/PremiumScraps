@@ -1,38 +1,28 @@
-﻿using LethalNetworkAPI;
-using PremiumScraps.Utils;
+﻿using PremiumScraps.Utils;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
     internal class TrollFace : PhysicsProp
     {
-        public LethalClientMessage<Vector3> network, networkAudio;
         public TrollFace()
         {
             useCooldown = 3;
             customGrabTooltip = "Friendship ends here : [E]";
-            network = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollFaceID");
-            networkAudio = new LethalClientMessage<Vector3>(identifier: "premiumscrapsTrollFaceAudioID");
-            network.OnReceivedFromClient += SpawnEnemyNetwork;
-            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
-        }
-
-        private void SpawnEnemyNetwork(Vector3 position, ulong clientId)
-        {
-            Effects.Spawn(GetEnemies.Giant, position);
-        }
-
-        private void InvokeAudioNetwork(Vector3 position, ulong clientId)
-        {
-            Effects.Audio(1, position, 2.0f);
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             base.ItemActivate(used, buttonDown);
-            if (buttonDown && playerHeldBy != null && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded)
+            if (buttonDown && playerHeldBy != null)
             {
-                networkAudio.SendAllClients(playerHeldBy.transform.position);
+                if (StartOfRound.Instance.inShipPhase || !StartOfRound.Instance.shipHasLanded)
+                {
+                    Effects.Message("Not now", "Try it a little bit later :)");
+                    return;
+                }
+                AudioServerRpc(1, playerHeldBy.transform.position, 2f);
                 if (playerHeldBy.health > 90)
                 {
                     Effects.Damage(playerHeldBy, 10);
@@ -58,13 +48,28 @@ namespace PremiumScraps.CustomEffects
                         StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1));
                     else
                         Effects.Damage(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1);
-                    if (playerTmp.IsHost)  // Multiple spawn, feature for host, bug for clients
-                        for (int i = 0; i < Effects.NbOfPlayers(); i++)
-                            SpawnEnemyNetwork(playerTmp.transform.position, 0);
-                    else
-                        network.SendAllClients(playerTmp.transform.position, false);
+                    SpawnEnemyServerRpc(playerTmp.transform.position);
                 }
             }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void SpawnEnemyServerRpc(Vector3 position)
+        {
+            for (int i = 0; i < 4; i++)
+                Effects.Spawn(GetEnemies.Giant, position);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        {
+            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+        }
+
+        [ClientRpc]
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        {
+            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
         }
     }
 }

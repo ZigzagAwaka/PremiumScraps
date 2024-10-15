@@ -1,7 +1,7 @@
 ﻿using GameNetcodeStuff;
-using LethalNetworkAPI;
 using PremiumScraps.Utils;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
@@ -15,38 +15,11 @@ namespace PremiumScraps.CustomEffects
         private readonly int usageBeforeDrunkMax = 6;
         public Vector3? originalPosition = null;
         public Vector3? originalRotation = null;
-        public LethalClientMessage<ulong> network;
-        public LethalClientMessage<PosId> networkAudio;
-        public LethalClientMessage<PosId> networkPosition;
 
         public SpanishDrink()
         {
             useCooldown = 4;
             customGrabTooltip = "Coger : [E]";
-            network = new LethalClientMessage<ulong>(identifier: "premiumscrapsSpanishID");
-            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsSpanishAudioID");
-            networkPosition = new LethalClientMessage<PosId>(identifier: "premiumscrapsSpanishPositionID");
-            network.OnReceivedFromClient += HealPlayerNetwork;
-            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
-            networkPosition.OnReceivedFromClient += InvokePositionNetwork;
-        }
-
-        private void HealPlayerNetwork(ulong playerID, ulong clientId)
-        {
-            Effects.Heal(playerID, 100);
-        }
-
-        private void InvokeAudioNetwork(PosId posId, ulong clientId)
-        {
-            Effects.Audio(posId.Id, posId.position, 1.8f);
-        }
-
-        private void InvokePositionNetwork(PosId posId, ulong clientId)
-        {
-            if (posId.Id == 0)
-                itemProperties.positionOffset = posId.position;
-            else
-                itemProperties.rotationOffset = posId.position;
         }
 
         private void SelectUsageBeforeDrunk()
@@ -69,8 +42,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     originalPosition = itemProperties.positionOffset;
                     originalRotation = itemProperties.rotationOffset;
-                    networkPosition.SendAllClients(new PosId(0, new Vector3(0.05f, 0.1f, 0.05f)));
-                    networkPosition.SendAllClients(new PosId(1, new Vector3(-50, 10, 0)));
+                    UpdatePosRotServerRpc(new Vector3(0.05f, 0.1f, 0.05f), new Vector3(-50, 10, 0));
                     playerHeldBy.activatingItem = buttonDown;
                     playerHeldBy.playerBodyAnimator.SetBool("useTZPItem", buttonDown);  // start drink animation
                 }
@@ -85,11 +57,9 @@ namespace PremiumScraps.CustomEffects
             if (IsOwner)
             {
                 yield return new WaitForSeconds(0.8f);
-                Effects.Audio(18, 1f);  // drink audio local player
-                networkAudio.SendAllClients(new PosId(18, playerHeldBy.transform.position), false);  // sync drink audio
+                AudioServerRpc(18, playerHeldBy.transform.position, 1f, 1.8f);  // drink audio
                 yield return new WaitForSeconds(1.8f);
-                networkPosition.SendAllClients(new PosId(0, originalPosition != null ? originalPosition.Value : default));
-                networkPosition.SendAllClients(new PosId(1, originalRotation != null ? originalRotation.Value : default));
+                UpdatePosRotServerRpc(originalPosition != null ? originalPosition.Value : default, originalRotation != null ? originalRotation.Value : default);
                 player.playerBodyAnimator.SetBool("useTZPItem", false);  // stop drink animation
                 player.activatingItem = false;
                 yield return new WaitForSeconds(0.2f);
@@ -97,8 +67,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (usage >= usageBeforeDrunk)
                     {
-                        Effects.Audio(19, 1f);  // spanish audio local player
-                        networkAudio.SendAllClients(new PosId(19, player.transform.position), false);  // sync spanish audio
+                        AudioServerRpc(19, player.transform.position, 1f, 1.5f);  // spanish audio
                         if (player.IsHost)
                             StartCoroutine(Effects.DamageHost(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf));  // damage or death (host)
                         else
@@ -113,8 +82,7 @@ namespace PremiumScraps.CustomEffects
                     }
                     else if (!isDrunk)
                     {
-                        network.SendAllClients(StartOfRound.Instance.localPlayerController.playerClientId);  // heal
-                        HUDManager.Instance.UpdateHealthUI(100, false);
+                        HealPlayerServerRpc(StartOfRound.Instance.localPlayerController.playerClientId, 100);  // heal
                     }
                 }
             }
@@ -132,6 +100,45 @@ namespace PremiumScraps.CustomEffects
                 player.drunknessSpeed = 1;
             }
             isDrunk = false;
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        {
+            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+        }
+
+        [ClientRpc]
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        {
+            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void HealPlayerServerRpc(ulong playerID, int health)
+        {
+            HealPlayerClientRpc(playerID, health);
+        }
+
+        [ClientRpc]
+        private void HealPlayerClientRpc(ulong playerID, int health)
+        {
+            Effects.Heal(playerID, health);
+            if (playerHeldBy != null && GameNetworkManager.Instance.localPlayerController.playerClientId == playerHeldBy.playerClientId)
+                HUDManager.Instance.UpdateHealthUI(100, false);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void UpdatePosRotServerRpc(Vector3 newPos, Vector3 newRot)
+        {
+            UpdatePosRotClientRpc(newPos, newRot);
+        }
+
+        [ClientRpc]
+        private void UpdatePosRotClientRpc(Vector3 newPos, Vector3 newRot)
+        {
+            itemProperties.positionOffset = newPos;
+            itemProperties.rotationOffset = newRot;
         }
     }
 }

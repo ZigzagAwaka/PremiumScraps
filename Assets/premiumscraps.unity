@@ -671,12 +671,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HarryMason
       objectReference: {fileID: 0}
-    - target: {fileID: 2247318812340466435, guid: 8c3a62e2ada25d04eb05d6b5bf98486e,
-        type: 3}
-      propertyPath: itemProperties
-      value: 
-      objectReference: {fileID: 11400000, guid: 2644d2eb737e9dc4b95c92abe309b2b4,
-        type: 2}
     - target: {fileID: 3741657267602916195, guid: 8c3a62e2ada25d04eb05d6b5bf98486e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -943,35 +937,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6540655128183217405, guid: 273657b2b38c9cf41be7018aa0de9ccd,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
-    - target: {fileID: 6540655128183217405, guid: 273657b2b38c9cf41be7018aa0de9ccd,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
     - target: {fileID: 7138642567691528873, guid: 273657b2b38c9cf41be7018aa0de9ccd,
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3835577390
-      objectReference: {fileID: 0}
-    - target: {fileID: 7544439595565297066, guid: 273657b2b38c9cf41be7018aa0de9ccd,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7544439595565297066, guid: 273657b2b38c9cf41be7018aa0de9ccd,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7544439595565297066, guid: 273657b2b38c9cf41be7018aa0de9ccd,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

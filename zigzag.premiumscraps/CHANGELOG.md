@@ -2,10 +2,20 @@
 - **Added**
     - Added Bomb
 - **Updated**
-    - New effect for Harry Mason: when you drop it, you have 2% chance of *something* happening hehehe
+    - New effect for Harry Mason: when you drop it, you have 5% chance of *something* happening hehehe
+    - Scroll of Town Portal can now also be used when the ship is leaving
+    - Stick can now also be used when in orbit
+    - Added info message when you try to use The friendship ender and Scroll of Town Portal at the wrong moment (in orbit for example)
     - Removed LethalNetworkAPI dependency, every network effect is now managed by classic unity netcode, this allows all sort of fixes
 - **Fixed**
-    - Fixed position of Rupee, SODA, Basics of architecture and Galvanized square steel when they are droped in the ship's cupboard
+    - Adjusted position of Rupee, SODA, Basics of architecture and Galvanized square steel when they are droped in the ship's cupboard
+    - Fixed The friendship ender spawning a strange entity that can't kill people??
+    - Fixed Basics of architecture usage, it can now be used by all players, not just the host
+    - Scroll of Town Portal will now be properly destroyed when used by someone
+    - My ■■■■■■th job application spawning things effects are now more consistent, and not random
+    - My ■■■■■■th job application special effect will now be stopped if the item somehow despawn by a non natural way
+    - Fake airhorn audio is now properly assigned to the item for other players (this was already the case for the local player)
+    - The friendship ender and Scroll of Town Portal audio are now properly assigned to the item
 
 ## 1.9.1
 - **Fixed**

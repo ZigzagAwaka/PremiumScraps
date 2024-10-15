@@ -17,18 +17,6 @@ namespace PremiumScraps.Utils
         }
     }
 
-    public class PosId
-    {
-        public int Id;
-        public Vector3 position;
-
-        public PosId(int Id, Vector3 position)
-        {
-            this.Id = Id;
-            this.position = position;
-        }
-    }
-
     public class SetupScript
     {
         public static void Network()

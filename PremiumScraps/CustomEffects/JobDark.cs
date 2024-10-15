@@ -1,7 +1,7 @@
 ﻿using GameNetcodeStuff;
-using LethalNetworkAPI;
 using PremiumScraps.Utils;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
@@ -16,24 +16,10 @@ namespace PremiumScraps.CustomEffects
         private bool OneTimeUse = false;
         private bool OneTimeActionSp = false;
         private readonly int debug = -1;  // force choose hallucination if not -1
-        public LethalClientMessage<PosId> network;
 
         public JobDark()
         {
-            network = new LethalClientMessage<PosId>(identifier: "premiumscrapsJobApplicationID");
-            network.OnReceivedFromClient += NetworkEffect;
             SelectHallucination();
-        }
-
-        private void NetworkEffect(PosId posId, ulong clientId)
-        {
-            switch (posId.Id)
-            {
-                case 0: Effects.Spawn(GetEnemies.Girl, posId.position); break;
-                case 1: Effects.Spawn(GetEnemies.Masked, posId.position); break;
-                case 2: Effects.Message("Warning", "Abnormal amount of employees detected !", true); break;
-                default: return;
-            }
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -51,7 +37,7 @@ namespace PremiumScraps.CustomEffects
         private IEnumerator SummonFriends(PlayerControllerB player)
         {
             Vector3 position;
-            network.SendAllClients(new PosId(2, Vector3.up));
+            DarkJobEffectServerRpc(2, Vector3.up);
             summonFriends = -1;
             itemProperties.toolTips[0] = "";
             base.SetControlTipsForItem();
@@ -70,11 +56,7 @@ namespace PremiumScraps.CustomEffects
             }
             if (!StartOfRound.Instance.inShipPhase)
             {
-                if (player.IsHost)
-                    for (int i = 0; i < Effects.NbOfPlayers(); i++)
-                        NetworkEffect(new PosId(1, position), 0);
-                else
-                    network.SendAllClients(new PosId(1, position), false);
+                DarkJobEffectServerRpc(0, position);
             }
         }
 
@@ -116,11 +98,7 @@ namespace PremiumScraps.CustomEffects
                 yield return new WaitForSeconds(5);
                 if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                 {
-                    if (player.IsHost)
-                        for (int i = 0; i < Effects.NbOfPlayers(); i++)
-                            NetworkEffect(new PosId(0, player.transform.position), 0);
-                    else
-                        network.SendAllClients(new PosId(0, player.transform.position), false);
+                    DarkJobEffectServerRpc(1, player.transform.position);
                 }
             }
         }
@@ -350,6 +328,15 @@ namespace PremiumScraps.CustomEffects
             StopInspect(player, true);
         }
 
+        public override void OnNetworkDespawn()
+        {
+            if (darkEffectCoroutine != null)
+                StopCoroutine(darkEffectCoroutine);
+            if (playerHeldBy != null)
+                playerHeldBy.playersManager.fearLevelIncreasing = false;
+            base.OnNetworkDespawn();
+        }
+
         private void StopInspect(PlayerControllerB player, bool fixHUD = false)
         {
             if (darkEffectCoroutine != null && !itsTooLate)
@@ -359,6 +346,30 @@ namespace PremiumScraps.CustomEffects
             }
             if (fixHUD)
                 HUDManager.Instance.HideHUD(false);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void DarkJobEffectServerRpc(int type, Vector3 position)
+        {
+            switch (type)
+            {
+                case 0:
+                    for (int i = 0; i < Effects.NbOfPlayers() * 2; i++)
+                        Effects.Spawn(GetEnemies.Masked, position);
+                    break;
+                case 1:
+                    for (int i = 0; i < 6; i++)
+                        Effects.Spawn(GetEnemies.Girl, position);
+                    break;
+                case 2: DarkJobEffectType2ClientRpc(); break;
+                default: return;
+            }
+        }
+
+        [ClientRpc]
+        private void DarkJobEffectType2ClientRpc()
+        {
+            Effects.Message("Warning", "Abnormal amount of employees detected !", true);
         }
     }
 }

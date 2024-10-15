@@ -1,6 +1,7 @@
-﻿using LethalNetworkAPI;
-using PremiumScraps.Utils;
+﻿using PremiumScraps.Utils;
 using System.Collections.Generic;
+using Unity.Netcode;
+using UnityEngine;
 
 namespace PremiumScraps.CustomEffects
 {
@@ -9,7 +10,6 @@ namespace PremiumScraps.CustomEffects
         public bool finish = false;
         public int nbFinish = 0;
         public int actualPage = -1;
-        public LethalClientMessage<PosId> networkAudio;
         public List<string> pages = new List<string> {
             "How to design a 0.1 square meter apartment into a functional house? liam worked hard for 10 years in new york and finally saved up to buy this tiny 0.1 square meter apartment. every night he had to tie himself to the door with steel wire to sleep. eventually, it broke down and needed an absolute redesign.",
             "firstly, he welded a frame from galvanized square steel, and borrowed some expansion screws from his aunt to secure it to the wall. he covered it with wood veneers durable for 10,000 years and installed large floor to ceiling windows made of broken bridge aluminium for a stylish look.",
@@ -20,24 +20,14 @@ namespace PremiumScraps.CustomEffects
             "with this setup, even limited space can offer unlimited possibilities."
         };
 
-        public StupidBook()
-        {
-            networkAudio = new LethalClientMessage<PosId>(identifier: "premiumscrapsLiamConstructionAudioID");
-            networkAudio.OnReceivedFromClient += InvokeAudioNetwork;
-        }
-
-        private void InvokeAudioNetwork(PosId posId, ulong clientId)
-        {
-            Effects.Audio(posId.Id, posId.position, 2f);
-        }
+        public StupidBook() { }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null)
             {
-                Effects.Audio(7, 1f);
-                networkAudio.SendAllClients(new PosId(7, playerHeldBy.transform.position), false);
+                AudioServerRpc(7, playerHeldBy.transform.position, 1f, 2f);
                 actualPage++;
                 if (actualPage == 7)
                 {
@@ -56,26 +46,37 @@ namespace PremiumScraps.CustomEffects
                 base.SetControlTipsForItem();
                 if (finish)
                 {
-                    if (playerHeldBy.IsHost)
+                    if (nbFinish <= 4)
                     {
-                        if (nbFinish <= 4)
-                        {
-                            Effects.Spawn("SquareSteelItem", playerHeldBy.transform.position);
-                            networkAudio.SendAllClients(new PosId(15, playerHeldBy.transform.position));
-                        }
-                        else
-                        {
-                            Effects.Message("Get back to work !", "");
-                        }
+                        SpawnScrapServerRpc("SquareSteelItem", playerHeldBy.transform.position);
+                        AudioServerRpc(15, playerHeldBy.transform.position, 2f, 3f);
                     }
                     else
                     {
-                        Effects.Message("Unworthy", "Try giving it to someone else.");
-                        nbFinish = 0;
+                        Effects.Message("Unworthy", "Get back to work !");
                     }
                     finish = false;
                 }
             }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void SpawnScrapServerRpc(string scrapName, Vector3 position)
+        {
+            Effects.Spawn(scrapName, position);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        {
+            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+        }
+
+        [ClientRpc]
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        {
+            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            nbFinish = 5;
         }
     }
 }

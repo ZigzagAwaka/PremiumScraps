@@ -20,7 +20,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (Random.Range(1, 11) >= 6)  // 50%
                     {
-                        AudioServerRpc(6, playerHeldBy.transform.position, 1f, 4f);  // landmine audio
+                        AudioServerRpc(6, playerHeldBy.transform.position, 1.5f, 4f);  // landmine audio
                         if (playerHeldBy.IsHost)
                             StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Burning, (int)Effects.DeathAnimation.Fire));  // death (host)
                         else
