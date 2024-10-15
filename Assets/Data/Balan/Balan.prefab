@@ -154,6 +154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 6b4aa4fc167574743918ca108a1d3fa5,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6b4aa4fc167574743918ca108a1d3fa5,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
@@ -162,6 +167,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 944025579ed504c4a9a95a615cc3acdc, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 6b4aa4fc167574743918ca108a1d3fa5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -3485813592326445890, guid: b47f84fcfb8452843b0be8a74f28f9e9,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 6b4aa4fc167574743918ca108a1d3fa5,
         type: 3}
       propertyPath: m_Name
@@ -197,6 +208,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4042214994732587415}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b4aa4fc167574743918ca108a1d3fa5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7850477856859912959}
   m_SourcePrefab: {fileID: 100100000, guid: 6b4aa4fc167574743918ca108a1d3fa5, type: 3}
 --- !u!1 &4739457375773998376 stripped
 GameObject:
@@ -342,6 +357,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7850477856859912959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4739457375773998376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0cf24d2ccc3b7eab72048d0f57c437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbable: 1
+  isHeld: 0
+  isHeldByEnemy: 0
+  deactivated: 0
+  parentObject: {fileID: 0}
+  targetFloorPosition: {x: 0, y: 0, z: 0}
+  startFallingPosition: {x: 0, y: 0, z: 0}
+  floorYRot: 0
+  fallTime: 0
+  hasHitGround: 0
+  scrapValue: 0
+  itemUsedUp: 0
+  playerHeldBy: {fileID: 0}
+  isPocketed: 0
+  isBeingUsed: 0
+  isInElevator: 0
+  isInShipRoom: 0
+  isInFactory: 0
+  useCooldown: 0
+  currentUseCooldown: 0
+  itemProperties: {fileID: 11400000, guid: a5d290c1bab6a54458615607e9fab538, type: 2}
+  insertedBattery:
+    empty: 0
+    charge: 0
+  customGrabTooltip: 
+  propBody: {fileID: 0}
+  propColliders: []
+  originalScale: {x: 0, y: 0, z: 0}
+  wasOwnerLastFrame: 0
+  mainObjectRenderer: {fileID: 0}
+  scrapPersistedThroughRounds: 0
+  heldByPlayerOnServer: 0
+  radarIcon: {fileID: 0}
+  reachedFloorTarget: 0
+  grabbableToEnemies: 1
 --- !u!4 &5372301721725659026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b4aa4fc167574743918ca108a1d3fa5,

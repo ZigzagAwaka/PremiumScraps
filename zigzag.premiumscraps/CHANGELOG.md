@@ -14,6 +14,7 @@
     - Scroll of Town Portal will now be properly destroyed when used by someone
     - My ■■■■■■th job application spawning things effects are now more consistent, and not random
     - My ■■■■■■th job application special effect will now be stopped if the item somehow despawn by a non natural way
+    - Fixed Balan Statue glowing rainbow variant having a lower part of the wrong material
     - Fake airhorn audio is now properly assigned to the item for other players (this was already the case for the local player)
     - The friendship ender and Scroll of Town Portal audio are now properly assigned to the item
 
