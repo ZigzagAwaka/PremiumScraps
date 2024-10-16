@@ -17,6 +17,7 @@
     - Fixed Balan Statue glowing rainbow variant having a lower part of the wrong material
     - Fake airhorn audio is now properly assigned to the item for other players (this was already the case for the local player)
     - The friendship ender and Scroll of Town Portal audio are now properly assigned to the item
+    - All items will now spawn with isInFactory flag enabled, this should fix metalic items getting struck by lightning when inside the dungeon
 
 ## 1.9.1
 - **Fixed**
