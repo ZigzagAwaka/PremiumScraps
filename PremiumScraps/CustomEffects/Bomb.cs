@@ -44,6 +44,21 @@ namespace PremiumScraps.CustomEffects
                 BombExplosionUnstableServerRpc();
         }
 
+        public static bool ChargeItemUnstable()  // used by harmony patch
+        {
+            GrabbableObject currentlyHeldObjectServer = GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer;
+            if (currentlyHeldObjectServer == null)
+            {
+                return false;
+            }
+            if (currentlyHeldObjectServer.itemProperties.name == "BombItem" && currentlyHeldObjectServer is Bomb bomb && !bomb.activated)
+            {
+                bomb.BombExplosionUnstableServerRpc();
+                return false;
+            }
+            return true;
+        }
+
         public override void EquipItem()
         {
             SetControlTips();
@@ -108,7 +123,7 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        public void BombExplosionUnstableServerRpc()
+        private void BombExplosionUnstableServerRpc()
         {
             BombExplosionUnstableClientRpc();
         }
@@ -130,7 +145,7 @@ namespace PremiumScraps.CustomEffects
             audio.Play();  // landmine audio
             yield return new WaitForSeconds(0.8f);
             if (bomb.playerHeldBy != null && !bomb.playerHeldBy.isPlayerDead && bomb.isPocketed)  // not a good idea to put a bomb in your pocket
-                bomb.playerHeldBy.DropAllHeldItemsAndSync();
+                bomb.playerHeldBy.DropAllHeldItems();
             var position = bomb.transform.position;
             bomb.DestroyObjectInHand(bomb.playerHeldBy != null && bomb.isHeld ? bomb.playerHeldBy : null);
             Effects.Explosion(position, 2f, 90, 5);

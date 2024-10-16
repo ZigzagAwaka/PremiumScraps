@@ -22,7 +22,7 @@ namespace PremiumScraps.CustomEffects
                     Effects.Message("Not now", "Try it a little bit later :)");
                     return;
                 }
-                AudioServerRpc(1, playerHeldBy.transform.position, 2f);
+                AudioServerRpc(1, playerHeldBy.transform.position, 1.5f, 2f);
                 if (playerHeldBy.health > 90)
                 {
                     Effects.Damage(playerHeldBy, 10);

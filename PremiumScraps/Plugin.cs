@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Bootstrap;
 using HarmonyLib;
 using LethalLib.Modules;
 using PremiumScraps.CustomEffects;
@@ -12,6 +13,7 @@ using UnityEngine;
 namespace PremiumScraps
 {
     [BepInPlugin(GUID, NAME, VERSION)]
+    [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         const string GUID = "zigzag.premiumscraps";
@@ -23,6 +25,15 @@ namespace PremiumScraps
         //public static List<GameObject> gameObjects;
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
+
+        void HarmonyPatchAll()
+        {
+            harmony.CreateClassProcessor(typeof(GetEnemies), true).Patch();  // getenemies patch
+            if (Chainloader.PluginInfos.ContainsKey(LethalThings.Plugin.ModGUID))
+                harmony.CreateClassProcessor(typeof(LethalThingsBombItemChargerPatch), true).Patch();  // bombitem charger with lethalthings
+            else
+                harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();  // bombitem charger
+        }
 
         void LoadItemBehaviour(Item item, int behaviourId)
         {
@@ -42,8 +53,8 @@ namespace PremiumScraps
                 default: return;
             }
             script.grabbable = true;
-            script.grabbableToEnemies = true;
             script.isInFactory = true;
+            script.grabbableToEnemies = true;
             script.itemProperties = item;
         }
 
@@ -124,7 +135,7 @@ namespace PremiumScraps
                 Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
             }
 
-            harmony.PatchAll();
+            HarmonyPatchAll();
             Logger.LogInfo("PremiumScraps is loaded !");
         }
     }

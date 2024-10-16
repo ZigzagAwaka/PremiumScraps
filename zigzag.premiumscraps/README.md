@@ -40,7 +40,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 ### Weapons
 - **Comically Large Spoon**, a classic, does a little more damage than the shovel.
 - The legendary **Stick**, a non-lethal weapon, but you should not use it on your friends...
-- **Bomb**, this explosive object can be used to blow up things. But watch out, it can be unstable.
+- **Bomb**, this explosive can be used to blow up things and people but it is also quite unstable so watch out.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-weapons.PNG)
 

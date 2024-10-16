@@ -24,22 +24,24 @@ namespace PremiumScraps.Utils
         [HarmonyPatch("ChargeItem")]
         public static bool ChargeItemPatch()
         {
-            GrabbableObject currentlyHeldObjectServer = GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer;
-            if (currentlyHeldObjectServer == null)
-            {
-                return false;
-            }
-            if (currentlyHeldObjectServer.itemProperties.name == "BombItem" && currentlyHeldObjectServer is CustomEffects.Bomb bomb)
-            {
-                bomb.BombExplosionUnstableServerRpc();
-                return false;
-            }
-            return true;
+            return CustomEffects.Bomb.ChargeItemUnstable();
         }
     }
 
 
-    [HarmonyPatch(typeof(StormyWeather))]
+    [HarmonyPatch(typeof(LethalThings.Patches.PowerOutletStun))]
+    internal class LethalThingsBombItemChargerPatch
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch("ItemCharger_ChargeItem")]
+        public static bool ChargeItemPatch()
+        {
+            return CustomEffects.Bomb.ChargeItemUnstable();
+        }
+    }
+
+
+    /*[HarmonyPatch(typeof(StormyWeather))]
     internal class BombItemStormyWeatherPatch
     {
         [HarmonyPostfix]
@@ -60,5 +62,5 @@ namespace PremiumScraps.Utils
             if (strikeMetalObjectTimer <= 0f && targetingMetalObject != null && !targetingMetalObject.isInFactory && targetingMetalObject.targetFloorPosition.x != 3000f && targetingMetalObject.itemProperties.name == "BombItem" && targetingMetalObject is CustomEffects.Bomb bomb && !bomb.activated)
                 bomb.BombExplosionUnstableServerRpc();
         }
-    }
+    }*/
 }
