@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using PremiumScraps.CustomEffects;
+using System.Reflection;
 using UnityEngine;
 
 namespace PremiumScraps.Utils
@@ -34,6 +35,18 @@ namespace PremiumScraps.Utils
                     }
                 }
             }
+        }
+
+        public static void Copy(ThrowableItem target, Item item)
+        {
+            var source = item.spawnPrefab.GetComponent<ThrowableItem>();
+            target.itemFallCurve = source.itemFallCurve;
+            target.itemVerticalFallCurve = source.itemVerticalFallCurve;
+            target.itemVerticalFallCurveNoBounce = source.itemVerticalFallCurveNoBounce;
+            var collider = item.spawnPrefab.GetComponentInChildren<GrabbableObjectPhysicsTrigger>();
+            if (collider != null)
+                collider.itemScript = target;
+            Object.Destroy(source);
         }
 
         public static void Copy(NoisemakerProp target, Item item)

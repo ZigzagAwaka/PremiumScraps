@@ -38,6 +38,7 @@ namespace PremiumScraps
                 case 7: script = item.spawnPrefab.AddComponent<SpanishDrink>(); break;
                 case 8: script = item.spawnPrefab.AddComponent<TalkingBall>(); SetupScript.Copy((SoccerBallProp)script, item); break;
                 case 9: script = item.spawnPrefab.AddComponent<HarryDoll>(); break;
+                case 10: script = item.spawnPrefab.AddComponent<Bomb>(); SetupScript.Copy((ThrowableItem)script, item); break;
                 default: return;
             }
             script.grabbable = true;
@@ -106,7 +107,8 @@ namespace PremiumScraps
                 new Scrap("DarkJobApplication/JobApplicationItem.asset", 8, 6),
                 new Scrap("Moogle/MoogleItem.asset", 10),
                 new Scrap("Gazpacho/GazpachoItem.asset", 9, 7),
-                new Scrap("Abi/AbiItem.asset", 4, 8)
+                new Scrap("Abi/AbiItem.asset", 4, 8),
+                new Scrap("Bomb/BombItem.asset", 10, 10)
             };
 
             int i = 0; config = new Config(base.Config, scraps);

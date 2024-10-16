@@ -1,6 +1,6 @@
 # PremiumScraps
 
-This mod currently adds **25 scrap items** to the game ! 😎
+This mod currently adds **26 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish. They all have been cleaned to have no impact on performance.
 
@@ -110,6 +110,7 @@ You can post some suggestions or issues in the mod release page in the [modding 
 - Moogle
 - El Gazpacho
 - The talking orb
+- Bomb
 
 </details>
 
