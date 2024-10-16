@@ -43,6 +43,7 @@ namespace PremiumScraps
             }
             script.grabbable = true;
             script.grabbableToEnemies = true;
+            script.isInFactory = true;
             script.itemProperties = item;
         }
 

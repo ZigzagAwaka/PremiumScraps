@@ -304,7 +304,7 @@ MonoBehaviour:
   isBeingUsed: 0
   isInElevator: 0
   isInShipRoom: 0
-  isInFactory: 0
+  isInFactory: 1
   useCooldown: 1
   currentUseCooldown: 0
   itemProperties: {fileID: 11400000, guid: 5efdfef060c78ee438f2bec2128e9e91, type: 2}
