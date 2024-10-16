@@ -13,9 +13,8 @@ namespace PremiumScraps.Utils
             {
                 if (GameNetworkManager.Instance != null && GameNetworkManager.Instance.localPlayerController != null)
                 {
-                    __instance.triggerScript.interactable = GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer != null && (GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer.itemProperties.requiresBattery || GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer.itemProperties.name == "BombItem");
-                    if (__instance.triggerScript.interactable && ((CustomEffects.Bomb)GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer).activated)
-                        __instance.triggerScript.interactable = false;
+                    __instance.triggerScript.interactable = GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer != null && (GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer.itemProperties.requiresBattery ||
+                        (GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer.itemProperties.name == "BombItem" && GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer is CustomEffects.Bomb bomb && !bomb.activated));
                     return;
                 }
             }
@@ -23,16 +22,16 @@ namespace PremiumScraps.Utils
 
         [HarmonyPrefix]
         [HarmonyPatch("ChargeItem")]
-        public static bool ChargeItemPatch(ref ItemCharger __instance)
+        public static bool ChargeItemPatch()
         {
             GrabbableObject currentlyHeldObjectServer = GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer;
             if (currentlyHeldObjectServer == null)
             {
                 return false;
             }
-            if (currentlyHeldObjectServer.itemProperties.name == "BombItem")
+            if (currentlyHeldObjectServer.itemProperties.name == "BombItem" && currentlyHeldObjectServer is CustomEffects.Bomb bomb)
             {
-                __instance.StartCoroutine(CustomEffects.Bomb.BombExplosionUnstable(currentlyHeldObjectServer));
+                bomb.BombExplosionUnstableServerRpc();
                 return false;
             }
             return true;
@@ -40,7 +39,7 @@ namespace PremiumScraps.Utils
     }
 
 
-    [HarmonyPatch(typeof(StormyWeather))]
+    /*[HarmonyPatch(typeof(StormyWeather))]
     internal class StormyWeatherPatch  // BOMBITEM PATCH STORMY
     {
         [HarmonyPostfix]
@@ -48,9 +47,8 @@ namespace PremiumScraps.Utils
         public static void LightningStrikePatch(ref ItemCharger __instance)
         {
             var targetingMetalObject = Traverse.Create(__instance).Field("targetingMetalObject").GetValue() as GrabbableObject;
-            if (targetingMetalObject != null && targetingMetalObject.itemProperties.name == "BombItem" && !targetingMetalObject.isInFactory && targetingMetalObject.targetFloorPosition.x != 3000f)
-                if (!((CustomEffects.Bomb)targetingMetalObject).activated)
-                    __instance.StartCoroutine(CustomEffects.Bomb.BombExplosionUnstable(targetingMetalObject));
+            if (targetingMetalObject != null && targetingMetalObject.itemProperties.name == "BombItem" && !targetingMetalObject.isInFactory && targetingMetalObject.targetFloorPosition.x != 3000f && !((CustomEffects.Bomb)targetingMetalObject).activated)
+                ((CustomEffects.Bomb)targetingMetalObject).BombExplosionUnstableServerRpc();
         }
-    }
+    }*/
 }

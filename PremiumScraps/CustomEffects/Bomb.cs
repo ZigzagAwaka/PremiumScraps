@@ -23,7 +23,7 @@ namespace PremiumScraps.CustomEffects
             }
             else if (IsOwner)
             {
-                base.ItemActivate(used, buttonDown);  // throw item
+                base.ItemActivate(used, buttonDown);  // throw bomb
             }
         }
 
@@ -33,7 +33,7 @@ namespace PremiumScraps.CustomEffects
             {
                 base.DiscardItem();
                 if (!activated && Random.Range(0, 100) >= 95)  // 5%
-                    BombExplosionServerRpc(true);
+                    BombExplosionUnstableServerRpc();
             }
         }
 
@@ -41,7 +41,7 @@ namespace PremiumScraps.CustomEffects
         {
             base.ActivatePhysicsTrigger(other);
             if (!activated && Random.Range(0, 100) >= 97)  // 3%
-                BombExplosionServerRpc(true);
+                BombExplosionUnstableServerRpc();
         }
 
         public override void EquipItem()
@@ -89,29 +89,7 @@ namespace PremiumScraps.CustomEffects
             {
                 SetControlTips();
             }
-            BombExplosionServerRpc();
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void BombExplosionServerRpc(bool unstable = false)
-        {
-            BombExplosionClientRpc(unstable);
-        }
-
-        [ClientRpc]
-        private void BombExplosionClientRpc(bool unstable)
-        {
-            activated = true;
-            itemUsedUp = true;
-            if (unstable)
-            {
-                grabbable = false;
-                StartCoroutine(BombExplosionUnstable(this));
-            }
-            else
-            {
-                StartCoroutine(BombExplosion());
-            }
+            StartCoroutine(BombExplosion());
         }
 
         private IEnumerator BombExplosion()
@@ -121,7 +99,7 @@ namespace PremiumScraps.CustomEffects
             yield return new WaitForSeconds(4.2f);
             transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
             if (playerHeldBy != null && !playerHeldBy.isPlayerDead && isPocketed)  // not a good idea to put a bomb in your pocket
-                playerHeldBy.DropAllHeldItemsAndSync();
+                playerHeldBy.DropAllHeldItems();
             var position = transform.position;
             DestroyObjectInHand(playerHeldBy != null && isHeld ? playerHeldBy : null);
             Effects.Explosion(position, 2f, 90, 5);
@@ -129,13 +107,30 @@ namespace PremiumScraps.CustomEffects
             Effects.Explosion(position, 4f, 100, 20);
         }
 
-        public static IEnumerator BombExplosionUnstable(GrabbableObject bomb)
+        [ServerRpc(RequireOwnership = false)]
+        public void BombExplosionUnstableServerRpc()
+        {
+            BombExplosionUnstableClientRpc();
+        }
+
+        [ClientRpc]
+        private void BombExplosionUnstableClientRpc()
+        {
+            activated = true;
+            itemUsedUp = true;
+            grabbable = false;
+            StartCoroutine(BombExplosionUnstable(this));
+        }
+
+        private IEnumerator BombExplosionUnstable(GrabbableObject bomb)
         {
             var audio = bomb.GetComponent<AudioSource>();
             audio.clip = Plugin.audioClips[6];
             audio.volume = 2f;
             audio.Play();  // landmine audio
             yield return new WaitForSeconds(0.8f);
+            if (bomb.playerHeldBy != null && !bomb.playerHeldBy.isPlayerDead && bomb.isPocketed)  // not a good idea to put a bomb in your pocket
+                bomb.playerHeldBy.DropAllHeldItemsAndSync();
             var position = bomb.transform.position;
             bomb.DestroyObjectInHand(bomb.playerHeldBy != null && bomb.isHeld ? bomb.playerHeldBy : null);
             Effects.Explosion(position, 2f, 90, 5);

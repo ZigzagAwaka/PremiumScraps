@@ -148,3 +148,4 @@ You can post some suggestions or issues in the mod release page in the [modding 
     - [Henry Levesque](https://www.printables.com/en/model/961166-scale-14-gauge-2x2-square-steel-tubing)
     - [Ether Penguin](https://www.turbosquid.com/fr/3d-models/3d-moogle-1360579)
     - [mawalz21](https://sketchfab.com/3d-models/3december2020-day13-fizzy-drink-3110b5f1a2eb4cfa8b3c0ea2ecd4c8c3)
+    - [marvelmaster](https://sketchfab.com/3d-models/zelda-ocarina-of-time-bomb-161818c6f5624511bcfc2f82f7c35b53)
