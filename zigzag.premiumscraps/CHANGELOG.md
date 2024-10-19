@@ -1,3 +1,7 @@
+## 2.0.1
+- **Fixed**
+    - Fixed Basics of architecture not working since last update
+
 # 2.0.0 Improvements
 - **Added**
     - Added Bomb

@@ -48,8 +48,8 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (nbFinish <= 4)
                     {
-                        SpawnScrapServerRpc("SquareSteelItem", playerHeldBy.transform.position);
-                        AudioServerRpc(15, playerHeldBy.transform.position, 2f, 3f);
+                        SpawnScrapServerRpc("SquareSteelItem", playerHeldBy.transform.position, nbFinish);
+                        AudioServerRpc(15, playerHeldBy.transform.position, 1.8f, 3f);
                     }
                     else
                     {
@@ -61,9 +61,16 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void SpawnScrapServerRpc(string scrapName, Vector3 position)
+        private void SpawnScrapServerRpc(string scrapName, Vector3 position, int nbFinishLocal)
         {
             Effects.Spawn(scrapName, position);
+            UpdateNbFinishClientRpc(nbFinishLocal);
+        }
+
+        [ClientRpc]
+        private void UpdateNbFinishClientRpc(int nbFinishLocal)
+        {
+            nbFinish = nbFinishLocal;
         }
 
         [ServerRpc(RequireOwnership = false)]
@@ -76,7 +83,6 @@ namespace PremiumScraps.CustomEffects
         private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
         {
             Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
-            nbFinish = 5;
         }
     }
 }
