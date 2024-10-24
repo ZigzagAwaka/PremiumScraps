@@ -19,7 +19,7 @@ MonoBehaviour:
   twoHandedAnimation: 0
   canBeGrabbedBeforeGameStart: 1
   weight: 1.05
-  itemIsTrigger: 0
+  itemIsTrigger: 1
   holdButtonUse: 0
   itemSpawnsOnGround: 1
   isConductiveMetal: 1
@@ -31,9 +31,9 @@ MonoBehaviour:
   minValue: 110
   spawnPrefab: {fileID: 3563487053704156925, guid: 5f6d21f3dd589f6439eb80a99102afd4,
     type: 3}
-  requiresBattery: 0
-  batteryUsage: 0
-  automaticallySetUsingPower: 0
+  requiresBattery: 1
+  batteryUsage: 0.04
+  automaticallySetUsingPower: 1
   itemIcon: {fileID: 21300000, guid: 0ee9c9025887f2943aa6db6f64c237f5, type: 3}
   grabAnim: 
   useAnim: 

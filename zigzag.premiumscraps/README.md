@@ -4,7 +4,7 @@ This mod currently adds **26 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish. They all have been cleaned to have no impact on performance.
 
-Compatible with v60/v61/v62/v64 of Lethal Company.
+Compatible with v60/v61/v62/v64/v65 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
@@ -52,7 +52,7 @@ Compatible with v60/v61/v62/v64 of Lethal Company.
 
 ### Classic items
 - Scraps with no special effects, but they come with custom audio. Some can even glow in dark places.
-- Watch out, some of these items may have a *secret custom effect* that no one knows about hehehe...
+- Some of these items may have a minor *secret custom effect* that no one knows about hehehe...
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-preview1.PNG)
 

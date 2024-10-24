@@ -18,7 +18,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.1";
+        const string VERSION = "2.0.2";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -50,6 +50,7 @@ namespace PremiumScraps
                 case 8: script = item.spawnPrefab.AddComponent<TalkingBall>(); SetupScript.Copy((SoccerBallProp)script, item); break;
                 case 9: script = item.spawnPrefab.AddComponent<HarryDoll>(); break;
                 case 10: script = item.spawnPrefab.AddComponent<Bomb>(); SetupScript.Copy((ThrowableItem)script, item); break;
+                case 11: script = item.spawnPrefab.AddComponent<LichKingHelm>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -91,14 +92,15 @@ namespace PremiumScraps
                 bundle.LoadAsset<AudioClip>(directory + "_audio/uwu.wav"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/uwu-rot.wav"),
                 bundle.LoadAsset<AudioClip>(directory + "_audio/drink.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/spanishsound.wav")
+                bundle.LoadAsset<AudioClip>(directory + "_audio/spanishsound.wav"),
+                bundle.LoadAsset<AudioClip>(directory + "_audio/arthas.wav")
             };
 
             var scraps = new List<Scrap> {
                 new Scrap("Frieren/FrierenItem.asset", 10),
                 new Scrap("Chocobo/ChocoboItem.asset", 10),
                 new Scrap("AinzOoalGown/AinzOoalGownItem.asset", 5),
-                new Scrap("HelmDomination/HelmDominationItem.asset", 11),
+                new Scrap("HelmDomination/HelmDominationItem.asset", 11, 11),
                 new Scrap("TheKing/TheKingItem.asset", 13),
                 new Scrap("HarryMason/HarryMasonItem.asset", 10, 9),
                 new Scrap("Cristal/CristalItem.asset", 9),

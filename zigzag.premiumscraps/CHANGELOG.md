@@ -1,3 +1,10 @@
+## 2.0.2
+- **Updated**
+    - Updated to v65
+    - New minor *secret effect* for Helm of Domination (a simple reference)
+    - Changed Bomb grab and drop sound effects
+    - The King item now requires battery to be used
+
 ## 2.0.1
 - **Fixed**
     - Fixed Basics of architecture not working since last update
