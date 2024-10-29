@@ -33,10 +33,45 @@ namespace PremiumScraps.Utils
     internal class LethalThingsBombItemChargerPatch
     {
         [HarmonyPrefix]
+        [HarmonyPatch("ItemCharger_Update")]
+        public static bool UpdatePatch(ItemCharger self)
+        {
+            bool flag = false;
+            if ((float)Traverse.Create(self).Field("updateInterval").GetValue() == 0f)
+            {
+                if (GameNetworkManager.Instance != null && GameNetworkManager.Instance.localPlayerController != null)
+                {
+                    self.triggerScript.interactable = GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer != null && (GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer.itemProperties.requiresBattery ||
+                        (GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer.itemProperties.name == "BombItem" && GameNetworkManager.Instance.localPlayerController.currentlyHeldObjectServer is CustomEffects.Bomb bomb && !bomb.activated));
+                    flag = self.triggerScript.interactable;
+                }
+            }
+            return !flag;
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch("ItemCharger_ChargeItem")]
         public static bool ChargeItemPatch()
         {
             return CustomEffects.Bomb.ChargeItemUnstable();
+        }
+    }
+
+
+    [HarmonyPatch(typeof(StartOfRound))]
+    internal class MattyFixesAirhornPositionPatch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("Awake")]
+        [HarmonyPriority(Priority.Normal)]
+        public static void AwakePatch()
+        {
+            var fakeAirhorn = LethalLib.Modules.Items.scrapItems.Find(i => i.modName == "PremiumScraps" && i.item.itemName == "Airhorn");
+            if (fakeAirhorn != null && fakeAirhorn != default)
+            {
+                fakeAirhorn.item.restingRotation = new UnityEngine.Vector3(0, -180, 270);
+                fakeAirhorn.item.floorYOffset = -180;
+            }
         }
     }
 

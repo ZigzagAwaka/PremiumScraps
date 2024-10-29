@@ -18,7 +18,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.2";
+        const string VERSION = "2.0.3";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -33,6 +33,8 @@ namespace PremiumScraps
                 harmony.CreateClassProcessor(typeof(LethalThingsBombItemChargerPatch), true).Patch();  // bombitem charger with lethalthings
             else
                 harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();  // bombitem charger
+            if (Chainloader.PluginInfos.ContainsKey("mattymatty.MattyFixes"))
+                harmony.CreateClassProcessor(typeof(MattyFixesAirhornPositionPatch), true).Patch();  // fake airhorn position fix with matty fixes
         }
 
         void LoadItemBehaviour(Item item, int behaviourId)

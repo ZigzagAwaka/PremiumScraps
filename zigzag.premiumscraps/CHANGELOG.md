@@ -1,9 +1,19 @@
+## 2.0.3
+- **Updated**
+    - Rebuilt assets with HDRP's Lit Shader Mode = "both"
+    - Reduced the number of summoned *"employees"* with My ■■■■■■th job application
+    - Updated to v66
+- **Fixed**
+    - Fixed compatibility issues with [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/)
+    - Fixed Fake airhorn resting position when [Matty_Fixes](https://thunderstore.io/c/lethal-company/p/mattymatty/Matty_Fixes/) is installed (this only works with Matty_Fixes 1.1.30+)
+    - Fixed one of the effect of the Bomb item not working when [LethalThings](https://thunderstore.io/c/lethal-company/p/Evaisa/LethalThings/) is installed
+
 ## 2.0.2
 - **Updated**
-    - Updated to v65
     - New minor *secret effect* for Helm of Domination (a simple reference)
     - Changed Bomb grab and drop sound effects
     - The King item now requires battery to be used
+    - Updated to v65
 
 ## 2.0.1
 - **Fixed**

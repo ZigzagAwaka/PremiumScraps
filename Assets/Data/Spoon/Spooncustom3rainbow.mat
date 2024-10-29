@@ -61,7 +61,7 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _FresnelPower: 0.474
-    - _HDR: 1
+    - _HDR: 1.8
     - _IrisPower: 0.262
     - _Metal: 0.85
     - _OpaqueCullMode: 2

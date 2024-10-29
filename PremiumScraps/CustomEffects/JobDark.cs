@@ -354,7 +354,7 @@ namespace PremiumScraps.CustomEffects
             switch (type)
             {
                 case 0:
-                    for (int i = 0; i < Effects.NbOfPlayers() * 2; i++)
+                    for (int i = 0; i < Effects.NbOfPlayers(); i++)
                         Effects.Spawn(GetEnemies.Masked, position);
                     break;
                 case 1:
