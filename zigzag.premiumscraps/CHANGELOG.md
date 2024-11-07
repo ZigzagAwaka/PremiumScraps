@@ -1,3 +1,12 @@
+## 2.0.4
+- **Updated**
+    - The Stick special effect is now a little bit stronger
+    - When a player is summoning *"employees"* with My ■■■■■■th job application, the item will now prevents other players to also summon *"employees"* until the next moon
+    - Changed how control tips are displayed to the local player for Basics of architecture and My ■■■■■■th job application
+    - Updated to v68
+- **Fixed**
+    - Fixed My ■■■■■■th job application sometimes not working when there is already another Job application item in use on the map
+
 ## 2.0.3
 - **Updated**
     - Rebuilt assets with HDRP's Lit Shader Mode = "both"

@@ -10,6 +10,7 @@ namespace PremiumScraps.CustomEffects
     {
         public int hallucinationID = 0;
         public int summonFriends = 0;
+        public bool canInspectPaper = true;
         public bool itsTooLate = false;
         public readonly float timeUntilItsTooLate = 8f;
         private Coroutine? darkEffectCoroutine;
@@ -20,6 +21,41 @@ namespace PremiumScraps.CustomEffects
         public JobDark()
         {
             SelectHallucination();
+        }
+
+        public override void EquipItem()
+        {
+            SetControlTips();
+            EnableItemMeshes(enable: true);
+            isPocketed = false;
+            if (!hasBeenHeld)
+            {
+                hasBeenHeld = true;
+                if (!isInShipRoom && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.currentLevel.spawnEnemiesAndScrap)
+                {
+                    RoundManager.Instance.valueOfFoundScrapItems += scrapValue;
+                }
+            }
+        }
+
+        public override void SetControlTipsForItem()
+        {
+            SetControlTips();
+        }
+
+        private void SetControlTips()
+        {
+            string[] allLines;
+            if (summonFriends == -1)
+                allLines = new string[1] { "" };
+            else if (summonFriends >= 1)
+                allLines = new string[1] { "Summon friends : [RMB]" };
+            else
+                allLines = new string[1] { "Read: [Z]" };
+            if (IsOwner)
+            {
+                HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
+            }
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -39,8 +75,7 @@ namespace PremiumScraps.CustomEffects
             Vector3 position;
             DarkJobEffectServerRpc(2, Vector3.up);
             summonFriends = -1;
-            itemProperties.toolTips[0] = "";
-            base.SetControlTipsForItem();
+            SetControlTips();
             yield return new WaitForEndOfFrame();
             if (StartOfRound.Instance.currentLevel.PlanetName != "71 Gordion")
                 position = RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position;
@@ -274,8 +309,9 @@ namespace PremiumScraps.CustomEffects
                     if (summonFriends >= 1)
                     {
                         grabbable = true;
-                        itemProperties.canBeInspected = false;
-                        itemProperties.toolTips[0] = "Summon friends : [RMB]";
+                        canInspectPaper = false;
+                        if (playerHeldBy != null && !isPocketed)
+                            SetControlTips();
                         Effects.Message("You can finally meet your c̷̿̂o-̶̔͆w̴̿͜or̵͇̾k̴̹̂er̸̺͋s !",
                             "                                You should use the Job Application next time you're on a moon :)");
                     }
@@ -302,15 +338,22 @@ namespace PremiumScraps.CustomEffects
         public override void InspectItem()
         {
             base.InspectItem();
-            if (itemProperties.canBeInspected && IsOwner && playerHeldBy != null && !itsTooLate)
+            if (itemProperties.canBeInspected && IsOwner && playerHeldBy != null)
             {
-                if (playerHeldBy.IsInspectingItem)
+                if (canInspectPaper && !itsTooLate)
                 {
-                    darkEffectCoroutine = StartCoroutine(DarkEffect());
+                    if (playerHeldBy.IsInspectingItem)
+                    {
+                        darkEffectCoroutine = StartCoroutine(DarkEffect());
+                    }
+                    else
+                    {
+                        StopInspect(playerHeldBy);
+                    }
                 }
-                else
+                else if (!playerHeldBy.IsInspectingItem)
                 {
-                    StopInspect(playerHeldBy);
+                    Effects.Message("You are already cursed", "", true);
                 }
             }
         }
@@ -370,6 +413,7 @@ namespace PremiumScraps.CustomEffects
         private void DarkJobEffectType2ClientRpc()
         {
             Effects.Message("Warning", "Abnormal amount of employees detected !", true);
+            summonFriends = -1;
         }
     }
 }

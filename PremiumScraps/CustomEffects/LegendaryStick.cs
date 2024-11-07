@@ -10,8 +10,8 @@ namespace PremiumScraps.CustomEffects
 {
     internal class LegendaryStick : PhysicsProp
     {
-        public int knockbackPowerMin = 1;
-        public int knockbackPowerMax = 10;
+        public int knockbackPowerMin = 3;
+        public int knockbackPowerMax = 13;
         public int weaponHitForce = 1;
         public bool reelingUp;
         public bool isHoldingButton;

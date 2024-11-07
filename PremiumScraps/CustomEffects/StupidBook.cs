@@ -22,6 +22,35 @@ namespace PremiumScraps.CustomEffects
 
         public StupidBook() { }
 
+        public override void EquipItem()
+        {
+            SetControlTips();
+            EnableItemMeshes(enable: true);
+            isPocketed = false;
+            if (!hasBeenHeld)
+            {
+                hasBeenHeld = true;
+                if (!isInShipRoom && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.currentLevel.spawnEnemiesAndScrap)
+                {
+                    RoundManager.Instance.valueOfFoundScrapItems += scrapValue;
+                }
+            }
+        }
+
+        public override void SetControlTipsForItem()
+        {
+            SetControlTips();
+        }
+
+        private void SetControlTips()
+        {
+            string[] allLines = ((actualPage != -1) ? new string[2] { "Read book : [RMB]", pages[actualPage] } : new string[2] { "Read book : [RMB]", "" });
+            if (IsOwner)
+            {
+                HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
+            }
+        }
+
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             base.ItemActivate(used, buttonDown);
@@ -32,18 +61,13 @@ namespace PremiumScraps.CustomEffects
                 if (actualPage == 7)
                 {
                     actualPage = -1;
-                    itemProperties.toolTips[^1] = "";
                     if (!StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded && StartOfRound.Instance.currentLevel.PlanetName != "71 Gordion")
                     {
                         finish = true;
                         nbFinish++;
                     }
                 }
-                else
-                {
-                    itemProperties.toolTips[^1] = pages[actualPage];
-                }
-                base.SetControlTipsForItem();
+                SetControlTips();
                 if (finish)
                 {
                     if (nbFinish <= 4)
