@@ -1,3 +1,17 @@
+## 2.0.5
+- **Added**
+    - Custom compatible dice rolls have been added for the [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) mod!
+    - Requires version 1.6.1 or newer, can be disabled in the config
+    - Added events:
+        - Premium Scraps [Good]
+        - Haunted hallucination [Bad]
+        - Death hallucination [Awful]
+- **Updated**
+    - Improved scrap spawning custom code (used by Basics of architecture and now also by my custom compatible dice effects)
+    - Basics of architecture *'spawning effect'* can now also be used when in orbit and when you are at Gordion
+- **Fixed**
+    - Summoned items of Basics of architecture are now synced to all players (scrap value and item rotation)
+
 ## 2.0.4
 - **Updated**
     - The Stick special effect is now a little bit stronger

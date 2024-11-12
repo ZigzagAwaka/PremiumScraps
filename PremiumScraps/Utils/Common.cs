@@ -1,5 +1,6 @@
 ﻿using PremiumScraps.CustomEffects;
 using System.Reflection;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PremiumScraps.Utils
@@ -15,6 +16,18 @@ namespace PremiumScraps.Utils
             this.asset = asset;
             this.rarity = rarity;
             this.behaviourId = behaviourId;
+        }
+    }
+
+    public class ScrapReference
+    {
+        public NetworkObjectReference netObjectRef;
+        public int scrapValue;
+
+        public ScrapReference(NetworkObjectReference netObjectRef, int scrapValue)
+        {
+            this.netObjectRef = netObjectRef;
+            this.scrapValue = scrapValue;
         }
     }
 

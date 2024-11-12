@@ -103,13 +103,13 @@ namespace PremiumScraps.CustomEffects
                 hallucinationID = debug;
         }
 
-        private IEnumerator HazardHallucination(PlayerControllerB player)
+        public static IEnumerator HazardHallucination(PlayerControllerB player, JobDark jobDark)
         {
-            if (!OneTimeActionSp)
+            if (jobDark != null && !jobDark.OneTimeActionSp)
             {
                 yield return new WaitForSeconds(1);
                 Effects.SpawnQuicksand(30);
-                OneTimeActionSp = true;
+                jobDark.OneTimeActionSp = true;
             }
             else
             {
@@ -123,22 +123,25 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
-        private IEnumerator GirlsHallucination(PlayerControllerB player)
+        public static IEnumerator GirlsHallucination(PlayerControllerB player, JobDark jobDark)
         {
-            OneTimeUse = true;
-            if (!player.isInsideFactory)
-                yield return new WaitUntil(() => player.isInsideFactory == true || StartOfRound.Instance.shipIsLeaving == true);
-            if (!StartOfRound.Instance.shipIsLeaving && !player.isPlayerDead)
+            if (jobDark != null)
             {
-                yield return new WaitForSeconds(5);
-                if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
+                jobDark.OneTimeUse = true;
+                if (!player.isInsideFactory)
+                    yield return new WaitUntil(() => player.isInsideFactory == true || StartOfRound.Instance.shipIsLeaving == true);
+                if (!StartOfRound.Instance.shipIsLeaving && !player.isPlayerDead)
                 {
-                    DarkJobEffectServerRpc(1, player.transform.position);
+                    yield return new WaitForSeconds(5);
+                    if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
+                    {
+                        jobDark.DarkJobEffectServerRpc(1, player.transform.position);
+                    }
                 }
             }
         }
 
-        private IEnumerator HauntedHallucination(PlayerControllerB player)
+        public static IEnumerator HauntedHallucination(PlayerControllerB player)
         {
             yield return new WaitForSeconds(0.2f);
             if (player.isPlayerDead)
@@ -215,9 +218,12 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
-        private IEnumerator DeathHallucination(PlayerControllerB player)
+        public static IEnumerator DeathHallucination(PlayerControllerB player, JobDark? jobDark, MonoBehaviour? monoBehaviour = null)
         {
-            OneTimeUse = true;
+            if (jobDark != null)
+                jobDark.OneTimeUse = true;
+            else if (monoBehaviour == null)
+                yield break;
             if (!player.isInsideFactory)
                 yield return new WaitUntil(() => player.isInsideFactory == true || StartOfRound.Instance.shipIsLeaving == true);
             if (!StartOfRound.Instance.shipIsLeaving && !player.isPlayerDead)
@@ -236,7 +242,8 @@ namespace PremiumScraps.CustomEffects
                         yield return new WaitForSeconds(25);
                         if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                         {
-                            var statusCoroutine = StartCoroutine(Effects.Status("WARNING ! UNSTABLE HEART RATE DETECTED. RETURN TO YOUR ASSIGNED SHIP IMMEDIATELY !"));
+                            var instance = jobDark != null ? jobDark : monoBehaviour;
+                            var statusCoroutine = instance.StartCoroutine(Effects.Status("WARNING ! UNSTABLE HEART RATE DETECTED. RETURN TO YOUR ASSIGNED SHIP IMMEDIATELY !"));
                             player.JumpToFearLevel(4);
                             player.playersManager.fearLevelIncreasing = true;
                             int i = 0;
@@ -264,14 +271,14 @@ namespace PremiumScraps.CustomEffects
                                 if (player.isInHangarShipRoom)
                                     break;
                             }
-                            StopCoroutine(statusCoroutine);
+                            instance.StopCoroutine(statusCoroutine);
                             player.playersManager.fearLevelIncreasing = false;
                             yield return null;
                             if (i == 5 && !player.isInHangarShipRoom)
                             {
                                 player.playersManager.fearLevel = 0;
                                 if (player.IsHost)
-                                    StartCoroutine(Effects.DamageHost(player, 100, CauseOfDeath.Inertia, (int)Effects.DeathAnimation.Haunted));  // death (host)
+                                    instance.StartCoroutine(Effects.DamageHost(player, 100, CauseOfDeath.Inertia, (int)Effects.DeathAnimation.Haunted));  // death (host)
                                 else
                                     Effects.Damage(player, 100, CauseOfDeath.Inertia, (int)Effects.DeathAnimation.Haunted);  // death
                             }
@@ -323,10 +330,10 @@ namespace PremiumScraps.CustomEffects
                 {
                     switch (hallucinationID)
                     {
-                        case 0: yield return HazardHallucination(player); break;
-                        case 1: yield return GirlsHallucination(player); break;
+                        case 0: yield return HazardHallucination(player, this); break;
+                        case 1: yield return GirlsHallucination(player, this); break;
                         case 2: yield return HauntedHallucination(player); break;
-                        case 3: yield return DeathHallucination(player); break;
+                        case 3: yield return DeathHallucination(player, this); break;
                         default: break;
                     }
                 }

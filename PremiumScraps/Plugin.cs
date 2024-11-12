@@ -14,11 +14,12 @@ namespace PremiumScraps
 {
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("Theronguard.EmergencyDice", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.4";
+        const string VERSION = "2.0.5";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -35,6 +36,8 @@ namespace PremiumScraps
                 harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();  // bombitem charger
             if (Chainloader.PluginInfos.ContainsKey("mattymatty.MattyFixes"))
                 harmony.CreateClassProcessor(typeof(MattyFixesAirhornPositionPatch), true).Patch();  // fake airhorn position fix with matty fixes
+            if (config.diceEvents.Value && Chainloader.PluginInfos.ContainsKey("Theronguard.EmergencyDice"))
+                DiceEvents.RegisterDiceEvents(Logger, Chainloader.PluginInfos.GetValueOrDefault("Theronguard.EmergencyDice").Metadata);  // register custom events for emergency dice mod
         }
 
         void LoadItemBehaviour(Item item, int behaviourId)

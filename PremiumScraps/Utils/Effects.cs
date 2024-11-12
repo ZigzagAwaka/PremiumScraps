@@ -207,17 +207,28 @@ namespace PremiumScraps.Utils
             RoundManager.Instance.SpawnedEnemies.Add(gameObject.GetComponent<EnemyAI>());
         }
 
-        public static void Spawn(string scrapName, Vector3 position)
+        public static SpawnableItemWithRarity GetScrap(string scrapName)
         {
-            var scrap = RoundManager.Instance.currentLevel.spawnableScrap.FirstOrDefault(i => i.spawnableItem.name.Equals(scrapName));
-            GameObject gameObject = Object.Instantiate(scrap.spawnableItem.spawnPrefab, position, Quaternion.identity, RoundManager.Instance.spawnedScrapContainer);
+            return RoundManager.Instance.currentLevel.spawnableScrap.FirstOrDefault(i => i.spawnableItem.name.Equals(scrapName));
+        }
+
+        public static ScrapReference Spawn(SpawnableItemWithRarity scrap, Vector3 position)
+        {
+            var parent = RoundManager.Instance.spawnedScrapContainer == null ? StartOfRound.Instance.elevatorTransform : RoundManager.Instance.spawnedScrapContainer;
+            GameObject gameObject = Object.Instantiate(scrap.spawnableItem.spawnPrefab, position + Vector3.up * 0.25f, Quaternion.identity, parent);
             GrabbableObject component = gameObject.GetComponent<GrabbableObject>();
             component.transform.rotation = Quaternion.Euler(component.itemProperties.restingRotation);
             component.fallTime = 0f;
             component.scrapValue = (int)(Random.Range(scrap.spawnableItem.minValue, scrap.spawnableItem.maxValue) * RoundManager.Instance.scrapValueMultiplier);
-            NetworkObject network = gameObject.GetComponent<NetworkObject>();
-            network.Spawn();
+            component.NetworkObject.Spawn();
             component.FallToGround(true);
+            return new ScrapReference(gameObject.GetComponent<NetworkObject>(), component.scrapValue);
+        }
+
+        public static IEnumerator SyncScrap(ScrapReference reference)
+        {
+            yield return new WaitForSeconds(3f);
+            RoundManager.Instance.SyncScrapValuesClientRpc(new NetworkObjectReference[] { reference.netObjectRef }, new int[] { reference.scrapValue });
         }
 
         public static void SpawnQuicksand(int nb)

@@ -61,11 +61,8 @@ namespace PremiumScraps.CustomEffects
                 if (actualPage == 7)
                 {
                     actualPage = -1;
-                    if (!StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded && StartOfRound.Instance.currentLevel.PlanetName != "71 Gordion")
-                    {
-                        finish = true;
-                        nbFinish++;
-                    }
+                    finish = true;
+                    nbFinish++;
                 }
                 SetControlTips();
                 if (finish)
@@ -87,7 +84,7 @@ namespace PremiumScraps.CustomEffects
         [ServerRpc(RequireOwnership = false)]
         private void SpawnScrapServerRpc(string scrapName, Vector3 position, int nbFinishLocal)
         {
-            Effects.Spawn(scrapName, position);
+            StartCoroutine(Effects.SyncScrap(Effects.Spawn(Effects.GetScrap(scrapName), position)));
             UpdateNbFinishClientRpc(nbFinishLocal);
         }
 
