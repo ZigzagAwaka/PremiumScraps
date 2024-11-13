@@ -1,3 +1,7 @@
+## 2.0.6
+- **Fixed**
+    - Fixed a `ReflectionTypeLoadException` when loading the mod without soft dependencies installed (Thank you [DiFFoZ](https://thunderstore.io/c/lethal-company/p/DiFFoZ/) for the help!)
+
 ## 2.0.5
 - **Added**
     - Custom compatible dice rolls have been added for the [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) mod!

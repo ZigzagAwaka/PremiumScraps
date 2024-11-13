@@ -1,4 +1,6 @@
 ﻿using PremiumScraps.CustomEffects;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Unity.Netcode;
 using UnityEngine;
@@ -35,7 +37,15 @@ namespace PremiumScraps.Utils
     {
         public static void Network()
         {
-            var types = Assembly.GetExecutingAssembly().GetTypes();
+            IEnumerable<System.Type> types;
+            try
+            {
+                types = Assembly.GetExecutingAssembly().GetTypes();
+            }
+            catch (ReflectionTypeLoadException e)
+            {
+                types = e.Types.Where(t => t != null);
+            }
             foreach (var type in types)
             {
                 var methods = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
