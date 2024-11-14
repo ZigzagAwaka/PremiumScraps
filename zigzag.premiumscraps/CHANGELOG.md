@@ -6,7 +6,7 @@
     - One of my item got a *special* upgrade when used on certain conditions (rare event 🙃)
     - Improved compatibility with [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/)
         - Every scrap that didn't had an icon by default will now display a custom icon when you have RuntimeIcons 0.2.0 or newer installed
-        - Custom icons are better than automatically generated ones from this mod, and they don't generate any lag when the item spawns
+        - Custom icons are better than automatically generated ones from this mod, and they don't create any lag when the item spawns
 - **Fixed**
     - Fixed every damage and heal not working as intended if (somehow) you have more than max health
 
