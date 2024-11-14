@@ -1,3 +1,11 @@
+## 2.0.7
+- **Updated**
+    - The friendship ender is now more lethal if you are not lucky (you'll have to use it to see)
+    - One of my item got a *special* upgrade when used on certain conditions (rare event 🙃)
+    - Improved compatibility with [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/)
+        - Every scrap that didn't had an icon by default will now display a custom icon when you have RuntimeIcons 0.2.0 or newer installed
+        - Custom icons are better than automatically generated ones from this mod, and their rotations are fixed
+
 ## 2.0.6
 - **Fixed**
     - Fixed a `ReflectionTypeLoadException` when loading the mod without soft dependencies installed (Thank you [DiFFoZ](https://thunderstore.io/c/lethal-company/p/DiFFoZ/) for the help!)

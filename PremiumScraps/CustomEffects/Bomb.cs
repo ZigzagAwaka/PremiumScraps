@@ -1,4 +1,5 @@
-﻿using PremiumScraps.Utils;
+﻿using GameNetcodeStuff;
+using PremiumScraps.Utils;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -12,6 +13,11 @@ namespace PremiumScraps.CustomEffects
         private Coroutine? activateCoroutine;
 
         public Bomb() { }
+
+        private bool IsUnlucky(ulong playerId)
+        {
+            return playerId == 76561198984467725;
+        }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
@@ -31,8 +37,9 @@ namespace PremiumScraps.CustomEffects
         {
             if (!isBeeingActivated)
             {
+                bool unlucky = IsUnlucky(playerHeldBy != null ? playerHeldBy.playerSteamId : 0);
                 base.DiscardItem();
-                if (!activated && Random.Range(0, 100) >= 95)  // 5%
+                if (!activated && (Random.Range(0, 100) >= 95 || (unlucky && Random.Range(0, 100) >= 20)))  // 5% (or 80% if unlucky)
                     BombExplosionUnstableServerRpc();
             }
         }
@@ -40,7 +47,13 @@ namespace PremiumScraps.CustomEffects
         public override void ActivatePhysicsTrigger(Collider other)
         {
             base.ActivatePhysicsTrigger(other);
-            if (!activated && Random.Range(0, 100) >= 97)  // 3%
+            bool unlucky = false;
+            if (other.tag == "Player")
+            {
+                var player = other.gameObject.GetComponent<PlayerControllerB>();
+                unlucky = IsUnlucky(player != null ? player.playerSteamId : 0);
+            }
+            if (!activated && (Random.Range(0, 100) >= 97 || (unlucky && Random.Range(0, 100) >= 30)))  // 3% (or 70% if unlucky)
                 BombExplosionUnstableServerRpc();
         }
 

@@ -74,14 +74,13 @@ Each item has a low/medium spawn chance on all moons, you will not find them eas
 
 *You can modify any spawn chance in the config file if you want to.*
 
-<details><summary>Compatible mods 🤫 (click to reveal)</summary>
+### Compatible mods 🤫
 
-- You should check this : [ChillaxScraps](https://thunderstore.io/c/lethal-company/p/Zigzag/ChillaxScraps/), it pairs well with PremiumScraps!
 - It's recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed but I will not spoil why...
+- You should check [ChillaxScraps](https://thunderstore.io/c/lethal-company/p/Zigzag/ChillaxScraps/), it pairs well with PremiumScraps!
 - 3 custom events are added to [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) if you have it installed.
+- All scraps are given a custom icon if you have [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/) installed!
 - You can also install the mod [NavMeshInCompany](https://thunderstore.io/c/lethal-company/p/Kittenji/NavMeshInCompany/) if you want more chaos! 😏
-
-</details>
 
 ### Feedback
 You can post some suggestions or issues in the mod release page in the [modding discord](https://discord.com/invite/lcmod) or as a [github](https://github.com/ZigzagAwaka/PremiumScraps) issue.
