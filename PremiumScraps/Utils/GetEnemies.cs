@@ -9,13 +9,14 @@ namespace PremiumScraps.Utils
     [HarmonyPatch(typeof(Terminal))]
     internal class GetEnemies
     {
-        public static SpawnableEnemyWithRarity Masked, HoardingBug, Centipede, Jester, Bracken, Stomper,
-                                                Coilhead, Beehive, Sandworm, Spider, Giant, Girl;
-        public static SpawnableMapObject Landmine, Turret;
+        public static SpawnableEnemyWithRarity Masked, HoardingBug, SnareFlea, Jester, Bracken, Thumper, CoilHead,
+                                               CircuitBees, EarthLeviathan, BunkerSpider, ForestKeeper, GhostGirl,
+                                               TulipSnake, EyelessDog, Maneater, Nutcracker, Barber;
+        public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
         [HarmonyPostfix]
-        private static void GetEnemy(Terminal __instance)
+        public static void GetEnemy(Terminal __instance)
         {
             foreach (SelectableLevel level in __instance.moonsCatalogueList)
             {
@@ -25,48 +26,66 @@ namespace PremiumScraps.Utils
                         Masked = enemy;
                     else if (enemy.enemyType.enemyName == "Hoarding bug" && HoardingBug == null)
                         HoardingBug = enemy;
-                    else if (enemy.enemyType.enemyName == "Centipede" && Centipede == null)
-                        Centipede = enemy;
+                    else if (enemy.enemyType.enemyName == "Centipede" && SnareFlea == null)
+                        SnareFlea = enemy;
                     else if (enemy.enemyType.enemyName == "Jester" && Jester == null)
                         Jester = enemy;
                     else if (enemy.enemyType.enemyName == "Flowerman" && Bracken == null)
                         Bracken = enemy;
-                    else if (enemy.enemyType.enemyName == "Crawler" && Stomper == null)
-                        Stomper = enemy;
-                    else if (enemy.enemyType.enemyName == "Spring" && Coilhead == null)
-                        Coilhead = enemy;
-                    else if (enemy.enemyType.enemyName == "Bunker Spider" && Spider == null)
-                        Spider = enemy;
-                    else if (enemy.enemyType.enemyName == "Girl" && Girl == null)
-                        Girl = enemy;
+                    else if (enemy.enemyType.enemyName == "Crawler" && Thumper == null)
+                        Thumper = enemy;
+                    else if (enemy.enemyType.enemyName == "Spring" && CoilHead == null)
+                        CoilHead = enemy;
+                    else if (enemy.enemyType.enemyName == "Bunker Spider" && BunkerSpider == null)
+                        BunkerSpider = enemy;
+                    else if (enemy.enemyType.enemyName == "Girl" && GhostGirl == null)
+                        GhostGirl = enemy;
+                    else if (enemy.enemyType.enemyName == "Maneater" && Maneater == null)
+                        Maneater = enemy;
+                    else if (enemy.enemyType.enemyName == "Nutcracker" && Nutcracker == null)
+                        Nutcracker = enemy;
+                    else if (enemy.enemyType.enemyName == "Clay Surgeon" && Barber == null)
+                        Barber = enemy;
                 }
 
                 foreach (var enemy in level.DaytimeEnemies)
                 {
-                    if (enemy.enemyType.enemyName == "Red Locust Bees" && Beehive == null)
-                        Beehive = enemy;
+                    if (enemy.enemyType.enemyName == "Red Locust Bees" && CircuitBees == null)
+                        CircuitBees = enemy;
+                    else if (enemy.enemyType.enemyName == "Tulip Snake" && TulipSnake == null)
+                        TulipSnake = enemy;
                 }
 
                 foreach (var enemy in level.OutsideEnemies)
                 {
-                    if (enemy.enemyType.enemyName == "Earth Leviathan" && Sandworm == null)
-                        Sandworm = enemy;
-                    else if (enemy.enemyType.enemyName == "ForestGiant" && Giant == null)
-                        Giant = enemy;
+                    if (enemy.enemyType.enemyName == "Earth Leviathan" && EarthLeviathan == null)
+                        EarthLeviathan = enemy;
+                    else if (enemy.enemyType.enemyName == "ForestGiant" && ForestKeeper == null)
+                        ForestKeeper = enemy;
+                    else if (enemy.enemyType.enemyName == "MouthDog" && EyelessDog == null)
+                        EyelessDog = enemy;
                 }
 
                 foreach (var trap in level.spawnableMapObjects)
                 {
                     if (trap.prefabToSpawn.name == "Landmine" && Landmine == null)
                         Landmine = trap;
-                    if (trap.prefabToSpawn.name == "TurretContainer" && Turret == null)
+                    else if (trap.prefabToSpawn.name == "TurretContainer" && Turret == null)
                         Turret = trap;
+                    else if (trap.prefabToSpawn.name == "SpikeRoofTrapHazard" && SpikeTrap == null)
+                        SpikeTrap = trap;
+                    else if (trap.prefabToSpawn.name == "Seamine" && Seamine == null)
+                        Seamine = trap;
+                    else if (trap.prefabToSpawn.name == "Bertha" && BigBertha == null)
+                        BigBertha = trap;
                 }
 
-                if (Masked != null && HoardingBug != null && Centipede != null && Jester != null
-                    && Bracken != null && Stomper != null && Coilhead != null && Beehive != null
-                    && Sandworm != null && Spider != null && Giant != null && Landmine != null
-                    && Turret != null && Girl != null)
+                if (Masked != null && HoardingBug != null && SnareFlea != null && Jester != null
+                    && Bracken != null && Thumper != null && CoilHead != null && CircuitBees != null
+                    && EarthLeviathan != null && BunkerSpider != null && ForestKeeper != null && Landmine != null
+                    && Turret != null && GhostGirl != null && TulipSnake != null && EyelessDog != null
+                    && Maneater != null && Nutcracker != null && Barber != null && SpikeTrap != null &&
+                    Seamine != null && BigBertha != null)
                     break;
             }
         }

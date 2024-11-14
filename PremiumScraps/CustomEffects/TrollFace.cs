@@ -57,7 +57,7 @@ namespace PremiumScraps.CustomEffects
         private void SpawnEnemyServerRpc(Vector3 position)
         {
             for (int i = 0; i < 4; i++)
-                Effects.Spawn(GetEnemies.Giant, position);
+                Effects.Spawn(GetEnemies.ForestKeeper, position);
         }
 
         [ServerRpc(RequireOwnership = false)]

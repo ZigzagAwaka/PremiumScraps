@@ -21,7 +21,7 @@ namespace PremiumScraps.CustomEffects
         [ServerRpc(RequireOwnership = false)]
         private void SpawnEnemyServerRpc(Vector3 position)
         {
-            Effects.Spawn(GetEnemies.Girl, position);
+            Effects.Spawn(GetEnemies.GhostGirl, position);
         }
     }
 }

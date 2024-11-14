@@ -409,7 +409,7 @@ namespace PremiumScraps.CustomEffects
                     break;
                 case 1:
                     for (int i = 0; i < 6; i++)
-                        Effects.Spawn(GetEnemies.Girl, position);
+                        Effects.Spawn(GetEnemies.GhostGirl, position);
                     break;
                 case 2: DarkJobEffectType2ClientRpc(); break;
                 default: return;

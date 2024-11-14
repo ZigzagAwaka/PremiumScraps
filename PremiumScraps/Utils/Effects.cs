@@ -207,6 +207,12 @@ namespace PremiumScraps.Utils
             RoundManager.Instance.SpawnedEnemies.Add(gameObject.GetComponent<EnemyAI>());
         }
 
+        public static void Spawn(SpawnableMapObject trap, Vector3 position)
+        {
+            GameObject gameObject = Object.Instantiate(trap.prefabToSpawn, position, Quaternion.identity, RoundManager.Instance.mapPropsContainer.transform);
+            gameObject.GetComponent<NetworkObject>().Spawn(true);
+        }
+
         public static SpawnableItemWithRarity GetScrap(string scrapName)
         {
             return RoundManager.Instance.currentLevel.spawnableScrap.FirstOrDefault(i => i.spawnableItem.name.Equals(scrapName));
