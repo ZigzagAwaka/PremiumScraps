@@ -28,13 +28,13 @@ namespace PremiumScraps.Utils
             return StartOfRound.Instance.connectedPlayersAmount + 1;
         }
 
-        public static List<PlayerControllerB> GetPlayers(bool includeDead = false)
+        public static List<PlayerControllerB> GetPlayers(bool includeDead = false, bool excludeOutsideFactory = false)
         {
             List<PlayerControllerB> rawList = Object.FindObjectsOfType<PlayerControllerB>().ToList();
             List<PlayerControllerB> updatedList = new List<PlayerControllerB>(rawList);
             foreach (var p in rawList)
             {
-                if (p.playerSteamId <= 0 || (!includeDead && p.isPlayerDead))
+                if (p.playerSteamId <= 0 || !p.IsSpawned || !p.isPlayerControlled || (!includeDead && p.isPlayerDead) || (excludeOutsideFactory && !p.isInsideFactory))
                 {
                     updatedList.Remove(p);
                 }
@@ -42,7 +42,7 @@ namespace PremiumScraps.Utils
             return updatedList;
         }
 
-        public static List<EnemyAI> GetEnemies(bool includeDead = false, bool includeCanDie = false)
+        public static List<EnemyAI> GetEnemies(bool includeDead = false, bool includeCanDie = false, bool excludeDaytime = false)
         {
             List<EnemyAI> rawList = Object.FindObjectsOfType<EnemyAI>().ToList();
             List<EnemyAI> updatedList = new List<EnemyAI>(rawList);
@@ -50,7 +50,7 @@ namespace PremiumScraps.Utils
                 return updatedList;
             foreach (var e in rawList)
             {
-                if (e.isEnemyDead || (!includeCanDie && !e.enemyType.canDie))
+                if (!e.IsSpawned || e.isEnemyDead || (!includeCanDie && !e.enemyType.canDie) || (excludeDaytime && e.enemyType.isDaytimeEnemy))
                 {
                     updatedList.Remove(e);
                 }
@@ -60,6 +60,7 @@ namespace PremiumScraps.Utils
 
         public static void Damage(PlayerControllerB player, int damageNb, CauseOfDeath cause = 0, int animation = 0, bool criticalBlood = true)
         {
+            damageNb = player.health > 100 && damageNb == 100 ? 900 : damageNb;
             if (criticalBlood && player.health - damageNb <= 20)
                 player.bleedingHeavily = true;
             player.DamagePlayer(damageNb, causeOfDeath: cause, deathAnimation: animation);
@@ -74,7 +75,7 @@ namespace PremiumScraps.Utils
         public static void Heal(ulong playerID, int health)
         {
             var player = StartOfRound.Instance.allPlayerScripts[playerID];
-            player.health = health;
+            player.health = player.health > 100 ? player.health : health;
             player.criticallyInjured = false;
             player.bleedingHeavily = false;
             player.playerBodyAnimator.SetBool("Limp", false);
@@ -186,6 +187,19 @@ namespace PremiumScraps.Utils
             Object.Destroy(gameObject, clips[^1].length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
         }
 
+        public static IEnumerator FadeOutAudio(AudioSource source, float time)
+        {
+            yield return new WaitForEndOfFrame();
+            var volume = source.volume;
+            while (source.volume > 0)
+            {
+                source.volume -= volume * Time.deltaTime / time;
+                yield return null;
+            }
+            source.Stop();
+            source.volume = volume;
+        }
+
         public static void Message(string title, string bottom, bool warning = false)
         {
             HUDManager.Instance.DisplayTip(title, bottom, warning);
@@ -244,7 +258,6 @@ namespace PremiumScraps.Utils
                                   orderby Vector3.Distance(x.transform.position, Vector3.zero)
                                   select x).ToArray();
             NavMeshHit val = default;
-
             for (int i = 0; i < nb; i++)
             {
                 Vector3 position = outsideAINodes[random.Next(0, outsideAINodes.Length)].transform.position;

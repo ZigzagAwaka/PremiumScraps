@@ -1,4 +1,5 @@
 ﻿using PremiumScraps.Utils;
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace PremiumScraps.CustomEffects
 {
     internal class TrollFace : PhysicsProp
     {
+        public readonly int numberOfUse = 2;
+        public int usage = 0;
+
         public TrollFace()
         {
             useCooldown = 3;
@@ -48,16 +52,59 @@ namespace PremiumScraps.CustomEffects
                         StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1));
                     else
                         Effects.Damage(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1);
-                    SpawnEnemyServerRpc(playerTmp.transform.position);
+                    SpawnEnemyServerRpc(playerTmp.transform.position, playerTmp.isInsideFactory);
                 }
             }
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void SpawnEnemyServerRpc(Vector3 position)
+        private void SpawnEnemyServerRpc(Vector3 position, bool isInsideFactory)
         {
-            for (int i = 0; i < 4; i++)
-                Effects.Spawn(GetEnemies.ForestKeeper, position);
+            if (usage == 0)
+                StartCoroutine(WaitAndResetUsage());
+            usage++;
+            var enemy = GetEnemies.CoilHead;
+            if (usage > numberOfUse)
+            {
+                Effects.Spawn(enemy, position);
+                return;
+            }
+            var i = Random.Range(0, 10);
+            if (isInsideFactory)
+            {
+                if (i <= 4)  // 50%
+                    enemy = GetEnemies.ForestKeeper;
+                else if (i == 5 || i == 6)  // 20%
+                    enemy = GetEnemies.EyelessDog;
+                else if (i == 7 || i == 8)  // 20%
+                    enemy = GetEnemies.OldBird;
+                else  // 10%
+                    enemy = GetEnemies.ShyGuy != null ? GetEnemies.ShyGuy : GetEnemies.ForestKeeper;
+            }
+            else
+            {
+                if (i <= 2)  // 30%
+                    enemy = GetEnemies.ForestKeeper;
+                else if (i >= 3 && i <= 5)  // 30%
+                    enemy = GetEnemies.Maneater;
+                else if (i == 6 || i == 7)  // 20%
+                    enemy = GetEnemies.Barber;
+                else if (i == 8)  // 10%
+                    enemy = GetEnemies.Nutcracker;
+                else  // 10%
+                    enemy = GetEnemies.Jester;
+            }
+            for (int n = 0; n < 4; n++)
+            {
+                Effects.Spawn(enemy, position);
+            }
+        }
+
+        private IEnumerator WaitAndResetUsage()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitUntil(() => StartOfRound.Instance.inShipPhase == true);
+            usage = 0;
         }
 
         [ServerRpc(RequireOwnership = false)]

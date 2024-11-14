@@ -1,10 +1,14 @@
 ## 2.0.7
 - **Updated**
-    - The friendship ender is now more lethal if you are not lucky (you'll have to use it to see)
+    - The friendship ender is now more LETHAL
+    - It's highly recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed
+    - To avoid problems with The friendship ender, the item now has 2 max usage allowed per moons. And if you try to use it more than 2 times something *a little bit less lethal* will happen
     - One of my item got a *special* upgrade when used on certain conditions (rare event 🙃)
     - Improved compatibility with [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/)
         - Every scrap that didn't had an icon by default will now display a custom icon when you have RuntimeIcons 0.2.0 or newer installed
         - Custom icons are better than automatically generated ones from this mod, and they don't generate any lag when the item spawns
+- **Fixed**
+    - Fixed every damage and heal not working as intended if (somehow) you have more than max health
 
 ## 2.0.6
 - **Fixed**
