@@ -1,5 +1,4 @@
 ﻿using PremiumScraps.Utils;
-using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -26,7 +25,7 @@ namespace PremiumScraps.CustomEffects
                     Effects.Message("Not now", "Try it a little bit later :)");
                     return;
                 }
-                AudioServerRpc(1, playerHeldBy.transform.position, 1.5f, 2f);
+                AudioServerRpc(1, playerHeldBy.transform.position, 1.5f, 2.1f);
                 if (playerHeldBy.health > 90)
                 {
                     Effects.Damage(playerHeldBy, 10);
@@ -57,11 +56,16 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
+        public override void Update()
+        {
+            base.Update();
+            if (StartOfRound.Instance.inShipPhase && IsServer && usage != 0)
+                usage = 0;
+        }
+
         [ServerRpc(RequireOwnership = false)]
         private void SpawnEnemyServerRpc(Vector3 position, bool isInsideFactory)
         {
-            if (usage == 0)
-                StartCoroutine(WaitAndResetUsage());
             usage++;
             var enemy = GetEnemies.CoilHead;
             if (usage > numberOfUse)
@@ -90,21 +94,26 @@ namespace PremiumScraps.CustomEffects
                 else if (i == 6 || i == 7)  // 20%
                     enemy = GetEnemies.Barber;
                 else if (i == 8)  // 10%
-                    enemy = GetEnemies.Nutcracker;
+                    enemy = GetEnemies.Bruce != null ? GetEnemies.Bruce : GetEnemies.Nutcracker;
                 else  // 10%
-                    enemy = GetEnemies.Jester;
+                {
+                    if (GetEnemies.BigBertha != null)
+                    {
+                        Effects.Spawn(GetEnemies.Jester, position);
+                        Effects.Spawn(GetEnemies.BigBertha, position);
+                        Effects.Spawn(GetEnemies.BigBertha, StartOfRound.Instance.shipDoorNode.position);
+                        for (int p = 0; p < 8; p++)
+                            Effects.Spawn(GetEnemies.BigBertha, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
+                        return;
+                    }
+                    else
+                        enemy = GetEnemies.Jester;
+                }
             }
             for (int n = 0; n < 4; n++)
             {
                 Effects.Spawn(enemy, position);
             }
-        }
-
-        private IEnumerator WaitAndResetUsage()
-        {
-            yield return new WaitForEndOfFrame();
-            yield return new WaitUntil(() => StartOfRound.Instance.inShipPhase == true);
-            usage = 0;
         }
 
         [ServerRpc(RequireOwnership = false)]

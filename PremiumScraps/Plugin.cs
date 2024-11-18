@@ -19,7 +19,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.7";
+        const string VERSION = "2.0.8";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
@@ -131,6 +131,7 @@ namespace PremiumScraps
             };
 
             int i = 0; config = new Config(base.Config, scraps);
+            config.SetupCustomConfigs();
             SetupScript.Network();
 
             foreach (Scrap scrap in scraps)

@@ -28,6 +28,13 @@ namespace PremiumScraps.Utils
             return StartOfRound.Instance.connectedPlayersAmount + 1;
         }
 
+        public static bool IsUnlucky(ulong playerId)
+        {
+            if (Plugin.config.unluckyPlayersID.Count == 0)
+                return false;
+            return Plugin.config.unluckyPlayersID.Find(id => id == playerId) != default;
+        }
+
         public static List<PlayerControllerB> GetPlayers(bool includeDead = false, bool excludeOutsideFactory = false)
         {
             List<PlayerControllerB> rawList = Object.FindObjectsOfType<PlayerControllerB>().ToList();

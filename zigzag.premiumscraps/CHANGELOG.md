@@ -1,9 +1,17 @@
+## 2.0.8
+- **Updated**
+    - Added 2 new rare events for The friendship ender effect if you have [Surfaced](https://thunderstore.io/c/lethal-company/p/SurfacedTeam/Surfaced/) installed (if you don't have it, they will be replaced by vanilla ones instead)
+    - Added a new config for selecting unlucky players (use this to troll your friends lol)
+    - My ■■■■■■th job application got a *special* upgrade when used by unlucky players
+- **Fixed**
+    - The friendship ender effect (the new one since 2.0.7) should be a little bit more optimized
+
 ## 2.0.7
 - **Updated**
     - The friendship ender is now more LETHAL
     - It's highly recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed
     - To avoid problems with The friendship ender, the item now has 2 max usage allowed per moons. And if you try to use it more than 2 times something *a little bit less lethal* will happen
-    - One of my item got a *special* upgrade when used on certain conditions (rare event 🙃)
+    - The Bomb item got a *special* upgrade when used by unlucky players
     - Improved compatibility with [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/)
         - Every scrap that didn't had an icon by default will now display a custom icon when you have RuntimeIcons 0.2.0 or newer installed
         - Custom icons are better than automatically generated ones from this mod, and they don't create any lag when the item spawns

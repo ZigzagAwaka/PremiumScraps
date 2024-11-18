@@ -12,7 +12,7 @@ namespace PremiumScraps.Utils
         public static SpawnableEnemyWithRarity Masked, HoardingBug, SnareFlea, Jester, Bracken, Thumper, CoilHead,
                                                CircuitBees, EarthLeviathan, BunkerSpider, ForestKeeper, GhostGirl,
                                                TulipSnake, EyelessDog, Maneater, Nutcracker, Barber, Butler, OldBird,
-                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker;
+                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce;
         public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
@@ -77,6 +77,8 @@ namespace PremiumScraps.Utils
                         RedwoodTitan = enemy;
                     else if (enemy.enemyType.enemyName == "RedWoodGiant" && RedwoodGiant == null)
                         RedwoodGiant = enemy;
+                    else if (enemy.enemyType.enemyName == "Bruce" && Bruce == null)
+                        Bruce = enemy;
                 }
 
                 foreach (var trap in level.spawnableMapObjects)
@@ -98,8 +100,8 @@ namespace PremiumScraps.Utils
                     && EarthLeviathan != null && BunkerSpider != null && ForestKeeper != null && Landmine != null
                     && Turret != null && GhostGirl != null && TulipSnake != null && EyelessDog != null
                     && Maneater != null && Nutcracker != null && Barber != null && SpikeTrap != null &&
-                    Seamine != null && BigBertha != null && Butler != null && OldBird != null
-                    && ShyGuy != null && RedwoodTitan != null && RedwoodGiant != null && Locker != null)
+                    Seamine != null && BigBertha != null && Butler != null && OldBird != null && ShyGuy != null
+                    && RedwoodTitan != null && RedwoodGiant != null && Locker != null && Bruce != null)
                     break;*/
             }
         }

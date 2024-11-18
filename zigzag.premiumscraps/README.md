@@ -124,7 +124,9 @@ You can post some suggestions or issues in the mod release page in the [modding 
 
 - Thanks **Leaucard** for helping with custom sounds, assets research and some ideas!
 
-- Some scraps are packed with voice acting by [Zedahu](https://www.twitch.tv/zedahu), [Xplozivo](https://www.twitch.tv/xplozivo) and [Abi](https://www.instagram.com/abidesh_/)
+- Some scraps have been made in collaboration with other peoples, so a big thanks to [Zedahu](https://www.twitch.tv/zedahu), [Xplozivo](https://www.twitch.tv/xplozivo), [Yoestar](https://www.instagram.com/yo_estar/) and [Abi](https://www.instagram.com/abidesh_/)
+
+- Thanks [A Glitched Npc](https://www.twitch.tv/a_glitched_npc) for some ideas!
 
 - Some assets are ripped from [Lethal Company](https://store.steampowered.com/app/1966720/Lethal_Company/) and [Balan Wonderworld](https://store.steampowered.com/app/1341050/BALAN_WONDERWORLD/)
 

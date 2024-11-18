@@ -12,7 +12,7 @@ namespace PremiumScraps.CustomEffects
         public int summonFriends = 0;
         public bool canInspectPaper = true;
         public bool itsTooLate = false;
-        public readonly float timeUntilItsTooLate = 8f;
+        public float timeUntilItsTooLate = 8f;
         private Coroutine? darkEffectCoroutine;
         private bool OneTimeUse = false;
         private bool OneTimeActionSp = false;
@@ -339,6 +339,24 @@ namespace PremiumScraps.CustomEffects
                 }
                 else
                     yield return new WaitUntil(() => StartOfRound.Instance.shipIsLeaving == true);
+            }
+        }
+
+        private IEnumerator UnluckyDarkEffect()
+        {
+            timeUntilItsTooLate = 0f;
+            yield return new WaitForEndOfFrame();
+            yield return DarkEffect();
+        }
+
+        public override void GrabItem()
+        {
+            base.GrabItem();
+            if (!itsTooLate && canInspectPaper && itemProperties.canBeInspected && IsOwner &&
+                playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId))
+            {
+                if (Random.Range(0, 10) < 7)  // 70%
+                    darkEffectCoroutine = StartCoroutine(UnluckyDarkEffect());
             }
         }
 
