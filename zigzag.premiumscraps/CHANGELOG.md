@@ -1,3 +1,11 @@
+## 2.0.9
+- **Updated**
+    - Harry Mason's secret effect chance has been increased from 5% to 8% hehehe
+- **Fixed**
+    - Compatibility patch with the latest version of [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/)
+        - Should fix the "Premium Scraps" custom dice effect
+        - Now requires version 1.6.5 or newer to work, or else will be disabled
+
 ## 2.0.8
 - **Updated**
     - Added 2 new rare events for The friendship ender effect if you have [Surfaced](https://thunderstore.io/c/lethal-company/p/SurfacedTeam/Surfaced/) installed (if you don't have it, they will be replaced by vanilla ones instead)

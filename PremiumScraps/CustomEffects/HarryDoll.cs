@@ -12,7 +12,7 @@ namespace PremiumScraps.CustomEffects
         {
             if (!StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded)
             {
-                if (Random.Range(0, 100) >= 95)
+                if (Random.Range(0, 100) >= 92)
                     SpawnEnemyServerRpc(playerHeldBy.transform.position);
             }
             base.DiscardItem();
