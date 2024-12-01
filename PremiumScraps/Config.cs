@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PremiumScraps
 {
-    public class Config
+    class Config
     {
         public readonly List<ulong> unluckyPlayersID = new List<ulong>();
         public readonly ConfigEntry<bool> diceEvents;

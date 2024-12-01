@@ -34,7 +34,7 @@ namespace PremiumScraps.CustomEffects
             base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null)
             {
-                if (StartOfRound.Instance.inShipPhase || !StartOfRound.Instance.shipHasLanded)
+                if (StartOfRound.Instance.inShipPhase || !StartOfRound.Instance.shipHasLanded || unlucky)
                 {
                     Effects.Message("Not now", "Try it a little bit later :)");
                     return;
@@ -104,9 +104,12 @@ namespace PremiumScraps.CustomEffects
         {
             usage++;
             var enemy = GetEnemies.CoilHead;
+            var spawnPosition = RoundManager.Instance.GetNavMeshPosition(position, sampleRadius: 3f);
+            if (!RoundManager.Instance.GotNavMeshPositionResult)
+                spawnPosition = Effects.GetClosestAINodePosition(isInsideFactory ? RoundManager.Instance.insideAINodes : RoundManager.Instance.outsideAINodes, position);
             if (usage > numberOfUse)
             {
-                Effects.Spawn(enemy, position);
+                Effects.Spawn(enemy, spawnPosition);
                 return;
             }
             var i = Random.Range(0, 10);
@@ -146,8 +149,8 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (GetEnemies.BigBertha != null)
                     {
-                        Effects.Spawn(GetEnemies.Jester, position);
-                        Effects.Spawn(GetEnemies.BigBertha, position);
+                        Effects.Spawn(GetEnemies.Jester, spawnPosition);
+                        Effects.Spawn(GetEnemies.BigBertha, spawnPosition);
                         Effects.Spawn(GetEnemies.BigBertha, StartOfRound.Instance.shipDoorNode.position);
                         for (int p = 0; p < 8; p++)
                             Effects.Spawn(GetEnemies.BigBertha, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
@@ -159,7 +162,7 @@ namespace PremiumScraps.CustomEffects
             }
             for (int n = 0; n < 4; n++)
             {
-                Effects.Spawn(enemy, position);
+                Effects.Spawn(enemy, spawnPosition);
             }
         }
 

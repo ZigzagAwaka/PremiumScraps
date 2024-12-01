@@ -19,13 +19,13 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.10";
+        const string VERSION = "2.0.11";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips;
         //public static List<GameObject> gameObjects;
         private readonly Harmony harmony = new Harmony(GUID);
-        public static Config config { get; private set; } = null!;
+        internal static Config config { get; private set; } = null!;
 
         void HarmonyPatchAll()
         {

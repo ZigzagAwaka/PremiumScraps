@@ -1,3 +1,7 @@
+## 2.0.11
+- **Fixed**
+    - Fixed The friendship ender breaking if you use it mid-air
+
 ## 2.0.10
 - **Updated**
     - New global visual effect when summoning *"employees"* with My ■■■■■■th job application 🙂
