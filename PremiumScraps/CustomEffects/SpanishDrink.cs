@@ -90,7 +90,7 @@ namespace PremiumScraps.CustomEffects
 
         private IEnumerator SpanishDrunk(PlayerControllerB player)
         {
-            for (int n = 0; n < 240; n++)  // 2 minutes
+            for (int n = 0; n < 120; n++)  // 1 minute
             {
                 yield return new WaitForSeconds(0.5f);
                 if (player == null || player.isPlayerDead)
@@ -125,7 +125,7 @@ namespace PremiumScraps.CustomEffects
         {
             Effects.Heal(playerID, health);
             if (playerHeldBy != null && GameNetworkManager.Instance.localPlayerController.playerClientId == playerHeldBy.playerClientId)
-                HUDManager.Instance.UpdateHealthUI(100, false);
+                HUDManager.Instance.UpdateHealthUI(health, false);
         }
 
         [ServerRpc(RequireOwnership = false)]

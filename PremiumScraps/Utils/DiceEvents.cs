@@ -19,7 +19,7 @@ namespace PremiumScraps.Utils
                 MysteryDice.MysteryDice.RegisterNewEffect(new Death(), false);
             }
             else
-                logger.LogWarning("Compatibility with 'Emergency Dice Updated' was enabled but you are not using the targeted 1.6.4+ version. Custom events will not be loaded.");
+                logger.LogWarning("Compatibility with 'Emergency Dice Updated' was enabled but you are not using the targeted 1.6.5+ version. Custom events will not be loaded.");
         }
     }
 

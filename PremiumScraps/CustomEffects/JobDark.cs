@@ -355,7 +355,7 @@ namespace PremiumScraps.CustomEffects
             if (!itsTooLate && canInspectPaper && itemProperties.canBeInspected && IsOwner &&
                 playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId))
             {
-                if (Random.Range(0, 10) < 7)  // 70%
+                if (Random.Range(0, 10) < 8)  // 80%
                     darkEffectCoroutine = StartCoroutine(UnluckyDarkEffect());
             }
         }
@@ -437,6 +437,7 @@ namespace PremiumScraps.CustomEffects
         [ClientRpc]
         private void DarkJobEffectType2ClientRpc()
         {
+            Effects.ChangeWeather(LevelWeatherType.Eclipsed);
             Effects.Message("Warning", "Abnormal amount of employees detected !", true);
             summonFriends = -1;
         }

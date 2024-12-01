@@ -1,4 +1,6 @@
-﻿using PremiumScraps.Utils;
+﻿using GameNetcodeStuff;
+using PremiumScraps.Utils;
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,11 +10,23 @@ namespace PremiumScraps.CustomEffects
     {
         public readonly int numberOfUse = 2;
         public int usage = 0;
+        public bool unlucky = false;
 
         public TrollFace()
         {
             useCooldown = 3;
             customGrabTooltip = "Friendship ends here : [E]";
+        }
+
+        public override void GrabItem()
+        {
+            base.GrabItem();
+            if (!unlucky && IsOwner && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded
+                && playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId))
+            {
+                if (Random.Range(0, 10) < 8)  // 80%
+                    StartCoroutine(BadLuck(playerHeldBy));
+            }
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -51,9 +65,31 @@ namespace PremiumScraps.CustomEffects
                         StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1));
                     else
                         Effects.Damage(playerHeldBy, 100, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1);
-                    SpawnEnemyServerRpc(playerTmp.transform.position, playerTmp.isInsideFactory);
+                    EndFriendshipServerRpc(playerTmp.transform.position, playerTmp.isInsideFactory);
                 }
             }
+        }
+
+        private IEnumerator BadLuck(PlayerControllerB player)
+        {
+            unlucky = true;
+            Effects.Message("bro ?", "", true);
+            yield return new WaitForSeconds(5f);
+            if (player.isPlayerDead || StartOfRound.Instance.shipIsLeaving)
+                yield break;
+            float effectTime = 8f;
+            bool isInside = player.isInsideFactory;
+            var position = player.transform.position;
+            while (!player.isPlayerDead && !StartOfRound.Instance.shipIsLeaving)
+            {
+                Effects.Message("W̴ͪ̅e̤̲̞ ḏ͆ȍ̢̥ a̵̿͘ l̙ͭ͠ittle b̈́͠it of troll͢i̗̍͜n͙̆͠g", "", true);
+                Effects.Damage(player, 10, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1);
+                yield return new WaitForSeconds(effectTime);
+                if (effectTime != 0.5f)
+                    effectTime /= 2f;
+            }
+            EndFriendshipServerRpc(position, isInside);
+            unlucky = false;
         }
 
         public override void Update()
@@ -64,7 +100,7 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void SpawnEnemyServerRpc(Vector3 position, bool isInsideFactory)
+        private void EndFriendshipServerRpc(Vector3 position, bool isInsideFactory)
         {
             usage++;
             var enemy = GetEnemies.CoilHead;
@@ -87,14 +123,25 @@ namespace PremiumScraps.CustomEffects
             }
             else
             {
-                if (i <= 2)  // 30%
+                if (i == 0)  // 10%
                     enemy = GetEnemies.ForestKeeper;
-                else if (i >= 3 && i <= 5)  // 30%
+                else if (i == 1 || i == 2)  // 20%
                     enemy = GetEnemies.Maneater;
-                else if (i == 6 || i == 7)  // 20%
+                else if (i == 3 || i == 4)  // 20%
                     enemy = GetEnemies.Barber;
-                else if (i == 8)  // 10%
+                else if (i == 5 || i == 6)  // 20%
                     enemy = GetEnemies.Bruce != null ? GetEnemies.Bruce : GetEnemies.Nutcracker;
+                else if (i == 7 || i == 8)  // 20%
+                {
+                    if (GetEnemies.SparkTower != null)
+                    {
+                        for (int p = 0; p < 15; p++)
+                            Effects.Spawn(GetEnemies.SparkTower, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
+                        return;
+                    }
+                    else
+                        enemy = GetEnemies.Jester;
+                }
                 else  // 10%
                 {
                     if (GetEnemies.BigBertha != null)

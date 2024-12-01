@@ -1,3 +1,10 @@
+## 2.0.10
+- **Updated**
+    - New global visual effect when summoning *"employees"* with My ■■■■■■th job application 🙂
+    - Added 1 new event for The friendship ender effect if you have [LethalAnomalies](https://thunderstore.io/c/lethal-company/p/Zeldahu/LethalAnomalies/) installed
+    - The friendship ender got a *special* upgrade when used by unlucky players
+    - Nerfed El Gazpacho drunk effect, it's now ending two times faster
+
 ## 2.0.9
 - **Updated**
     - Harry Mason's secret effect chance has been increased from 5% to 8% hehehe
