@@ -23,8 +23,9 @@ namespace PremiumScraps.CustomEffects
                     Effects.Message("Wait", "You are already in the ship?");
                     return;
                 }
-                Effects.Teleportation(playerHeldBy, StartOfRound.Instance.middleOfShipNode.position, true);
-                AudioServerRpc(2, playerHeldBy.transform.position, 1.5f, 2.5f);
+                Effects.Teleportation(playerHeldBy, StartOfRound.Instance.middleOfShipNode.position);
+                SetPosFlagsServerRpc(playerHeldBy.playerClientId, true, false, false);
+                AudioServerRpc(2, playerHeldBy.transform.position, 1.2f, 0.75f);
                 DestroyObjectServerRpc(StartOfRound.Instance.localPlayerController.playerClientId);
             }
         }
@@ -39,6 +40,18 @@ namespace PremiumScraps.CustomEffects
         private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
         {
             Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void SetPosFlagsServerRpc(ulong playerID, bool ship, bool exterior, bool interior)
+        {
+            SetPosFlagsClientRpc(playerID, ship, exterior, interior);
+        }
+
+        [ClientRpc]
+        private void SetPosFlagsClientRpc(ulong playerID, bool ship, bool exterior, bool interior)
+        {
+            Effects.SetPosFlags(playerID, ship, exterior, interior);
         }
 
         [ServerRpc(RequireOwnership = false)]

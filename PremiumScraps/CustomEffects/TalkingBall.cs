@@ -49,7 +49,7 @@ namespace PremiumScraps.CustomEffects
                         int audioID = 16;
                         if (Random.Range(0, 10) <= 1)  // 20% rare uwu
                             audioID = 17;
-                        AudioServerRpc(audioID, playerHeldBy.transform.position, 1.5f, 3f);  // uwu audio
+                        AudioServerRpc(audioID, playerHeldBy.transform.position, 1.1f, 0.75f);  // uwu audio
                     }
                 }
                 else

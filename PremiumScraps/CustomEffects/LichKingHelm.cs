@@ -12,7 +12,7 @@ namespace PremiumScraps.CustomEffects
         {
             base.GrabItem();
             if (Random.Range(0, 100) >= 80)
-                AudioServerRpc(20, transform.position, 1f, 1.6f);
+                AudioServerRpc(20, transform.position, 0.95f, 0.6f);
         }
 
         [ServerRpc(RequireOwnership = false)]

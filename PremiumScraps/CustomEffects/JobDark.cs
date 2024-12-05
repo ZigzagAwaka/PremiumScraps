@@ -148,7 +148,7 @@ namespace PremiumScraps.CustomEffects
                 yield return new WaitForSeconds(1);
             else if (player.isInHangarShipRoom || player.isInsideFactory)
             {
-                yield return new WaitUntil(() => player.isInHangarShipRoom == false || player.isInsideFactory == false || StartOfRound.Instance.shipIsLeaving == true);
+                yield return new WaitUntil(() => (player.isInHangarShipRoom == false && player.isInsideFactory == false) || StartOfRound.Instance.shipIsLeaving == true);
                 for (int n = 0; n < 3; n++)
                 {
                     if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase)
@@ -167,10 +167,10 @@ namespace PremiumScraps.CustomEffects
                         yield return new WaitForSeconds(5);
                         break;
                     case 1:
-                        Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 8f);
+                        Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 7f);
                         player.JumpToFearLevel(0.1f);
                         yield return new WaitForSeconds(2);
-                        Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 9f);
+                        Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 8f);
                         player.JumpToFearLevel(2f);
                         player.playersManager.fearLevelIncreasing = false;
                         yield return new WaitForSeconds(15);
@@ -186,7 +186,7 @@ namespace PremiumScraps.CustomEffects
                         yield return new WaitForSeconds(10);
                         break;
                     case 4:
-                        Effects.Audio(13, 2f);
+                        Effects.Audio(13, 1.8f);
                         player.drunkness = 1;
                         player.drunknessInertia = 1;
                         player.drunknessSpeed = 1;
@@ -203,12 +203,12 @@ namespace PremiumScraps.CustomEffects
                         break;
                     case 6:
                         Effects.Audio(11, 2f);
-                        Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position, true);
+                        Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         yield return new WaitForSeconds(5);
                         break;
                     case 7:
                         Effects.Audio(9, 2f);
-                        Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position, true);
+                        Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         yield return new WaitForSeconds(5);
                         break;
                     default:
@@ -236,7 +236,7 @@ namespace PremiumScraps.CustomEffects
                     yield return new WaitForSeconds(25);
                     if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                     {
-                        Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 6f);
+                        Effects.Audio(new int[] { 8, 9, 10, 11 }, player.transform.position, 5f);
                         player.JumpToFearLevel(1.5f);
                         player.playersManager.fearLevelIncreasing = false;
                         yield return new WaitForSeconds(25);

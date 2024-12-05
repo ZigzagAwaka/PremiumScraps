@@ -11,11 +11,13 @@ namespace PremiumScraps.CustomEffects
         public readonly int numberOfUse = 2;
         public int usage = 0;
         public bool unlucky = false;
+        public bool StarlancerAIFix = false;
 
         public TrollFace()
         {
             useCooldown = 3;
             customGrabTooltip = "Friendship ends here : [E]";
+            StarlancerAIFix = Plugin.config.StarlancerAIFix;
         }
 
         public override void GrabItem()
@@ -39,7 +41,7 @@ namespace PremiumScraps.CustomEffects
                     Effects.Message("Not now", "Try it a little bit later :)");
                     return;
                 }
-                AudioServerRpc(1, playerHeldBy.transform.position, 1.5f, 2.1f);
+                AudioServerRpc(1, playerHeldBy.transform.position, 1.5f, 0.8f);
                 if (playerHeldBy.health > 90)
                 {
                     Effects.Damage(playerHeldBy, 10);
@@ -103,19 +105,24 @@ namespace PremiumScraps.CustomEffects
         private void EndFriendshipServerRpc(Vector3 position, bool isInsideFactory)
         {
             usage++;
-            var enemy = GetEnemies.CoilHead;
             var spawnPosition = RoundManager.Instance.GetNavMeshPosition(position, sampleRadius: 3f);
             if (!RoundManager.Instance.GotNavMeshPositionResult)
                 spawnPosition = Effects.GetClosestAINodePosition(isInsideFactory ? RoundManager.Instance.insideAINodes : RoundManager.Instance.outsideAINodes, position);
             if (usage > numberOfUse)
             {
-                Effects.Spawn(enemy, spawnPosition);
+                if (StarlancerAIFix || isInsideFactory)
+                    Effects.Spawn(GetEnemies.CoilHead, spawnPosition);
+                else
+                    Effects.Spawn(GetEnemies.ForestKeeper, spawnPosition);
                 return;
             }
+            SpawnableEnemyWithRarity enemy;
             var i = Random.Range(0, 10);
             if (isInsideFactory)
             {
-                if (i <= 4)  // 50%
+                if (!StarlancerAIFix)
+                    enemy = GetEnemies.Maneater;
+                else if (i <= 4)  // 50%
                     enemy = GetEnemies.ForestKeeper;
                 else if (i == 5 || i == 6)  // 20%
                     enemy = GetEnemies.EyelessDog;
@@ -126,24 +133,28 @@ namespace PremiumScraps.CustomEffects
             }
             else
             {
-                if (i == 0)  // 10%
+                if (!StarlancerAIFix || i == 0)  // 10%
                     enemy = GetEnemies.ForestKeeper;
                 else if (i == 1 || i == 2)  // 20%
                     enemy = GetEnemies.Maneater;
                 else if (i == 3 || i == 4)  // 20%
                     enemy = GetEnemies.Barber;
-                else if (i == 5 || i == 6)  // 20%
+                else if (i == 5)  // 10%
                     enemy = GetEnemies.Bruce != null ? GetEnemies.Bruce : GetEnemies.Nutcracker;
+                else if (i == 6)  // 10%
+                    enemy = GetEnemies.Nutcracker;
                 else if (i == 7 || i == 8)  // 20%
                 {
                     if (GetEnemies.SparkTower != null)
                     {
+                        Effects.Spawn(GetEnemies.Maneater, spawnPosition);
+                        Effects.Spawn(GetEnemies.ForestKeeper, spawnPosition);
                         for (int p = 0; p < 15; p++)
                             Effects.Spawn(GetEnemies.SparkTower, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         return;
                     }
                     else
-                        enemy = GetEnemies.Jester;
+                        enemy = GetEnemies.Maneater;
                 }
                 else  // 10%
                 {

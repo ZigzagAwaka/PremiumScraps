@@ -13,17 +13,18 @@ using UnityEngine;
 namespace PremiumScraps
 {
     [BepInPlugin(GUID, NAME, VERSION)]
+    [BepInDependency("AudioKnight.StarlancerAIFix", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("Theronguard.EmergencyDice", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.11";
+        const string VERSION = "2.0.12";
 
         public static Plugin instance;
-        public static List<AudioClip> audioClips;
-        //public static List<GameObject> gameObjects;
+        public static List<AudioClip> audioClips = new List<AudioClip>();
+        // public static List<GameObject> gameObjects = new List<GameObject>();
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
 
@@ -74,33 +75,25 @@ namespace PremiumScraps
 
             string directory = "Assets/Data/";
 
-            /*gameObjects = new List<GameObject> {
-                bundle.LoadAsset<GameObject>(directory + "DeathNote/DeathNoteCanvas.prefab")
+            /*var prefabs = new string[] { "DeathNote/DeathNoteCanvas.prefab", "EmergencyMeeting/EmergencyMeetingCanvas.prefab",
+                "Ocarina/ElegyOfEmptiness.prefab"
             };*/
 
-            audioClips = new List<AudioClip> {
-                bundle.LoadAsset<AudioClip>(directory + "_audio/AirHorn1.ogg"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/friendship_ends_here.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/scroll_tp.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/ShovelReelUp.ogg"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/ShovelSwing.ogg"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/wooden-staff-hit.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/MineTrigger.ogg"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/book_page.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse1.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse2.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse3.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/CVuse4.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/TerminalAlarm.ogg"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/Breathing.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/huh.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/book_use_redesign.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/uwu.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/uwu-rot.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/drink.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/spanishsound.wav"),
-                bundle.LoadAsset<AudioClip>(directory + "_audio/arthas.wav")
+            var audios = new string[] { "AirHorn1.ogg", "friendship_ends_here.wav", "scroll_tp.wav", "ShovelReelUp.ogg",
+                "ShovelSwing.ogg", "wooden-staff-hit.wav", "MineTrigger.ogg", "book_page.wav", "CVuse1.wav", "CVuse2.wav",
+                "CVuse3.wav", "CVuse4.wav", "TerminalAlarm.ogg", "Breathing.wav", "huh.wav", "book_use_redesign.wav",
+                "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav"
             };
+
+            /*foreach (string prefab in prefabs)
+            {
+                gameObjects.Add(bundle.LoadAsset<GameObject>(directory + prefab));
+            }*/
+
+            foreach (string sfx in audios)
+            {
+                audioClips.Add(bundle.LoadAsset<AudioClip>(directory + "_audio/" + sfx));
+            }
 
             var scraps = new List<Scrap> {
                 new Scrap("Frieren/FrierenItem.asset", 10),
@@ -138,6 +131,7 @@ namespace PremiumScraps
             foreach (Scrap scrap in scraps)
             {
                 Item item = bundle.LoadAsset<Item>(directory + scrap.asset);
+                if (config.scrapValues[i].Item1 != -1) { item.minValue = config.scrapValues[i].Item1; item.maxValue = config.scrapValues[i].Item2; }
                 if (scrap.behaviourId != 0) LoadItemBehaviour(item, scrap.behaviourId);
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
                 Utilities.FixMixerGroups(item.spawnPrefab);

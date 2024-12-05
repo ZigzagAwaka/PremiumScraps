@@ -1,3 +1,13 @@
+## 2.0.12
+- **Added**
+    - Added a config to set custom min,max scrap value for all items (can be left empty for default values)
+- **Updated**
+    - Better knockback effect for Stick
+    - Better teleportation code for Scroll of Town Portal
+    - Better audio code for some items
+    - Stick can now also be used on players that are performing a special interaction, like when they are on the terminal
+    - All Friendship ender events will now be replaced by vanilla ones if you don't have [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed (less fun, please install StarlancerAIFix !)
+
 ## 2.0.11
 - **Fixed**
     - Fixed The friendship ender breaking if you use it mid-air
@@ -28,7 +38,6 @@
 ## 2.0.7
 - **Updated**
     - The friendship ender is now more LETHAL
-    - It's highly recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed
     - To avoid problems with The friendship ender, the item now has 2 max usage allowed per moons. And if you try to use it more than 2 times something *a little bit less lethal* will happen
     - The Bomb item got a *special* upgrade when used by unlucky players
     - Improved compatibility with [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/)

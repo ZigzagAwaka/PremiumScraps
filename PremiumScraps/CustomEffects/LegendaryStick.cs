@@ -10,8 +10,8 @@ namespace PremiumScraps.CustomEffects
 {
     internal class LegendaryStick : PhysicsProp
     {
-        public int knockbackPowerMin = 3;
-        public int knockbackPowerMax = 13;
+        public int knockbackPowerMin = 4;
+        public int knockbackPowerMax = 14;
         public int weaponHitForce = 1;
         public bool reelingUp;
         public bool isHoldingButton;
@@ -54,7 +54,7 @@ namespace PremiumScraps.CustomEffects
             playerHeldBy.twoHanded = true;
             playerHeldBy.playerBodyAnimator.ResetTrigger("stickHit");
             playerHeldBy.playerBodyAnimator.SetBool("reelingUp", true);
-            AudioServerRpc(3, playerHeldBy.transform.position, 2.5f);
+            AudioServerRpc(3, 1f);
             yield return new WaitForSeconds(0.35f);
             yield return new WaitUntil(() => !isHoldingButton || !isHeld);
             SwingWeapon(!isHeld);
@@ -70,7 +70,7 @@ namespace PremiumScraps.CustomEffects
             previousPlayerHeldBy.playerBodyAnimator.SetBool("reelingUp", value: false);
             if (!cancel)
             {
-                AudioServerRpc(4, previousPlayerHeldBy.transform.position, 2.5f);
+                AudioServerRpc(4, 0.75f);
                 previousPlayerHeldBy.UpdateSpecialAnimationValue(specialAnimation: true, (short)previousPlayerHeldBy.transform.localEulerAngles.y, 0.4f);
             }
         }
@@ -116,11 +116,7 @@ namespace PremiumScraps.CustomEffects
                         flag = true;
                         if (component.GetType() == typeof(PlayerControllerB))
                         {
-                            if (!((PlayerControllerB)component).inSpecialInteractAnimation)
-                            {
-                                int power = Random.Range(knockbackPowerMin, knockbackPowerMax);
-                                KnockbackServerRpc(previousPlayerHeldBy.transform.position, power);
-                            }
+                            KnockbackServerRpc(((PlayerControllerB)component).OwnerClientId);
                         }
                     }
                 }
@@ -129,34 +125,36 @@ namespace PremiumScraps.CustomEffects
             {
                 FindObjectOfType<RoundManager>().PlayAudibleNoise(transform.position, 17f, 0.8f);
                 playerHeldBy.playerBodyAnimator.SetTrigger("stickHit");
-                AudioServerRpc(5, playerHeldBy.transform.position, 2.5f);
+                AudioServerRpc(5, 0.85f);
             }
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void KnockbackServerRpc(Vector3 position, int power)
+        private void KnockbackServerRpc(ulong clientId)
         {
-            KnockbackClientRpc(position, power);
+            int power = Random.Range(knockbackPowerMin, knockbackPowerMax);
+            var clientRpcParams = new ClientRpcParams() { Send = new ClientRpcSendParams() { TargetClientIds = new[] { clientId } } };
+            KnockbackClientRpc(power, clientRpcParams);
         }
 
         [ClientRpc]
-        private void KnockbackClientRpc(Vector3 position, int power)
+        private void KnockbackClientRpc(int power, ClientRpcParams clientRpcParams = default)
         {
-            if (playerHeldBy != null && GameNetworkManager.Instance.localPlayerController.playerClientId == playerHeldBy.playerClientId)
-                return;
-            Effects.Knockback(position, 1, 0, power);
+            if (playerHeldBy != null)
+                Effects.Knockback(playerHeldBy.transform.position, 5, 0, power);
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void AudioServerRpc(int audioID, Vector3 position, float volume)
+        private void AudioServerRpc(int audioID, float volume)
         {
-            AudioClientRpc(audioID, position, volume);
+            AudioClientRpc(audioID, volume);
         }
 
         [ClientRpc]
-        private void AudioClientRpc(int audioID, Vector3 position, float volume)
+        private void AudioClientRpc(int audioID, float volume)
         {
-            Effects.Audio(audioID, position, volume);
+            if (playerHeldBy != null)
+                playerHeldBy.itemAudio.PlayOneShot(Plugin.audioClips[audioID], volume);
         }
     }
 }

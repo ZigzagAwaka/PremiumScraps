@@ -57,7 +57,7 @@ namespace PremiumScraps.CustomEffects
             if (IsOwner)
             {
                 yield return new WaitForSeconds(0.8f);
-                AudioServerRpc(18, playerHeldBy.transform.position, 1f, 1.8f);  // drink audio
+                AudioServerRpc(18, playerHeldBy.transform.position, 1f, 0.7f);  // drink audio
                 yield return new WaitForSeconds(1.8f);
                 UpdatePosRotServerRpc(originalPosition != null ? originalPosition.Value : default, originalRotation != null ? originalRotation.Value : default);
                 player.playerBodyAnimator.SetBool("useTZPItem", false);  // stop drink animation
@@ -67,7 +67,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (usage >= usageBeforeDrunk)
                     {
-                        AudioServerRpc(19, player.transform.position, 1f, 1.5f);  // spanish audio
+                        AudioServerRpc(19, player.transform.position, 1f, 0.75f);  // spanish audio
                         if (player.IsHost)
                             StartCoroutine(Effects.DamageHost(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf));  // damage or death (host)
                         else

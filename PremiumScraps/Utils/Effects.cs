@@ -89,8 +89,18 @@ namespace PremiumScraps.Utils
             player.playerBodyAnimator.SetBool("Limp", false);
         }
 
-        public static void Teleportation(PlayerControllerB player, Vector3 position, bool ship = false, bool exterior = false, bool interior = false)
+        public static void Teleportation(PlayerControllerB player, Vector3 position)
         {
+            player.averageVelocity = 0f;
+            player.velocityLastFrame = Vector3.zero;
+            player.TeleportPlayer(position, true);
+            player.beamOutParticle.Play();
+            HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
+        }
+
+        public static void SetPosFlags(ulong playerID, bool ship = false, bool exterior = false, bool interior = false)
+        {
+            var player = StartOfRound.Instance.allPlayerScripts[playerID];
             if (ship)
             {
                 player.isInElevator = true;
@@ -109,11 +119,22 @@ namespace PremiumScraps.Utils
                 player.isInHangarShipRoom = false;
                 player.isInsideFactory = true;
             }
-            player.averageVelocity = 0f;
-            player.velocityLastFrame = Vector3.zero;
-            player.TeleportPlayer(position, true);
-            player.beamOutParticle.Play();
-            HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
+            foreach (var item in player.ItemSlots)
+            {
+                if (item != null)
+                {
+                    item.isInFactory = player.isInsideFactory;
+                    item.isInElevator = player.isInElevator;
+                    item.isInShipRoom = player.isInHangarShipRoom;
+                }
+            }
+            if (GameNetworkManager.Instance.localPlayerController.playerClientId == player.playerClientId)
+            {
+                if (player.isInsideFactory)
+                    TimeOfDay.Instance.DisableAllWeather();
+                else
+                    ActivateWeatherEffect();
+            }
         }
 
         public static void Explosion(Vector3 position, float range, int damage = 50, float physicsForce = 1)
@@ -179,37 +200,14 @@ namespace PremiumScraps.Utils
             RoundManager.PlayRandomClip(HUDManager.Instance.UIAudio, new AudioClip[] { Plugin.audioClips[audioID] }, randomize: false, oneShotVolume: volume);
         }
 
-        public static void Audio(int audioID, Vector3 position, float volume, bool adjust = true)
-        {
-            var finalPosition = position;
-            if (adjust)
-                finalPosition += (Vector3.up * 2);
-            AudioSource.PlayClipAtPoint(Plugin.audioClips[audioID], finalPosition, volume);
-        }
-
-        public static void Audio(int audioID, Vector3 clientPosition, float localVolume, float clientVolume, PlayerControllerB player)
+        public static void Audio(int audioID, Vector3 startPosition, float localVolume, float clientVolume, PlayerControllerB player)
         {
             if (player != null && GameNetworkManager.Instance.localPlayerController.playerClientId == player.playerClientId)
                 Audio(audioID, localVolume);
+            else if (player != null)
+                player.itemAudio.PlayOneShot(Plugin.audioClips[audioID], clientVolume);
             else
-                Audio(audioID, clientPosition, clientVolume);
-        }
-
-        public static void Audio(int audioID, Vector3 position, float volume, float pitch, bool adjust = true)
-        {
-            var clip = Plugin.audioClips[audioID];
-            var finalPosition = position;
-            if (adjust)
-                finalPosition += (Vector3.up * 2);
-            GameObject gameObject = new GameObject("One shot audio");
-            gameObject.transform.position = finalPosition;
-            AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
-            audioSource.clip = clip;
-            audioSource.spatialBlend = 1f;
-            audioSource.volume = volume;
-            audioSource.pitch = pitch;
-            audioSource.Play();
-            Object.Destroy(gameObject, clip.length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
+                AudioSource.PlayClipAtPoint(Plugin.audioClips[audioID], startPosition + (Vector3.up * 2), clientVolume);
         }
 
         public static void Audio(int[] audioIDs, Vector3 position, float volume, bool adjust = true)
@@ -222,17 +220,12 @@ namespace PremiumScraps.Utils
             gameObject.transform.position = finalPosition;
             AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
             audioSource.spatialBlend = 1f;
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.minDistance = 0;
+            audioSource.maxDistance = 20f;
             audioSource.volume = volume;
             RoundManager.PlayRandomClip(audioSource, clips, randomize: true, oneShotVolume: volume);
             Object.Destroy(gameObject, clips[^1].length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
-        }
-
-        public static void Audio3D(int audioID, Vector3 otherPosition, float localVolume, float otherVolume, PlayerControllerB player, float otherDistance = 20f)
-        {
-            if (player != null && GameNetworkManager.Instance.localPlayerController.playerClientId == player.playerClientId)
-                Audio(audioID, localVolume);
-            else
-                Audio3D(audioID, otherPosition, otherVolume, otherDistance);
         }
 
         public static void Audio3D(int audioID, Vector3 position, float volume = 1f, float distance = 20f)
@@ -261,13 +254,19 @@ namespace PremiumScraps.Utils
             source.volume = volume;
         }
 
-        // Modified from https://github.com/giosuel/imperium/blob/main/Imperium/src/Core/Lifecycle/MoonManager.cs
         public static void ChangeWeather(LevelWeatherType weather)
         {
             var original = StartOfRound.Instance.currentLevel.currentWeather;
             StartOfRound.Instance.currentLevel.currentWeather = weather;
             RoundManager.Instance.SetToCurrentLevelWeather();
             TimeOfDay.Instance.SetWeatherBasedOnVariables();
+            if (GameNetworkManager.Instance.localPlayerController.isInsideFactory)
+                return;
+            ActivateWeatherEffect(original);
+        }
+
+        public static void ActivateWeatherEffect(LevelWeatherType originalWeather = default)
+        {
             for (var i = 0; i < TimeOfDay.Instance.effects.Length; i++)
             {
                 var effect = TimeOfDay.Instance.effects[i];
@@ -288,7 +287,7 @@ namespace PremiumScraps.Utils
                     }
                 }
             }
-            if (original == LevelWeatherType.Flooded)
+            if (originalWeather == LevelWeatherType.Flooded)
             {
                 var player = GameNetworkManager.Instance.localPlayerController;
                 player.isUnderwater = false;
@@ -312,12 +311,12 @@ namespace PremiumScraps.Utils
             }
         }
 
-        public static NetworkReference Spawn(SpawnableEnemyWithRarity enemy, Vector3 position)
+        public static NetworkObjectReference Spawn(SpawnableEnemyWithRarity enemy, Vector3 position, float yRot = 0f)
         {
-            GameObject gameObject = Object.Instantiate(enemy.enemyType.enemyPrefab, position, Quaternion.Euler(new Vector3(0f, 0f, 0f)));
+            GameObject gameObject = Object.Instantiate(enemy.enemyType.enemyPrefab, position, Quaternion.Euler(new Vector3(0f, yRot, 0f)));
             gameObject.GetComponentInChildren<NetworkObject>().Spawn(true);
             RoundManager.Instance.SpawnedEnemies.Add(gameObject.GetComponent<EnemyAI>());
-            return new NetworkReference(gameObject.GetComponentInChildren<NetworkObject>(), 0);
+            return new NetworkObjectReference(gameObject);
         }
 
         public static void SpawnMaskedOfPlayer(ulong playerId, Vector3 position)
@@ -381,13 +380,18 @@ namespace PremiumScraps.Utils
         }
 
         // Modified from Mrov's version
-        public static void SpawnLightningBolt(Vector3 strikePosition, bool damage = true)
+        public static void SpawnLightningBolt(Vector3 strikePosition, bool damage = true, bool redirectInside = true)
         {
             LightningBoltPrefabScript localLightningBoltPrefabScript;
             var random = new System.Random(StartOfRound.Instance.randomMapSeed);
-            random.Next(-32, 32);
-            random.Next(-32, 32);
+            random.Next(-32, 32); random.Next(-32, 32);
             var vector = strikePosition + Vector3.up * 160f + new Vector3(random.Next(-32, 32), 0f, random.Next(-32, 32));
+            if (redirectInside && Physics.Linecast(vector, strikePosition + Vector3.up * 0.5f, out _, StartOfRound.Instance.collidersAndRoomMaskAndDefault, QueryTriggerInteraction.Ignore))
+            {
+                if (!Physics.Raycast(vector, strikePosition - vector, out var rayHit, 100f, StartOfRound.Instance.collidersAndRoomMaskAndDefault, QueryTriggerInteraction.Ignore))
+                    return;
+                strikePosition = rayHit.point;
+            }
             StormyWeather stormy = Object.FindObjectOfType<StormyWeather>(true);
             localLightningBoltPrefabScript = Object.Instantiate(stormy.targetedThunder);
             localLightningBoltPrefabScript.enabled = true;

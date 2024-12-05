@@ -56,7 +56,7 @@ namespace PremiumScraps.CustomEffects
             base.ItemActivate(used, buttonDown);
             if (buttonDown && playerHeldBy != null)
             {
-                AudioServerRpc(7, playerHeldBy.transform.position, 1f, 2f);
+                AudioServerRpc(7, playerHeldBy.transform.position, 0.9f, 0.65f);
                 actualPage++;
                 if (actualPage == 7)
                 {
@@ -70,7 +70,7 @@ namespace PremiumScraps.CustomEffects
                     if (nbFinish <= 4)
                     {
                         SpawnScrapServerRpc("SquareSteelItem", playerHeldBy.transform.position, nbFinish);
-                        AudioServerRpc(15, playerHeldBy.transform.position, 1.8f, 3f);
+                        AudioServerRpc(15, playerHeldBy.transform.position, 1.5f, 0.75f);
                     }
                     else
                     {
