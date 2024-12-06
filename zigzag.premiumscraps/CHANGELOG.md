@@ -1,3 +1,16 @@
+## 2.0.13
+- Update for [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) 1.7.4+, if you have it installed
+    - New events:
+        - Instrument of legends [Great]
+        - Hazard hallucination [Bad]
+        - Abibaland [Great]
+        - Towers [Awful]
+        - Bombs infestation [Bad]
+        - Where is everybody? [Mixed]
+        - Disturbing noise [Good]
+        - Flowerman Academy [Awful]
+    - Changed the "Premium Scraps" event to only spawn different items
+
 ## 2.0.12
 - **Added**
     - Added a config to set custom min,max scrap value for all items (can be left empty for default values)
@@ -23,9 +36,8 @@
 - **Updated**
     - Harry Mason's secret effect chance has been increased from 5% to 8% hehehe
 - **Fixed**
-    - Compatibility patch with the latest version of [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/)
+    - Compatibility patch with the latest version of [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) 1.6.5+
         - Should fix the "Premium Scraps" custom dice effect
-        - Now requires version 1.6.5 or newer to work, or else will be disabled
 
 ## 2.0.8
 - **Updated**
