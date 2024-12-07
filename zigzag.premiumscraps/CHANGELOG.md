@@ -3,6 +3,7 @@
     - Improved Hazard hallucination both for My ■■■■■■th job application and the custom dice event
 - **Fixed**
     - My ■■■■■■th job application is now compatible with [WeatherRegistry](https://thunderstore.io/c/lethal-company/p/mrov/WeatherRegistry/)
+    - Fixed an issue with The friendship ender
 
 ## 2.0.13
 - Update for [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) 1.7.4+, if you have it installed
