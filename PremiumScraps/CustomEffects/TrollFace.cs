@@ -24,7 +24,7 @@ namespace PremiumScraps.CustomEffects
         {
             base.GrabItem();
             if (!unlucky && IsOwner && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded
-                && playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId))
+                && playerHeldBy != null /*&& Effects.IsUnlucky(playerHeldBy.playerSteamId)*/)
             {
                 if (Random.Range(0, 10) < 8)  // 80%
                     StartCoroutine(BadLuck(playerHeldBy));
@@ -84,6 +84,11 @@ namespace PremiumScraps.CustomEffects
             var position = player.transform.position;
             while (!player.isPlayerDead && !StartOfRound.Instance.shipIsLeaving)
             {
+                if (!player.isPlayerDead && player.health - 10 <= 0)
+                {
+                    isInside = player.isInsideFactory;
+                    position = player.transform.position;
+                }
                 Effects.Message("W̴ͪ̅e̤̲̞ ḏ͆ȍ̢̥ a̵̿͘ l̙ͭ͠ittle b̈́͠it of troll͢i̗̍͜n͙̆͠g", "", true);
                 Effects.Damage(player, 10, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1);
                 yield return new WaitForSeconds(effectTime);
