@@ -1,3 +1,7 @@
+## 2.0.15
+- **Fixed**
+    - Removed test code of 2.0.14
+
 ## 2.0.14
 - **Updated**
     - Improved Hazard hallucination both for My ■■■■■■th job application and the custom dice event

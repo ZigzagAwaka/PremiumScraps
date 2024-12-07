@@ -24,7 +24,7 @@ namespace PremiumScraps.CustomEffects
         {
             base.GrabItem();
             if (!unlucky && IsOwner && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded
-                && playerHeldBy != null /*&& Effects.IsUnlucky(playerHeldBy.playerSteamId)*/)
+                && playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId))
             {
                 if (Random.Range(0, 10) < 8)  // 80%
                     StartCoroutine(BadLuck(playerHeldBy));
