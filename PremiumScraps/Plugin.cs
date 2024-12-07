@@ -14,13 +14,14 @@ namespace PremiumScraps
 {
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency("AudioKnight.StarlancerAIFix", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("mrov.WeatherRegistry", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("Theronguard.EmergencyDice", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.13";
+        const string VERSION = "2.0.14";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();

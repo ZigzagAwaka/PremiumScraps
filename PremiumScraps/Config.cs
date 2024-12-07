@@ -8,6 +8,7 @@ namespace PremiumScraps
     class Config
     {
         public bool StarlancerAIFix = false;
+        public bool WeatherRegistery = false;
         public readonly List<ulong> unluckyPlayersID = new List<ulong>();
         public readonly List<(int, int)> scrapValues = new List<(int, int)>();
         public readonly ConfigEntry<bool> diceEvents;
@@ -34,6 +35,10 @@ namespace PremiumScraps
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("AudioKnight.StarlancerAIFix"))
             {
                 StarlancerAIFix = true;
+            }
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("mrov.WeatherRegistry"))
+            {
+                WeatherRegistery = true;
             }
             foreach (string playerId in unluckyPlayersStr.Value.Split(',').Select(s => s.Trim()))
             {

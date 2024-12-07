@@ -258,6 +258,11 @@ namespace PremiumScraps.Utils
         {
             var original = StartOfRound.Instance.currentLevel.currentWeather;
             StartOfRound.Instance.currentLevel.currentWeather = weather;
+            if (Plugin.config.WeatherRegistery)
+            {
+                ChangeWeatherWR(weather);
+                return;
+            }
             RoundManager.Instance.SetToCurrentLevelWeather();
             TimeOfDay.Instance.SetWeatherBasedOnVariables();
             if (GameNetworkManager.Instance.localPlayerController.isInsideFactory)
@@ -295,6 +300,12 @@ namespace PremiumScraps.Utils
                 player.isMovementHindered = Mathf.Clamp(player.isMovementHindered - 1, 0, 100);
                 player.hinderedMultiplier = 1f;
             }
+        }
+
+        public static void ChangeWeatherWR(LevelWeatherType weather)
+        {
+            if (GameNetworkManager.Instance.localPlayerController.IsHost)
+                WeatherRegistry.WeatherController.SetWeatherEffects(weather);
         }
 
         public static void Message(string title, string bottom, bool warning = false)

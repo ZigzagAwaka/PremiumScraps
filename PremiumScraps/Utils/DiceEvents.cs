@@ -59,7 +59,11 @@ namespace PremiumScraps.Utils
             if (player.isInsideFactory)
                 position = RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position;
             else
+            {
                 position = RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position;
+                if (Random.Range(0, 100) >= 70)
+                    Effects.SpawnLightningBolt(RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
+            }
             Effects.ExplosionLight(position, 4f, 20);
         }
 

@@ -1,3 +1,9 @@
+## 2.0.14
+- **Updated**
+    - Improved Hazard hallucination both for My ■■■■■■th job application and the custom dice event
+- **Fixed**
+    - My ■■■■■■th job application is now compatible with [WeatherRegistry](https://thunderstore.io/c/lethal-company/p/mrov/WeatherRegistry/)
+
 ## 2.0.13
 - Update for [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) 1.7.4+, if you have it installed
     - New events:
@@ -27,7 +33,7 @@
 
 ## 2.0.10
 - **Updated**
-    - New global visual effect when summoning *"employees"* with My ■■■■■■th job application 🙂
+    - Summoning *"employees"* with My ■■■■■■th job application will now also change the weather to eclipsed
     - Added 1 new event for The friendship ender effect if you have [LethalAnomalies](https://thunderstore.io/c/lethal-company/p/Zeldahu/LethalAnomalies/) installed
     - The friendship ender got a *special* upgrade when used by unlucky players
     - Nerfed El Gazpacho drunk effect, it's now ending two times faster
