@@ -1,3 +1,7 @@
+## 2.0.16
+- **Fixed**
+    - Fixed an issue with My ■■■■■■th job application
+
 ## 2.0.15
 - **Fixed**
     - Removed test code of 2.0.14

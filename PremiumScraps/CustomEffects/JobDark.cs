@@ -18,8 +18,11 @@ namespace PremiumScraps.CustomEffects
         private bool OneTimeActionSp = false;
         private readonly int debug = -1;  // force choose hallucination if not -1
 
-        public JobDark()
+        public JobDark() { }
+
+        public override void Start()
         {
+            base.Start();
             SelectHallucination();
         }
 
@@ -103,7 +106,7 @@ namespace PremiumScraps.CustomEffects
                 hallucinationID = debug;
         }
 
-        public static IEnumerator HazardHallucination(PlayerControllerB player, JobDark jobDark)
+        public static IEnumerator HazardHallucination(PlayerControllerB player, JobDark? jobDark)
         {
             if (jobDark != null && !jobDark.OneTimeActionSp)
             {
@@ -120,14 +123,14 @@ namespace PremiumScraps.CustomEffects
                 else
                 {
                     position = RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position;
-                    if (Random.Range(0, 100) >= 70)
+                    if (Random.Range(0, 100) >= 80)
                         Effects.SpawnLightningBolt(RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                 }
                 Effects.ExplosionLight(position, 4f, 20);
             }
         }
 
-        public static IEnumerator GirlsHallucination(PlayerControllerB player, JobDark jobDark)
+        public static IEnumerator GirlsHallucination(PlayerControllerB player, JobDark? jobDark)
         {
             if (jobDark != null)
             {
@@ -201,7 +204,7 @@ namespace PremiumScraps.CustomEffects
                     case 5:
                         var original = player.movementSpeed;
                         player.movementSpeed = 0.2f;
-                        yield return new WaitForSeconds(20);
+                        yield return new WaitForSeconds(15);
                         player.movementSpeed = original;
                         yield return new WaitForSeconds(5);
                         break;

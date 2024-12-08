@@ -54,17 +54,7 @@ namespace PremiumScraps.Utils
 
         public static IEnumerator HazardEffect(this Networker networker, PlayerControllerB player)
         {
-            yield return new WaitForSeconds(0.5f);
-            Vector3 position;
-            if (player.isInsideFactory)
-                position = RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position;
-            else
-            {
-                position = RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position;
-                if (Random.Range(0, 100) >= 70)
-                    Effects.SpawnLightningBolt(RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
-            }
-            Effects.ExplosionLight(position, 4f, 20);
+            yield return CustomEffects.JobDark.HazardHallucination(player, null);
         }
 
         public static IEnumerator HauntedEffect(this Networker networker, PlayerControllerB player)
