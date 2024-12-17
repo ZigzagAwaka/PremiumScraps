@@ -21,7 +21,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.0.17";
+        const string VERSION = "2.1.0";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();

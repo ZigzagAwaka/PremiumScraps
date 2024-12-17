@@ -1,6 +1,7 @@
-## 2.0.17
+# 2.1.0 Christmas update
+- **Added**
+    - New christmas assets for all items !
 - **Updated**
-    - **Christmas update !**
     - Fake airhorn will now play a "warning audio" when the user is about to die (Thank you **Kogi** for the idea!)
     - Updated default spawn chance for some items
 - **Fixed**
@@ -150,6 +151,12 @@
     - The friendship ender and Scroll of Town Portal audio are now properly assigned to the item
     - All items will now spawn with isInFactory flag enabled, this should fix metalic items getting struck by lightning when inside the dungeon
 
+##
+
+<details><summary>Old versions (click to reveal)</summary>
+
+###
+
 ## 1.9.1
 - **Fixed**
     - Fixed Fake airhorn audio playing twice for other players
@@ -169,12 +176,6 @@
     - Basics of architecture 'turning page' audio is now properly assigned to the item and is synced to all players
     - Fake airhorn audio is now properly assigned to the item and can be heard by monsters
     - Optimization of custom effects code
-
-##
-
-<details><summary>Old versions (click to reveal)</summary>
-
-###
 
 ## 1.8.4
 - **Updated**
