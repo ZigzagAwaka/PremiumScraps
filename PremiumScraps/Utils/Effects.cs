@@ -147,12 +147,6 @@ namespace PremiumScraps.Utils
             Landmine.SpawnExplosion(position, true, 0, range, damage, physicsForce);
         }
 
-        public static IEnumerator ExplosionHostDeath(Vector3 position, float range, int damage = 50, float physicsForce = 1)
-        {
-            yield return new WaitForEndOfFrame();
-            Explosion(position, range, damage, physicsForce);
-        }
-
         public static bool IsPlayerFacingObject<T>(PlayerControllerB player, out T obj, float distance)
         {
             if (Physics.Raycast(new Ray(player.gameplayCamera.transform.position, player.gameplayCamera.transform.forward), out var hitInfo, distance, 2816))

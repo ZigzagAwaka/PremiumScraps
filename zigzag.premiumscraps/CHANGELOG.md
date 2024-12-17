@@ -1,4 +1,6 @@
 ## 2.0.17
+- **Updated**
+    - Fake airhorn will now play a "warning audio" when the user is about to die (Thank you **Kogi** for the idea!)
 - **Fixed**
     - Fixed Fake airhorn "landmine audio" playing incorectly
 
