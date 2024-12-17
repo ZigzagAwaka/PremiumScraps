@@ -1,6 +1,8 @@
 ## 2.0.17
 - **Updated**
+    - **Christmas update !**
     - Fake airhorn will now play a "warning audio" when the user is about to die (Thank you **Kogi** for the idea!)
+    - Updated default spawn chance for some items
 - **Fixed**
     - Fixed Fake airhorn "landmine audio" playing incorectly
 

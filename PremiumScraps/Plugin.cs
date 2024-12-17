@@ -103,13 +103,13 @@ namespace PremiumScraps
                 new Scrap("HelmDomination/HelmDominationItem.asset", 11, 11),
                 new Scrap("TheKing/TheKingItem.asset", 13),
                 new Scrap("HarryMason/HarryMasonItem.asset", 10, 9),
-                new Scrap("Cristal/CristalItem.asset", 9),
+                new Scrap("Cristal/CristalItem.asset", 10),
                 new Scrap("PuppyShark/PuppySharkItem.asset", 10),
                 new Scrap("Rupee/RupeeItem.asset", 15),
                 new Scrap("EaNasir/EaNasirItem.asset", 9),
-                new Scrap("HScard/HSCardItem.asset", 10),
+                new Scrap("HScard/HSCardItem.asset", 9),
                 new Scrap("SODA/SODAItem.asset", 8),
-                new Scrap("Spoon/SpoonItem.asset", 12),
+                new Scrap("Spoon/SpoonItem.asset", 13),
                 new Scrap("Crouton/CroutonItem.asset", 6),
                 new Scrap("AirHornCustom/AirHornCustomItem.asset", 11, 1),
                 new Scrap("Balan/BalanItem.asset", 10),
@@ -117,12 +117,12 @@ namespace PremiumScraps
                 new Scrap("Scroll/ScrollItem.asset", 7, 3),
                 new Scrap("Stick/StickItem.asset", 9, 4),
                 new Scrap("BookCustom/BookCustomItem.asset", 11, 5),
-                new Scrap("SquareSteel/SquareSteelItem.asset", 10),
+                new Scrap("SquareSteel/SquareSteelItem.asset", 8),
                 new Scrap("DarkJobApplication/JobApplicationItem.asset", 8, 6),
                 new Scrap("Moogle/MoogleItem.asset", 10),
                 new Scrap("Gazpacho/GazpachoItem.asset", 9, 7),
                 new Scrap("Abi/AbiItem.asset", 4, 8),
-                new Scrap("Bomb/BombItem.asset", 10, 10)
+                new Scrap("Bomb/BombItem.asset", 12, 10)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
