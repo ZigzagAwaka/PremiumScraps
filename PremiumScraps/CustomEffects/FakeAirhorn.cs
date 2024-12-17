@@ -20,7 +20,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (Random.Range(1, 11) >= 6)  // 50%
                     {
-                        AudioServerRpc(6, playerHeldBy.transform.position, 1.5f, 1.5f);  // landmine audio
+                        AudioServerRpc(6, playerHeldBy.transform.position, 1.5f);  // landmine audio
                         if (playerHeldBy.IsHost)
                             StartCoroutine(Effects.DamageHost(playerHeldBy, 100, CauseOfDeath.Burning, (int)Effects.DeathAnimation.Fire));  // death (host)
                         else
@@ -47,15 +47,15 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float clientVolume = default)
         {
-            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+            AudioClientRpc(audioID, clientPosition, clientVolume);
         }
 
         [ClientRpc]
-        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float clientVolume)
         {
-            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            Effects.Audio3D(audioID, clientPosition, clientVolume);
         }
 
         [ServerRpc(RequireOwnership = false)]

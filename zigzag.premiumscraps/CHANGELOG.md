@@ -1,3 +1,7 @@
+## 2.0.17
+- **Fixed**
+    - Fixed Fake airhorn "landmine audio" playing incorectly
+
 ## 2.0.16
 - **Fixed**
     - Fixed an issue with My ■■■■■■th job application

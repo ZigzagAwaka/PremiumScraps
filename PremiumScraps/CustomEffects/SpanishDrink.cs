@@ -67,7 +67,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     if (usage >= usageBeforeDrunk)
                     {
-                        AudioServerRpc(19, player.transform.position, 1f, 0.75f);  // spanish audio
+                        AudioServerRpc(19, player.transform.position, 1f, 0.85f, player.health - 19 <= 0);  // spanish audio
                         if (player.IsHost)
                             StartCoroutine(Effects.DamageHost(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf));  // damage or death (host)
                         else
@@ -103,15 +103,18 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default, bool is3D = false)
         {
-            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume, is3D);
         }
 
         [ClientRpc]
-        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume, bool is3D)
         {
-            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            if (!is3D)
+                Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            else
+                Effects.Audio3D(audioID, clientPosition, clientVolume);
         }
 
         [ServerRpc(RequireOwnership = false)]
