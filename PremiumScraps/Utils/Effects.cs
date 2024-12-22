@@ -42,7 +42,7 @@ namespace PremiumScraps.Utils
             List<PlayerControllerB> updatedList = new List<PlayerControllerB>(rawList);
             foreach (var p in rawList)
             {
-                if (p.playerSteamId <= 0 || !p.IsSpawned || !p.isPlayerControlled || (!includeDead && p.isPlayerDead) || (excludeOutsideFactory && !p.isInsideFactory))
+                if (/*p.playerSteamId <= 0 ||*/ !p.IsSpawned || !p.isPlayerControlled || (!includeDead && p.isPlayerDead) || (excludeOutsideFactory && !p.isInsideFactory))
                 {
                     updatedList.Remove(p);
                 }
@@ -385,15 +385,19 @@ namespace PremiumScraps.Utils
         }
 
         // Modified from Mrov's version
-        public static void SpawnLightningBolt(Vector3 strikePosition, bool damage = true, bool redirectInside = true)
+        public static void SpawnLightningBolt(Vector3 strikePosition, bool damage = true, bool redirectInside = true, bool originInSky = true, Vector3 originOverride = default)
         {
             LightningBoltPrefabScript localLightningBoltPrefabScript;
             var random = new System.Random(StartOfRound.Instance.randomMapSeed);
             random.Next(-32, 32); random.Next(-32, 32);
-            var vector = strikePosition + Vector3.up * 160f + new Vector3(random.Next(-32, 32), 0f, random.Next(-32, 32));
-            if (redirectInside && Physics.Linecast(vector, strikePosition + Vector3.up * 0.5f, out _, StartOfRound.Instance.collidersAndRoomMaskAndDefault, QueryTriggerInteraction.Ignore))
+            Vector3 origin;
+            if (originInSky)
+                origin = strikePosition + Vector3.up * 160f + new Vector3(random.Next(-32, 32), 0f, random.Next(-32, 32));
+            else
+                origin = originOverride;
+            if (redirectInside && Physics.Linecast(origin, strikePosition + Vector3.up * 0.5f, out _, StartOfRound.Instance.collidersAndRoomMaskAndDefault, QueryTriggerInteraction.Ignore))
             {
-                if (!Physics.Raycast(vector, strikePosition - vector, out var rayHit, 100f, StartOfRound.Instance.collidersAndRoomMaskAndDefault, QueryTriggerInteraction.Ignore))
+                if (!Physics.Raycast(origin, strikePosition - origin, out var rayHit, 100f, StartOfRound.Instance.collidersAndRoomMaskAndDefault, QueryTriggerInteraction.Ignore))
                     return;
                 strikePosition = rayHit.point;
             }
@@ -402,7 +406,7 @@ namespace PremiumScraps.Utils
             localLightningBoltPrefabScript.enabled = true;
             localLightningBoltPrefabScript.Camera = GameNetworkManager.Instance.localPlayerController.gameplayCamera;
             localLightningBoltPrefabScript.AutomaticModeSeconds = 0.2f;
-            localLightningBoltPrefabScript.Source.transform.position = vector;
+            localLightningBoltPrefabScript.Source.transform.position = origin;
             localLightningBoltPrefabScript.Destination.transform.position = strikePosition;
             localLightningBoltPrefabScript.CreateLightningBoltsNow();
             AudioSource audioSource = Object.Instantiate(stormy.targetedStrikeAudio);

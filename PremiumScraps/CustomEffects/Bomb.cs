@@ -10,9 +10,16 @@ namespace PremiumScraps.CustomEffects
     {
         public bool isBeeingActivated = false;
         public bool activated = false;
+        public Animator? bombAnimator;
         private Coroutine? activateCoroutine;
 
         public Bomb() { }
+
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            bombAnimator = transform.GetChild(0).GetComponent<Animator>();
+        }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
@@ -119,7 +126,12 @@ namespace PremiumScraps.CustomEffects
         {
             transform.GetChild(1).GetComponent<ParticleSystem>().Play();  // bomb particle
             GetComponent<AudioSource>().Play();  // bomb alarm
-            yield return new WaitForSeconds(4.2f);
+            bombAnimator?.SetTrigger("CaVaPeter");  // bomb turning red
+            yield return new WaitForSeconds(2f);
+            bombAnimator?.SetFloat("SpeedMult", 4);  // animation faster
+            yield return new WaitForSeconds(1f);
+            bombAnimator?.SetFloat("SpeedMult", 8);  // again
+            yield return new WaitForSeconds(1.2f);
             transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
             if (playerHeldBy != null && !playerHeldBy.isPlayerDead && isPocketed)  // not a good idea to put a bomb in your pocket
                 playerHeldBy.DropAllHeldItems();
@@ -142,6 +154,7 @@ namespace PremiumScraps.CustomEffects
             activated = true;
             itemUsedUp = true;
             grabbable = false;
+            grabbableToEnemies = false;
             StartCoroutine(BombExplosionUnstable(this));
         }
 
@@ -151,6 +164,7 @@ namespace PremiumScraps.CustomEffects
             audio.clip = Plugin.audioClips[6];
             audio.volume = 2f;
             audio.Play();  // landmine audio
+            bombAnimator?.SetTrigger("CaVaPeterMaintenant");  // bomb turning red directly
             yield return new WaitForSeconds(0.8f);
             if (bomb.playerHeldBy != null && !bomb.playerHeldBy.isPlayerDead && bomb.isPocketed)  // not a good idea to put a bomb in your pocket
                 bomb.playerHeldBy.DropAllHeldItems();

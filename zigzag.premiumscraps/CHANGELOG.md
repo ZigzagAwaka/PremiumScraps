@@ -1,3 +1,12 @@
+# 2.2.0 Controller release
+- **Added**
+    - Added Controller
+- **Updated**
+    - New animation for the Bomb when it's about to explode
+    - Improved the collider of small items so they are easier to grab
+- **Fixed**
+    - Surviving the Death hallucination dice event will now properly stop the event
+
 # 2.1.0 Christmas update
 - **Added**
     - New christmas assets for all items !
@@ -6,6 +15,12 @@
     - Updated default spawn chance for some items
 - **Fixed**
     - Fixed Fake airhorn "landmine audio" playing incorectly
+
+##
+
+<details><summary>Old versions (click to reveal)</summary>
+
+###
 
 ## 2.0.16
 - **Fixed**
@@ -150,12 +165,6 @@
     - Fake airhorn audio is now properly assigned to the item for other players (this was already the case for the local player)
     - The friendship ender and Scroll of Town Portal audio are now properly assigned to the item
     - All items will now spawn with isInFactory flag enabled, this should fix metalic items getting struck by lightning when inside the dungeon
-
-##
-
-<details><summary>Old versions (click to reveal)</summary>
-
-###
 
 ## 1.9.1
 - **Fixed**

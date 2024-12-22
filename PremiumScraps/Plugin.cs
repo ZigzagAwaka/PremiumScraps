@@ -21,7 +21,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.1.0";
+        const string VERSION = "2.2.0";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
@@ -58,6 +58,7 @@ namespace PremiumScraps
                 case 9: script = item.spawnPrefab.AddComponent<HarryDoll>(); break;
                 case 10: script = item.spawnPrefab.AddComponent<Bomb>(); SetupScript.Copy((ThrowableItem)script, item); break;
                 case 11: script = item.spawnPrefab.AddComponent<LichKingHelm>(); break;
+                case 12: script = item.spawnPrefab.AddComponent<Controller>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -122,7 +123,8 @@ namespace PremiumScraps
                 new Scrap("Moogle/MoogleItem.asset", 10),
                 new Scrap("Gazpacho/GazpachoItem.asset", 9, 7),
                 new Scrap("Abi/AbiItem.asset", 4, 8),
-                new Scrap("Bomb/BombItem.asset", 12, 10)
+                new Scrap("Bomb/BombItem.asset", 12, 10),
+                new Scrap("Controller/ControllerItem.asset", 8, 12)
             };
 
             int i = 0; config = new Config(base.Config, scraps);

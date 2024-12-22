@@ -1,6 +1,6 @@
 # PremiumScraps
 
-This mod currently adds **26 scrap items** to the game ! 😎
+This mod currently adds **27 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish, some even have a custom effect!
 They all have been cleaned to have no impact on performance.
@@ -113,6 +113,7 @@ You can post some suggestions or issues in the mod release page in the [modding 
 - El Gazpacho
 - The talking orb
 - Bomb
+- Controller
 
 </details>
 
@@ -132,28 +133,27 @@ You can post some suggestions or issues in the mod release page in the [modding 
 
 - Free 3D models used are licensed under Creative Commons Attribution, all credits goes to their respective creators. Support them if you like this mod!
 
-    - [Gintoki1234](https://sketchfab.com/3d-models/frieren-plushie-209c79c641164b38a81e145b6af3f890)
-    - [Robukan](https://sketchfab.com/3d-models/chocobo-from-world-of-final-fantasy-329f0b6d71f245e89ff6cf8371180025)
-    - [affifuddin.y.hidayat](https://sketchfab.com/3d-models/ainz-ooal-gown-e62df306954144fbb613c6fc3b04e682)
-    - [Devin Eggleston](https://sketchfab.com/3d-models/helm-of-domination-08c0069b2f5840cba920edc6c2b17a83)
-    - [the_regressor](https://sketchfab.com/3d-models/cd-i-64-zelda-link-and-king-harkinian-e83b97e8963249b3b367e6d385ac7495)
-    - [deankagura](https://sketchfab.com/3d-models/harry-mason-8e7c5249891e4520b9bc04cb2f8fb255)
-    - [lukinu](https://sketchfab.com/3d-models/heart-in-glass-1dacc91d294141658633cce0a79ecd97)
-    - [rozeHart](https://sketchfab.com/3d-models/vress-the-puppy-shark-0bf0ac5dd20f46cbb91534491438bb2f)
-    - [Calfan](https://sketchfab.com/3d-models/legend-of-zelda-rupee-aa19b25bc1af41139a671403bc4110e3)
-    - [TheKingJo](https://sketchfab.com/3d-models/standing-male-worshiper-game-ready-572f7a4aa653464eb96d14c5b953d600)
-    - [sandenArt](https://sketchfab.com/3d-models/hearthstone-card-wisp-5c354d20122d4bdd946ca4b4f3c23ca9)
-    - [Ruslan Abbasov](https://sketchfab.com/3d-models/psx-soda-can-2823eac5e9d14414a9577715274fd89f)
-    - [OnOne Supplies](https://sketchfab.com/3d-models/spoon-lowpoly-9b3e16a7a2c04ca5907a09e4e4daaac7)
-    - [CGPlayz](https://sketchfab.com/3d-models/ive-never-thought-of-it-like-that-beforeface-98547873477c45168dce192a48b1e9a7)
-    - [FlukierJupiter](https://sketchfab.com/3d-models/scroll-7450e494eb654e9b937bb52724220e77)
-    - [kayra23](https://sketchfab.com/3d-models/stick-d93365fe0cf54bac95b60027df67f179)
-    - [James.Moore](https://sketchfab.com/3d-models/book-28e028e981604aacb25766852aa279ed)
-    - [Henry Levesque](https://www.printables.com/en/model/961166-scale-14-gauge-2x2-square-steel-tubing)
-    - [Ether Penguin](https://www.turbosquid.com/fr/3d-models/3d-moogle-1360579)
-    - [mawalz21](https://sketchfab.com/3d-models/3december2020-day13-fizzy-drink-3110b5f1a2eb4cfa8b3c0ea2ecd4c8c3)
-    - [marvelmaster](https://sketchfab.com/3d-models/zelda-ocarina-of-time-bomb-161818c6f5624511bcfc2f82f7c35b53)
-    - [Lucas Minatelli](https://sketchfab.com/3d-models/remote-control-b4e221d6bbe7440e90d69fd37e91c48a)
-    - Christmas assets
-        - [✞BloodTea✞](https://sketchfab.com/3d-models/christmas-hat-with-bones-eb9c5ddd1c324d3889188a07fd75c1c9)
-        - [QuantumBerry](https://sketchfab.com/3d-models/christmas-star-e53d8ba6935d4eb683b732062cd919f4)
+    - Frieren Plushie: [Gintoki1234](https://sketchfab.com/3d-models/frieren-plushie-209c79c641164b38a81e145b6af3f890)
+    - Chocobo from World of Final Fantasy: [Robukan](https://sketchfab.com/3d-models/chocobo-from-world-of-final-fantasy-329f0b6d71f245e89ff6cf8371180025)
+    - Ainz Ooal Gown: [affifuddin.y.hidayat](https://sketchfab.com/3d-models/ainz-ooal-gown-e62df306954144fbb613c6fc3b04e682)
+    - Helm of Domination: [Devin Eggleston](https://sketchfab.com/3d-models/helm-of-domination-08c0069b2f5840cba920edc6c2b17a83)
+    - CD-i 64 Zelda, Link, and King Harkinian: [the_regressor](https://sketchfab.com/3d-models/cd-i-64-zelda-link-and-king-harkinian-e83b97e8963249b3b367e6d385ac7495)
+    - Harry Mason: [deankagura](https://sketchfab.com/3d-models/harry-mason-8e7c5249891e4520b9bc04cb2f8fb255)
+    - Heart in glass: [lukinu](https://sketchfab.com/3d-models/heart-in-glass-1dacc91d294141658633cce0a79ecd97)
+    - Vress the puppy shark: [rozeHart](https://sketchfab.com/3d-models/vress-the-puppy-shark-0bf0ac5dd20f46cbb91534491438bb2f)
+    - Legend of Zelda Rupee: [Calfan](https://sketchfab.com/3d-models/legend-of-zelda-rupee-aa19b25bc1af41139a671403bc4110e3)
+    - Standing Male Worshiper [Game Ready]: [TheKingJo](https://sketchfab.com/3d-models/standing-male-worshiper-game-ready-572f7a4aa653464eb96d14c5b953d600)
+    - HearthStone Card - Wisp: [sandenArt](https://sketchfab.com/3d-models/hearthstone-card-wisp-5c354d20122d4bdd946ca4b4f3c23ca9)
+    - PSX Soda Can: [Ruslan Abbasov](https://sketchfab.com/3d-models/psx-soda-can-2823eac5e9d14414a9577715274fd89f)
+    - Spoon Lowpoly: [OnOne Supplies](https://sketchfab.com/3d-models/spoon-lowpoly-9b3e16a7a2c04ca5907a09e4e4daaac7)
+    - “I’ve Never thought of it like that before…”Face: [CGPlayz](https://sketchfab.com/3d-models/ive-never-thought-of-it-like-that-beforeface-98547873477c45168dce192a48b1e9a7)
+    - Scroll: [FlukierJupiter](https://sketchfab.com/3d-models/scroll-7450e494eb654e9b937bb52724220e77)
+    - Stick: [kayra23](https://sketchfab.com/3d-models/stick-d93365fe0cf54bac95b60027df67f179)
+    - Book: [James.Moore](https://sketchfab.com/3d-models/book-28e028e981604aacb25766852aa279ed)
+    - Scale 14 Gauge 2x2 Square Steel Tubing: [Henry Levesque](https://www.printables.com/en/model/961166-scale-14-gauge-2x2-square-steel-tubing)
+    - Moogle 2.0: [Ether Penguin](https://www.turbosquid.com/fr/3d-models/3d-moogle-1360579)
+    - 3December2020 Day13: Fizzy Drink: [mawalz21](https://sketchfab.com/3d-models/3december2020-day13-fizzy-drink-3110b5f1a2eb4cfa8b3c0ea2ecd4c8c3)
+    - Zelda - Ocarina of Time - Bomb: [marvelmaster](https://sketchfab.com/3d-models/zelda-ocarina-of-time-bomb-161818c6f5624511bcfc2f82f7c35b53)
+    - Christmas Hat With Bones: [✞BloodTea✞](https://sketchfab.com/3d-models/christmas-hat-with-bones-eb9c5ddd1c324d3889188a07fd75c1c9)
+    - Christmas Star: [QuantumBerry](https://sketchfab.com/3d-models/christmas-star-e53d8ba6935d4eb683b732062cd919f4)
+    - Remote Control: [Lucas Minatelli](https://sketchfab.com/3d-models/remote-control-b4e221d6bbe7440e90d69fd37e91c48a)

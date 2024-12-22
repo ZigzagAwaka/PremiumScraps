@@ -36,17 +36,18 @@ namespace PremiumScraps.Utils
     {
         public static IEnumerator StartHallucination(this Networker networker, ulong playerId, int hallucinationID)
         {
+            var stopFlag = false;
             var player = StartOfRound.Instance.allPlayerObjects[playerId].GetComponent<PlayerControllerB>();
             while (true)
             {
                 yield return new WaitForSeconds(1);
-                if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player == null || player.isPlayerDead)
+                if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase || player == null || player.isPlayerDead || stopFlag)
                     break;
                 switch (hallucinationID)
                 {
                     case 0: yield return networker.HazardEffect(player); break;
                     case 2: yield return networker.HauntedEffect(player); break;
-                    case 3: yield return networker.DeathEffect(player); break;
+                    case 3: yield return networker.DeathEffect(player); stopFlag = true; break;
                     default: break;
                 }
             }
