@@ -21,6 +21,18 @@ namespace PremiumScraps.Utils
         }
     }
 
+    public class SpecialEvent
+    {
+        public static int todayMonth = System.DateTime.Today.Month;
+
+        public static void LoadSpecialEvent(GameObject itemPrefab)
+        {
+            if (todayMonth != 12) return;
+            var christmas = itemPrefab.transform.Find("Christmas");
+            christmas?.gameObject.SetActive(true);
+        }
+    }
+
     public class NetworkReference
     {
         public NetworkObjectReference netObjectRef;

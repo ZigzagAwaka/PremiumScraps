@@ -38,11 +38,11 @@ namespace PremiumScraps.Utils
 
         public static List<PlayerControllerB> GetPlayers(bool includeDead = false, bool excludeOutsideFactory = false)
         {
-            List<PlayerControllerB> rawList = Object.FindObjectsOfType<PlayerControllerB>().ToList();
+            List<PlayerControllerB> rawList = StartOfRound.Instance.allPlayerScripts.ToList();
             List<PlayerControllerB> updatedList = new List<PlayerControllerB>(rawList);
             foreach (var p in rawList)
             {
-                if (/*p.playerSteamId <= 0 ||*/ !p.IsSpawned || !p.isPlayerControlled || (!includeDead && p.isPlayerDead) || (excludeOutsideFactory && !p.isInsideFactory))
+                if (!p.IsSpawned || !p.isPlayerControlled || (!includeDead && p.isPlayerDead) || (excludeOutsideFactory && !p.isInsideFactory))
                 {
                     updatedList.Remove(p);
                 }

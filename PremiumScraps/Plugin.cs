@@ -136,6 +136,7 @@ namespace PremiumScraps
                 Item item = bundle.LoadAsset<Item>(directory + scrap.asset);
                 if (config.scrapValues[i].Item1 != -1) { item.minValue = config.scrapValues[i].Item1; item.maxValue = config.scrapValues[i].Item2; }
                 if (scrap.behaviourId != 0) LoadItemBehaviour(item, scrap.behaviourId);
+                SpecialEvent.LoadSpecialEvent(item.spawnPrefab);
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
                 Utilities.FixMixerGroups(item.spawnPrefab);
                 Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);

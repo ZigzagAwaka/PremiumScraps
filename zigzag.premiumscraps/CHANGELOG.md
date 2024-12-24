@@ -1,9 +1,10 @@
-# 2.2.0 Controller release
+# 2.2.0 New scraps
 - **Added**
     - Added Controller
 - **Updated**
     - New animation for the Bomb when it's about to explode
     - Improved the collider of small items so they are easier to grab
+    - Christmas assets will now automatically be applied during christmas period (every year)
 - **Fixed**
     - Surviving the Death hallucination dice event will now properly stop the event
 

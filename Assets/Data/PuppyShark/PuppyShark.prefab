@@ -109,7 +109,7 @@ Transform:
   m_Children:
   - {fileID: 6803450098070021602}
   - {fileID: 3266113400110353521}
-  - {fileID: 6809733537424753449}
+  - {fileID: 3513459423196727402}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6670798875263313001
@@ -308,13 +308,45 @@ MonoBehaviour:
   minPitch: 0.75
   maxPitch: 0.95
   triggerAnimator: {fileID: 0}
+--- !u!1 &7985398424442368368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3513459423196727402}
+  m_Layer: 6
+  m_Name: Christmas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3513459423196727402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7985398424442368368}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6809733537424753449}
+  m_Father: {fileID: 8247504396659150245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6416417737932350658
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8247504396659150245}
+    m_TransformParent: {fileID: 3513459423196727402}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -344,7 +376,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.313
+      value: 0.31300002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}

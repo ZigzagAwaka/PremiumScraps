@@ -189,6 +189,38 @@ MonoBehaviour:
   scrapValue: 0
   creatureScanID: -1
   nodeType: 2
+--- !u!1 &6837845639437835769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7098545665974881179}
+  m_Layer: 6
+  m_Name: Christmas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7098545665974881179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837845639437835769}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6607333612455763398}
+  m_Father: {fileID: 6036686857299166162}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8511264671696770967
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +258,7 @@ Transform:
   m_Children:
   - {fileID: 3179425407545939067}
   - {fileID: 8746540290922802983}
-  - {fileID: 6607333612455763398}
+  - {fileID: 7098545665974881179}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &233716116529660302
@@ -604,7 +636,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6036686857299166162}
+    m_TransformParent: {fileID: 7098545665974881179}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}
@@ -624,7 +656,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1765
+      value: 0.17650008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}

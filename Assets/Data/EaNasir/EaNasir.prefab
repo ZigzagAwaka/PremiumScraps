@@ -74,6 +74,38 @@ MonoBehaviour:
   scrapValue: 0
   creatureScanID: -1
   nodeType: 2
+--- !u!1 &4739862966879668422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6906087201032340589}
+  m_Layer: 6
+  m_Name: Christmas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6906087201032340589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4739862966879668422}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4856082225863757397}
+  m_Father: {fileID: 216970953690603213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7095343532696214657
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +141,7 @@ Transform:
   m_Children:
   - {fileID: 8355486521249355629}
   - {fileID: 8832990687100733642}
-  - {fileID: 4856082225863757397}
+  - {fileID: 6906087201032340589}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1345603551297065100
@@ -303,7 +335,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 216970953690603213}
+    m_TransformParent: {fileID: 6906087201032340589}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -323,7 +355,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0086
+      value: 0.008600235
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -343,7 +375,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -353,7 +385,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}

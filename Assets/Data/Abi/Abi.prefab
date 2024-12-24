@@ -38,7 +38,7 @@ Transform:
   - {fileID: 3667678008356081856}
   - {fileID: 1214199005202959601}
   - {fileID: 5786594089722736389}
-  - {fileID: 6817094150915097260}
+  - {fileID: 1685618587903377011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3881081849212965092
@@ -545,6 +545,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemScript: {fileID: 3881081849212965092}
+--- !u!1 &8122331278848303243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1685618587903377011}
+  m_Layer: 6
+  m_Name: Christmas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1685618587903377011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8122331278848303243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6817094150915097260}
+  m_Father: {fileID: 2755466285797128597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8380463406990332646
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +954,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2755466285797128597}
+    m_TransformParent: {fileID: 1685618587903377011}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -962,7 +994,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -972,7 +1004,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}

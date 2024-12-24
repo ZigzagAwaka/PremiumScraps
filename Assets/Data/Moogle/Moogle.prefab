@@ -253,7 +253,7 @@ Transform:
   - {fileID: 3991961011635838891}
   - {fileID: 6657008251655456527}
   - {fileID: 3512406599314886163}
-  - {fileID: 7730227435291513841}
+  - {fileID: 7837072555694872342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1417453885830498622
@@ -452,6 +452,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4330752, y: 0.80994415, z: 0.3336177}
   m_Center: {x: -0.0018635988, y: 0.4077726, z: -0.00069212914}
+--- !u!1 &4534985261415053881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7837072555694872342}
+  m_Layer: 6
+  m_Name: Christmas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7837072555694872342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534985261415053881}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7730227435291513841}
+  m_Father: {fileID: 1321391389784436276}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5891742518842885079
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +688,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1321391389784436276}
+    m_TransformParent: {fileID: 7837072555694872342}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}
@@ -676,7 +708,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1009
+      value: 0.10090017
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}
@@ -686,7 +718,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1047
+      value: 0.10470009
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9df58b003cdf99547a9d70110d03f04d,
         type: 3}

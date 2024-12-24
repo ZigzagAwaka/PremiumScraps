@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &273199116563896865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2346744683215226131}
+  m_Layer: 6
+  m_Name: Christmas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2346744683215226131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273199116563896865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4852643321677448475}
+  m_Father: {fileID: 3741657267602916195}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088850035165184762
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,7 +66,7 @@ Transform:
   m_Children:
   - {fileID: 9191804778377261079}
   - {fileID: 3861197591830716871}
-  - {fileID: 4852643321677448475}
+  - {fileID: 2346744683215226131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &5288957164594693328
@@ -255,7 +287,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3741657267602916195}
+    m_TransformParent: {fileID: 2346744683215226131}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -265,12 +297,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 0.040000003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 0.040000003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
@@ -280,12 +312,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00046
+      value: -0.00046000033
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.016742
+      value: 0.016742004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d663c4d020ab39544a9e0b45ba26e044,
         type: 3}
