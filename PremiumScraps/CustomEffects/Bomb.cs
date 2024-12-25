@@ -10,6 +10,9 @@ namespace PremiumScraps.CustomEffects
     {
         public bool isBeeingActivated = false;
         public bool activated = false;
+        public AudioSource? alarm;
+        public ParticleSystem? bombParticle;
+        public ParticleSystem? smokeParticle;
         public Animator? bombAnimator;
         private Coroutine? activateCoroutine;
 
@@ -18,6 +21,9 @@ namespace PremiumScraps.CustomEffects
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
+            alarm = transform.GetChild(5).GetComponent<AudioSource>();
+            bombParticle = transform.GetChild(1).GetComponent<ParticleSystem>();
+            smokeParticle = transform.GetChild(4).GetComponent<ParticleSystem>();
             bombAnimator = transform.GetChild(0).GetComponent<Animator>();
         }
 
@@ -124,15 +130,17 @@ namespace PremiumScraps.CustomEffects
 
         private IEnumerator BombExplosion()
         {
-            transform.GetChild(1).GetComponent<ParticleSystem>().Play();  // bomb particle
-            GetComponent<AudioSource>().Play();  // bomb alarm
+            alarm?.Play();
+            bombParticle?.Play();
+            smokeParticle?.Play();
             bombAnimator?.SetTrigger("CaVaPeter");  // bomb turning red
             yield return new WaitForSeconds(2f);
-            bombAnimator?.SetFloat("SpeedMult", 4);  // animation faster
+            bombAnimator?.SetFloat("SpeedMult", 4);
             yield return new WaitForSeconds(1f);
-            bombAnimator?.SetFloat("SpeedMult", 8);  // again
+            bombAnimator?.SetFloat("SpeedMult", 8);
             yield return new WaitForSeconds(1.2f);
-            transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
+            bombParticle?.Stop();
+            smokeParticle?.Stop();
             if (playerHeldBy != null && !playerHeldBy.isPlayerDead && isPocketed)  // not a good idea to put a bomb in your pocket
                 playerHeldBy.DropAllHeldItems();
             var position = transform.position;
@@ -158,12 +166,14 @@ namespace PremiumScraps.CustomEffects
             StartCoroutine(BombExplosionUnstable(this));
         }
 
-        private IEnumerator BombExplosionUnstable(GrabbableObject bomb)
+        private IEnumerator BombExplosionUnstable(Bomb bomb)
         {
-            var audio = bomb.GetComponent<AudioSource>();
-            audio.clip = Plugin.audioClips[6];
-            audio.volume = 2f;
-            audio.Play();  // landmine audio
+            if (bomb.alarm != null)
+            {
+                bomb.alarm.clip = Plugin.audioClips[6];
+                bomb.alarm.volume = 2f;
+                bomb.alarm.Play();  // landmine audio
+            }
             bombAnimator?.SetTrigger("CaVaPeterMaintenant");  // bomb turning red directly
             yield return new WaitForSeconds(0.8f);
             if (bomb.playerHeldBy != null && !bomb.playerHeldBy.isPlayerDead && bomb.isPocketed)  // not a good idea to put a bomb in your pocket

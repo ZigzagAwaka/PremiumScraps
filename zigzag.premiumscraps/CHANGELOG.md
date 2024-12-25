@@ -2,9 +2,10 @@
 - **Added**
     - Added Controller
 - **Updated**
-    - New animation for the Bomb when it's about to explode
+    - Bomb update: new animation, new sound and new particle system
+    - Changed El Gazpacho's grab and drop sounds to be more vanilla friendly (a config has been added to revert this change if you want)
     - Improved the collider of small items so they are easier to grab
-    - Christmas assets will now automatically be applied during christmas period (every year)
+    - Christmas assets will now automatically be applied every year during christmas period
 - **Fixed**
     - Surviving the Death hallucination dice event will now properly stop the event
 

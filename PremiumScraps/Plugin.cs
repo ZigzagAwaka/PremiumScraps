@@ -84,7 +84,8 @@ namespace PremiumScraps
             var audios = new string[] { "AirHorn1.ogg", "friendship_ends_here.wav", "scroll_tp.wav", "ShovelReelUp.ogg",
                 "ShovelSwing.ogg", "wooden-staff-hit.wav", "MineTrigger.ogg", "book_page.wav", "CVuse1.wav", "CVuse2.wav",
                 "CVuse3.wav", "CVuse4.wav", "TerminalAlarm.ogg", "Breathing.wav", "huh.wav", "book_use_redesign.wav",
-                "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav"
+                "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav", "glass-grab.wav", "glass-drop.wav",
+                "beam.wav"
             };
 
             /*foreach (string prefab in prefabs)

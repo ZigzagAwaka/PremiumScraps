@@ -31,6 +31,11 @@ namespace PremiumScraps.CustomEffects
         {
             base.Start();
             SelectUsageBeforeDrunk();
+            if (!Plugin.config.gazpachoMemeSfx.Value)
+            {
+                itemProperties.grabSFX = Plugin.audioClips[21];
+                itemProperties.dropSFX = Plugin.audioClips[22];
+            }
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)

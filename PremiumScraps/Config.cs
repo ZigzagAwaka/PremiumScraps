@@ -13,6 +13,7 @@ namespace PremiumScraps
         public readonly List<(int, int)> scrapValues = new List<(int, int)>();
         public readonly ConfigEntry<bool> diceEvents;
         public readonly ConfigEntry<string> unluckyPlayersStr;
+        public readonly ConfigEntry<bool> gazpachoMemeSfx;
         public readonly List<ConfigEntry<int>> entries = new List<ConfigEntry<int>>();
         public readonly List<ConfigEntry<string>> values = new List<ConfigEntry<string>>();
 
@@ -21,6 +22,7 @@ namespace PremiumScraps
             cfg.SaveOnConfigSet = false;
             diceEvents = cfg.Bind("General", "Dice events", true, "Adds some custom dice rolls to Emergency Dice items. Requires 'Emergency Dice Updated' 1.7.4+ to work, or else it will be automatically false.");
             unluckyPlayersStr = cfg.Bind("General", "Unlucky players", "76561198984467725,76561199094139351,76561198198881967", "Comma separated list of players Steam ID that you want them to be unlucky. Bad things will happen to unlucky players, use this config to take a sweet revenge on your friends...");
+            gazpachoMemeSfx = cfg.Bind("Items", "Gazpacho meme sfx", false, "Turns El Gazpacho's grab and drop sfx to memes sounds. Not recommanded unless you are french...");
             foreach (Scrap scrap in scraps)
             {
                 entries.Add(cfg.Bind("Spawn chance", scrap.asset.Split("/")[0], scrap.rarity, "Rarity of the item."));

@@ -1,4 +1,5 @@
-﻿using PremiumScraps.Utils;
+﻿using DigitalRuby.ThunderAndLightning;
+using PremiumScraps.Utils;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -21,13 +22,13 @@ namespace PremiumScraps.CustomEffects
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
-            itemProperties.batteryUsage = 10;
+            itemProperties.batteryUsage = 50;
             renderer = transform.GetChild(0).GetComponent<MeshRenderer>();
             chargingParticle = transform.GetChild(2).GetComponent<ParticleSystem>();
             chargingAudio = transform.GetChild(2).GetComponent<AudioSource>();
             chargingTransform = transform.GetChild(2).transform;
             screenLight = transform.GetChild(3).GetComponent<Light>();
-            screenColor = renderer.materials[3].GetColor("_EmissiveColor");
+            //screenColor = renderer.materials[3].GetColor("_EmissiveColor");
             if (insertedBattery != null)
                 insertedBattery.charge = 1;
         }
@@ -39,10 +40,6 @@ namespace PremiumScraps.CustomEffects
                 return;
             isBeingUsed = true;
             AnimationServerRpc();
-            if (playerHeldBy.gameplayCamera.targetTexture != null)
-                Debug.LogError("oui");
-            else
-                Debug.LogError("non");
         }
 
         public override void ChargeBatteries()
@@ -79,10 +76,30 @@ namespace PremiumScraps.CustomEffects
             chargingParticle.Play();
             chargingAudio.pitch = chargePitch;
             chargingAudio.Play();
-            Effects.SpawnLightningBolt(StartOfRound.Instance.middleOfShipNode.transform.position, false, false, false, chargingTransform.position);
+            LightningZap(chargingTransform.position, StartOfRound.Instance.middleOfShipNode.transform.position);
             if (renderer != null)
                 renderer.materials[3].SetTexture("_ScreenTexture", playerHeldBy.gameplayCamera.targetTexture);
-            Debug.LogError("" + playerHeldBy.playerUsername + " " + playerHeldBy.name);
+        }
+
+        public static void LightningZap(Vector3 source, Vector3 destination, int audioID = 23)
+        {
+            LightningBoltPrefabScript zap;
+            //var random = new System.Random(StartOfRound.Instance.randomMapSeed);
+            //random.Next(-32, 32); random.Next(-32, 32);
+            zap = Instantiate(FindObjectOfType<StormyWeather>(true).targetedThunder);
+            zap.enabled = true;
+            zap.Camera = GameNetworkManager.Instance.localPlayerController.gameplayCamera;
+            zap.AutomaticModeSeconds = 0.2f;
+            //zap.LightningTintColor
+            //zap.GlowTintColor
+            zap.CountRange = new RangeOfIntegers { Minimum = 1, Maximum = 1 };
+            zap.TrunkWidthRange = new RangeOfFloats { Minimum = 0.01f, Maximum = 0.02f };
+            zap.Intensity = 0.1f;
+            zap.LightParameters.LightIntensity = 0.1f;
+            zap.Source.transform.position = source;
+            zap.Destination.transform.position = destination;
+            zap.CreateLightningBoltsNow();
+            Effects.Audio3D(audioID, destination + Vector3.up * 0.5f, 1, 40);
         }
     }
 }
