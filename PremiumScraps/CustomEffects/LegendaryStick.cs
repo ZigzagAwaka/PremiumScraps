@@ -87,8 +87,6 @@ namespace PremiumScraps.CustomEffects
             if (!cancel)
             {
                 previousPlayerHeldBy.twoHanded = false;
-                Debug.DrawRay(previousPlayerHeldBy.gameplayCamera.transform.position + previousPlayerHeldBy.gameplayCamera.transform.right * -0.35f,
-                    previousPlayerHeldBy.gameplayCamera.transform.forward * 1.85f, Color.blue, 5f);
                 objectsHitByWeapon = Physics.SphereCastAll(previousPlayerHeldBy.gameplayCamera.transform.position + previousPlayerHeldBy.gameplayCamera.transform.right * -0.35f,
                     0.75f, previousPlayerHeldBy.gameplayCamera.transform.forward, 1.85f, weaponMask, QueryTriggerInteraction.Collide);
                 objectsHitByWeaponList = objectsHitByWeapon.OrderBy((x) => x.distance).ToList();

@@ -760,13 +760,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045271651}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.746331, y: -0, z: -0, w: 0.6655751}
+  m_LocalRotation: {x: 0.7463306, y: -0.000000003529918, z: -0.000000003529918, w: 0.6655755}
   m_LocalPosition: {x: 0, y: 1, z: 4.098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 96.547, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180.141, y: 0, z: 179.259}
 --- !u!114 &2045271655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,6 +1302,16 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1095729192
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388259898636565997, guid: 1c6c4895a5757ba43a90414248908e24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6029220699988095180, guid: 1c6c4895a5757ba43a90414248908e24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8742182153089609565, guid: 1c6c4895a5757ba43a90414248908e24,
         type: 3}
@@ -2955,6 +2965,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 3915502223517208588, guid: 241da413f92a3894a92217c6e7d5b657,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7487174928539183610, guid: 241da413f92a3894a92217c6e7d5b657,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3319,6 +3334,8 @@ SceneRoots:
   - {fileID: 2045271654}
   - {fileID: 1698195046}
   - {fileID: 1108387528}
+  - {fileID: 2119713489}
+  - {fileID: 769345281}
   - {fileID: 6617327190395262137}
   - {fileID: 1168451035574527183}
   - {fileID: 1944326916829514344}
@@ -3346,5 +3363,3 @@ SceneRoots:
   - {fileID: 5736130058643104922}
   - {fileID: 1028173648184042630}
   - {fileID: 5433730325684537164}
-  - {fileID: 2119713489}
-  - {fileID: 769345281}

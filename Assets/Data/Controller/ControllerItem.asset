@@ -64,4 +64,4 @@ MonoBehaviour:
   meshVariants: []
   materialVariants: []
   usableInSpecialAnimations: 0
-  canBeInspected: 0
+  canBeInspected: 1

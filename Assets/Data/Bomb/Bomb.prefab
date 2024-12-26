@@ -5043,7 +5043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1304791238929278798}
   - component: {fileID: 278907646779534597}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Alarm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5173,7 +5173,7 @@ GameObject:
   - component: {fileID: 5660987770890040173}
   - component: {fileID: 9024455985871659593}
   - component: {fileID: 8588556850559956986}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SmokeParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
