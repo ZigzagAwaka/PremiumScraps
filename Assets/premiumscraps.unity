@@ -1464,10 +1464,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scroll
       objectReference: {fileID: 0}
-    - target: {fileID: 6883234152991465208, guid: b0b09562f3f46b247a88a35503988404,
+    - target: {fileID: 5391634788135329089, guid: b0b09562f3f46b247a88a35503988404,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7343935788316972828, guid: b0b09562f3f46b247a88a35503988404,
         type: 3}
