@@ -10,16 +10,16 @@ namespace PremiumScraps.CustomEffects
 {
     internal class LegendaryStick : PhysicsProp
     {
-        public int knockbackPowerMin = 4;
-        public int knockbackPowerMax = 14;
-        public int weaponHitForce = 1;
+        public int knockbackPowerMin = 5;
+        public int knockbackPowerMax = 15;
+        public int chanceForUltimateKnockback = 5;
+        public int ultimateKnockback = 50;
         public bool reelingUp;
         public bool isHoldingButton;
         private Coroutine? reelingUpCoroutine;
         private RaycastHit[] objectsHitByWeapon;
         private List<RaycastHit> objectsHitByWeaponList = new List<RaycastHit>();
         private PlayerControllerB previousPlayerHeldBy;
-        private readonly int weaponMask = 11012424;
 
         public LegendaryStick() { }
 
@@ -88,7 +88,7 @@ namespace PremiumScraps.CustomEffects
             {
                 previousPlayerHeldBy.twoHanded = false;
                 objectsHitByWeapon = Physics.SphereCastAll(previousPlayerHeldBy.gameplayCamera.transform.position + previousPlayerHeldBy.gameplayCamera.transform.right * -0.35f,
-                    0.75f, previousPlayerHeldBy.gameplayCamera.transform.forward, 1.85f, weaponMask, QueryTriggerInteraction.Collide);
+                    0.75f, previousPlayerHeldBy.gameplayCamera.transform.forward, 1.85f, 11012424, QueryTriggerInteraction.Collide);
                 objectsHitByWeaponList = objectsHitByWeapon.OrderBy((x) => x.distance).ToList();
                 Vector3 start = previousPlayerHeldBy.gameplayCamera.transform.position;
                 for (int i = 0; i < objectsHitByWeaponList.Count; i++)
@@ -114,7 +114,7 @@ namespace PremiumScraps.CustomEffects
                         flag = true;
                         if (component.GetType() == typeof(PlayerControllerB))
                         {
-                            KnockbackServerRpc(((PlayerControllerB)component).OwnerClientId);
+                            KnockbackServerRpc(((PlayerControllerB)component).OwnerClientId, previousPlayerHeldBy.gameplayCamera.transform.forward.normalized);
                         }
                     }
                 }
@@ -128,18 +128,20 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void KnockbackServerRpc(ulong clientId)
+        private void KnockbackServerRpc(ulong clientId, Vector3 direction)
         {
-            int power = Random.Range(knockbackPowerMin, knockbackPowerMax);
+            int power = Random.Range(0, 100) <= chanceForUltimateKnockback - 1 ? ultimateKnockback : Random.Range(knockbackPowerMin, knockbackPowerMax);
             var clientRpcParams = new ClientRpcParams() { Send = new ClientRpcSendParams() { TargetClientIds = new[] { clientId } } };
-            KnockbackClientRpc(power, clientRpcParams);
+            KnockbackClientRpc(power, direction, clientRpcParams);
         }
 
         [ClientRpc]
-        private void KnockbackClientRpc(int power, ClientRpcParams clientRpcParams = default)
+        private void KnockbackClientRpc(int power, Vector3 direction, ClientRpcParams clientRpcParams = default)
         {
             if (playerHeldBy != null)
-                Effects.Knockback(playerHeldBy.transform.position, 5, 0, power);
+            {
+                Effects.Knockback(GameNetworkManager.Instance.localPlayerController.transform.position - direction, 5, 0, power);
+            }
         }
 
         [ServerRpc(RequireOwnership = false)]

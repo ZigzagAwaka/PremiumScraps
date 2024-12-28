@@ -1,11 +1,22 @@
+<!--
 # 2.2.0 New scraps
 - **Added**
     - Added Controller
+-->
+
+## 2.1.1
 - **Updated**
-    - Bomb update: new animation, new sound and new particle system
-    - Changed El Gazpacho's grab and drop sounds to be more vanilla friendly (a config has been added to revert this change if you want)
-    - Improved the collider of small items so they are easier to grab
-    - Christmas assets will now automatically be applied every year during christmas period
+    - Bomb
+        - New animation, new sound and new particle system
+    - Stick
+        - Improved knockback effect so you can influence the direction of the knockback by looking at where you want to sent the other player (for example, if you are crouching and look up while hitting the player it's going to make it go very high)
+        - Added 5% to use the ultimate knockback effect
+    - El Gazpacho
+        - Changed grab and drop sounds to be more vanilla friendly
+        - Added a config to revert this change if you want
+    - Misc
+        - Improved the collider of small items so it's easier to grab
+        - Christmas assets will now automatically be applied every year during christmas period
 - **Fixed**
     - Surviving the Death hallucination dice event will now properly stop the event
 
