@@ -1,8 +1,8 @@
-<!--
 # 2.2.0 New scraps
 - **Added**
     - Added Controller
--->
+- **Updated**
+    - Added custom conditions for [ShipInventory](https://thunderstore.io/c/lethal-company/p/WarperSan/ShipInventory/) to prevent certain items from being stored
 
 ## 2.1.1
 - **Updated**

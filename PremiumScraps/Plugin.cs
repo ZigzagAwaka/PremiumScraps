@@ -14,6 +14,7 @@ namespace PremiumScraps
 {
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency("AudioKnight.StarlancerAIFix", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("ShipInventory", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("mrov.WeatherRegistry", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("Theronguard.EmergencyDice", BepInDependency.DependencyFlags.SoftDependency)]
@@ -21,7 +22,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.1.1";
+        const string VERSION = "2.2.0";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
@@ -38,6 +39,8 @@ namespace PremiumScraps
                 harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();  // bombitem charger
             if (Chainloader.PluginInfos.ContainsKey("mattymatty.MattyFixes"))
                 harmony.CreateClassProcessor(typeof(MattyFixesAirhornPositionPatch), true).Patch();  // fake airhorn position fix with matty fixes
+            if (Chainloader.PluginInfos.ContainsKey("ShipInventory"))
+                ShipInventoryConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("ShipInventory").Metadata);  // setup conditions for shipinventory
             if (config.diceEvents.Value && Chainloader.PluginInfos.ContainsKey("Theronguard.EmergencyDice"))
                 DiceEvents.RegisterDiceEvents(Logger, Chainloader.PluginInfos.GetValueOrDefault("Theronguard.EmergencyDice").Metadata);  // register custom events for emergency dice mod
         }
@@ -124,8 +127,8 @@ namespace PremiumScraps
                 new Scrap("Moogle/MoogleItem.asset", 10),
                 new Scrap("Gazpacho/GazpachoItem.asset", 9, 7),
                 new Scrap("Abi/AbiItem.asset", 4, 8),
-                new Scrap("Bomb/BombItem.asset", 12, 10)/*,
-                new Scrap("Controller/ControllerItem.asset", 8, 12)*/
+                new Scrap("Bomb/BombItem.asset", 12, 10),
+                new Scrap("Controller/ControllerItem.asset", 8, 12)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
