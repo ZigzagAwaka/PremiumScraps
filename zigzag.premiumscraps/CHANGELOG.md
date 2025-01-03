@@ -2,7 +2,11 @@
 - **Added**
     - Added Controller
 - **Updated**
-    - Added custom conditions for [ShipInventory](https://thunderstore.io/c/lethal-company/p/WarperSan/ShipInventory/) to prevent certain items from being stored
+    - f
+- **Fixed**
+    - Added a custom condition for [ShipInventory](https://thunderstore.io/c/lethal-company/p/WarperSan/ShipInventory/) to prevent certain items from being stored
+    - Fixed item tool tips sometimes overlaping with other tool tips
+    - Basics of architecture state is now synced for late join players
 
 ## 2.1.1
 - **Updated**
@@ -123,7 +127,7 @@
         - Haunted hallucination [Bad]
         - Death hallucination [Awful]
 - **Updated**
-    - Improved scrap spawning custom code (used by Basics of architecture and now also by my custom compatible dice effects)
+    - Improved scrap spawning custom code (used by Basics of architecture)
     - Basics of architecture *'spawning effect'* can now also be used when in orbit and when you are at Gordion
 - **Fixed**
     - Summoned items of Basics of architecture are now synced to all players (scrap value and item rotation)

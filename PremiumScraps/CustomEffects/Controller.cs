@@ -24,7 +24,7 @@ namespace PremiumScraps.CustomEffects
         public float timePassed = 0;
         public bool isInControlMode = false;
         public bool readyToDisplay = true;
-        public readonly float screenUpdateRate = 1;
+        public readonly float screenUpdateRate = 0.1f;
 
         public Controller()
         {
@@ -83,6 +83,7 @@ namespace PremiumScraps.CustomEffects
                 allLines = new string[3] { "Activate : [RMB]", "Start controlling : [Q]", "" };
             if (IsOwner)
             {
+                HUDManager.Instance.ClearControlTips();
                 HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
             }
         }

@@ -105,6 +105,7 @@ namespace PremiumScraps.CustomEffects
             string[] allLines = ((!activated) ? new string[1] { "Activate bomb : [RMB]" } : new string[1] { "Throw bomb : [RMB]" });
             if (IsOwner)
             {
+                HUDManager.Instance.ClearControlTips();
                 HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
             }
         }

@@ -22,6 +22,13 @@ namespace PremiumScraps.CustomEffects
 
         public StupidBook() { }
 
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            if (!IsHost && !IsServer)
+                SyncStateServerRpc();
+        }
+
         public override void EquipItem()
         {
             SetControlTips();
@@ -47,6 +54,7 @@ namespace PremiumScraps.CustomEffects
             string[] allLines = ((actualPage != -1) ? new string[2] { "Read book : [RMB]", pages[actualPage] } : new string[2] { "Read book : [RMB]", "" });
             if (IsOwner)
             {
+                HUDManager.Instance.ClearControlTips();
                 HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
             }
         }
@@ -104,6 +112,13 @@ namespace PremiumScraps.CustomEffects
         private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
         {
             Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void SyncStateServerRpc()
+        {
+            if (nbFinish != 0)
+                UpdateNbFinishClientRpc(nbFinish);
         }
     }
 }

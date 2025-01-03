@@ -57,6 +57,7 @@ namespace PremiumScraps.CustomEffects
                 allLines = new string[1] { "Read: [Z]" };
             if (IsOwner)
             {
+                HUDManager.Instance.ClearControlTips();
                 HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
             }
         }
