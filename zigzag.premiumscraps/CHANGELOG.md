@@ -1,12 +1,13 @@
-# 2.2.0 New scraps
+# 2.2.0 The Controller update
 - **Added**
     - Added Controller
 - **Updated**
-    - f
+    - Harry Mason, El Gazpacho and The talking orb got some *special* upgrades when used by unlucky players
 - **Fixed**
     - Added a custom condition for [ShipInventory](https://thunderstore.io/c/lethal-company/p/WarperSan/ShipInventory/) to prevent certain items from being stored
     - Fixed item tool tips sometimes overlaping with other tool tips
     - Basics of architecture state is now synced for late join players
+    - Small fix for Harry Mason's secret effect
 
 ## 2.1.1
 - **Updated**

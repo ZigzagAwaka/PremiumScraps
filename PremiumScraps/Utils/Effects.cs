@@ -339,9 +339,9 @@ namespace PremiumScraps.Utils
             }
         }
 
-        public static void Spawn(SpawnableMapObject trap, Vector3 position)
+        public static void Spawn(SpawnableMapObject trap, Vector3 position, float yRot = 0f)
         {
-            GameObject gameObject = Object.Instantiate(trap.prefabToSpawn, position, Quaternion.identity, RoundManager.Instance.mapPropsContainer.transform);
+            GameObject gameObject = Object.Instantiate(trap.prefabToSpawn, position, Quaternion.Euler(new Vector3(0f, yRot, 0f)), RoundManager.Instance.mapPropsContainer.transform);
             gameObject.GetComponent<NetworkObject>().Spawn(true);
         }
 

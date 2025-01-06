@@ -88,7 +88,7 @@ namespace PremiumScraps
                 "ShovelSwing.ogg", "wooden-staff-hit.wav", "MineTrigger.ogg", "book_page.wav", "CVuse1.wav", "CVuse2.wav",
                 "CVuse3.wav", "CVuse4.wav", "TerminalAlarm.ogg", "Breathing.wav", "huh.wav", "book_use_redesign.wav",
                 "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav", "glass-grab.wav", "glass-drop.wav",
-                "beam.wav"
+                "beam.wav", "abibabou_ultimate.wav"
             };
 
             /*foreach (string prefab in prefabs)

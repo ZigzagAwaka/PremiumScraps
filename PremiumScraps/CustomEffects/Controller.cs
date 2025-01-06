@@ -15,20 +15,29 @@ namespace PremiumScraps.CustomEffects
         public AudioSource? chargingAudio;
         public Transform? chargingTransform;
         public Light? screenLight;
-        public float zapRange = 8f;
+        public readonly float zapRange = 9f;
         public bool screenIsReady = false;
         public bool targetIsValid = false;
+        public bool serverDataValid = false;
         public ulong targetPlayerId;
         public ulong targetClientId;
         public PlayerControllerB? targetPlayer;
+
         public float timePassed = 0;
         public bool isInControlMode = false;
         public bool readyToDisplay = true;
         public readonly float screenUpdateRate = 0.1f;
 
+        public bool cameraReady = false;
+        public Camera? camera;
+        public int cameraTextureWidth = 860;
+        public int cameraTextureHeight = 520;
+        public RenderTexture cameraTexture;
+
         public Controller()
         {
             useCooldown = 2;
+            cameraTexture = new RenderTexture(cameraTextureWidth, cameraTextureHeight, 24);
         }
 
         public override void OnNetworkSpawn()
@@ -41,15 +50,17 @@ namespace PremiumScraps.CustomEffects
             screenLight = transform.GetChild(3).GetComponent<Light>();
             if (insertedBattery != null)
                 insertedBattery.charge = 1;
-            if (!IsHost)
-                SyncStateServerRpc();
-            screenLight.enabled = false;
+            if (!IsHost && !IsServer)
+                SyncStateServerRpc(isBeingUsed, targetPlayerId, targetClientId);
+            //screenLight.enabled = false;
+            itemProperties.batteryUsage = 50;
         }
 
         public override void EquipItem()
         {
             EnableItemMeshes(enable: true);
-            PrepareScreen(true, insertedBattery != null && !insertedBattery.empty, true);
+            var batteryOK = insertedBattery != null && !insertedBattery.empty;
+            PrepareScreen(batteryOK, true, batteryOK);
             SetControlTips();
             isPocketed = false;
             if (!hasBeenHeld)
@@ -102,8 +113,8 @@ namespace PremiumScraps.CustomEffects
             base.Update();
             if (playerHeldBy == null || GameNetworkManager.Instance.localPlayerController.playerClientId != playerHeldBy.playerClientId || !screenIsReady || targetPlayer == null)
                 return;
-            timePassed += Time.deltaTime;
-            if (timePassed >= screenUpdateRate)
+            //timePassed += Time.deltaTime;
+            /*if (timePassed >= screenUpdateRate)
             {
                 if (readyToDisplay)
                 {
@@ -111,6 +122,48 @@ namespace PremiumScraps.CustomEffects
                     UpdateScreenRequestServerRpc(GameNetworkManager.Instance.localPlayerController.OwnerClientId);
                 }
                 timePassed = 0;
+            }*/
+            /*
+            Destroy(glowObj.gameObject, transitionTime + danceTime);
+             */
+
+            /*if (camOK && camera != null)
+            {
+                renderer?.materials[3].SetTexture("_ScreenTexture", camera.targetTexture);
+            }
+            else
+            {
+                camera = Instantiate(playerHeldBy.gameplayCamera, targetPlayer.playerEye.position + (targetPlayer.playerEye.forward * 0.5f), Quaternion.identity, targetPlayer.playerEye);
+                /*var cameraObj = new GameObject("ControllerCam");
+                cameraObj.transform.SetParent(targetPlayer.playerEye, false);
+                camera = cameraObj.AddComponent<Camera>();
+                camera.transform.position = targetPlayer.playerEye.position + (targetPlayer.playerEye.forward * 0.5f);
+                camera.nearClipPlane = 0.01f;
+                camera.cullingMask = playerHeldBy.gameplayCamera.cullingMask & ~LayerMask.GetMask("Ignore Raycast", "UI", "HelmetVisor");
+                var cameraData = cameraObj.AddComponent<HDAdditionalCameraData>();
+                cameraData.volumeLayerMask = 1;
+                cameraData.customRenderingSettings = true;
+                var frameSettings = cameraData.renderingPathCustomFrameSettings;
+                var frameMask = cameraData.renderingPathCustomFrameSettingsOverrideMask;
+                frameSettings.SetEnabled(FrameSettingsField.Tonemapping, false);
+                frameMask.mask[(uint)FrameSettingsField.Tonemapping] = true;
+                frameSettings.SetEnabled(FrameSettingsField.ColorGrading, false);
+                frameMask.mask[(uint)FrameSettingsField.ColorGrading] = true;
+                cameraData.hasPersistentHistory = true;
+                camOK = true;
+            }*/
+
+            if (cameraReady && camera != null)
+            {
+                renderer?.materials[3].SetTexture("_ScreenTexture", cameraTexture);
+            }
+            else
+            {
+                camera = Instantiate(playerHeldBy.gameplayCamera, targetPlayer.playerEye.position + (targetPlayer.playerEye.forward * 0.5f), Quaternion.identity, targetPlayer.playerEye);
+                camera.targetTexture = cameraTexture;
+                camera.nearClipPlane = 0.01f;
+                camera.cullingMask = playerHeldBy.gameplayCamera.cullingMask & ~LayerMask.GetMask("Ignore Raycast", "UI", "HelmetVisor");
+                cameraReady = true;
             }
         }
 
@@ -136,9 +189,9 @@ namespace PremiumScraps.CustomEffects
                         targetIsValid = true;
                         targetPlayerId = target.playerClientId;
                         targetClientId = target.OwnerClientId;
-                        SyncStateServerRpc(true, target.playerClientId, target.OwnerClientId);
+                        SyncStateServerRpc(true, target.playerClientId, target.OwnerClientId, true);
                         ZapAnimationServerRpc(chargingTransform.position, target.transform.position + (Vector3.up * 2));
-                        PrepareScreen(true);
+                        PrepareScreen(true, false, false);
                         SetControlTips();
                         break;
                     }
@@ -146,25 +199,24 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
-        public void PrepareScreen(bool isReady, bool updateLight = false, bool updateFlagQE = false)
+        public void PrepareScreen(bool isReady, bool updateFlagQE, bool updateLight)
         {
             if (targetIsValid && GameNetworkManager.Instance.localPlayerController.playerClientId == targetPlayerId)
                 targetIsValid = false;
             if (isReady)
             {
-                if (updateLight && screenLight != null)
-                    /*screenLight.enabled = true*/
-                    ;
                 if (updateFlagQE && playerHeldBy != null)
                     playerHeldBy.equippedUsableItemQE = true;
+                if (updateLight && screenLight != null)
+                    screenLight.enabled = true;
             }
             else
             {
                 renderer?.materials[3].SetTexture("_ScreenTexture", null);
-                if (updateLight && screenLight != null)
-                    screenLight.enabled = false;
                 if (updateFlagQE && playerHeldBy != null)
                     playerHeldBy.equippedUsableItemQE = false;
+                if (updateLight && screenLight != null)
+                    screenLight.enabled = false;
             }
             if (isReady && targetIsValid)
                 targetPlayer = StartOfRound.Instance.allPlayerObjects[targetPlayerId].GetComponent<PlayerControllerB>();
@@ -173,7 +225,7 @@ namespace PremiumScraps.CustomEffects
 
         public override void DiscardItem()
         {
-            PrepareScreen(false, updateFlagQE: true);
+            PrepareScreen(false, true, false);
             base.DiscardItem();
         }
 
@@ -191,15 +243,16 @@ namespace PremiumScraps.CustomEffects
 
         public override void UseUpBatteries()
         {
-            PrepareScreen(false, true);
+            PrepareScreen(false, false, true);
             base.UseUpBatteries();
+            SyncBatteryClientRpc(0);  // vanilla bug fix, battery is not synced at this moment
         }
 
         public override void ChargeBatteries()
         {
             base.ChargeBatteries();
             if (playerHeldBy != null && insertedBattery != null && insertedBattery.charge == 1f)
-                PrepareScreen(true, true);
+                PrepareScreen(true, false, true);
         }
 
         [ServerRpc(RequireOwnership = false)]
@@ -248,7 +301,7 @@ namespace PremiumScraps.CustomEffects
             Effects.Audio3D(23, destination + Vector3.up * 0.5f, 1.3f, 40);
         }
 
-        [ServerRpc(RequireOwnership = false)]
+        /*[ServerRpc(RequireOwnership = false)]
         private void UpdateScreenRequestServerRpc(ulong playerAskingClientId)
         {
             if (!targetIsValid)
@@ -293,20 +346,15 @@ namespace PremiumScraps.CustomEffects
             texture.Apply();
             renderer?.materials[3].SetTexture("_ScreenTexture", texture);
             readyToDisplay = true;
-        }
+        }*/
 
         [ServerRpc(RequireOwnership = false)]
-        private void SyncStateServerRpc()
+        private void SyncStateServerRpc(bool inUse, ulong playerId, ulong clientId, bool serverValid = false)
         {
-            if (!targetIsValid)
-                return;
-            SyncStateClientRpc(isBeingUsed, targetIsValid, targetPlayerId, targetClientId);
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void SyncStateServerRpc(bool inUse, ulong playerId, ulong clientId)
-        {
-            SyncStateClientRpc(inUse, true, playerId, clientId);
+            if (serverValid)
+                serverDataValid = serverValid;
+            if (serverDataValid)
+                SyncStateClientRpc(inUse, true, playerId, clientId);
         }
 
         [ClientRpc]
@@ -316,6 +364,9 @@ namespace PremiumScraps.CustomEffects
             targetIsValid = valid;
             targetPlayerId = playerId;
             targetClientId = clientId;
+            if (valid && GameNetworkManager.Instance != null && GameNetworkManager.Instance.localPlayerController != null &&
+                GameNetworkManager.Instance.localPlayerController.playerClientId == playerId)
+                targetIsValid = false;
         }
     }
 }

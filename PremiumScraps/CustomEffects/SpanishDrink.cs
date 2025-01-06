@@ -73,10 +73,7 @@ namespace PremiumScraps.CustomEffects
                     if (usage >= usageBeforeDrunk)
                     {
                         AudioServerRpc(19, player.transform.position, 1f, 0.85f, player.health - 19 <= 0);  // spanish audio
-                        if (player.IsHost)
-                            StartCoroutine(Effects.DamageHost(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf));  // damage or death (host)
-                        else
-                            Effects.Damage(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf);  // damage or death
+                        StartCoroutine(SpanishBoom(player));  // damage and things
                     }
                     if (!isDrunk && usage >= usageBeforeDrunk)
                     {
@@ -90,6 +87,24 @@ namespace PremiumScraps.CustomEffects
                         HealPlayerServerRpc(StartOfRound.Instance.localPlayerController.playerClientId, 100);  // heal
                     }
                 }
+            }
+        }
+
+        private IEnumerator SpanishBoom(PlayerControllerB player)
+        {
+            yield return new WaitForEndOfFrame();
+            if (player == null || player.isPlayerDead)
+                yield break;
+            if (Effects.IsUnlucky(player.playerSteamId) && Random.Range(0, 10) < 7)  // unlucky 70%
+            {
+                yield return new WaitForSeconds(1.9f);
+                if (player == null || player.isPlayerDead)
+                    yield break;
+                ExplosionServerRpc(player.transform.position);
+            }
+            else  // normal
+            {
+                Effects.Damage(player, 20, CauseOfDeath.Suffocation, (int)Effects.DeathAnimation.CutInHalf);
             }
         }
 
@@ -147,6 +162,18 @@ namespace PremiumScraps.CustomEffects
         {
             itemProperties.positionOffset = newPos;
             itemProperties.rotationOffset = newRot;
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ExplosionServerRpc(Vector3 position)
+        {
+            ExplosionClientRpc(position);
+        }
+
+        [ClientRpc]
+        private void ExplosionClientRpc(Vector3 position)
+        {
+            Effects.Explosion(position, 2f, 20);
         }
     }
 }

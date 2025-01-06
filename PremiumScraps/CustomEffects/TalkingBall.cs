@@ -1,4 +1,5 @@
 ﻿using PremiumScraps.Utils;
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace PremiumScraps.CustomEffects
     internal class TalkingBall : SoccerBallProp
     {
         public bool isSpeaking = true;
+        public bool playingSpecialAudio = false;
         public float originalSpeed = 0.3f;
         public bool getOriginalSpeed = false;
         public Vector3? originalPosition = null;
@@ -42,14 +44,21 @@ namespace PremiumScraps.CustomEffects
                         originalSpeed = itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.GetFloat("_Speed");
                     }
                     itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.SetFloat("_Speed", 0f);
-                    if (Random.Range(0, 10) >= 1)  // 90%
-                        Effects.Audio(14, 1.5f);  // huh audio
-                    else  // 10%
+                    if (!playingSpecialAudio && Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) < 6)
                     {
-                        int audioID = 16;
-                        if (Random.Range(0, 10) <= 1)  // 20% rare uwu
-                            audioID = 17;
-                        AudioServerRpc(audioID, playerHeldBy.transform.position, 1.1f, 0.75f);  // uwu audio
+                        AudioServerRpc(24, playerHeldBy.transform.position, 1.2f, 0.85f, true);
+                    }
+                    else
+                    {
+                        if (Random.Range(0, 10) >= 1)  // 90%
+                            Effects.Audio(14, 1.5f);  // huh audio
+                        else  // 10%
+                        {
+                            int audioID = 16;
+                            if (Random.Range(0, 10) <= 1)  // 20% rare uwu
+                                audioID = 17;
+                            AudioServerRpc(audioID, playerHeldBy.transform.position, 1.1f, 0.75f);  // uwu audio
+                        }
                     }
                 }
                 else
@@ -81,15 +90,26 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default, bool spAudio = false)
         {
-            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume, spAudio);
         }
 
         [ClientRpc]
-        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume, bool spAudio)
         {
+            if (!spAudio)
+                Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            else
+                StartCoroutine(SpecialAudio(audioID, clientPosition, localVolume, clientVolume));
+        }
+
+        private IEnumerator SpecialAudio(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        {
+            playingSpecialAudio = true;
             Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            yield return new WaitForSeconds(9f);
+            playingSpecialAudio = false;
         }
     }
 }
