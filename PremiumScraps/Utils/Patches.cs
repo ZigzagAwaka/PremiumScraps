@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using GameNetcodeStuff;
+using HarmonyLib;
 
 namespace PremiumScraps.Utils
 {
@@ -72,6 +73,58 @@ namespace PremiumScraps.Utils
                 fakeAirhorn.item.restingRotation = new UnityEngine.Vector3(0, -180, 270);
                 fakeAirhorn.item.floorYOffset = -180;
             }
+        }
+    }
+
+
+    [HarmonyPatch(typeof(HUDManager))]
+    internal class ControllerHUDManagerPatch
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch("EnableChat_performed")]
+        public static bool EnableChatControllerPatch(HUDManager __instance)
+        {
+            return CustomEffects.ControllerMovement.ChatAction(__instance);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("SubmitChat_performed")]
+        public static bool SubmitChatControllerPatch(HUDManager __instance)
+        {
+            return CustomEffects.ControllerMovement.ChatAction(__instance);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("OpenMenu_performed")]
+        public static bool OpenMenuControllerPatch(HUDManager __instance)
+        {
+            return CustomEffects.ControllerMovement.ChatAction(__instance);
+        }
+    }
+
+
+    [HarmonyPatch(typeof(PlayerControllerB))]
+    internal class ControllerPlayerControllerBPatch
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch("Jump_performed")]
+        public static bool JumpControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerAction(__instance, CustomEffects.ControllerMovement.ControllerActions.Jump);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("Crouch_performed")]
+        public static bool CrouchControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerAction(__instance, CustomEffects.ControllerMovement.ControllerActions.Crouch);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("Interact_performed")]
+        public static bool InteractControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerAction(__instance, CustomEffects.ControllerMovement.ControllerActions.Interact);
         }
     }
 

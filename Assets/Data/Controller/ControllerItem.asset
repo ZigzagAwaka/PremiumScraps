@@ -53,6 +53,7 @@ MonoBehaviour:
   toolTips:
   - 'Activate : [RMB]'
   - 'Start controlling : [Q]'
+  - 'Inspect: [Z]'
   - 
   verticalOffset: 0
   floorYOffset: 90

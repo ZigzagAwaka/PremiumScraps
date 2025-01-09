@@ -7,13 +7,35 @@ namespace PremiumScraps.CustomEffects
 {
     internal class TalkingBall : SoccerBallProp
     {
-        public bool isSpeaking = true;
+        public bool isSpeaking = false;
         public bool playingSpecialAudio = false;
         public float originalSpeed = 0.3f;
         public bool getOriginalSpeed = false;
         public Vector3? originalPosition = null;
+        public AudioSource? classicAudio;
+        public AudioSource? specialAudio;
+        public MeshRenderer? renderer;
 
         public TalkingBall() { }
+
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            classicAudio = GetComponent<AudioSource>();
+            specialAudio = transform.GetChild(3).GetComponent<AudioSource>();
+            renderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+            StartCoroutine(StartIdleAudio());
+        }
+
+        private IEnumerator StartIdleAudio()
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (!isHeld)
+            {
+                classicAudio?.Play();
+                isSpeaking = true;
+            }
+        }
 
         public override void GrabItem()
         {
@@ -31,7 +53,7 @@ namespace PremiumScraps.CustomEffects
 
         public override void InspectItem()
         {
-            if (itemProperties.canBeInspected && IsOwner && playerHeldBy != null)
+            if (itemProperties.canBeInspected && IsOwner && playerHeldBy != null && renderer != null)
             {
                 base.InspectItem();
                 if (playerHeldBy.IsInspectingItem)
@@ -41,12 +63,13 @@ namespace PremiumScraps.CustomEffects
                     if (!getOriginalSpeed)
                     {
                         getOriginalSpeed = true;
-                        originalSpeed = itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.GetFloat("_Speed");
+                        originalSpeed = renderer.materials[0].GetFloat("_Speed");
                     }
-                    itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.SetFloat("_Speed", 0f);
+                    renderer.materials[0].SetFloat("_Speed", 0f);
                     if (!playingSpecialAudio && Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) < 6)
                     {
-                        AudioServerRpc(24, playerHeldBy.transform.position, 1.2f, 0.85f, true);
+                        playingSpecialAudio = true;
+                        AudioServerRpc(-1, Vector3.zero, 1, 1, true);
                     }
                     else
                     {
@@ -82,7 +105,7 @@ namespace PremiumScraps.CustomEffects
 
         private void StopInspect(bool fixHUD = false)
         {
-            itemProperties.spawnPrefab.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial.SetFloat("_Speed", originalSpeed);
+            renderer?.materials[0].SetFloat("_Speed", originalSpeed);
             if (originalPosition != null)
                 itemProperties.positionOffset = originalPosition.Value;
             if (fixHUD)
@@ -101,13 +124,13 @@ namespace PremiumScraps.CustomEffects
             if (!spAudio)
                 Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
             else
-                StartCoroutine(SpecialAudio(audioID, clientPosition, localVolume, clientVolume));
+                StartCoroutine(SpecialAudio());
         }
 
-        private IEnumerator SpecialAudio(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        private IEnumerator SpecialAudio()
         {
             playingSpecialAudio = true;
-            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            specialAudio?.Play();
             yield return new WaitForSeconds(9f);
             playingSpecialAudio = false;
         }

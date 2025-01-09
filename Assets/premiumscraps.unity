@@ -1467,7 +1467,7 @@ PrefabInstance:
     - target: {fileID: 5391634788135329089, guid: b0b09562f3f46b247a88a35503988404,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7343935788316972828, guid: b0b09562f3f46b247a88a35503988404,
         type: 3}
@@ -2965,11 +2965,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Controller
       objectReference: {fileID: 0}
-    - target: {fileID: 3915502223517208588, guid: 241da413f92a3894a92217c6e7d5b657,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 7487174928539183610, guid: 241da413f92a3894a92217c6e7d5b657,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3092,6 +3087,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2737293905
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839319424421110958, guid: 9d929c646708f2f4e91d21cbb342ba2c,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

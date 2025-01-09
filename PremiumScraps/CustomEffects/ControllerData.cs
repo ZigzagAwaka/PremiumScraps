@@ -98,5 +98,52 @@ namespace PremiumScraps.CustomEffects
                 return typeToDeserialize;
             }
         }
+
+        /*[ServerRpc(RequireOwnership = false)]
+private void UpdateScreenRequestServerRpc(ulong playerAskingClientId)
+{
+    if (!targetIsValid)
+        return;
+    var clientRpcParams = new ClientRpcParams() { Send = new ClientRpcSendParams() { TargetClientIds = new[] { targetClientId } } };
+    UpdateScreenRequestClientRpc(playerAskingClientId, clientRpcParams);
+}
+
+[ClientRpc]
+private void UpdateScreenRequestClientRpc(ulong playerAskingClientId, ClientRpcParams clientRpcParams = default)
+{
+    StartCoroutine(ScreenRequest(playerAskingClientId));
+}
+
+private IEnumerator ScreenRequest(ulong playerAskingClientId)
+{
+    yield return null;
+    var texture = GameNetworkManager.Instance.localPlayerController.gameplayCamera.targetTexture;
+    byte[] data = ControllerData.SerializeObject(ControllerData.Encode(ControllerData.GetPixels(texture)));
+    UpdateScreenResultServerRpc(playerAskingClientId, data, ControllerData.dataWidth, ControllerData.dataHeight);
+}
+
+[ServerRpc(RequireOwnership = false)]
+private void UpdateScreenResultServerRpc(ulong playerAskingClientId, byte[] data, int width, int height)
+{
+    var clientRpcParams = new ClientRpcParams() { Send = new ClientRpcSendParams() { TargetClientIds = new[] { playerAskingClientId } } };
+    UpdateScreenResultClientRpc(data, width, height, clientRpcParams);
+}
+
+[ClientRpc]
+private void UpdateScreenResultClientRpc(byte[] data, int width, int height, ClientRpcParams clientRpcParams = default)
+{
+    StartCoroutine(ScreenResult(data, width, height));
+}
+
+private IEnumerator ScreenResult(byte[] data, int width, int height)
+{
+    yield return null;
+    var colors = ControllerData.Decode(ControllerData.DeserializeObject<ControllerData.SerializableColor[]>(data));
+    var texture = new Texture2D(width, height);
+    texture.SetPixels(colors);
+    texture.Apply();
+    renderer?.materials[3].SetTexture("_ScreenTexture", texture);
+    readyToDisplay = true;
+}*/
     }
 }

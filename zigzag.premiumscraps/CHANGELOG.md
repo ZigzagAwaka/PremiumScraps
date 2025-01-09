@@ -8,6 +8,7 @@
     - Fixed item tool tips sometimes overlaping with other tool tips
     - Basics of architecture state is now synced for late join players
     - Small fix for Harry Mason's secret effect
+    - Optimized The talking orb's code
 
 ## 2.1.1
 - **Updated**
