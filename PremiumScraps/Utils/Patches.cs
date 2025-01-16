@@ -1,5 +1,9 @@
 ﻿using GameNetcodeStuff;
 using HarmonyLib;
+using MonoMod.Cil;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 namespace PremiumScraps.Utils
 {
@@ -70,9 +74,21 @@ namespace PremiumScraps.Utils
             var fakeAirhorn = LethalLib.Modules.Items.scrapItems.Find(i => i.modName == "PremiumScraps" && i.item.itemName == "Airhorn");
             if (fakeAirhorn != null && fakeAirhorn != default)
             {
-                fakeAirhorn.item.restingRotation = new UnityEngine.Vector3(0, -180, 270);
+                fakeAirhorn.item.restingRotation = new Vector3(0, -180, 270);
                 fakeAirhorn.item.floorYOffset = -180;
             }
+        }
+    }
+
+
+    [HarmonyPatch(typeof(Terminal))]
+    internal class ControllerTerminalPatch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("QuitTerminal")]
+        public static void QuitTerminalPatch()
+        {
+            CustomEffects.ControllerMovement.FlagsFix();
         }
     }
 
@@ -84,21 +100,21 @@ namespace PremiumScraps.Utils
         [HarmonyPatch("EnableChat_performed")]
         public static bool EnableChatControllerPatch(HUDManager __instance)
         {
-            return CustomEffects.ControllerMovement.ChatAction(__instance);
+            return CustomEffects.ControllerMovement.ChatPatch(__instance);
         }
 
         [HarmonyPrefix]
         [HarmonyPatch("SubmitChat_performed")]
         public static bool SubmitChatControllerPatch(HUDManager __instance)
         {
-            return CustomEffects.ControllerMovement.ChatAction(__instance);
+            return CustomEffects.ControllerMovement.ChatPatch(__instance);
         }
 
         [HarmonyPrefix]
         [HarmonyPatch("OpenMenu_performed")]
         public static bool OpenMenuControllerPatch(HUDManager __instance)
         {
-            return CustomEffects.ControllerMovement.ChatAction(__instance);
+            return CustomEffects.ControllerMovement.ChatPatch(__instance);
         }
     }
 
@@ -110,45 +126,140 @@ namespace PremiumScraps.Utils
         [HarmonyPatch("Jump_performed")]
         public static bool JumpControllerPatch(PlayerControllerB __instance)
         {
-            return CustomEffects.ControllerMovement.PlayerAction(__instance, CustomEffects.ControllerMovement.ControllerActions.Jump);
+            return CustomEffects.ControllerMovement.PlayerPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.Jump);
         }
 
         [HarmonyPrefix]
         [HarmonyPatch("Crouch_performed")]
         public static bool CrouchControllerPatch(PlayerControllerB __instance)
         {
-            return CustomEffects.ControllerMovement.PlayerAction(__instance, CustomEffects.ControllerMovement.ControllerActions.Crouch);
+            return CustomEffects.ControllerMovement.PlayerPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.Crouch);
         }
 
         [HarmonyPrefix]
         [HarmonyPatch("Interact_performed")]
         public static bool InteractControllerPatch(PlayerControllerB __instance)
         {
-            return CustomEffects.ControllerMovement.PlayerAction(__instance, CustomEffects.ControllerMovement.ControllerActions.Interact);
+            return CustomEffects.ControllerMovement.PlayerPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.Interact);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("ActivateItem_performed")]
+        public static bool ActivateItemControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.ActivateItem);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("ActivateItem_canceled")]
+        public static bool CancelItemControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.CancelItem);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("Discard_performed")]
+        public static bool DiscardControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.DropItem, true);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("ScrollMouse_performed")]
+        public static bool ScrollControllerPatch(PlayerControllerB __instance, InputAction.CallbackContext context)
+        {
+            return CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.SwitchItem, context.ReadValue<float>());
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("Emote1_performed")]
+        public static bool Emote1ControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.Emote, 1);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("Emote2_performed")]
+        public static bool Emote2ControllerPatch(PlayerControllerB __instance)
+        {
+            return CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.Emote, 2);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("CheckConditionsForEmote")]
+        public static bool EmoteConditionControllerPatch(PlayerControllerB __instance, ref bool __result)
+        {
+            var verif = CustomEffects.ControllerMovement.EmoteConditionPatch(__instance);
+            if (!verif)
+                __result = true;
+            return verif;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("Update")]
+        public static void UpdateControllerPrePatch(PlayerControllerB __instance)
+        {
+            CustomEffects.ControllerMovement.PlayerVectorPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.Move);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("Update")]
+        public static void UpdateControllerPostPatch()
+        {
+            CustomEffects.ControllerMovement.InvertFlagsFix();
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("PlayerLookInput")]
+        public static void PlayerLookInputControllerPrePatch(PlayerControllerB __instance)
+        {
+            CustomEffects.ControllerMovement.PlayerVectorPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.Look);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("PlayerLookInput")]
+        public static void PlayerLookInputControllerPostPatch()
+        {
+            CustomEffects.ControllerMovement.InvertFlagsFix();
         }
     }
 
 
-    /*[HarmonyPatch(typeof(StormyWeather))]
-    internal class BombItemStormyWeatherPatch
+    internal static class PremiumScrapsMonoModPatches
     {
-        [HarmonyPostfix]
-        [HarmonyPatch("Update")]
-        public static void UpdatePatch(ref StormyWeather __instance)
+        public static void Load()
         {
-            var targetingMetalObject = Traverse.Create(__instance).Field("targetingMetalObject").GetValue() as GrabbableObject;
-            if (targetingMetalObject != null && targetingMetalObject.itemProperties.name == "BombItem" && targetingMetalObject is CustomEffects.Bomb bomb && bomb.activated)
-                Traverse.Create(__instance).Field("targetingMetalObject").SetValue(null);
+            IL.GameNetcodeStuff.PlayerControllerB.Update += IsBeingControlledMove;
         }
 
-        [HarmonyPostfix]
-        [HarmonyPatch("LightningStrike")]
-        public static void LightningStrikePatch(ref StormyWeather __instance)
+        private static void IsBeingControlledMove(ILContext il)
         {
-            var strikeMetalObjectTimer = (float)Traverse.Create(__instance).Field("strikeMetalObjectTimer").GetValue();
-            var targetingMetalObject = Traverse.Create(__instance).Field("targetingMetalObject").GetValue() as GrabbableObject;
-            if (strikeMetalObjectTimer <= 0f && targetingMetalObject != null && !targetingMetalObject.isInFactory && targetingMetalObject.targetFloorPosition.x != 3000f && targetingMetalObject.itemProperties.name == "BombItem" && targetingMetalObject is CustomEffects.Bomb bomb && !bomb.activated)
-                bomb.BombExplosionUnstableServerRpc();
+            var c = new ILCursor(il);
+            for (int i = 0; i < 3; i++)  // 3(-1) instances of "moveInputVector = Vector2.zero" to patch
+            {
+                c.GotoNext(
+                    MoveType.After,
+                    x => x.MatchLdarg(0),
+                    x => x.MatchCall<Vector2>("get_" + nameof(Vector2.zero)),
+                    x => x.MatchStfld<PlayerControllerB>(nameof(PlayerControllerB.moveInputVector))
+                );
+                if (i == 1)  // ignore instance n.1 which is not supposed to be reached with the Controller item
+                    continue;
+                c.Emit(Mono.Cecil.Cil.OpCodes.Ldarg_0);
+                c.EmitDelegate<System.Action<PlayerControllerB>>((self) =>
+                {
+                    CustomEffects.ControllerMovement.ControlledMovePatch(self);
+                });
+                if (i == 0)  // sprint is only patched on the 1st instance
+                {
+                    c.Emit(Mono.Cecil.Cil.OpCodes.Ldarg_0);
+                    c.EmitDelegate<System.Func<PlayerControllerB, float>>((self) =>
+                    {
+                        return CustomEffects.ControllerMovement.ControlledSprintPatch(self);
+                    });
+                    c.Emit(Mono.Cecil.Cil.OpCodes.Stloc_0);
+                }
+            }
         }
-    }*/
+    }
 }

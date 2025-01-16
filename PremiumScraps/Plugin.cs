@@ -26,15 +26,17 @@ namespace PremiumScraps
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
-        // public static List<GameObject> gameObjects = new List<GameObject>();
+        public static List<GameObject> gameObjects = new List<GameObject>();
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
 
         void HarmonyPatchAll()
         {
-            harmony.CreateClassProcessor(typeof(GetEnemies), true).Patch();  // getenemies patch
-            harmony.CreateClassProcessor(typeof(ControllerHUDManagerPatch), true).Patch();  // controller chat patch
-            harmony.CreateClassProcessor(typeof(ControllerPlayerControllerBPatch), true).Patch();  // controller player patch
+            PremiumScrapsMonoModPatches.Load();  // IL code patches
+            harmony.CreateClassProcessor(typeof(GetEnemies), true).Patch();
+            harmony.CreateClassProcessor(typeof(ControllerTerminalPatch), true).Patch();
+            harmony.CreateClassProcessor(typeof(ControllerHUDManagerPatch), true).Patch();
+            harmony.CreateClassProcessor(typeof(ControllerPlayerControllerBPatch), true).Patch();
             if (Chainloader.PluginInfos.ContainsKey(LethalThings.Plugin.ModGUID))
                 harmony.CreateClassProcessor(typeof(LethalThingsBombItemChargerPatch), true).Patch();  // bombitem charger with lethalthings
             else
@@ -82,21 +84,20 @@ namespace PremiumScraps
 
             string directory = "Assets/Data/";
 
-            /*var prefabs = new string[] { "DeathNote/DeathNoteCanvas.prefab", "EmergencyMeeting/EmergencyMeetingCanvas.prefab",
-                "Ocarina/ElegyOfEmptiness.prefab"
-            };*/
+            var prefabs = new string[] { "Controller/ControlledAntena.prefab", "Controller/ControlledUI.prefab" };
 
             var audios = new string[] { "AirHorn1.ogg", "friendship_ends_here.wav", "scroll_tp.wav", "ShovelReelUp.ogg",
                 "ShovelSwing.ogg", "wooden-staff-hit.wav", "MineTrigger.ogg", "book_page.wav", "CVuse1.wav", "CVuse2.wav",
                 "CVuse3.wav", "CVuse4.wav", "TerminalAlarm.ogg", "Breathing.wav", "huh.wav", "book_use_redesign.wav",
                 "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav", "glass-grab.wav", "glass-drop.wav",
-                "beam.wav"
+                "beam.wav", "ControlModeStart.wav", "ControlModeStop.wav", "FlashlightOutOfBatteries.ogg", "ControlledOn.wav",
+                "ControlledOff.wav"
             };
 
-            /*foreach (string prefab in prefabs)
+            foreach (string prefab in prefabs)
             {
                 gameObjects.Add(bundle.LoadAsset<GameObject>(directory + prefab));
-            }*/
+            }
 
             foreach (string sfx in audios)
             {

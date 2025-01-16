@@ -32,7 +32,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 3392111639777033988, guid: 241da413f92a3894a92217c6e7d5b657,
     type: 3}
   requiresBattery: 1
-  batteryUsage: 400
+  batteryUsage: 350
   automaticallySetUsingPower: 0
   itemIcon: {fileID: 21300000, guid: 7eca8476af325f94ab25daf59d63981c, type: 3}
   grabAnim: 
@@ -46,14 +46,13 @@ MonoBehaviour:
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
   syncUseFunction: 0
-  syncDiscardFunction: 1
+  syncDiscardFunction: 0
   syncInteractLRFunction: 0
   saveItemVariable: 0
   isDefensiveWeapon: 0
   toolTips:
   - 'Activate : [RMB]'
   - 'Start controlling : [Q]'
-  - 'Inspect: [Z]'
   - 
   verticalOffset: 0
   floorYOffset: 90

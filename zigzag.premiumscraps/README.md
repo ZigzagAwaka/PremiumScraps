@@ -121,7 +121,7 @@ You can post some suggestions or issues in the mod release page in the [modding 
 
 # Credits
 
-- Thanks [XyphireTV](https://www.twitch.tv/xyphiretv) for helping with some custom made 3D models, shaders and other stuff!
+- Thanks [XyphireTV](https://www.twitch.tv/xyphiretv) for helping with a lot of things in this mod! (including shaders, some 3D models and coding)
 
 - Thanks [Zaggy1024](https://thunderstore.io/c/lethal-company/p/Zaggy1024/) for helping with the code of the Controller item!
 
