@@ -13,6 +13,16 @@ Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-troll.PNG)
 
+### Controller
+- This electronic device can be used while pointing it at other players to do a little bit of trolling!
+- The item will detect a potential target in front of it, and will then shoot a lightning bolt in front of you. Any crewmate hit by this strange magic will have their POV displayed on the device's screen.
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-controller1.PNG)
+
+- It also seems to have the ability to control one's movements. No one really knows how this works, but a few workers reported that their colleague were occasionally unable to control their own movements anymore...
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-controller2.PNG)
+
 ### My ■■■■■■th job application
 - Although you're not a recruiter, it really shouldn't hurt if you're the one inspecting it.
 - If horror movies taught you one thing however, it is that reading strange out of place objects from forgotten facilities in obscure planets really isn't the safest idea for you and your f̣̓̊eͦ́ͦllo̵̶̍w͛ͮ͒ c͍o-̖̋w̸̱͎or̬͗kers... you can already picture everyone *diseappearing* or dying from *heart attacks*.

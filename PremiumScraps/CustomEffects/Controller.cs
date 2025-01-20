@@ -17,7 +17,7 @@ namespace PremiumScraps.CustomEffects
         public ParticleSystem? controlModeParticle;
         public AudioSource? controlModeAudio;
         public Transform? chargingTransform;
-        public readonly float zapRange = 8f;
+        public readonly float zapRange = 9f;
         public bool screenIsReady = false;
         public bool targetIsValid = false;
         public bool serverDataValid = false;
@@ -38,6 +38,7 @@ namespace PremiumScraps.CustomEffects
         public GameObject? controlledAntena;
         public GameObject? controlledUI;
         public Animator? controlledUIAnimator;
+        public Coroutine? controlledUITextCoroutine;
 
         public Controller()
         {
@@ -257,6 +258,7 @@ namespace PremiumScraps.CustomEffects
 
         public override void PocketItem()
         {
+            ControlModeAnimationClientRpc(false);
             PrepareScreen(false, true, true);
             base.PocketItem();
         }
@@ -385,21 +387,15 @@ namespace PremiumScraps.CustomEffects
         {
             if (controlModeParticle != null && controlModeAudio != null)
             {
-                if (start)
+                if (start && !controlModeParticle.isPlaying)
                 {
-                    if (!controlModeParticle.isPlaying)
-                    {
-                        controlModeParticle.Play();
-                        controlModeAudio.PlayOneShot(Plugin.audioClips[24], 1f);
-                    }
+                    controlModeParticle.Play();
+                    controlModeAudio.PlayOneShot(Plugin.audioClips[24], 1f);
                 }
-                else
+                else if (!start && controlModeParticle.isPlaying)
                 {
-                    if (controlModeParticle.isPlaying)
-                    {
-                        controlModeParticle.Stop();
-                        controlModeAudio.PlayOneShot(Plugin.audioClips[playSpStopAudio ? 26 : 25], 1f);
-                    }
+                    controlModeParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                    controlModeAudio.PlayOneShot(Plugin.audioClips[playSpStopAudio ? 26 : 25], 1f);
                 }
             }
         }
@@ -452,9 +448,12 @@ namespace PremiumScraps.CustomEffects
             player.disableMoveInput = start;
             player.disableLookInput = start;
             player.isTypingChat = start;
-            Debug.LogError("controlled: " + start);
             ControlledEffectServerRpc(start, player.playerClientId);
             StartCoroutine(SetupUI(start));
+            if (!start || controlledUITextCoroutine != null)
+                StopCoroutine(controlledUITextCoroutine);
+            if (start && playerHeldBy != null)
+                controlledUITextCoroutine = StartCoroutine(Effects.Status("Controlled by\n" + playerHeldBy.playerUsername));
         }
 
         private IEnumerator SetupUI(bool start)
