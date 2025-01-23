@@ -20,7 +20,7 @@ MonoBehaviour:
   canBeGrabbedBeforeGameStart: 1
   weight: 1.35
   itemIsTrigger: 0
-  holdButtonUse: 0
+  holdButtonUse: 1
   itemSpawnsOnGround: 1
   isConductiveMetal: 1
   isScrap: 1
@@ -49,8 +49,9 @@ MonoBehaviour:
   syncDiscardFunction: 0
   syncInteractLRFunction: 0
   saveItemVariable: 0
-  isDefensiveWeapon: 0
-  toolTips: []
+  isDefensiveWeapon: 1
+  toolTips:
+  - 'Steel bonk : [RMB]'
   verticalOffset: 0
   floorYOffset: 90
   allowDroppingAheadOfPlayer: 1

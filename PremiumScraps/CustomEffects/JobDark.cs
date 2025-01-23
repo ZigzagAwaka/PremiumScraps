@@ -16,6 +16,7 @@ namespace PremiumScraps.CustomEffects
         private Coroutine? darkEffectCoroutine;
         private bool OneTimeUse = false;
         private bool OneTimeActionSp = false;
+        private bool weatherManipulation = false;
         private readonly int debug = -1;  // force choose hallucination if not -1
 
         public JobDark() { }
@@ -24,6 +25,7 @@ namespace PremiumScraps.CustomEffects
         {
             base.Start();
             SelectHallucination();
+            weatherManipulation = Plugin.config.jobappWeatherManip.Value;
         }
 
         public override void EquipItem()
@@ -445,7 +447,8 @@ namespace PremiumScraps.CustomEffects
         [ClientRpc]
         private void DarkJobEffectType2ClientRpc()
         {
-            Effects.ChangeWeather(LevelWeatherType.Eclipsed);
+            if (weatherManipulation)
+                Effects.ChangeWeather(LevelWeatherType.Eclipsed);
             Effects.Message("Warning", "Abnormal amount of employees detected !", true);
             summonFriends = -1;
         }

@@ -3,6 +3,8 @@
     - Added Controller
 - **Updated**
     - Harry Mason, El Gazpacho and The talking orb got some *special* upgrades when used by unlucky players
+    - Removed My ■■■■■■th job application's ability to manipulate the weather, but a config has been added to revert this change if you want
+    - Galvanized square steel can now be used as a weapon, with a special unlucky effect hehe (configurable with a config)
 - **Fixed**
     - Added a custom condition for [ShipInventory](https://thunderstore.io/c/lethal-company/p/WarperSan/ShipInventory/) to prevent certain items from being stored
     - Fixed item tool tips sometimes overlaping with other tool tips

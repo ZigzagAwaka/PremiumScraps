@@ -109,6 +109,21 @@ namespace PremiumScraps.Utils
             Object.Destroy(source);
         }
 
+        public static void Copy(Shovel target, Item item)
+        {
+            var source = item.spawnPrefab.GetComponent<Shovel>();
+            target.shovelHitForce = source.shovelHitForce;
+            target.reelUp = source.reelUp;
+            target.swing = source.swing;
+            target.hitSFX = new AudioClip[source.hitSFX.Length];
+            for (int i = 0; i < source.hitSFX.Length; i++)
+            {
+                target.hitSFX[i] = source.hitSFX[i];
+            }
+            target.shovelAudio = source.shovelAudio;
+            Object.Destroy(source);
+        }
+
         public static void Copy(SoccerBallProp target, Item item)
         {
             var source = item.spawnPrefab.GetComponent<SoccerBallProp>();
