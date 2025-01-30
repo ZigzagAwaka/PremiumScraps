@@ -1,3 +1,9 @@
+## 2.2.1
+- **Updated**
+    - Updated README
+- **Fixed**
+    - Added something to try improving compatibility with mods that change player body layer (to fix player bodies being invisible on the Controller screen)
+
 # 2.2.0 The Controller update
 - **Added**
     - Added Controller

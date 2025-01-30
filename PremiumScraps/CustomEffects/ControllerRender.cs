@@ -8,6 +8,7 @@ namespace PremiumScraps.CustomEffects
     {
         ShadowCastingMode previousTargetShadowCastingMode;
         ShadowCastingMode previousLocalShadowCastingMode;
+        int previousLocalLayer;
         Light? nightvisionLight;
         PlayerControllerB? targetPlayer;
         PlayerControllerB? localPlayer;
@@ -34,7 +35,9 @@ namespace PremiumScraps.CustomEffects
                 if (localPlayer != null)
                 {
                     previousLocalShadowCastingMode = localPlayer.thisPlayerModel.shadowCastingMode;
+                    previousLocalLayer = localPlayer.thisPlayerModel.gameObject.layer;
                     localPlayer.thisPlayerModel.shadowCastingMode = ShadowCastingMode.On;
+                    localPlayer.thisPlayerModel.gameObject.layer = 0;  // DEFAULT LAYER
                 }
                 if (targetPlayer != null)
                 {
@@ -51,7 +54,10 @@ namespace PremiumScraps.CustomEffects
                 if (nightvisionLight != null)
                     nightvisionLight.enabled = false;
                 if (localPlayer != null)
+                {
                     localPlayer.thisPlayerModel.shadowCastingMode = previousLocalShadowCastingMode;
+                    localPlayer.thisPlayerModel.gameObject.layer = previousLocalLayer;
+                }
                 if (targetPlayer != null)
                     targetPlayer.thisPlayerModel.shadowCastingMode = previousTargetShadowCastingMode;
             }

@@ -77,6 +77,12 @@ Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 
 </details>
 
+### Unlucky players
+- Have you noticed some weird things happening to some players that you are not able to reproduce? Yep! With this mod installed, some "unlucky players" will experience some secret events only for them 😌
+- Unlucky players can be chosen yourself in the config file, use it to troll your friends!
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-unluckyplayers.PNG)
+
 ##
 
 ### Notes
