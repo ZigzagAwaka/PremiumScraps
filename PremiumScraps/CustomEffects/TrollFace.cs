@@ -8,7 +8,7 @@ namespace PremiumScraps.CustomEffects
 {
     internal class TrollFace : PhysicsProp
     {
-        public readonly int numberOfUse = 2;
+        public readonly int numberOfUse = 3;
         public int usage = 0;
         public bool unlucky = false;
         public bool StarlancerAIFix = false;

@@ -140,6 +140,8 @@ namespace PremiumScraps.CustomEffects
         {
             if (playerHeldBy != null)
             {
+                if (Effects.IsUnlucky(GameNetworkManager.Instance.localPlayerController.playerSteamId) && Random.Range(0, 10) <= 3)  // unlucky 40%
+                    power = ultimateKnockback;
                 Effects.Knockback(GameNetworkManager.Instance.localPlayerController.transform.position - direction, 5, 0, power);
             }
         }

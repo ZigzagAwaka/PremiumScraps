@@ -23,9 +23,10 @@ namespace PremiumScraps.CustomEffects
                     Effects.Message("Wait", "You are already in the ship?");
                     return;
                 }
+                var previousPos = playerHeldBy.transform.position;
                 Effects.Teleportation(playerHeldBy, StartOfRound.Instance.middleOfShipNode.position);
                 SetPosFlagsServerRpc(playerHeldBy.playerClientId, true, false, false);
-                AudioServerRpc(2, playerHeldBy.transform.position, 1.2f, 0.75f);
+                AudioServerRpc(2, previousPos, 1.2f, 0.9f);
                 DestroyObjectServerRpc(StartOfRound.Instance.localPlayerController.playerClientId);
             }
         }
@@ -39,7 +40,13 @@ namespace PremiumScraps.CustomEffects
         [ClientRpc]
         private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
         {
-            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            if (playerHeldBy != null && GameNetworkManager.Instance.localPlayerController.playerClientId == playerHeldBy.playerClientId)
+                Effects.Audio(audioID, localVolume);
+            else
+            {
+                Effects.Audio3D(audioID, clientPosition, clientVolume);
+                Effects.Audio3D(audioID, StartOfRound.Instance.middleOfShipNode.position, clientVolume);
+            }
         }
 
         [ServerRpc(RequireOwnership = false)]

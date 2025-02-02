@@ -3174,6 +3174,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1417505660078142387, guid: 6c4ba9625cd80b84db1c0780b57b926d,
+        type: 3}
+      propertyPath: triggerAnimator
+      value: 
+      objectReference: {fileID: 7439553253003759690}
     - target: {fileID: 6670798875263313001, guid: 6c4ba9625cd80b84db1c0780b57b926d,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -3183,11 +3188,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PuppyShark
-      objectReference: {fileID: 0}
-    - target: {fileID: 7985398424442368368, guid: 6c4ba9625cd80b84db1c0780b57b926d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8247504396659150245, guid: 6c4ba9625cd80b84db1c0780b57b926d,
         type: 3}
@@ -3244,6 +3244,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4ba9625cd80b84db1c0780b57b926d, type: 3}
+--- !u!95 &7439553253003759690 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3636363997376503898, guid: 6c4ba9625cd80b84db1c0780b57b926d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7439553253003759686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8227857714238700220
 PrefabInstance:
   m_ObjectHideFlags: 0

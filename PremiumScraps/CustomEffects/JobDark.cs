@@ -12,10 +12,11 @@ namespace PremiumScraps.CustomEffects
         public int summonFriends = 0;
         public bool canInspectPaper = true;
         public bool itsTooLate = false;
-        public float timeUntilItsTooLate = 8f;
+        public float timeUntilItsTooLate = 7f;
         private Coroutine? darkEffectCoroutine;
         private bool OneTimeUse = false;
         private bool OneTimeActionSp = false;
+        private bool isUnlucky = false;
         private readonly int debug = -1;  // force choose hallucination if not -1
 
         public JobDark() { }
@@ -117,7 +118,7 @@ namespace PremiumScraps.CustomEffects
             }
             else
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(jobDark != null && jobDark.isUnlucky ? 0.38f : 0.5f);
                 Vector3 position;
                 if (player.isInsideFactory)
                     position = RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position;
@@ -143,7 +144,7 @@ namespace PremiumScraps.CustomEffects
                     yield return new WaitForSeconds(5);
                     if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                     {
-                        jobDark.DarkJobEffectServerRpc(1, player.transform.position);
+                        jobDark.DarkJobEffectServerRpc(1, player.transform.position, Effects.IsUnlucky(player.playerSteamId));
                     }
                 }
             }
@@ -157,7 +158,7 @@ namespace PremiumScraps.CustomEffects
             else if (player.isInHangarShipRoom || player.isInsideFactory)
             {
                 yield return new WaitUntil(() => (player.isInHangarShipRoom == false && player.isInsideFactory == false) || StartOfRound.Instance.shipIsLeaving == true);
-                for (int n = 0; n < 3; n++)
+                for (int n = 0; n < (Effects.IsUnlucky(player.playerSteamId) ? 0 : 3); n++)
                 {
                     if (StartOfRound.Instance.shipIsLeaving || StartOfRound.Instance.inShipPhase)
                         break;
@@ -204,7 +205,7 @@ namespace PremiumScraps.CustomEffects
                         break;
                     case 5:
                         var original = player.movementSpeed;
-                        player.movementSpeed = 0.2f;
+                        player.movementSpeed = 0.25f;
                         yield return new WaitForSeconds(15);
                         player.movementSpeed = original;
                         yield return new WaitForSeconds(5);
@@ -232,11 +233,12 @@ namespace PremiumScraps.CustomEffects
                 jobDark.OneTimeUse = true;
             else if (monoBehaviour == null)
                 yield break;
+            var unlucky = jobDark != null ? jobDark.isUnlucky : Effects.IsUnlucky(player.playerSteamId);
             if (!player.isInsideFactory)
                 yield return new WaitUntil(() => player.isInsideFactory == true || StartOfRound.Instance.shipIsLeaving == true);
             if (!StartOfRound.Instance.shipIsLeaving && !player.isPlayerDead)
             {
-                yield return new WaitForSeconds(15);
+                yield return new WaitForSeconds(unlucky ? 5 : 15);
                 if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                 {
                     player.JumpToFearLevel(1);
@@ -272,7 +274,7 @@ namespace PremiumScraps.CustomEffects
                                 else
                                 {
                                     Effects.Audio(12, 10f);
-                                    yield return new WaitForSeconds(10);
+                                    yield return new WaitForSeconds(unlucky ? 7.5f : 10f);
                                 }
                                 if (StartOfRound.Instance.inShipPhase || player.isPlayerDead)
                                 { i = 0; break; }
@@ -285,10 +287,7 @@ namespace PremiumScraps.CustomEffects
                             if (i == 5 && !player.isInHangarShipRoom)
                             {
                                 player.playersManager.fearLevel = 0;
-                                if (player.IsHost)
-                                    instance.StartCoroutine(Effects.DamageHost(player, 100, CauseOfDeath.Inertia, (int)Effects.DeathAnimation.Haunted));  // death (host)
-                                else
-                                    Effects.Damage(player, 100, CauseOfDeath.Inertia, (int)Effects.DeathAnimation.Haunted);  // death
+                                Effects.Damage(player, 100, CauseOfDeath.Inertia, (int)Effects.DeathAnimation.Haunted);  // death
                             }
                         }
                     }
@@ -353,18 +352,31 @@ namespace PremiumScraps.CustomEffects
         private IEnumerator UnluckyDarkEffect()
         {
             timeUntilItsTooLate = 0f;
-            yield return new WaitForEndOfFrame();
+            if (playerHeldBy == null || playerHeldBy.isPlayerDead)
+                yield break;
+            while (playerHeldBy.isGrabbingObjectAnimation)
+            {
+                yield return new WaitForEndOfFrame();
+            }
             yield return DarkEffect();
         }
 
         public override void GrabItem()
         {
             base.GrabItem();
+            if (playerHeldBy != null && IsOwner)
+                isUnlucky = Effects.IsUnlucky(playerHeldBy.playerSteamId);
             if (!itsTooLate && canInspectPaper && itemProperties.canBeInspected && IsOwner &&
-                playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId))
+                playerHeldBy != null && isUnlucky)
             {
                 if (Random.Range(0, 10) < 8)  // 80%
                     darkEffectCoroutine = StartCoroutine(UnluckyDarkEffect());
+            }
+            else if (itsTooLate && IsOwner && playerHeldBy != null && isUnlucky
+                && summonFriends >= 1 && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded)
+            {
+                if (Random.Range(0, 10) < 8)  // 80%
+                    StartCoroutine(SummonFriends(playerHeldBy));
             }
         }
 
@@ -386,7 +398,10 @@ namespace PremiumScraps.CustomEffects
                 }
                 else if (!playerHeldBy.IsInspectingItem)
                 {
-                    Effects.Message("You are already cursed", "", true);
+                    if (summonFriends >= 1 && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded)
+                        StartCoroutine(SummonFriends(playerHeldBy));
+                    else
+                        Effects.Message("You are already cursed", "", true);
                 }
             }
         }
@@ -425,7 +440,7 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void DarkJobEffectServerRpc(int type, Vector3 position)
+        private void DarkJobEffectServerRpc(int type, Vector3 position, bool unlucky = false)
         {
             switch (type)
             {
@@ -434,7 +449,7 @@ namespace PremiumScraps.CustomEffects
                         Effects.Spawn(GetEnemies.Masked, position);
                     break;
                 case 1:
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < (unlucky ? 12 : 6); i++)
                         Effects.Spawn(GetEnemies.GhostGirl, position);
                     break;
                 case 2: DarkJobEffectType2ClientRpc(); break;

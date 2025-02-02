@@ -147,7 +147,7 @@ namespace PremiumScraps.Utils
             else if (chosenPack == "CuteItempack")
                 pack = new string[4] { "Frieren", "Chocobo", "Puppy Shark", "Moogle" };
             else if (chosenPack == "DangerousItempack")
-                pack = new string[4] { "El Gazpacho", "Friendship ender", "Scroll of Town Portal", "Job application" };
+                pack = new string[4] { "Controller", "Friendship ender", "Scroll of Town Portal", "Job application" };
             for (int i = 0; i < pack.Length; i++)
                 Networker.Instance.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, 1, pack[i]);
         }

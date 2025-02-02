@@ -28,7 +28,7 @@ namespace PremiumScraps.CustomEffects
         {
             var player = GameNetworkManager.Instance.localPlayerController;
             if (player != null)
-                return Effects.IsUnlucky(player.playerSteamId) && (instantCondition || Random.Range(0, 10) <= 2);  // 30% unlucky
+                return Effects.IsUnlucky(player.playerSteamId) && (instantCondition || Random.Range(0, 10) <= 3);  // 40% unlucky
             return false;
         }
 
@@ -77,7 +77,7 @@ namespace PremiumScraps.CustomEffects
             {
                 yield return new WaitForEndOfFrame();
             }
-            Effects.Damage(player, player.health <= 10 ? player.health : player.health - 10, CauseOfDeath.Inertia, criticalBlood: false);
+            Effects.Damage(player, player.health - 10, CauseOfDeath.Inertia, criticalBlood: false);
             if (player.health <= 0 || player.isPlayerDead)
                 yield break;
             ChargeSteelServerRpc(true);

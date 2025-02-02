@@ -1,4 +1,5 @@
 ﻿using PremiumScraps.Utils;
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -12,19 +13,28 @@ namespace PremiumScraps.CustomEffects
         {
             base.GrabItem();
             if (Random.Range(0, 100) >= 80)
-                AudioServerRpc(20, transform.position, 0.95f, 0.6f);
+                EffectServerRpc(20, transform.position, 0.95f, 0.6f, playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) >= 2);
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void AudioServerRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume = default)
+        private void EffectServerRpc(int audioID, Vector3 position, float localVolume, float clientVolume = default, bool unlucky = false)
         {
-            AudioClientRpc(audioID, clientPosition, localVolume, clientVolume == default ? localVolume : clientVolume);
+            EffectClientRpc(audioID, position, localVolume, clientVolume == default ? localVolume : clientVolume, unlucky);
         }
 
         [ClientRpc]
-        private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
+        private void EffectClientRpc(int audioID, Vector3 position, float localVolume, float clientVolume, bool unlucky)
         {
-            Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
+            Effects.Audio(audioID, position, localVolume, clientVolume, playerHeldBy);
+            if (unlucky && !StartOfRound.Instance.inShipPhase && !StartOfRound.Instance.shipIsLeaving)
+                StartCoroutine(DoBoom());
+        }
+
+        private IEnumerator DoBoom()
+        {
+            yield return new WaitForSeconds(4);
+            if (!StartOfRound.Instance.inShipPhase && !StartOfRound.Instance.shipIsLeaving)
+                Effects.Explosion(transform.position, 1.5f);
         }
     }
 }

@@ -1,19 +1,34 @@
-# 2.3.0 Improvements
+# 2.3.0 The 2.3 improvements part 1
 - **Controller**
     - Can now be used on players driving the cruiser
     - New *special* unlucky effect
     - Added something to try improving compatibility with mods that change player body layer (to fix player bodies being invisible on the item screen)
     - Fixed antena sometimes not despawning after stoping the control mode
 - **Fake airhorn**
-    - New *special* unlucky effect
+    - New *special* unlucky effect (this one is pretty straight forward)
     - New animation when the user is about to die, and also new visuals for the actual effect
 - **Harry Mason**
     - Adjusted the unlucky effect to be more dangerous
 - **My ■■■■■■th job application**
     - Re-added the effect to manipulate the weather but it's now a combined weather (only works if you have [WeatherRegistry](https://thunderstore.io/c/lethal-company/p/mrov/WeatherRegistry/) installed, if not will have no effect)
     - Summoning *"employees"* now work on modded company-like moons
+    - Some effects are a bit more dangerous
+    - The unlucky effect is now even more dangerous
+- **Stick**
+    - The ultimate knockback effect which was 5% chance, is now 40% when used on an unlucky player
+- **Helm of Domination**
+    - New *special* unlucky effect
+- **Galvanized square steel**
+    - Unlucky effect is now more frequent
+- **Puppy Shark**
+    - New animation when used
+- **Scroll of Town Portal**
+    - Sound effect is now played at position for players not using the item
+- **The friendship ender**
+    - Can now be used 3 times max per moons
 - **Misc**
     - Updated README to explain unlucky players
+    - Changed the "Premium Scraps" dice event to include the Controller in the spawn pool 
     - Removed some configs that are not needed anymore
 
 # 2.2.0 The Controller update
