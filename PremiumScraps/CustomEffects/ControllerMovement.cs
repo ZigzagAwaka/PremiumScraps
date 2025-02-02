@@ -9,6 +9,9 @@ namespace PremiumScraps.CustomEffects
         public static Vector2 moveInput = Vector2.zero;
         public static float prevMoveSpeed = 0f;
         public static float moveSpeed = 0f;
+        public static Vector2 cruiserMoveInput = Vector2.zero;
+        public static float cruiserSteeringInput;
+        public static float cruiserSteeringWheelAudioVolume;
 
         internal enum ControllerActions
         {
@@ -164,6 +167,33 @@ namespace PremiumScraps.CustomEffects
                 return IngamePlayerSettings.Instance.playerInput.actions.FindAction("Sprint").ReadValue<float>();
         }
 
+        public static void ControlledCruiserSaveValuesPatch(VehicleController vehicle)
+        {
+            cruiserSteeringInput = vehicle.steeringInput;
+            cruiserSteeringWheelAudioVolume = vehicle.steeringWheelAudio.volume;
+        }
+
+        public static void ControlledCruiserMovePatch(VehicleController vehicle)
+        {
+            if (vehicle.localPlayerInControl && IsBeingControlled(vehicle.currentDriver))
+            {
+                vehicle.moveInputVector = cruiserMoveInput;
+                vehicle.steeringInput = Mathf.Clamp(cruiserSteeringInput + vehicle.moveInputVector.x * vehicle.steeringWheelTurnSpeed * Time.deltaTime, -3f, 3f);
+                if (Mathf.Abs(vehicle.moveInputVector.x) > 0.1f)
+                    vehicle.steeringWheelAudio.volume = Mathf.Lerp(cruiserSteeringWheelAudioVolume, Mathf.Abs(vehicle.moveInputVector.x), 5f * Time.deltaTime);
+                else
+                    vehicle.steeringWheelAudio.volume = Mathf.Lerp(cruiserSteeringWheelAudioVolume, 0f, 5f * Time.deltaTime);
+                vehicle.steeringAnimValue = vehicle.moveInputVector.x;
+                vehicle.drivePedalPressed = vehicle.moveInputVector.y > 0.1f;
+                vehicle.brakePedalPressed = vehicle.moveInputVector.y < -0.1f;
+            }
+        }
+
+        public static bool ControlledCruiserJumpPatch(VehicleController vehicle)
+        {
+            return vehicle.localPlayerInControl && IsBeingControlled(vehicle.currentDriver);
+        }
+
         // CONTROLLER ACTIONS
 
         public static void PerformAction(PlayerControllerB player, ControllerActions action, Vector2 input, float data)
@@ -202,6 +232,22 @@ namespace PremiumScraps.CustomEffects
                 if (StartOfRound.Instance.connectedPlayersAmount != 0)
                 {
                     player.PlayerJumpedServerRpc();
+                }
+            }
+            if (((player.IsOwner && player.isPlayerControlled && (!player.IsServer || player.isHostPlayerObject)) || player.isTestingPlayer)
+                && player.inSpecialInteractAnimation && player.inVehicleAnimation)
+            {
+                foreach (var vehicle in Object.FindObjectsOfType<VehicleController>())
+                {
+                    if (vehicle.currentDriver != null && vehicle.currentDriver == player)
+                    {
+                        if (vehicle.localPlayerInControl && !vehicle.jumpingInCar && !vehicle.keyIsInDriverHand)
+                        {
+                            vehicle.UseTurboBoostLocalClient(cruiserMoveInput);
+                            vehicle.UseTurboBoostServerRpc();
+                        }
+                        break;
+                    }
                 }
             }
         }
@@ -318,6 +364,8 @@ namespace PremiumScraps.CustomEffects
             {
                 if (player.inSpecialInteractAnimation && !player.isClimbingLadder && !player.inShockingMinigame)
                 {
+                    if (player.inVehicleAnimation)
+                        cruiserMoveInput = input;
                     input = Vector2.zero;
                 }
                 moveInput = input;

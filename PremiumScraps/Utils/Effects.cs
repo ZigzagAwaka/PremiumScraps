@@ -235,13 +235,15 @@ namespace PremiumScraps.Utils
             Object.Destroy(gameObject, Plugin.audioClips[audioID].length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
         }
 
-        public static IEnumerator FadeOutAudio(AudioSource source, float time)
+        public static IEnumerator FadeOutAudio(AudioSource source, float time, bool specialStop = false)
         {
             yield return new WaitForEndOfFrame();
             var volume = source.volume;
             while (source.volume > 0)
             {
                 source.volume -= volume * Time.deltaTime / time;
+                if (specialStop && source.volume <= 0.01f)
+                    break;
                 yield return null;
             }
             source.Stop();
@@ -300,6 +302,18 @@ namespace PremiumScraps.Utils
         {
             if (GameNetworkManager.Instance.localPlayerController.IsHost)
                 WeatherRegistry.WeatherController.SetWeatherEffects(weather);
+        }
+
+        public static void AddCombinedWeather(LevelWeatherType weather)
+        {
+            if (Plugin.config.WeatherRegistery)
+                AddCombinedWeatherWR(weather);
+        }
+
+        public static void AddCombinedWeatherWR(LevelWeatherType weather)
+        {
+            WeatherRegistry.WeatherManager.GetWeather(weather).Effect.EffectEnabled = true;
+            WeatherRegistry.Patches.SunAnimator.OverrideSunAnimator(weather);
         }
 
         public static void Message(string title, string bottom, bool warning = false)

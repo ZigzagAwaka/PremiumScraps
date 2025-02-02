@@ -225,6 +225,32 @@ namespace PremiumScraps.Utils
     }
 
 
+    [HarmonyPatch(typeof(VehicleController))]
+    internal class ControllerVehicleControllerPatch
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch("GetVehicleInput")]
+        public static void GetVehicleInputControllerPrePatch(VehicleController __instance)
+        {
+            CustomEffects.ControllerMovement.ControlledCruiserSaveValuesPatch(__instance);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("GetVehicleInput")]
+        public static void GetVehicleInputControllerPostPatch(VehicleController __instance)
+        {
+            CustomEffects.ControllerMovement.ControlledCruiserMovePatch(__instance);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("DoTurboBoost")]
+        public static bool DoTurboBoostControllerPatch(VehicleController __instance)
+        {
+            return !CustomEffects.ControllerMovement.ControlledCruiserJumpPatch(__instance);
+        }
+    }
+
+
     internal static class PremiumScrapsMonoModPatches
     {
         public static void Load()

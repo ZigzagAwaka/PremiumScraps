@@ -145,6 +145,7 @@ namespace PremiumScraps.CustomEffects
                 SyncStateServerRpc(false, 0, 0);
                 PrepareScreen(false, false, false);
                 SetControlTips();
+                CheckForUnluckyEffect();
                 return;
             }
             if (cameraReady && camera != null)
@@ -492,7 +493,7 @@ namespace PremiumScraps.CustomEffects
             var player = StartOfRound.Instance.allPlayerObjects[playerId].GetComponent<PlayerControllerB>();
             if (controlledAntena != null)
             {
-                yield return Effects.FadeOutAudio(controlledAntena.GetComponent<AudioSource>(), 0.1f);
+                yield return Effects.FadeOutAudio(controlledAntena.GetComponent<AudioSource>(), 0.1f, true);
                 Destroy(controlledAntena);
                 controlledAntena = null;
             }
@@ -507,6 +508,39 @@ namespace PremiumScraps.CustomEffects
                     controlledAntena = Instantiate(controlledAntenaPrefab, pos, headTransform.rotation, headTransform);
                 }
             }
+        }
+
+        private void CheckForUnluckyEffect()
+        {
+            if (playerHeldBy == null || playerHeldBy.isPlayerDead)
+                return;
+            bool unlucky = Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) <= 6;  // 70% unlucky
+            if (!unlucky)
+                return;
+            UnluckyEffectServerRpc();
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void UnluckyEffectServerRpc()
+        {
+            UnluckyEffectClientRpc();
+        }
+
+        [ClientRpc]
+        private void UnluckyEffectClientRpc()
+        {
+            StartCoroutine(UnluckyEffect());
+        }
+
+        private IEnumerator UnluckyEffect()
+        {
+            controlModeAudio?.PlayOneShot(Plugin.audioClips[29], 1.2f);
+            yield return new WaitForSeconds(1.3f);
+            Effects.SpawnLightningBolt(transform.position, false, false);
+            if (isInFactory)
+                Effects.Audio3D(30, transform.position, 1f);
+            yield return new WaitForSeconds(0.15f);
+            Effects.Explosion(transform.position, 3f, 80, 10);
         }
 
         [ServerRpc(RequireOwnership = false)]

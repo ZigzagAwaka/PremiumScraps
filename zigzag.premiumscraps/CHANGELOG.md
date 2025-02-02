@@ -1,14 +1,26 @@
-## 2.2.1
-- **Updated**
-    - Updated README
-- **Fixed**
-    - Added something to try improving compatibility with mods that change player body layer (to fix player bodies being invisible on the Controller screen)
+# 2.3.0 Improvements
+- **Controller**
+    - Can now be used on players driving the cruiser
+    - New *special* unlucky effect
+    - Added something to try improving compatibility with mods that change player body layer (to fix player bodies being invisible on the item screen)
+    - Fixed antena sometimes not despawning after stoping the control mode
+- **Fake airhorn**
+    - New *special* unlucky effect
+    - New animation when the user is about to die, and also new visuals for the actual effect
+- **Harry Mason**
+    - Adjusted the unlucky effect to be more dangerous
+- **My ■■■■■■th job application**
+    - Re-added the effect to manipulate the weather but it's now a combined weather (only works if you have [WeatherRegistry](https://thunderstore.io/c/lethal-company/p/mrov/WeatherRegistry/) installed, if not will have no effect)
+    - Summoning *"employees"* now work on modded company-like moons
+- **Misc**
+    - Updated README to explain unlucky players
+    - Removed some configs that are not needed anymore
 
 # 2.2.0 The Controller update
 - **Added**
     - Added Controller
 - **Updated**
-    - Harry Mason, El Gazpacho and The talking orb got some *special* upgrades when used by unlucky players
+    - New *special* unlucky effects for: Harry Mason, El Gazpacho and The talking orb
     - Removed My ■■■■■■th job application's ability to manipulate the weather, but a config has been added to revert this change if you want
     - Galvanized square steel can now be used as a weapon, with a special unlucky effect hehe (configurable with a config)
 - **Fixed**
@@ -17,6 +29,12 @@
     - Basics of architecture state is now synced for late join players
     - Small fix for Harry Mason secret effect
     - Optimized The talking orb's code
+
+##
+
+<details><summary>Old versions (click to reveal)</summary>
+
+###
 
 ## 2.1.1
 - **Updated**
@@ -42,12 +60,6 @@
     - Updated default spawn chance for some items
 - **Fixed**
     - Fixed Fake airhorn "landmine audio" playing incorectly
-
-##
-
-<details><summary>Old versions (click to reveal)</summary>
-
-###
 
 ## 2.0.16
 - **Fixed**

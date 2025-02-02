@@ -3,7 +3,10 @@
 This mod currently adds **27 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish, some even have a custom effect!
-They all have been cleaned to have no impact on performance.
+
+Scraps in this mod have been made specifically to be discovered in a friend group, some of them even have secret interaction between players. It's recommended to keep the surprise but you can still take a look at the images bellow for a small preview.
+
+All items are performance friendly.
 
 Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 
@@ -78,10 +81,11 @@ Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 </details>
 
 ### Unlucky players
-- Have you noticed some weird things happening to some players that you are not able to reproduce? Yep! With this mod installed, some "unlucky players" will experience some secret events only for them 😌
-- Unlucky players can be chosen yourself in the config file, use it to troll your friends!
+- Did you notice *oddly specific things* happening to certain players ? Things that you were unable to reproduce on your own ? With this mod installed, "unlucky players" will experience strange and secret phenomenons reserved only for them 😌
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-unluckyplayers.PNG)
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-unluckyplayers.png)
+
+- If you enjoy inflicting excessive punishment on your friends, know that the status of "unlucky players" can be attributed to people yourself in the config file.
 
 ##
 

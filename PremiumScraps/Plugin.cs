@@ -37,6 +37,7 @@ namespace PremiumScraps
             harmony.CreateClassProcessor(typeof(ControllerTerminalPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerHUDManagerPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerPlayerControllerBPatch), true).Patch();
+            harmony.CreateClassProcessor(typeof(ControllerVehicleControllerPatch), true).Patch();
             if (Chainloader.PluginInfos.ContainsKey(LethalThings.Plugin.ModGUID))
                 harmony.CreateClassProcessor(typeof(LethalThingsBombItemChargerPatch), true).Patch();  // bombitem charger with lethalthings
             else
@@ -92,7 +93,7 @@ namespace PremiumScraps
                 "CVuse3.wav", "CVuse4.wav", "TerminalAlarm.ogg", "Breathing.wav", "huh.wav", "book_use_redesign.wav",
                 "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav", "glass-grab.wav", "glass-drop.wav",
                 "beam.wav", "ControlModeStart.wav", "ControlModeStop.wav", "FlashlightOutOfBatteries.ogg", "ControlledOn.wav",
-                "ControlledOff.wav"
+                "ControlledOff.wav", "controller-alert.wav", "LightningStrike2.ogg"
             };
 
             foreach (string prefab in prefabs)

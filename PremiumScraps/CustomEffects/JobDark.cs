@@ -16,7 +16,6 @@ namespace PremiumScraps.CustomEffects
         private Coroutine? darkEffectCoroutine;
         private bool OneTimeUse = false;
         private bool OneTimeActionSp = false;
-        private bool weatherManipulation = false;
         private readonly int debug = -1;  // force choose hallucination if not -1
 
         public JobDark() { }
@@ -25,7 +24,6 @@ namespace PremiumScraps.CustomEffects
         {
             base.Start();
             SelectHallucination();
-            weatherManipulation = Plugin.config.jobappWeatherManip.Value;
         }
 
         public override void EquipItem()
@@ -83,7 +81,7 @@ namespace PremiumScraps.CustomEffects
             summonFriends = -1;
             SetControlTips();
             yield return new WaitForEndOfFrame();
-            if (StartOfRound.Instance.currentLevel.PlanetName != "71 Gordion")
+            if (RoundManager.Instance.dungeonGenerator != null)
                 position = RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position;
             else
             {
@@ -432,11 +430,11 @@ namespace PremiumScraps.CustomEffects
             switch (type)
             {
                 case 0:
-                    for (int i = 0; i < Effects.NbOfPlayers(); i++)
+                    for (int i = 0; i < Effects.NbOfPlayers() + 1; i++)
                         Effects.Spawn(GetEnemies.Masked, position);
                     break;
                 case 1:
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < 10; i++)
                         Effects.Spawn(GetEnemies.GhostGirl, position);
                     break;
                 case 2: DarkJobEffectType2ClientRpc(); break;
@@ -447,8 +445,7 @@ namespace PremiumScraps.CustomEffects
         [ClientRpc]
         private void DarkJobEffectType2ClientRpc()
         {
-            if (weatherManipulation)
-                Effects.ChangeWeather(LevelWeatherType.Eclipsed);
+            Effects.AddCombinedWeather(LevelWeatherType.Eclipsed);
             Effects.Message("Warning", "Abnormal amount of employees detected !", true);
             summonFriends = -1;
         }
