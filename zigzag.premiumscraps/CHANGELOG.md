@@ -1,3 +1,9 @@
+# 2.3.1 The 2.3 improvements part 2
+- **Controller**
+    - Added compatibility with [OpenBodyCams](https://thunderstore.io/c/lethal-company/p/Zaggy1024/OpenBodyCams/), the item screen will now use a body cam instead of the normal one if you have this mod installed (a config has been added to deactivate this compatibility if you want)
+- **Misc**
+    - f
+
 # 2.3.0 The 2.3 improvements part 1
 - **Controller**
     - Can now be used on players driving the cruiser

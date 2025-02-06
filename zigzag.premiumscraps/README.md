@@ -80,12 +80,18 @@ Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 
 </details>
 
+###
+
+<details><summary>Unlucky players (secret feature!)</summary>
+
 ### Unlucky players
 - Did you notice *oddly specific things* happening to certain players ? Things that you were unable to reproduce on your own ? With this mod installed, "unlucky players" will experience strange and secret phenomenons reserved only for them 😌
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-unluckyplayers.png)
 
-- If you enjoy inflicting excessive punishment on your friends, know that the status of "unlucky players" can be attributed to people yourself in the config file.
+**If you enjoy inflicting excessive punishment on your friends, know that the status of "unlucky players" can be attributed to people yourself in the config file.**
+
+</details>
 
 ##
 
@@ -99,7 +105,8 @@ Each item has a low/medium spawn chance on all moons, you will not find them eas
 - It's highly recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed but I will not spoil why...
 - You should check [ChillaxScraps](https://thunderstore.io/c/lethal-company/p/Zigzag/ChillaxScraps/), it pairs well with PremiumScraps!
 - Custom events are added to [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) if you have it installed.
-- All scraps are given a custom icon if you have [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/) installed!
+- All scraps are given a custom icon if you have [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/) installed! 😌
+- The Controller item screen is upgraded if you have [OpenBodyCams](https://thunderstore.io/c/lethal-company/p/Zaggy1024/OpenBodyCams/)!
 - You can also install the mod [NavMeshInCompany](https://thunderstore.io/c/lethal-company/p/Kittenji/NavMeshInCompany/) if you want more chaos! 😏
 
 ### Feedback

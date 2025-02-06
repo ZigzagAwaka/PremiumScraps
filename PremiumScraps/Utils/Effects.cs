@@ -316,6 +316,54 @@ namespace PremiumScraps.Utils
             WeatherRegistry.Patches.SunAnimator.OverrideSunAnimator(weather);
         }
 
+        public static void CreateCameraOBC(PlayerControllerB? targetPlayer, MeshRenderer? renderer, GameObject gameObject, CustomEffects.Controller controller)
+        {
+            if (targetPlayer == null || renderer == null)
+                return;
+            var bodyCam = gameObject.GetComponent<OpenBodyCams.BodyCamComponent>();
+            if (bodyCam == null)
+            {
+                bodyCam = OpenBodyCams.API.BodyCam.CreateBodyCam(gameObject, null, 0);
+                bodyCam.Resolution = new Vector2Int(860, 520);
+                bodyCam.OnCameraCreated += cam => SetRenderDistanceOBC(cam);
+                bodyCam.OnRenderTextureCreated += _ => SetTextureOBC(bodyCam.IsBlanked, renderer, bodyCam.GetCamera());
+                bodyCam.OnBlankedSet += _ => SetTextureOBC(bodyCam.IsBlanked, renderer, bodyCam.GetCamera());
+                SetTextureOBC(bodyCam.IsBlanked, renderer, bodyCam.GetCamera());
+                SetRenderDistanceOBC(bodyCam.GetCamera());
+            }
+            bodyCam.SetTargetToPlayer(targetPlayer);
+            bodyCam.ForceEnableCamera = true;
+            controller.cameraReady = true;
+        }
+
+        public static void DestroyCameraOBC(MeshRenderer? renderer, GameObject gameObject)
+        {
+            var bodyCam = gameObject.GetComponent<OpenBodyCams.BodyCamComponent>();
+            if (bodyCam != null)
+            {
+                bodyCam.SetTargetToNone();
+                bodyCam.ForceEnableCamera = false;
+            }
+            renderer?.materials[3].SetTexture("_ScreenTexture", null);
+        }
+
+        private static void SetTextureOBC(bool isBlanked, MeshRenderer? renderer, Camera? cam)
+        {
+            if (isBlanked)
+                renderer?.materials[3].SetTexture("_ScreenTexture", null);
+            else
+                renderer?.materials[3].SetTexture("_ScreenTexture", cam?.targetTexture);
+        }
+
+        private static void SetRenderDistanceOBC(Camera? cam)
+        {
+            if (cam != null)
+            {
+                cam.nearClipPlane = 0.01f;
+                cam.farClipPlane = 100f;
+            }
+        }
+
         public static void Message(string title, string bottom, bool warning = false)
         {
             HUDManager.Instance.DisplayTip(title, bottom, warning);

@@ -39,6 +39,7 @@ namespace PremiumScraps.CustomEffects
         public GameObject? controlledUI;
         public Animator? controlledUIAnimator;
         public Coroutine? controlledUITextCoroutine;
+        public bool BodyCams = false;  // body cams soft dependency
 
         public Controller()
         {
@@ -46,6 +47,7 @@ namespace PremiumScraps.CustomEffects
             cameraTexture = new RenderTexture(cameraTextureWidth, cameraTextureHeight, 24);
             controlledAntenaPrefab = Plugin.gameObjects[0];
             controlledUIPrefab = Plugin.gameObjects[1];
+            BodyCams = Plugin.config.OpenBodyCams && Plugin.config.controllerBodyCams.Value;
         }
 
         public override void OnNetworkSpawn()
@@ -120,7 +122,7 @@ namespace PremiumScraps.CustomEffects
             base.ItemInteractLeftRight(right);
             if (!right && playerHeldBy != null && insertedBattery != null && !insertedBattery.empty && screenIsReady && targetPlayer != null
                 && !targetPlayer.disconnectedMidGame && targetPlayer.IsSpawned && targetPlayer.isPlayerControlled && !targetPlayer.isPlayerDead
-                && cameraReady && camera != null)
+                && cameraReady && (camera != null || BodyCams))
             {
                 SetControlModeServerRpc(!isInControlMode, targetClientId);
                 isInControlMode = !isInControlMode;
@@ -148,9 +150,10 @@ namespace PremiumScraps.CustomEffects
                 CheckForUnluckyEffect();
                 return;
             }
-            if (cameraReady && camera != null)
+            if (cameraReady && (camera != null || BodyCams))
             {
-                renderer?.materials[3].SetTexture("_ScreenTexture", cameraTexture);
+                if (!BodyCams)
+                    renderer?.materials[3].SetTexture("_ScreenTexture", cameraTexture);
             }
             else
             {
@@ -293,6 +296,7 @@ namespace PremiumScraps.CustomEffects
         {
             if (targetPlayer == null)
                 return;
+            if (BodyCams) { Effects.CreateCameraOBC(targetPlayer, renderer, gameObject, this); return; }
             var cameraObj = new GameObject("Controller Camera");
             cameraObj.transform.SetParent(targetPlayer.gameplayCamera.transform, false);
             cameraObj.transform.position = targetPlayer.gameplayCamera.transform.position + (targetPlayer.gameplayCamera.transform.forward * 0.4f);
@@ -321,6 +325,7 @@ namespace PremiumScraps.CustomEffects
         public void DestroyCamera()
         {
             cameraReady = false;
+            if (BodyCams) { Effects.DestroyCameraOBC(renderer, gameObject); return; }
             StopCustomRender();
             if (camera != null)
             {
@@ -504,7 +509,7 @@ namespace PremiumScraps.CustomEffects
                 {
                     var pos = headTransform.position;
                     if (GameNetworkManager.Instance.localPlayerController.playerClientId == playerId)
-                        pos += (headTransform.up * 0.12f) + (headTransform.forward * -0.1f);
+                        pos += (headTransform.up * (BodyCams ? 0.7f : 0.13f)) + (headTransform.forward * (BodyCams ? -1.8f : -0.1f));
                     controlledAntena = Instantiate(controlledAntenaPrefab, pos, headTransform.rotation, headTransform);
                 }
             }

@@ -9,11 +9,13 @@ namespace PremiumScraps
     {
         public bool StarlancerAIFix = false;
         public bool WeatherRegistery = false;
+        public bool OpenBodyCams = false;
         public readonly List<ulong> unluckyPlayersID = new List<ulong>();
         public readonly List<(int, int)> scrapValues = new List<(int, int)>();
         public readonly ConfigEntry<bool> diceEvents;
         public readonly ConfigEntry<string> unluckyPlayersStr;
         public readonly ConfigEntry<bool> squareSteelWeapon;
+        public readonly ConfigEntry<bool> controllerBodyCams;
         public readonly List<ConfigEntry<int>> entries = new List<ConfigEntry<int>>();
         public readonly List<ConfigEntry<string>> values = new List<ConfigEntry<string>>();
 
@@ -23,6 +25,7 @@ namespace PremiumScraps
             diceEvents = cfg.Bind("General", "Dice events", true, "Adds some custom dice rolls to Emergency Dice items. Requires 'Emergency Dice Updated' 1.7.4+ to work, or else it will be automatically false.");
             unluckyPlayersStr = cfg.Bind("General", "Unlucky players", "76561198984467725,76561199094139351,76561198198881967,76561198002410826", "Comma separated list of players Steam ID that you want them to be unlucky. Bad things will happen to unlucky players, use this config to take a sweet revenge on your friends...");
             squareSteelWeapon = cfg.Bind("Items", "Square Steel weapon", true, "Turns Galvanized Square Steel into a usable weapon.");
+            controllerBodyCams = cfg.Bind("Items", "Controller Body Cams", true, "Upgrade the Controller screen with a camera from OpenBodyCams. Will be automatically false is OpenBodyCams is not installed.");
             foreach (Scrap scrap in scraps)
             {
                 entries.Add(cfg.Bind("Spawn chance", scrap.asset.Split("/")[0], scrap.rarity, "Rarity of the item."));
@@ -41,6 +44,10 @@ namespace PremiumScraps
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("mrov.WeatherRegistry"))
             {
                 WeatherRegistery = true;
+            }
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("Zaggy1024.OpenBodyCams"))
+            {
+                OpenBodyCams = true;
             }
             foreach (string playerId in unluckyPlayersStr.Value.Split(',').Select(s => s.Trim()))
             {
