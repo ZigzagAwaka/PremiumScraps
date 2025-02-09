@@ -1,6 +1,13 @@
 # 2.3.1 The 2.3 improvements part 2
 - **Controller**
     - Added compatibility with [OpenBodyCams](https://thunderstore.io/c/lethal-company/p/Zaggy1024/OpenBodyCams/), the item screen will now use a body cam instead of the normal one if you have this mod installed (a config has been added to deactivate this compatibility if you want)
+- **The King**
+    - Audio from noisemaker is now synced
+    - New animation when used
+    - New rare effect and *special* unlucky effect
+    - Adjusted position in hand
+- **Galvanized square steel**
+    - Can no longer pocket the item because it's two handed
 - **Misc**
     - f
 

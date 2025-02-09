@@ -23,7 +23,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.3.0";
+        const string VERSION = "2.3.1";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
@@ -69,6 +69,7 @@ namespace PremiumScraps
                 case 11: script = item.spawnPrefab.AddComponent<LichKingHelm>(); break;
                 case 12: script = item.spawnPrefab.AddComponent<Controller>(); break;
                 case 13: script = item.spawnPrefab.AddComponent<SteelBar>(); SetupScript.Copy((Shovel)script, item); break;
+                case 14: script = item.spawnPrefab.AddComponent<CDI_King>(); SetupScript.Copy((NoisemakerProp)script, item); break;
                 default: return;
             }
             script.grabbable = true;
@@ -94,7 +95,7 @@ namespace PremiumScraps
                 "CVuse3.wav", "CVuse4.wav", "TerminalAlarm.ogg", "Breathing.wav", "huh.wav", "book_use_redesign.wav",
                 "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav", "glass-grab.wav", "glass-drop.wav",
                 "beam.wav", "ControlModeStart.wav", "ControlModeStop.wav", "FlashlightOutOfBatteries.ogg", "ControlledOn.wav",
-                "ControlledOff.wav", "controller-alert.wav", "LightningStrike2.ogg"
+                "ControlledOff.wav", "controller-alert.wav", "LightningStrike2.ogg", "KingAAAAAAHHH.wav"
             };
 
             foreach (string prefab in prefabs)
@@ -112,7 +113,7 @@ namespace PremiumScraps
                 new Scrap("Chocobo/ChocoboItem.asset", 10),
                 new Scrap("AinzOoalGown/AinzOoalGownItem.asset", 5),
                 new Scrap("HelmDomination/HelmDominationItem.asset", 11, 11),
-                new Scrap("TheKing/TheKingItem.asset", 13),
+                new Scrap("TheKing/TheKingItem.asset", 13, 14),
                 new Scrap("HarryMason/HarryMasonItem.asset", 10, 9),
                 new Scrap("Cristal/CristalItem.asset", 10),
                 new Scrap("PuppyShark/PuppySharkItem.asset", 10),

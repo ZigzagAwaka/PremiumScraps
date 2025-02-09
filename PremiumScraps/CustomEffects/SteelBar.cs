@@ -32,11 +32,59 @@ namespace PremiumScraps.CustomEffects
             return false;
         }
 
+        public override void EquipItem()
+        {
+            SetControlTips();
+            EnableItemMeshes(enable: true);
+            isPocketed = false;
+            if (!hasBeenHeld)
+            {
+                hasBeenHeld = true;
+                if (!isInShipRoom && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.currentLevel.spawnEnemiesAndScrap)
+                {
+                    RoundManager.Instance.valueOfFoundScrapItems += scrapValue;
+                }
+            }
+        }
+
+        public override void SetControlTipsForItem()
+        {
+            SetControlTips();
+        }
+
+        private void SetControlTips()
+        {
+            string[] allLines;
+            if (!Plugin.config.squareSteelWeapon.Value)
+                allLines = new string[1] { "" };
+            else
+                allLines = (shovelHitForce == 1 ? new string[1] { "Steel bonk : [RMB]" } : new string[1] { "ULTIMATE bonk : [RMB]" });
+            if (IsOwner)
+            {
+                HUDManager.Instance.ClearControlTips();
+                HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
+            }
+        }
+
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             if (!Plugin.config.squareSteelWeapon.Value)
                 return;
             base.ItemActivate(used, buttonDown);
+        }
+
+        public static bool VerifyPreventSwitch(PlayerControllerB player)  // used by harmony patch
+        {
+            if (((player.IsOwner && player.isPlayerControlled && (!player.IsServer || player.isHostPlayerObject)) || player.isTestingPlayer)
+                && !(player.timeSinceSwitchingSlots < 0.3f) && !player.isGrabbingObjectAnimation && !player.quickMenuManager.isMenuOpen
+                && !player.inSpecialInteractAnimation && !player.throwingObject && !player.isTypingChat && !player.twoHanded
+                && !player.activatingItem && !player.jetpackControls && !player.disablingJetpackControls)
+            {
+                GrabbableObject currentlyHeldObjectServer = player.currentlyHeldObjectServer;
+                if (Plugin.config.squareSteelWeapon.Value && currentlyHeldObjectServer != null && currentlyHeldObjectServer.itemProperties.name == "SquareSteelItem" && currentlyHeldObjectServer is SteelBar)
+                    return true;
+            }
+            return false;
         }
 
         public override void GrabItem()
@@ -83,40 +131,6 @@ namespace PremiumScraps.CustomEffects
             ChargeSteelServerRpc(true);
             shovelHitForce = 99;
             SetControlTips();
-        }
-
-        public override void EquipItem()
-        {
-            SetControlTips();
-            EnableItemMeshes(enable: true);
-            isPocketed = false;
-            if (!hasBeenHeld)
-            {
-                hasBeenHeld = true;
-                if (!isInShipRoom && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.currentLevel.spawnEnemiesAndScrap)
-                {
-                    RoundManager.Instance.valueOfFoundScrapItems += scrapValue;
-                }
-            }
-        }
-
-        public override void SetControlTipsForItem()
-        {
-            SetControlTips();
-        }
-
-        private void SetControlTips()
-        {
-            string[] allLines;
-            if (!Plugin.config.squareSteelWeapon.Value)
-                allLines = new string[1] { "" };
-            else
-                allLines = (shovelHitForce == 1 ? new string[1] { "Steel bonk : [RMB]" } : new string[1] { "ULTIMATE bonk : [RMB]" });
-            if (IsOwner)
-            {
-                HUDManager.Instance.ClearControlTips();
-                HUDManager.Instance.ChangeControlTipMultiple(allLines, holdingItem: true, itemProperties);
-            }
         }
 
         [ServerRpc(RequireOwnership = false)]

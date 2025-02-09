@@ -32,7 +32,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 3563487053704156925, guid: 5f6d21f3dd589f6439eb80a99102afd4,
     type: 3}
   requiresBattery: 1
-  batteryUsage: 0.04
+  batteryUsage: 0.05
   automaticallySetUsingPower: 1
   itemIcon: {fileID: 21300000, guid: 0ee9c9025887f2943aa6db6f64c237f5, type: 3}
   grabAnim: 
@@ -45,7 +45,7 @@ MonoBehaviour:
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
-  syncUseFunction: 1
+  syncUseFunction: 0
   syncDiscardFunction: 0
   syncInteractLRFunction: 0
   saveItemVariable: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 100, y: 0, z: -95}
-  positionOffset: {x: -0.07, y: 0.09, z: -0.08}
+  positionOffset: {x: -0.22, y: 0.13, z: -0.08}
   meshOffset: 0
   meshVariants: []
   materialVariants: []

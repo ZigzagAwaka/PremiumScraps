@@ -168,7 +168,10 @@ namespace PremiumScraps.Utils
         [HarmonyPatch("ScrollMouse_performed")]
         public static bool ScrollControllerPatch(PlayerControllerB __instance, InputAction.CallbackContext context)
         {
-            return CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.SwitchItem, context.ReadValue<float>());
+            var verif = CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.SwitchItem, context.ReadValue<float>());
+            if (verif)
+                verif = !CustomEffects.SteelBar.VerifyPreventSwitch(__instance);
+            return verif;
         }
 
         [HarmonyPrefix]

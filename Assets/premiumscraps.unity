@@ -3268,6 +3268,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheKing
       objectReference: {fileID: 0}
+    - target: {fileID: 6022225511392733100, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+        type: 3}
+      propertyPath: useCooldown
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6223540880787003224, guid: 5f6d21f3dd589f6439eb80a99102afd4,
         type: 3}
       propertyPath: m_LocalPosition.x

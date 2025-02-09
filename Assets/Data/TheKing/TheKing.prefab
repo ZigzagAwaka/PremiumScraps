@@ -932,7 +932,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 20
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   isInElevator: 0
   isInShipRoom: 0
   isInFactory: 1
-  useCooldown: 2
+  useCooldown: 1.8
   currentUseCooldown: 0
   itemProperties: {fileID: 11400000, guid: 610013e60e657964b841d1e7430fe98d, type: 2}
   insertedBattery:
@@ -1722,6 +1722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6786352990144452760}
+  - component: {fileID: 3711389033550465743}
   m_Layer: 0
   m_Name: CDi_LinkZeldaHarkinian
   m_TagString: Untagged
@@ -1746,6 +1747,27 @@ Transform:
   - {fileID: 4155706184059933809}
   m_Father: {fileID: 6223540880787003224}
   m_LocalEulerAnglesHint: {x: 0, y: -70, z: 0}
+--- !u!95 &3711389033550465743
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153650721708835362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6932b9844b8053a46802475087615cfa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6200034823497596413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,7 +2106,7 @@ Transform:
   m_LocalRotation: {x: 0.9992299, y: 2.8991857e-16, z: -0.03923808, w: 7.3830145e-15}
   m_LocalPosition: {x: -0.045961373, y: -8.851051e-15, z: -0.0002616511}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6873343308974284365}
   m_Father: {fileID: 2295275869389323965}

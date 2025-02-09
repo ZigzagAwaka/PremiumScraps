@@ -61,6 +61,7 @@ Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 ### Noisy items
 - **The King**, **Puppy Shark** and **Moogle** can all be used to make some funny sounds !
 - The little orange square is called **crouton**, it's an obscure internet refererence that can be heard anywhere on the map when droped.
+- Some of these noisy items have a cute animation, or even a secret effect :)
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-audio.PNG)
 
