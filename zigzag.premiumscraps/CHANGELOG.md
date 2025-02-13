@@ -1,6 +1,6 @@
 # 2.3.1 The 2.3 improvements part 2
-- **Added Serpent of Ronka**
-    - Very cute!
+- **Serpent of Ronka**
+    - A new scrap!
 - **Controller**
     - Added compatibility with [OpenBodyCams](https://thunderstore.io/c/lethal-company/p/Zaggy1024/OpenBodyCams/), the item screen will now use a Body Cam instead of the normal one if you have this mod installed (a config has been added to deactivate this compatibility if you want)
 - **The King**

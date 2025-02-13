@@ -62,13 +62,15 @@ namespace PremiumScraps.CustomEffects
             if ((IsHost || IsServer) && !isInIdleScree && !isHeld)
             {
                 feelingLonelyTime += Time.deltaTime;
-                if (feelingLonelyTime >= 30f)
+                if (feelingLonelyTime >= 35f)
                 {
-                    if (Random.Range(0, 2) == 0)
+                    if (Random.Range(0, 3) != 0)
                         RonkaAudioServerRpc(true);
                     feelingLonelyTime = 0;
                 }
             }
+            else if ((IsHost || IsServer) && !isInIdleScree && isHeld)
+                feelingLonelyTime = 0;
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -100,7 +102,7 @@ namespace PremiumScraps.CustomEffects
                 itemAudio.pitch = pitch;
                 itemAudio.PlayOneShot(audioClip, volume);
                 WalkieTalkie.TransmitOneShotAudio(itemAudio, audioClip, volume);
-                RoundManager.Instance.PlayAudibleNoise(transform.position, 50, volume, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
+                RoundManager.Instance.PlayAudibleNoise(transform.position, 20, volume, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
                 if (playerHeldBy != null)
                     playerHeldBy.timeSinceMakingLoudNoise = 0f;
             }
@@ -108,6 +110,8 @@ namespace PremiumScraps.CustomEffects
             {
                 idleScreeAudio.pitch = pitch;
                 idleScreeAudio.PlayOneShot(audioClip);
+                WalkieTalkie.TransmitOneShotAudio(idleScreeAudio, audioClip, 1f);
+                RoundManager.Instance.PlayAudibleNoise(transform.position, 60, 1f, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
             }
         }
 
