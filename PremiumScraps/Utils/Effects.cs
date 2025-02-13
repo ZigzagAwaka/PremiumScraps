@@ -36,6 +36,12 @@ namespace PremiumScraps.Utils
             return Plugin.config.unluckyPlayersID.Find(id => id == playerId) != default;
         }
 
+        public static void FillMessagesFromLang(List<string> messages, string[] ids)
+        {
+            foreach (string id in ids)
+                messages.Add(Lang.Get(id));
+        }
+
         public static List<PlayerControllerB> GetPlayers(bool includeDead = false, bool excludeOutsideFactory = false)
         {
             List<PlayerControllerB> rawList = StartOfRound.Instance.allPlayerScripts.ToList();

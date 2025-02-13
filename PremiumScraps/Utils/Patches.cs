@@ -81,6 +81,36 @@ namespace PremiumScraps.Utils
     }
 
 
+    [HarmonyPatch(typeof(HUDManager))]
+    internal class FrenchModeItemTooltipsPatch
+    {
+        [HarmonyPrefix]
+        [HarmonyPatch("ChangeControlTip")]
+        public static void ChangeControlTipPatch(HUDManager __instance, string changeTo)
+        {
+            if (StartOfRound.Instance.localPlayerUsingController)
+                return;
+            changeTo = changeTo.Replace("[Z]", "[W]");
+            changeTo = changeTo.Replace("[Q]", "[A]");
+            changeTo = changeTo.Replace("[Q/E]", "[A/E]");
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("ChangeControlTipMultiple")]
+        public static void ChangeControlTipMultiplePatch(HUDManager __instance, string[] allLines, bool holdingItem)
+        {
+            if (allLines == null || StartOfRound.Instance.localPlayerUsingController)
+                return;
+            for (int i = 0; i < allLines.Length && i + (holdingItem ? 1 : 0) < __instance.controlTipLines.Length; i++)
+            {
+                allLines[i] = allLines[i].Replace("[Z]", "[W]");
+                allLines[i] = allLines[i].Replace("[Q]", "[A]");
+                allLines[i] = allLines[i].Replace("[Q/E]", "[A/E]");
+            }
+        }
+    }
+
+
     [HarmonyPatch(typeof(Terminal))]
     internal class ControllerTerminalPatch
     {

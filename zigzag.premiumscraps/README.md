@@ -10,6 +10,8 @@ All items are performance friendly.
 
 Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 
+This mod is automatically translated into french if you are french.
+
 ### The friendship ender
 - Can be used to do a special effect...
 - Use it near your friends, I swear it's just for shits and giggles.

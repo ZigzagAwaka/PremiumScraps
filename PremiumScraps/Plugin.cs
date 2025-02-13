@@ -39,6 +39,8 @@ namespace PremiumScraps
             harmony.CreateClassProcessor(typeof(ControllerHUDManagerPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerPlayerControllerBPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerVehicleControllerPatch), true).Patch();
+            if (Lang.ACTUAL_LANG == "fr")
+                harmony.CreateClassProcessor(typeof(FrenchModeItemTooltipsPatch), true).Patch();
             if (Chainloader.PluginInfos.ContainsKey(LethalThings.Plugin.ModGUID))
                 harmony.CreateClassProcessor(typeof(LethalThingsBombItemChargerPatch), true).Patch();  // bombitem charger with lethalthings
             else
@@ -142,6 +144,7 @@ namespace PremiumScraps
 
             int i = 0; config = new Config(base.Config, scraps);
             config.SetupCustomConfigs();
+            Lang.Load(Logger, Application.systemLanguage, config.languageMode.Value);
             SetupScript.Network();
 
             foreach (Scrap scrap in scraps)
@@ -156,7 +159,6 @@ namespace PremiumScraps
             }
 
             HarmonyPatchAll();
-            //Logger.LogError("INFO= " + Application.systemLanguage);
             Logger.LogInfo("PremiumScraps is loaded !");
         }
     }

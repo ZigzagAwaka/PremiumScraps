@@ -23,6 +23,14 @@ namespace PremiumScraps.CustomEffects
 
         public LegendaryStick() { }
 
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            var scanNode = transform.GetChild(1).GetComponent<ScanNodeProperties>();
+            if (scanNode != null)
+                scanNode.headerText = Lang.Get("STICK_STORY");
+        }
+
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             base.ItemActivate(used, buttonDown);

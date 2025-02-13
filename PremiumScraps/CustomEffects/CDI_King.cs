@@ -17,6 +17,8 @@ namespace PremiumScraps.CustomEffects
             kingAnimator = transform.GetChild(0).GetComponent<Animator>();
             if (insertedBattery != null)
                 insertedBattery.charge = 1;
+            itemProperties.toolTips[0] = Lang.Get("KING_USAGE");
+            itemProperties.toolTips[1] = Lang.Get("KING_USAGE2");
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)

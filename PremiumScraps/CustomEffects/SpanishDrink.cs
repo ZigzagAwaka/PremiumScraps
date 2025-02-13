@@ -1,6 +1,7 @@
 ﻿using GameNetcodeStuff;
 using PremiumScraps.Utils;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -15,11 +16,13 @@ namespace PremiumScraps.CustomEffects
         private readonly int usageBeforeDrunkMax = 6;
         public Vector3? originalPosition = null;
         public Vector3? originalRotation = null;
+        private readonly List<string> messages = new List<string>();
 
         public SpanishDrink()
         {
             useCooldown = 4;
             customGrabTooltip = "Coger : [E]";
+            Effects.FillMessagesFromLang(messages, new string[] { "GAZPACHO_POISON", "GAZPACHO_POISON2", "GAZPACHO_USAGE" });
         }
 
         private void SelectUsageBeforeDrunk()
@@ -31,13 +34,12 @@ namespace PremiumScraps.CustomEffects
         {
             base.Start();
             SelectUsageBeforeDrunk();
-            /*if (!Plugin.config.gazpachoMemeSfx.Value)
+            if (!Plugin.config.gazpachoMemeSfx.Value || Lang.ACTUAL_LANG != "fr")
             {
                 itemProperties.grabSFX = Plugin.audioClips[21];
                 itemProperties.dropSFX = Plugin.audioClips[22];
-            }*/
-            itemProperties.grabSFX = Plugin.audioClips[21];
-            itemProperties.dropSFX = Plugin.audioClips[22];
+            }
+            itemProperties.toolTips[0] = messages[2];
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -79,7 +81,7 @@ namespace PremiumScraps.CustomEffects
                     }
                     if (!isDrunk && usage >= usageBeforeDrunk)
                     {
-                        Effects.Message("You were poisoned !", "");
+                        Effects.Message(messages[0], "");
                         yield return new WaitForSeconds(2f);
                         StartCoroutine(SpanishDrunk(player));  // drunk effect
                         isDrunk = true;
@@ -97,8 +99,9 @@ namespace PremiumScraps.CustomEffects
             yield return new WaitForEndOfFrame();
             if (player == null || player.isPlayerDead)
                 yield break;
-            if (Effects.IsUnlucky(player.playerSteamId) && Random.Range(0, 10) < 7)  // unlucky 70%
+            if ((Effects.IsUnlucky(player.playerSteamId) && Random.Range(0, 10) < 7) || Random.Range(0, 50) == 0)  // unlucky 70%, or 2%
             {
+                Effects.Message("Oh oh", messages[1]);
                 yield return new WaitForSeconds(1.9f);
                 if (player == null || player.isPlayerDead)
                     yield break;

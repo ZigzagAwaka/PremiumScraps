@@ -1,6 +1,7 @@
 ﻿using GameNetcodeStuff;
 using PremiumScraps.Utils;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -12,12 +13,22 @@ namespace PremiumScraps.CustomEffects
         public int usage = 0;
         public bool unlucky = false;
         public bool StarlancerAIFix = false;
+        private readonly List<string> messages = new List<string>();
 
         public TrollFace()
         {
             useCooldown = 3;
-            customGrabTooltip = "Friendship ends here : [E]";
             StarlancerAIFix = Plugin.config.StarlancerAIFix;
+            Effects.FillMessagesFromLang(messages, new string[] {
+                "END_FRIENDSHIP", "END_FRIENDSHIP2", "TROLL_USAGE", "TROLL_USAGE2", "TROLL_INFO", "TROLL_INFO2",
+                "TROLL_WARNING", "TROLL_WARNING2", "TROLL_FINAL" });
+            customGrabTooltip = messages[0];
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            itemProperties.toolTips[0] = messages[1];
         }
 
         public override void GrabItem()
@@ -38,7 +49,7 @@ namespace PremiumScraps.CustomEffects
             {
                 if (StartOfRound.Instance.inShipPhase || !StartOfRound.Instance.shipHasLanded || unlucky)
                 {
-                    Effects.Message("Not now", "Try it a little bit later :)");
+                    Effects.Message(messages[2], messages[3]);
                     return;
                 }
                 AudioServerRpc(1, playerHeldBy.transform.position, 1.5f, 0.8f);
@@ -46,19 +57,19 @@ namespace PremiumScraps.CustomEffects
                 {
                     Effects.Damage(playerHeldBy, 10);
                     HUDManager.Instance.ShakeCamera(ScreenShakeType.Small);
-                    Effects.Message("Don't do this bro", "Don't listen to the voices in your head.", true);
+                    Effects.Message(messages[4], messages[5], true);
                 }
                 else if (playerHeldBy.health > 70 && playerHeldBy.health <= 90)
                 {
                     Effects.Damage(playerHeldBy, 20);
                     HUDManager.Instance.ShakeCamera(ScreenShakeType.Small);
-                    Effects.Message("We warned you", "You know there's no turning back from what you're about to do, right?", true);
+                    Effects.Message(messages[6], messages[7], true);
                 }
                 else if (playerHeldBy.health > 20 && playerHeldBy.health <= 70)
                 {
                     Effects.Damage(playerHeldBy, playerHeldBy.health - 10);
                     HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
-                    Effects.Message("W̴ͪ̅e̤̲̞ ḏ͆ȍ̢̥ a̵̿͘ l̙ͭ͠ittle b̈́͠it of troll͢i̗̍͜n͙̆͠g", "", true);
+                    Effects.Message(messages[8], "", true);
                 }
                 else
                 {
@@ -89,7 +100,7 @@ namespace PremiumScraps.CustomEffects
                     isInside = player.isInsideFactory;
                     position = player.transform.position;
                 }
-                Effects.Message("W̴ͪ̅e̤̲̞ ḏ͆ȍ̢̥ a̵̿͘ l̙ͭ͠ittle b̈́͠it of troll͢i̗̍͜n͙̆͠g", "", true);
+                Effects.Message(messages[8], "", true);
                 Effects.Damage(player, 10, CauseOfDeath.Strangulation, (int)Effects.DeathAnimation.NoHead1);
                 yield return new WaitForSeconds(effectTime);
                 if (effectTime != 0.5f)

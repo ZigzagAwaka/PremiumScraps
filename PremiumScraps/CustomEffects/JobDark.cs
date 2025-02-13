@@ -1,6 +1,7 @@
 ﻿using GameNetcodeStuff;
 using PremiumScraps.Utils;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -17,9 +18,15 @@ namespace PremiumScraps.CustomEffects
         private bool OneTimeUse = false;
         private bool OneTimeActionSp = false;
         private bool isUnlucky = false;
+        private readonly List<string> messages = new List<string>();
         private readonly int debug = -1;  // force choose hallucination if not -1
 
-        public JobDark() { }
+        public JobDark()
+        {
+            Effects.FillMessagesFromLang(messages, new string[] {
+                "HEART_ATTACK", "CURSED_INFO", "CURSED_INFO2", "CURSED_INFO3", "COWORKERS_INFO", "COWORKERS_INFO2",
+                "COWORKERS_WARNING", "COWORKERS_WARNING2", "JOB_USAGE", "JOB_USAGE2" });
+        }
 
         public override void Start()
         {
@@ -53,9 +60,9 @@ namespace PremiumScraps.CustomEffects
             if (summonFriends == -1)
                 allLines = new string[1] { "" };
             else if (summonFriends >= 1)
-                allLines = new string[1] { "Summon friends : [RMB]" };
+                allLines = new string[1] { messages[8] };
             else
-                allLines = new string[1] { "Read: [Z]" };
+                allLines = new string[1] { messages[9] };
             if (IsOwner)
             {
                 HUDManager.Instance.ClearControlTips();
@@ -227,7 +234,7 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
-        public static IEnumerator DeathHallucination(PlayerControllerB player, JobDark? jobDark, MonoBehaviour? monoBehaviour = null)
+        public static IEnumerator DeathHallucination(PlayerControllerB player, JobDark? jobDark, MonoBehaviour? monoBehaviour = null, string creepyMessage = "")
         {
             if (jobDark != null)
                 jobDark.OneTimeUse = true;
@@ -253,7 +260,7 @@ namespace PremiumScraps.CustomEffects
                         if (!StartOfRound.Instance.shipIsLeaving && !StartOfRound.Instance.inShipPhase && !player.isPlayerDead)
                         {
                             var instance = jobDark != null ? jobDark : monoBehaviour;
-                            var statusCoroutine = instance.StartCoroutine(Effects.Status("WARNING ! UNSTABLE HEART RATE DETECTED. RETURN TO YOUR ASSIGNED SHIP IMMEDIATELY !"));
+                            var statusCoroutine = instance.StartCoroutine(Effects.Status(creepyMessage));
                             player.JumpToFearLevel(4);
                             player.playersManager.fearLevelIncreasing = true;
                             int i = 0;
@@ -302,7 +309,7 @@ namespace PremiumScraps.CustomEffects
             yield return new WaitForSeconds(timeUntilItsTooLate);
             itsTooLate = true;
             playerHeldBy.playersManager.fearLevelIncreasing = false;
-            Effects.Message("The air feels different...", "Something terrible has been done to you", true);
+            Effects.Message(messages[1], messages[2], true);
             var player = playerHeldBy;
             Effects.DropItem(player.transform.position);
             grabbable = false;
@@ -326,8 +333,7 @@ namespace PremiumScraps.CustomEffects
                         canInspectPaper = false;
                         if (playerHeldBy != null && !isPocketed)
                             SetControlTips();
-                        Effects.Message("You can finally meet your c̷̿̂o-̶̔͆w̴̿͜or̵͇̾k̴̹̂er̸̺͋s !",
-                            "                                You should use the Job Application next time you're on a moon :)");
+                        Effects.Message(messages[4], messages[5]);
                     }
                     yield return new WaitUntil(() => StartOfRound.Instance.inShipPhase == false);
                 }
@@ -340,7 +346,7 @@ namespace PremiumScraps.CustomEffects
                         case 0: yield return HazardHallucination(player, this); break;
                         case 1: yield return GirlsHallucination(player, this); break;
                         case 2: yield return HauntedHallucination(player); break;
-                        case 3: yield return DeathHallucination(player, this); break;
+                        case 3: yield return DeathHallucination(player, this, creepyMessage: messages[0]); break;
                         default: break;
                     }
                 }
@@ -401,7 +407,7 @@ namespace PremiumScraps.CustomEffects
                     if (summonFriends >= 1 && !StartOfRound.Instance.inShipPhase && StartOfRound.Instance.shipHasLanded)
                         StartCoroutine(SummonFriends(playerHeldBy));
                     else
-                        Effects.Message("You are already cursed", "", true);
+                        Effects.Message(messages[3], "", true);
                 }
             }
         }
@@ -461,7 +467,7 @@ namespace PremiumScraps.CustomEffects
         private void DarkJobEffectType2ClientRpc()
         {
             Effects.AddCombinedWeather(LevelWeatherType.Eclipsed);
-            Effects.Message("Warning", "Abnormal amount of employees detected !", true);
+            Effects.Message(messages[6], messages[7], true);
             summonFriends = -1;
         }
     }

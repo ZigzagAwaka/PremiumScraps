@@ -65,7 +65,7 @@ namespace PremiumScraps.Utils
 
         public static IEnumerator DeathEffect(this Networker networker, PlayerControllerB player)
         {
-            yield return CustomEffects.JobDark.DeathHallucination(player, null, networker);
+            yield return CustomEffects.JobDark.DeathHallucination(player, null, networker, Lang.Get("HEART_ATTACK"));
         }
 
         public static IEnumerator HarryMasonCurse(this Networker networker)
@@ -98,7 +98,7 @@ namespace PremiumScraps.Utils
             {
                 if (Plugin.config.StarlancerAIFix && surrounded && !GameNetworkManager.Instance.localPlayerController.isPlayerDead && !GameNetworkManager.Instance.localPlayerController.isInsideFactory)
                 {
-                    networker.MessageToEveryoneServerRPC("Welcome!", "Y̹͍͐o̴ͣͬur c̖ͤͯl̳̤͜as̈̀͡sͬ͘͠m̖ͯates are e̢ͮͥx̗̌̕cit̗̘̒eͩͅd to meet̳ͭͦ y̸̪̤ou͚̔̒");
+                    networker.MessageToEveryoneServerRPC(Lang.Get("DICE_INFO"), Lang.Get("DICE_INFO2"));
                     networker.SpawnSurroundedServerRPC("Flowerman", 5, 3, true, Vector3.one * Random.Range(1.5f, 2.3f));
                     surrounded = false;
                 }
@@ -119,7 +119,7 @@ namespace PremiumScraps.Utils
             yield return new WaitForSeconds(10f);
             if (GetEnemies.SparkTower != null && !StartOfRound.Instance.shipIsLeaving)
             {
-                networker.MessageToEveryoneServerRPC("Plasma-powered radio transmitter online!", "");
+                networker.MessageToEveryoneServerRPC(Lang.Get("DICE_INFO3"), "");
                 for (int i = 0; i < Random.Range(10, 14); i++)
                     networker.SpawnEnemyAtPosServerRPC("SparkTower", RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
             }

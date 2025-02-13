@@ -110,8 +110,8 @@ namespace PremiumScraps.CustomEffects
             {
                 idleScreeAudio.pitch = pitch;
                 idleScreeAudio.PlayOneShot(audioClip);
-                WalkieTalkie.TransmitOneShotAudio(idleScreeAudio, audioClip, 1f);
-                RoundManager.Instance.PlayAudibleNoise(transform.position, 60, 1f, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
+                WalkieTalkie.TransmitOneShotAudio(idleScreeAudio, audioClip, 0.5f);
+                RoundManager.Instance.PlayAudibleNoise(transform.position, 60, 0.5f, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
             }
         }
 
