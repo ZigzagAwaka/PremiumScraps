@@ -70,6 +70,7 @@ namespace PremiumScraps
                 case 12: script = item.spawnPrefab.AddComponent<Controller>(); break;
                 case 13: script = item.spawnPrefab.AddComponent<SteelBar>(); SetupScript.Copy((Shovel)script, item); break;
                 case 14: script = item.spawnPrefab.AddComponent<CDI_King>(); SetupScript.Copy((NoisemakerProp)script, item); break;
+                case 15: script = item.spawnPrefab.AddComponent<GreatRonka>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -135,7 +136,8 @@ namespace PremiumScraps
                 new Scrap("Gazpacho/GazpachoItem.asset", 9, 7),
                 new Scrap("Abi/AbiItem.asset", 4, 8),
                 new Scrap("Bomb/BombItem.asset", 12, 10),
-                new Scrap("Controller/ControllerItem.asset", 8, 12)
+                new Scrap("Controller/ControllerItem.asset", 8, 12),
+                new Scrap("Ronka/RonkaItem.asset", 10, 15)
             };
 
             int i = 0; config = new Config(base.Config, scraps);
@@ -154,6 +156,7 @@ namespace PremiumScraps
             }
 
             HarmonyPatchAll();
+            //Logger.LogError("INFO= " + Application.systemLanguage);
             Logger.LogInfo("PremiumScraps is loaded !");
         }
     }

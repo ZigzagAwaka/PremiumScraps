@@ -1,6 +1,6 @@
 # PremiumScraps
 
-This mod currently adds **27 scrap items** to the game ! 😎
+This mod currently adds **28 scrap items** to the game ! 😎
 
 These items can be cute, funny or stylish, some even have a custom effect!
 
@@ -61,7 +61,6 @@ Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 ### Noisy items
 - **The King**, **Puppy Shark** and **Moogle** can all be used to make some funny sounds !
 - The little orange square is called **crouton**, it's an obscure internet refererence that can be heard anywhere on the map when droped.
-- Some of these noisy items have a cute animation, or even a secret effect :)
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-audio.PNG)
 
@@ -142,6 +141,7 @@ You can post some suggestions or issues in the mod release page in the [modding 
 - The talking orb
 - Bomb
 - Controller
+- Serpent of Ronka
 
 </details>
 
@@ -159,7 +159,7 @@ You can post some suggestions or issues in the mod release page in the [modding 
 
 - Thanks **Leaucard** for helping with custom sounds, assets research and some ideas!
 
-- Some assets are ripped from [Lethal Company](https://store.steampowered.com/app/1966720/Lethal_Company/) and [Balan Wonderworld](https://store.steampowered.com/app/1341050/BALAN_WONDERWORLD/)
+- Some assets are ripped from [Lethal Company](https://store.steampowered.com/app/1966720/Lethal_Company/), [Balan Wonderworld](https://store.steampowered.com/app/1341050/BALAN_WONDERWORLD/) and [Final Fantasy XIV](https://store.steampowered.com/app/39210/FINAL_FANTASY_XIV_Online/)
 
 - Free 3D models used are licensed under Creative Commons Attribution, all credits goes to their respective creators. Support them if you like this mod!
 

@@ -7,26 +7,34 @@ namespace PremiumScraps.CustomEffects
 {
     internal class LichKingHelm : PhysicsProp
     {
+        public AudioSource? weAreOneAudio;
+
         public LichKingHelm() { }
+
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            weAreOneAudio = transform.GetComponent<AudioSource>();
+        }
 
         public override void GrabItem()
         {
             base.GrabItem();
             if (Random.Range(0, 100) >= 80)
-                EffectServerRpc(20, transform.position, 0.95f, 0.6f, playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) >= 2);
+                EffectServerRpc(20, 0.8f, playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) >= 2);
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void EffectServerRpc(int audioID, Vector3 position, float localVolume, float clientVolume = default, bool unlucky = false)
+        private void EffectServerRpc(int audioID, float volume, bool unlucky = false)
         {
-            EffectClientRpc(audioID, position, localVolume, clientVolume == default ? localVolume : clientVolume, unlucky);
+            EffectClientRpc(audioID, volume, unlucky);
         }
 
         [ClientRpc]
-        private void EffectClientRpc(int audioID, Vector3 position, float localVolume, float clientVolume, bool unlucky)
+        private void EffectClientRpc(int audioID, float volume, bool unlucky)
         {
-            Effects.Audio(audioID, position, localVolume, clientVolume, playerHeldBy);
-            if (unlucky && !StartOfRound.Instance.inShipPhase && !StartOfRound.Instance.shipIsLeaving)
+            weAreOneAudio?.PlayOneShot(Plugin.audioClips[audioID], volume);
+            if (true && !StartOfRound.Instance.inShipPhase && !StartOfRound.Instance.shipIsLeaving)
                 StartCoroutine(DoBoom());
         }
 

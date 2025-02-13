@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c30496d6ae6d6f907456e10a94e01ec6, type: 3}
-  m_Name: TheKingItem
+  m_Name: RonkaItem
   m_EditorClassIdentifier: 
   itemId: 0
-  itemName: The King
+  itemName: Serpent of Ronka
   spawnPositionTypes: []
   twoHanded: 0
   twoHandedAnimation: 0
   canBeGrabbedBeforeGameStart: 1
-  weight: 1.05
-  itemIsTrigger: 1
+  weight: 1.01
+  itemIsTrigger: 0
   holdButtonUse: 0
   itemSpawnsOnGround: 1
-  isConductiveMetal: 1
+  isConductiveMetal: 0
   isScrap: 1
   creditsWorth: 0
   lockedInDemo: 0
   highestSalePercentage: 0
-  maxValue: 125
-  minValue: 110
-  spawnPrefab: {fileID: 3563487053704156925, guid: 5f6d21f3dd589f6439eb80a99102afd4,
+  maxValue: 200
+  minValue: 100
+  spawnPrefab: {fileID: 5704573318429241555, guid: 8b3dd7379ffba3d43b14e3cd7775e284,
     type: 3}
-  requiresBattery: 1
-  batteryUsage: 0.02
-  automaticallySetUsingPower: 1
+  requiresBattery: 0
+  batteryUsage: 0
+  automaticallySetUsingPower: 0
   itemIcon: {fileID: 21300000, guid: 0ee9c9025887f2943aa6db6f64c237f5, type: 3}
   grabAnim: 
   useAnim: 
   pocketAnim: 
   throwAnim: 
   grabAnimationTime: 0
-  grabSFX: {fileID: 8300000, guid: d540c75723c527546850e0a01282aa7b, type: 3}
-  dropSFX: {fileID: 8300000, guid: b1f713ad71fa06a409a0d608cc2bb1fc, type: 3}
+  grabSFX: {fileID: 8300000, guid: 07c0050bdcd5c6044b4c5a417e668b2a, type: 3}
+  dropSFX: {fileID: 8300000, guid: c5d37676c5aaa4e4d8eeb2c267c48ab2, type: 3}
   pocketSFX: {fileID: 0}
   throwSFX: {fileID: 0}
   syncGrabFunction: 0
@@ -51,14 +51,13 @@ MonoBehaviour:
   saveItemVariable: 0
   isDefensiveWeapon: 0
   toolTips:
-  - 'Use the king : [RMB]'
-  - This peace is what all true warriors strive for!
-  verticalOffset: 0
-  floorYOffset: 100
+  - 'Squeeze : [RMB]'
+  verticalOffset: -0.04
+  floorYOffset: 90
   allowDroppingAheadOfPlayer: 1
   restingRotation: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 100, y: 0, z: -95}
-  positionOffset: {x: -0.22, y: 0.13, z: -0.08}
+  rotationOffset: {x: 90, y: 0, z: -95}
+  positionOffset: {x: -0.17, y: 0.15, z: -0.08}
   meshOffset: 0
   meshVariants: []
   materialVariants: []
