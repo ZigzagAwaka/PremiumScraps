@@ -73,6 +73,7 @@ namespace PremiumScraps
                 case 13: script = item.spawnPrefab.AddComponent<SteelBar>(); SetupScript.Copy((Shovel)script, item); break;
                 case 14: script = item.spawnPrefab.AddComponent<CDI_King>(); SetupScript.Copy((NoisemakerProp)script, item); break;
                 case 15: script = item.spawnPrefab.AddComponent<GreatRonka>(); break;
+                case 16: script = item.spawnPrefab.AddComponent<EvilCard>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -98,7 +99,10 @@ namespace PremiumScraps
                 "CVuse3.wav", "CVuse4.wav", "TerminalAlarm.ogg", "Breathing.wav", "huh.wav", "book_use_redesign.wav",
                 "uwu.wav", "uwu-rot.wav", "drink.wav", "spanishsound.wav", "arthas.wav", "glass-grab.wav", "glass-drop.wav",
                 "beam.wav", "ControlModeStart.wav", "ControlModeStop.wav", "FlashlightOutOfBatteries.ogg", "ControlledOn.wav",
-                "ControlledOff.wav", "controller-alert.wav", "LightningStrike2.ogg", "KingAAAAAAHHH.wav"
+                "ControlledOff.wav", "controller-alert.wav", "LightningStrike2.ogg", "KingAAAAAAHHH.wav", "card-evil.wav",
+                "card-evil2.wav", "card-boo.wav", "card-common-fr.wav", "card-evil-fr.wav", "card-evil2-fr.wav",
+                "book_open_square_steel-fr.wav", "book_close_eco_friendly-fr.wav", "book_use_redesign-fr.wav", "KingBoyFR.wav",
+                "KingHmmFR.wav", "KingDinnerFR.wav", "KingHelpFR.wav", "KingPeaceFR.wav", "KingSaveFR.wav", "KingShipFR.wav"
             };
 
             foreach (string prefab in prefabs)
@@ -122,7 +126,7 @@ namespace PremiumScraps
                 new Scrap("PuppyShark/PuppySharkItem.asset", 10),
                 new Scrap("Rupee/RupeeItem.asset", 15),
                 new Scrap("EaNasir/EaNasirItem.asset", 9),
-                new Scrap("HScard/HSCardItem.asset", 9),
+                new Scrap("HScard/HSCardItem.asset", 9, 16),
                 new Scrap("SODA/SODAItem.asset", 8),
                 new Scrap("Spoon/SpoonItem.asset", 13),
                 new Scrap("Crouton/CroutonItem.asset", 6),

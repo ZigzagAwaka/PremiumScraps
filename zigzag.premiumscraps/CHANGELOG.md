@@ -12,13 +12,13 @@
     - Can no longer be pocketed because it's two handed
 - **Helm of Domination**
     - Special audio is now properly assigned to the item
-- **El Gazpacho**
-    - The unlucky effect can now spread to non unlucky players (2%)
-    - Re-added the sound config but it's now working under the french mode
+- **HearthStone Card**
+    - New variant drop sfx
+    - New *special* unlucky effect
 - **Misc**
-    - Added a full french mode that is automatically activated if your system is in french (translate some tool tips, effects messages and change some sounds)
-    - The config `Change Language mode` has been added to manually change the language if you want
-
+    - Added a complete french mode that is automatically activated if your system is in french (translate some tool tips, effects messages and change some sounds)
+    - The config `Language mode` has been added to manually change the language if you want
+    - Re-added the Gazpacho sound config but it's now working under the french mode
 
 # 2.3.0 The 2.3 improvements part 1
 - **Controller**

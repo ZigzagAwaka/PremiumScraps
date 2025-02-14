@@ -19,13 +19,23 @@ namespace PremiumScraps.CustomEffects
                 insertedBattery.charge = 1;
             itemProperties.toolTips[0] = Lang.Get("KING_USAGE");
             itemProperties.toolTips[1] = Lang.Get("KING_USAGE2");
+            if (Lang.ACTUAL_LANG == "fr")
+            {
+                itemProperties.grabSFX = Plugin.audioClips[41];
+                itemProperties.dropSFX = Plugin.audioClips[42];
+                noiseSFX[0] = Plugin.audioClips[43];
+                noiseSFX[1] = Plugin.audioClips[44];
+                noiseSFX[2] = Plugin.audioClips[45];
+                noiseSFX[3] = Plugin.audioClips[46];
+                noiseSFX[4] = Plugin.audioClips[47];
+            }
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             if (buttonDown && playerHeldBy != null && !noiseAudio.isPlaying)
             {
-                var unlucky = (Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) <= 3) || Random.Range(0, 100) <= 2;  // unlucky 40%, or 3%
+                var unlucky = (Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) <= 4) || Random.Range(0, 100) <= 2;  // unlucky 50%, or 3%
                 if (!unlucky || StartOfRound.Instance.inShipPhase || !StartOfRound.Instance.shipHasLanded || StartOfRound.Instance.shipIsLeaving)
                     KingAudioServerRpc();
                 else

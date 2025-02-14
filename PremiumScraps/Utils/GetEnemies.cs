@@ -12,7 +12,7 @@ namespace PremiumScraps.Utils
         public static SpawnableEnemyWithRarity Masked, HoardingBug, SnareFlea, Jester, Bracken, Thumper, CoilHead,
                                                CircuitBees, EarthLeviathan, BunkerSpider, ForestKeeper, GhostGirl,
                                                TulipSnake, EyelessDog, Maneater, Nutcracker, Barber, Butler, OldBird,
-                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower;
+                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, BaboonHawk;
         public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
@@ -71,6 +71,8 @@ namespace PremiumScraps.Utils
                         ForestKeeper = enemy;
                     else if (enemy.enemyType.enemyName == "MouthDog" && EyelessDog == null)
                         EyelessDog = enemy;
+                    else if (enemy.enemyType.enemyName == "Baboon hawk" && BaboonHawk == null)
+                        BaboonHawk = enemy;
                     else if (enemy.enemyType.enemyName == "RadMech" && OldBird == null)
                         OldBird = enemy;
                     else if (enemy.enemyType.enemyName == "Redwood Titan" && RedwoodTitan == null)

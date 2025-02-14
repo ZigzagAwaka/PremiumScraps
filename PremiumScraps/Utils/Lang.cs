@@ -14,12 +14,9 @@ namespace PremiumScraps.Utils
 
         public static string Get(string id) => langValues.GetValueOrDefault(id, id);
 
-        public static void Load(ManualLogSource logger, SystemLanguage systemLanguage, bool changeLanguageMode)
+        public static void Load(ManualLogSource logger, SystemLanguage systemLanguage, string languageMode)
         {
-            if ((systemLanguage == SystemLanguage.French && !changeLanguageMode) || (systemLanguage != SystemLanguage.French && changeLanguageMode))
-            {
-                ACTUAL_LANG = "fr";
-            }
+            ChooseLanguage(systemLanguage, languageMode);
             string langDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), $"Lang/lang-{ACTUAL_LANG}.json");
             if (!File.Exists(langDir))
             {
@@ -30,6 +27,17 @@ namespace PremiumScraps.Utils
             langValues.Clear();
             foreach (var (key, value) in jobj)
                 langValues[key] = value?.ToString() ?? key;
+        }
+
+        private static void ChooseLanguage(SystemLanguage systemLanguage, string languageMode)
+        {
+            ACTUAL_LANG = languageMode switch
+            {
+                "default" => systemLanguage == SystemLanguage.French ? "fr" : "en",
+                "english" => "en",
+                "french" => "fr",
+                _ => systemLanguage == SystemLanguage.French ? "fr" : "en"
+            };
         }
     }
 }

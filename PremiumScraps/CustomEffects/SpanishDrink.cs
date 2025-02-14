@@ -99,7 +99,7 @@ namespace PremiumScraps.CustomEffects
             yield return new WaitForEndOfFrame();
             if (player == null || player.isPlayerDead)
                 yield break;
-            if ((Effects.IsUnlucky(player.playerSteamId) && Random.Range(0, 10) < 7) || Random.Range(0, 50) == 0)  // unlucky 70%, or 2%
+            if (Effects.IsUnlucky(player.playerSteamId) && Random.Range(0, 10) < 7)  // unlucky 70%
             {
                 Effects.Message("Oh oh", messages[1]);
                 yield return new WaitForSeconds(1.9f);

@@ -24,6 +24,11 @@ namespace PremiumScraps.CustomEffects
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
+            if (Lang.ACTUAL_LANG == "fr")
+            {
+                itemProperties.grabSFX = Plugin.audioClips[38];
+                itemProperties.dropSFX = Plugin.audioClips[39];
+            }
             if (!IsHost && !IsServer)
                 SyncStateServerRpc();
         }
@@ -77,7 +82,7 @@ namespace PremiumScraps.CustomEffects
                     if (nbFinish <= 4)
                     {
                         SpawnScrapServerRpc("SquareSteelItem", playerHeldBy.transform.position, nbFinish);
-                        AudioServerRpc(15, playerHeldBy.transform.position, 1.5f, 0.75f);
+                        AudioServerRpc(Lang.ACTUAL_LANG == "fr" ? 40 : 15, playerHeldBy.transform.position, 1.5f, 0.75f);
                     }
                     else
                     {
