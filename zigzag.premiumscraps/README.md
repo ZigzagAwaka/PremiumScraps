@@ -62,6 +62,7 @@ This mod is automatically translated into french if you are french.
 
 ### Noisy items
 - **The King**, **Puppy Shark** and **Moogle** can all be used to make some funny sounds !
+- **Serpent of Ronka**, this cute little creature will spawn with different ouftit and ocasionally call for your presence with some cute sounds...!
 - The little orange square is called **crouton**, it's an obscure internet refererence that can be heard anywhere on the map when droped.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/premiumscraps-audio.PNG)

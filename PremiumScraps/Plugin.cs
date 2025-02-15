@@ -35,6 +35,7 @@ namespace PremiumScraps
         {
             PremiumScrapsMonoModPatches.Load();  // IL code patches
             harmony.CreateClassProcessor(typeof(GetEnemies), true).Patch();
+            harmony.CreateClassProcessor(typeof(SteelBarPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerTerminalPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerHUDManagerPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerPlayerControllerBPatch), true).Patch();

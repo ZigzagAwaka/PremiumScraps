@@ -81,6 +81,18 @@ namespace PremiumScraps.Utils
     }
 
 
+    [HarmonyPatch(typeof(Shovel))]
+    internal class SteelBarPatch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("HitShovel")]
+        public static void HitShovelPatch(Shovel __instance, bool cancel)
+        {
+            CustomEffects.SteelBar.TwoHandedFix(__instance, cancel);
+        }
+    }
+
+
     [HarmonyPatch(typeof(HUDManager))]
     internal class FrenchModeItemTooltipsPatch
     {
@@ -198,10 +210,7 @@ namespace PremiumScraps.Utils
         [HarmonyPatch("ScrollMouse_performed")]
         public static bool ScrollControllerPatch(PlayerControllerB __instance, InputAction.CallbackContext context)
         {
-            var verif = CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.SwitchItem, context.ReadValue<float>());
-            if (verif)
-                verif = !CustomEffects.SteelBar.VerifyPreventSwitch(__instance);
-            return verif;
+            return CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.SwitchItem, context.ReadValue<float>());
         }
 
         [HarmonyPrefix]

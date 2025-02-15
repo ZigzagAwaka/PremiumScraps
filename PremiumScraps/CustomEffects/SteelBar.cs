@@ -73,18 +73,14 @@ namespace PremiumScraps.CustomEffects
             base.ItemActivate(used, buttonDown);
         }
 
-        public static bool VerifyPreventSwitch(PlayerControllerB player)  // used by harmony patch
+        public static void TwoHandedFix(Shovel shovel, bool cancel)  // used by harmony patch
         {
-            if (((player.IsOwner && player.isPlayerControlled && (!player.IsServer || player.isHostPlayerObject)) || player.isTestingPlayer)
-                && !(player.timeSinceSwitchingSlots < 0.3f) && !player.isGrabbingObjectAnimation && !player.quickMenuManager.isMenuOpen
-                && !player.inSpecialInteractAnimation && !player.throwingObject && !player.isTypingChat && !player.twoHanded
-                && !player.activatingItem && !player.jetpackControls && !player.disablingJetpackControls)
+            if (Plugin.config.squareSteelWeapon.Value && shovel.previousPlayerHeldBy != null && !cancel)
             {
-                GrabbableObject currentlyHeldObjectServer = player.currentlyHeldObjectServer;
-                if (Plugin.config.squareSteelWeapon.Value && currentlyHeldObjectServer != null && currentlyHeldObjectServer.itemProperties.name == "SquareSteelItem" && currentlyHeldObjectServer is SteelBar)
-                    return true;
+                var heldObject = shovel.previousPlayerHeldBy.currentlyHeldObjectServer;
+                if (heldObject != null && heldObject.itemProperties.name == "SquareSteelItem" && heldObject is SteelBar)
+                    shovel.previousPlayerHeldBy.twoHanded = true;
             }
-            return false;
         }
 
         public override void GrabItem()

@@ -62,7 +62,7 @@ namespace PremiumScraps.CustomEffects
             if ((IsHost || IsServer) && !isInIdleScree && !isHeld)
             {
                 feelingLonelyTime += Time.deltaTime;
-                if (feelingLonelyTime >= 35f)
+                if (feelingLonelyTime >= 30f)
                 {
                     if (Random.Range(0, 3) != 0)
                         RonkaAudioServerRpc(true);
@@ -93,7 +93,7 @@ namespace PremiumScraps.CustomEffects
         {
             if (GameNetworkManager.Instance.localPlayerController == null || itemAudio == null || idleScreeAudio == null)
                 return;
-            float pitch = Random.Range(inIdle ? 0.8f : 0.93f, 1f);
+            float pitch = Random.Range(inIdle ? 0.75f : 0.93f, 1f);
             var audioClip = selectedAudio == 0 ? scree1 : scree2;
             screeAnimator?.SetTrigger("Scree" + (selectedAudio + 1));
             if (!inIdle)
@@ -108,10 +108,11 @@ namespace PremiumScraps.CustomEffects
             }
             else
             {
+                idleScreeAudio.maxDistance = isInFactory ? 55 : 40;
                 idleScreeAudio.pitch = pitch;
                 idleScreeAudio.PlayOneShot(audioClip);
                 WalkieTalkie.TransmitOneShotAudio(idleScreeAudio, audioClip, 0.5f);
-                RoundManager.Instance.PlayAudibleNoise(transform.position, 60, 0.5f, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
+                RoundManager.Instance.PlayAudibleNoise(transform.position, 50, 0.5f, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
             }
         }
 
