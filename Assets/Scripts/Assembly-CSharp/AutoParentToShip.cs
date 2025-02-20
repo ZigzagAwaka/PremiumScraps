@@ -80,6 +80,8 @@ public class AutoParentToShip : NetworkBehaviour
 
 	public bool overrideOffset;
 
+	public int unlockableID = -1;
+
 	private void Awake()
 	{
 	}
