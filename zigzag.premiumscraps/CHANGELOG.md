@@ -1,3 +1,6 @@
+## 2.3.2
+- [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) is now a thunderstore dependency, but it is optional so you can remove it if you don't like it
+
 # 2.3.1 The 2.3 improvements part 2
 - **Serpent of Ronka**
     - A new scrap!

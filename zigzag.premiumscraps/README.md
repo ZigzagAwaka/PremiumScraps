@@ -8,9 +8,9 @@ Scraps in this mod have been made specifically to be discovered in a friend grou
 
 All items are performance friendly.
 
-Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
-
 This mod is automatically translated into french if you are french.
+
+Compatible with v60/v61/v62/v64/v65/v66/v67/v68/v69 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
@@ -109,7 +109,7 @@ Each item has a low/medium spawn chance on all moons, you will not find them eas
 
 ### Compatible mods 🤫
 
-- It's highly recommanded to have the mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) installed but I will not spoil why...
+- The mod [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) is an optional dependency, you can safely uninstall it if you don't like it. However it's highly recommended to keep it for the best experience...!
 - You should check [ChillaxScraps](https://thunderstore.io/c/lethal-company/p/Zigzag/ChillaxScraps/), it pairs well with PremiumScraps!
 - Custom events are added to [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/) if you have it installed.
 - All scraps are given a custom icon if you have [RuntimeIcons](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/RuntimeIcons/) installed! 😌
