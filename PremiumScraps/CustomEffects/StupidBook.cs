@@ -29,8 +29,16 @@ namespace PremiumScraps.CustomEffects
                 itemProperties.grabSFX = Plugin.audioClips[38];
                 itemProperties.dropSFX = Plugin.audioClips[39];
             }
-            if (!IsHost && !IsServer)
-                SyncStateServerRpc();
+        }
+
+        public override int GetItemDataToSave()
+        {
+            return nbFinish;
+        }
+
+        public override void LoadItemSaveData(int saveData)
+        {
+            nbFinish = saveData;
         }
 
         public override void EquipItem()
@@ -116,13 +124,6 @@ namespace PremiumScraps.CustomEffects
         private void AudioClientRpc(int audioID, Vector3 clientPosition, float localVolume, float clientVolume)
         {
             Effects.Audio(audioID, clientPosition, localVolume, clientVolume, playerHeldBy);
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void SyncStateServerRpc()
-        {
-            if (nbFinish != 0)
-                UpdateNbFinishClientRpc(nbFinish);
         }
     }
 }

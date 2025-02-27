@@ -48,7 +48,7 @@ MonoBehaviour:
   syncUseFunction: 0
   syncDiscardFunction: 0
   syncInteractLRFunction: 0
-  saveItemVariable: 0
+  saveItemVariable: 1
   isDefensiveWeapon: 0
   toolTips:
   - 'Squeeze : [RMB]'

@@ -15,7 +15,7 @@ namespace PremiumScraps.CustomEffects
         public AudioSource? idleScreeAudio;
         public ScanNodeProperties? scanNode;
         public float feelingLonelyTime;
-        public int actualVariantID = 0;
+        public int actualVariantID = -1;
 
         public GreatRonka() { }
 
@@ -37,6 +37,16 @@ namespace PremiumScraps.CustomEffects
             }
             else
                 SyncItemServerRpc(false);
+        }
+
+        public override int GetItemDataToSave()
+        {
+            return actualVariantID;
+        }
+
+        public override void LoadItemSaveData(int saveData)
+        {
+            ChooseVariant(saveData);
         }
 
         private IEnumerator IdleScree()
@@ -119,21 +129,30 @@ namespace PremiumScraps.CustomEffects
         [ServerRpc(RequireOwnership = false)]
         private void ChooseVariantServerRpc()
         {
+            if (actualVariantID != -1)
+                return;
             ChooseVariantClientRpc(Random.Range(0, 5));
         }
 
         [ClientRpc]
         private void ChooseVariantClientRpc(int variantID)
         {
-            actualVariantID = variantID;
-            if (actualVariantID == 0)
+            ChooseVariant(variantID);
+        }
+
+        private void ChooseVariant(int variantID)
+        {
+            if (actualVariantID != -1)
                 return;
-            transform.GetChild(2 + actualVariantID)?.gameObject?.SetActive(true);
-            if (actualVariantID != 3)
+            actualVariantID = variantID;
+            if (variantID == 0)
+                return;
+            transform.GetChild(2 + variantID)?.gameObject?.SetActive(true);
+            if (variantID != 3)
                 transform.GetChild(2)?.gameObject?.SetActive(false);
             if (scanNode == null)
                 return;
-            switch (actualVariantID)
+            switch (variantID)
             {
                 case 1: scanNode.headerText = "Behatted Serpent of Ronka"; break;
                 case 2: scanNode.headerText = "Behelmeted Serpent of Ronka"; break;
@@ -149,8 +168,6 @@ namespace PremiumScraps.CustomEffects
             SyncItemClientRpc(!overrideStop && isInIdleScree);
             if (overrideStop && idleScreeCoroutine != null)
                 StopCoroutine(idleScreeCoroutine);
-            else if (!overrideStop)
-                ChooseVariantClientRpc(actualVariantID);
         }
 
         [ClientRpc]

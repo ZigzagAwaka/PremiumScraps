@@ -15,6 +15,7 @@ namespace PremiumScraps
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency("AudioKnight.StarlancerAIFix", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("ShipInventory", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("zigzag.SelfSortingStorage", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("mrov.WeatherRegistry", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("Theronguard.EmergencyDice", BepInDependency.DependencyFlags.SoftDependency)]
@@ -23,7 +24,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.3.2";
+        const string VERSION = "2.3.3";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
@@ -50,6 +51,8 @@ namespace PremiumScraps
                 harmony.CreateClassProcessor(typeof(MattyFixesAirhornPositionPatch), true).Patch();  // fake airhorn position fix with matty fixes
             if (Chainloader.PluginInfos.ContainsKey("ShipInventory"))
                 ShipInventoryConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("ShipInventory").Metadata);  // setup conditions for shipinventory
+            if (Chainloader.PluginInfos.ContainsKey("zigzag.SelfSortingStorage"))
+                SSSConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("zigzag.SelfSortingStorage").Metadata);  // setup conditions for SSS
             if (config.diceEvents.Value && Chainloader.PluginInfos.ContainsKey("Theronguard.EmergencyDice"))
                 DiceEvents.RegisterDiceEvents(Logger, Chainloader.PluginInfos.GetValueOrDefault("Theronguard.EmergencyDice").Metadata);  // register custom events for emergency dice mod
         }

@@ -1,5 +1,13 @@
+## 2.3.3
+- **Updated**
+    - Added a custom condition for [SelfSortingStorage](https://thunderstore.io/c/lethal-company/p/Zigzag/SelfSortingStorage/) to prevent certain items from being stored, this is the same condition as the ShipInventory one (and some item conditions were updated)
+- **Fixed**
+    - Basics of architecture state is now saved when reloading the lobby
+    - Serpent of Ronka random variation is now saved when reloading the lobby
+
 ## 2.3.2
-- [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) is now a thunderstore dependency, but it is optional so you can remove it if you don't like it
+- **Updated**
+    - [StarlancerAIFix](https://thunderstore.io/c/lethal-company/p/AudioKnight/StarlancerAIFix/) is now a thunderstore dependency, but it is optional so you can remove it if you don't like it
 
 # 2.3.1 The 2.3 improvements part 2
 - **Serpent of Ronka**

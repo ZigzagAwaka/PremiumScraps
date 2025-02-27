@@ -3434,6 +3434,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SSS_Module
       objectReference: {fileID: 0}
+    - target: {fileID: 5714683248271811434, guid: 1efb91deb120d194d9373c871cceaa78,
+        type: 3}
+      propertyPath: positionOffset.x
+      value: -0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 6524274860693222242, guid: 1efb91deb120d194d9373c871cceaa78,
         type: 3}
       propertyPath: m_LocalPosition.x

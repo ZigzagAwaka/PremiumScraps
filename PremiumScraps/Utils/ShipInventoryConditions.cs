@@ -14,14 +14,13 @@ namespace PremiumScraps.Utils
             }
         }
 
-        private static bool PremiumScrapsCondition(PlayerControllerB player)
+        public static bool PremiumScrapsCondition(PlayerControllerB player)
         {
             var item = player.currentlyHeldObjectServer;
             if ((item.itemProperties.name == "BombItem" && item is Bomb bomb && bomb.activated) ||
-                (item.itemProperties.name == "ControllerItem" && item is Controller) ||
+                (item.itemProperties.name == "ControllerItem" && item is Controller controller && controller.isInControlMode) ||
                 (item.itemProperties.name == "JobApplicationItem" && item is JobDark) ||
-                (item.itemProperties.name == "GazpachoItem" && item is SpanishDrink) ||
-                (item.itemProperties.name == "BookCustomItem" && item is StupidBook stupidbook && stupidbook.nbFinish != 0))
+                (item.itemProperties.name == "GazpachoItem" && item is SpanishDrink))
                 return false;
             return true;
         }
