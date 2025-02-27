@@ -117,7 +117,7 @@ Each item has a low/medium spawn chance on all moons, you will not find them eas
 - You can also install the mod [NavMeshInCompany](https://thunderstore.io/c/lethal-company/p/Kittenji/NavMeshInCompany/) if you want more chaos! 😏
 
 ### Feedback
-You can post some suggestions or issues in the mod release page in the [modding discord](https://discord.com/invite/lcmod) or as a [github](https://github.com/ZigzagAwaka/PremiumScraps) issue.
+You can post some suggestions or issues in the mod release page in the [modding discord](https://discord.gg/XeyYqRdRGC) or as a [github](https://github.com/ZigzagAwaka/PremiumScraps) issue.
 
 <details><summary>Item list (click to reveal)</summary>
 
