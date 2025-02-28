@@ -1,6 +1,7 @@
 ## 2.3.3
 - **Updated**
     - Added a custom condition for [SelfSortingStorage](https://thunderstore.io/c/lethal-company/p/Zigzag/SelfSortingStorage/) to prevent certain items from being stored, this is the same condition as the ShipInventory one (and some item conditions were improved)
+    - Updated ShipInventory soft dependency to now target [ShipInventoryUpdated](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/ShipInventoryUpdated/)
 - **Fixed**
     - Basics of architecture state is now saved when reloading the lobby
     - Serpent of Ronka random variation is now saved when reloading the lobby

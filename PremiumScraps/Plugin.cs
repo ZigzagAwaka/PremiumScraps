@@ -14,7 +14,7 @@ namespace PremiumScraps
 {
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency("AudioKnight.StarlancerAIFix", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency("ShipInventory", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("ShipInventoryUpdated", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("zigzag.SelfSortingStorage", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("mrov.WeatherRegistry", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
@@ -49,8 +49,8 @@ namespace PremiumScraps
                 harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();  // bombitem charger
             if (Chainloader.PluginInfos.ContainsKey("mattymatty.MattyFixes"))
                 harmony.CreateClassProcessor(typeof(MattyFixesAirhornPositionPatch), true).Patch();  // fake airhorn position fix with matty fixes
-            if (Chainloader.PluginInfos.ContainsKey("ShipInventory"))
-                ShipInventoryConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("ShipInventory").Metadata);  // setup conditions for shipinventory
+            if (Chainloader.PluginInfos.ContainsKey("ShipInventoryUpdated"))
+                ShipInventoryConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("ShipInventoryUpdated").Metadata);  // setup conditions for shipinventory
             if (Chainloader.PluginInfos.ContainsKey("zigzag.SelfSortingStorage"))
                 SSSConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("zigzag.SelfSortingStorage").Metadata);  // setup conditions for SSS
             if (config.diceEvents.Value && Chainloader.PluginInfos.ContainsKey("Theronguard.EmergencyDice"))
