@@ -35,7 +35,7 @@ namespace PremiumScraps.CustomEffects
         {
             if (buttonDown && playerHeldBy != null && !noiseAudio.isPlaying)
             {
-                var unlucky = (Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) <= 4) || Random.Range(0, 100) <= 2;  // unlucky 50%, or 3%
+                var unlucky = (Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) <= 4) || Random.Range(0, 100) <= 1;  // unlucky 50%, or 2%
                 if (!unlucky || StartOfRound.Instance.inShipPhase || !StartOfRound.Instance.shipHasLanded || StartOfRound.Instance.shipIsLeaving)
                     KingAudioServerRpc();
                 else

@@ -1,3 +1,7 @@
+## 2.3.4
+- **Fixed**
+    - Fixed Helm of Domination unlucky effect being global
+
 ## 2.3.3
 - **Updated**
     - Added a custom condition for [SelfSortingStorage](https://thunderstore.io/c/lethal-company/p/Zigzag/SelfSortingStorage/) to prevent certain items from being stored

@@ -26,7 +26,7 @@ namespace PremiumScraps
             cfg.SaveOnConfigSet = false;
             diceEvents = cfg.Bind("General", "Dice events", true, "Adds some custom dice rolls to Emergency Dice items.\nRequires 'Emergency Dice Updated' 1.7.4+ to work, or else it will be automatically false.");
             languageMode = cfg.Bind("General", "Language mode", "default", new ConfigDescription("Change the language of this mod (translate text, tool tips and change some sounds). The 'default' value is automatically assigned to your system language.", new AcceptableValueList<string>("default", "english", "french")));
-            unluckyPlayersStr = cfg.Bind("General", "Unlucky players", "76561198984467725,76561199094139351,76561198198881967", "Comma separated list of players Steam ID that you want them to be unlucky.\nBad things will happen to unlucky players, use this config to take a sweet revenge on your friends...");
+            unluckyPlayersStr = cfg.Bind("General", "Unlucky players", "76561198984467725,76561198198881967,76561198195911589", "Comma separated list of players Steam ID that you want them to be unlucky.\nBad things will happen to unlucky players, use this config to take a sweet revenge on your friends...");
             gazpachoMemeSfx = cfg.Bind("Items", "Gazpacho meme sfx", true, "Turns El Gazpacho's grab and drop sfx to memes sounds.\nWill be automatically false if the chosen language is not french.");
             squareSteelWeapon = cfg.Bind("Items", "Square Steel weapon", true, "Turns Galvanized Square Steel into a usable weapon.");
             controllerBodyCams = cfg.Bind("Items", "Controller Body Cams", true, "Upgrade the Controller screen with a camera from OpenBodyCams mod.\nWill be automatically false if OpenBodyCams is not installed.");

@@ -34,7 +34,7 @@ namespace PremiumScraps.CustomEffects
         private void EffectClientRpc(int audioID, float volume, bool unlucky)
         {
             weAreOneAudio?.PlayOneShot(Plugin.audioClips[audioID], volume);
-            if (true && !StartOfRound.Instance.inShipPhase && !StartOfRound.Instance.shipIsLeaving)
+            if (unlucky && !StartOfRound.Instance.inShipPhase && !StartOfRound.Instance.shipIsLeaving)
                 StartCoroutine(DoBoom());
         }
 
