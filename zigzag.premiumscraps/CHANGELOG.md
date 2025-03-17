@@ -1,3 +1,7 @@
+## 2.3.5
+- **Fixed**
+    - Fixed Serpent of Ronka not getting back their correct variation name when reloading the lobby
+
 ## 2.3.4
 - **Fixed**
     - Fixed Helm of Domination unlucky effect being global

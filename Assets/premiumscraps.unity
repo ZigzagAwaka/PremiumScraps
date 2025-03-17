@@ -3434,21 +3434,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SSS_Module
       objectReference: {fileID: 0}
-    - target: {fileID: 2645089418863848178, guid: 1efb91deb120d194d9373c871cceaa78,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5714683248271811434, guid: 1efb91deb120d194d9373c871cceaa78,
-        type: 3}
-      propertyPath: positionOffset.x
-      value: -0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524274860693222242, guid: 1efb91deb120d194d9373c871cceaa78,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6524274860693222242, guid: 1efb91deb120d194d9373c871cceaa78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3497,11 +3482,6 @@ PrefabInstance:
     - target: {fileID: 6524274860693222242, guid: 1efb91deb120d194d9373c871cceaa78,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524274860693222242, guid: 1efb91deb120d194d9373c871cceaa78,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8828998114898534277, guid: 1efb91deb120d194d9373c871cceaa78,
@@ -3581,11 +3561,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8613692429208200017, guid: 8cd9cd01af6621947ac8fb861f3faabb,
-        type: 3}
-      propertyPath: positionOffset.x
-      value: 1.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

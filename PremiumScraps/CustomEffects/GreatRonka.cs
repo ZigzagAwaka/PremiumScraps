@@ -25,7 +25,8 @@ namespace PremiumScraps.CustomEffects
             itemAudio = transform.GetComponent<AudioSource>();
             idleScreeAudio = transform.GetChild(1).GetComponent<AudioSource>();
             screeAnimator = transform.GetComponent<Animator>();
-            scanNode = transform.GetChild(0).GetComponent<ScanNodeProperties>();
+            if (scanNode == null)
+                scanNode = transform.GetChild(0).GetComponent<ScanNodeProperties>();
             scree1 = itemProperties.grabSFX;
             scree2 = itemProperties.dropSFX;
             if (IsHost || IsServer)
@@ -151,7 +152,11 @@ namespace PremiumScraps.CustomEffects
             if (variantID != 3)
                 transform.GetChild(2)?.gameObject?.SetActive(false);
             if (scanNode == null)
-                return;
+            {
+                scanNode = transform.GetChild(0).GetComponent<ScanNodeProperties>();
+                if (scanNode == null)
+                    return;
+            }
             switch (variantID)
             {
                 case 1: scanNode.headerText = "Behatted Serpent of Ronka"; break;
