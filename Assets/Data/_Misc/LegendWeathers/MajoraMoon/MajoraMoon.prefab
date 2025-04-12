@@ -625,6 +625,7 @@ MonoBehaviour:
   crashParticles2: {fileID: 158341225813060462}
   impactObject: {fileID: 5692103746390759194, guid: a7ed699143473384f934593eeb749fe0,
     type: 3}
+  tearPosition: {fileID: 3465920713805912682}
 --- !u!114 &6738875438040046727
 MonoBehaviour:
   m_ObjectHideFlags: 0

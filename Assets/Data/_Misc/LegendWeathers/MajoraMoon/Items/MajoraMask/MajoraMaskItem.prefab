@@ -305,8 +305,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b066f4a2bbf1f9248aa4904b93014d73, type: 3}
   - {fileID: 8300000, guid: c6ee7d40e4d80d347baa662d0bb2ad55, type: 3}
   thisAudio: {fileID: 0}
-  audioMinInterval: 20
-  audioMaxInterval: 35
+  audioMinInterval: 15
+  audioMaxInterval: 30
   audioChancePercent: 90
 --- !u!1 &1902874363524115161
 GameObject:
