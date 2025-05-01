@@ -2075,15 +2075,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: MajoraMask
       objectReference: {fileID: 0}
-    - target: {fileID: 5932669072194278090, guid: f6ad3671bfd286a40b39c570a63973bd,
+    - target: {fileID: 3802780524681319240, guid: f6ad3671bfd286a40b39c570a63973bd,
         type: 3}
-      propertyPath: audioMaxInterval
-      value: 30
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5932669072194278090, guid: f6ad3671bfd286a40b39c570a63973bd,
+    - target: {fileID: 6712353010871341993, guid: f6ad3671bfd286a40b39c570a63973bd,
         type: 3}
-      propertyPath: audioMinInterval
-      value: 15
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7683246972605356467, guid: f6ad3671bfd286a40b39c570a63973bd,
         type: 3}
@@ -3002,11 +3002,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MajoraMoon
       objectReference: {fileID: 0}
-    - target: {fileID: 3957398831893263012, guid: 986a4d96e3efac34aaef3eae0c4825ad,
-        type: 3}
-      propertyPath: tearPosition
-      value: 
-      objectReference: {fileID: 4645800518012850770}
     - target: {fileID: 4710641547359138855, guid: 986a4d96e3efac34aaef3eae0c4825ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3067,12 +3062,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 986a4d96e3efac34aaef3eae0c4825ad, type: 3}
---- !u!4 &4645800518012850770 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3465920713805912682, guid: 986a4d96e3efac34aaef3eae0c4825ad,
-    type: 3}
-  m_PrefabInstance: {fileID: 4645800518012850769}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4701025279022750026
 PrefabInstance:
   m_ObjectHideFlags: 0
