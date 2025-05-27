@@ -12,7 +12,8 @@ namespace PremiumScraps.Utils
         public static SpawnableEnemyWithRarity Masked, HoardingBug, SnareFlea, Jester, Bracken, Thumper, CoilHead,
                                                CircuitBees, EarthLeviathan, BunkerSpider, ForestKeeper, GhostGirl,
                                                TulipSnake, EyelessDog, Maneater, Nutcracker, Barber, Butler, OldBird,
-                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, BaboonHawk;
+                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, BaboonHawk,
+                                               Tourist;
         public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
@@ -83,6 +84,8 @@ namespace PremiumScraps.Utils
                         Bruce = enemy;
                     else if (enemy.enemyType.enemyName == "SparkTower" && SparkTower == null)
                         SparkTower = enemy;
+                    else if (enemy.enemyType.enemyName == "Tourist" && Tourist == null)
+                        Tourist = enemy;
                 }
 
                 foreach (var trap in level.spawnableMapObjects)

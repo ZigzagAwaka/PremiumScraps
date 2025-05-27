@@ -136,16 +136,17 @@ namespace PremiumScraps.CustomEffects
             var i = Random.Range(0, 10);
             if (isInsideFactory)
             {
-                if (!StarlancerAIFix)
+                enemy = GetEnemies.Tourist;
+                /*if (!StarlancerAIFix)
                     enemy = GetEnemies.Maneater;
                 else if (i <= 4)  // 50%
                     enemy = GetEnemies.ForestKeeper;
-                else if (i == 5 || i == 6)  // 20%
+                else if (i == 5 || i == 6 || i == 7)  // 30%
                     enemy = GetEnemies.EyelessDog;
-                else if (i == 7 || i == 8)  // 20%
-                    enemy = GetEnemies.OldBird;
+                else if (i == 8)  // 10%
+                    enemy = GetEnemies.Tourist ?? GetEnemies.OldBird;
                 else  // 10%
-                    enemy = GetEnemies.ShyGuy != null ? GetEnemies.ShyGuy : GetEnemies.ForestKeeper;
+                    enemy = GetEnemies.ShyGuy ?? GetEnemies.ForestKeeper;*/
             }
             else
             {
@@ -156,7 +157,7 @@ namespace PremiumScraps.CustomEffects
                 else if (i == 3 || i == 4)  // 20%
                     enemy = GetEnemies.Barber;
                 else if (i == 5)  // 10%
-                    enemy = GetEnemies.Bruce != null ? GetEnemies.Bruce : GetEnemies.Nutcracker;
+                    enemy = GetEnemies.Bruce ?? GetEnemies.Nutcracker;
                 else if (i == 6)  // 10%
                     enemy = GetEnemies.Nutcracker;
                 else if (i == 7 || i == 8)  // 20%

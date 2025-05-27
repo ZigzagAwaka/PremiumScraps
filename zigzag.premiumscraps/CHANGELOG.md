@@ -1,3 +1,6 @@
+## 2.3.6
+- f
+
 ## 2.3.5
 - **Fixed**
     - Fixed Serpent of Ronka not getting back their correct variation name when reloading the lobby
