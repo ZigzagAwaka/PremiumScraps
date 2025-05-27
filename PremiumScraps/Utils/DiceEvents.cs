@@ -72,16 +72,16 @@ namespace PremiumScraps.Utils
         {
             yield return new WaitForSeconds(10f);
             var position = RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position;
-            networker.TeleportInsideServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, position);
+            networker.TeleportInsideServerRPC(Effects.GetLocalPlayerIndex(), position);
             networker.TurnOffAllLightsServerRPC();
             Effects.Audio3D(1, position, 1.5f);
-            networker.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, 8, "Harry Mason", true, position);
+            networker.SameScrapServerRPC(Effects.GetLocalPlayerIndex(), 8, "Harry Mason", true, position);
         }
 
         public static IEnumerator StartNoise(this Networker networker)
         {
             var position = RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position;
-            networker.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, 3, "crouton", true, position);
+            networker.SameScrapServerRPC(Effects.GetLocalPlayerIndex(), 3, "crouton", true, position);
             for (int i = 0; i < 5; i++)
             {
                 yield return new WaitForSeconds(5f * i);
@@ -149,7 +149,7 @@ namespace PremiumScraps.Utils
             else if (chosenPack == "DangerousItempack")
                 pack = new string[4] { "Controller", "Friendship ender", "Scroll of Town Portal", "Job application" };
             for (int i = 0; i < pack.Length; i++)
-                Networker.Instance.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, 1, pack[i]);
+                Networker.Instance.SameScrapServerRPC(Effects.GetLocalPlayerIndex(), 1, pack[i]);
         }
     }
 
@@ -163,9 +163,9 @@ namespace PremiumScraps.Utils
         public void Use()
         {
             if (Effects.GetScrap("OcarinaItem") != null)
-                Networker.Instance.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, Random.Range(2, 6), "Ocarina");
+                Networker.Instance.SameScrapServerRPC(Effects.GetLocalPlayerIndex(), Random.Range(2, 6), "Ocarina");
             else
-                Networker.Instance.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, 6, "Clown horn");
+                Networker.Instance.SameScrapServerRPC(Effects.GetLocalPlayerIndex(), 6, "Clown horn");
         }
     }
 
@@ -179,8 +179,8 @@ namespace PremiumScraps.Utils
         public void Use()
         {
             for (int i = 0; i < 12; i++)
-                Networker.Instance.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, 1, "The talking orb",
-                    true, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
+                Networker.Instance.SameScrapServerRPC(Effects.GetLocalPlayerIndex(), 1, "The talking orb", true,
+                    RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
         }
     }
 
@@ -194,8 +194,8 @@ namespace PremiumScraps.Utils
         public void Use()
         {
             for (int i = 0; i < 30; i++)
-                Networker.Instance.SameScrapServerRPC(GameNetworkManager.Instance.localPlayerController.playerClientId, 1, "Bomb",
-                    true, RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position);
+                Networker.Instance.SameScrapServerRPC(Effects.GetLocalPlayerIndex(), 1, "Bomb", true,
+                    RoundManager.Instance.insideAINodes[Random.Range(0, RoundManager.Instance.insideAINodes.Length - 1)].transform.position);
         }
     }
 

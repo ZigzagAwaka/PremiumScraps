@@ -36,6 +36,11 @@ namespace PremiumScraps.Utils
             return Plugin.config.unluckyPlayersID.Find(id => id == playerId) != default;
         }
 
+        public static int GetLocalPlayerIndex()
+        {
+            return System.Array.IndexOf(StartOfRound.Instance.allPlayerScripts, GameNetworkManager.Instance.localPlayerController);
+        }
+
         public static void FillMessagesFromLang(List<string> messages, string[] ids)
         {
             foreach (string id in ids)

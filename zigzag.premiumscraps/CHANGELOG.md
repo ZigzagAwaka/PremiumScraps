@@ -1,5 +1,13 @@
 ## 2.3.6
-- f
+- **Updated**
+    - Added 1 new event for The friendship ender effect if you have [LethalAnomalies](https://thunderstore.io/c/lethal-company/p/Zeldahu/LethalAnomalies/) installed
+    - Modified some effects probabilities for The friendship ender
+    - Improved material visuals for some items
+    - Improved audio loading
+    - Optimized Frieren model
+- **Fixed**
+    - Fixed compatibility with the latest version of [Emergency_Dice_Updated](https://thunderstore.io/c/lethal-company/p/slayer6409/Emergency_Dice_Updated/)
+    - When playing with the french translation active, it is now recommended to install [FontUpdate](https://thunderstore.io/c/lethal-company/p/rectorado/FontUpdate/) to fix certain characters from being displayed weirdly
 
 ## 2.3.5
 - **Fixed**

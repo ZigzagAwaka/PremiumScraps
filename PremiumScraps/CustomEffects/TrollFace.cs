@@ -136,17 +136,16 @@ namespace PremiumScraps.CustomEffects
             var i = Random.Range(0, 10);
             if (isInsideFactory)
             {
-                enemy = GetEnemies.Tourist;
-                /*if (!StarlancerAIFix)
+                if (!StarlancerAIFix)
                     enemy = GetEnemies.Maneater;
                 else if (i <= 4)  // 50%
                     enemy = GetEnemies.ForestKeeper;
                 else if (i == 5 || i == 6 || i == 7)  // 30%
                     enemy = GetEnemies.EyelessDog;
                 else if (i == 8)  // 10%
-                    enemy = GetEnemies.Tourist ?? GetEnemies.OldBird;
+                    enemy = GetEnemies.Tourist ?? GetEnemies.ForestKeeper;
                 else  // 10%
-                    enemy = GetEnemies.ShyGuy ?? GetEnemies.ForestKeeper;*/
+                    enemy = GetEnemies.ShyGuy ?? GetEnemies.ForestKeeper;
             }
             else
             {
@@ -188,9 +187,23 @@ namespace PremiumScraps.CustomEffects
                         enemy = GetEnemies.Jester;
                 }
             }
-            for (int n = 0; n < 4; n++)
+            if (StarlancerAIFix && isInsideFactory && i == 8 && GetEnemies.Tourist != null)
+                StartCoroutine(TouristSpawn(spawnPosition));
+            else
             {
-                Effects.Spawn(enemy, spawnPosition);
+                for (int n = 0; n < 4; n++)
+                {
+                    Effects.Spawn(enemy, spawnPosition);
+                }
+            }
+        }
+
+        private IEnumerator TouristSpawn(Vector3 spawnPosition)
+        {
+            for (int n = 0; n < 2; n++)
+            {
+                yield return new WaitForSeconds(5f);
+                Effects.Spawn(GetEnemies.Tourist, spawnPosition);
             }
         }
 
