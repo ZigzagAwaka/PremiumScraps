@@ -195,6 +195,8 @@ namespace PremiumScraps.CustomEffects
                 {
                     Effects.Spawn(enemy, spawnPosition);
                 }
+                if (!isInsideFactory && (i == 0 || i == 3 || i == 4))
+                    Effects.Spawn(GetEnemies.Kiwi, RoundManager.Instance.outsideAINodes[0].transform.position);
             }
         }
 

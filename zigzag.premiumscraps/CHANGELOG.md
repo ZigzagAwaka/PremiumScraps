@@ -1,3 +1,10 @@
+## 2.3.7
+- **Updated**
+    - Recompiled for v70
+    - Added GiantKiwi in the spawn pool for The friendship ender effect
+- **Fixed**
+    - Modified some of the french translation text to be more compatible with [FontUpdate](https://thunderstore.io/c/lethal-company/p/rectorado/FontUpdate/)
+
 ## 2.3.6
 - **Updated**
     - Added 1 new event for The friendship ender effect if you have [LethalAnomalies](https://thunderstore.io/c/lethal-company/p/Zeldahu/LethalAnomalies/) installed

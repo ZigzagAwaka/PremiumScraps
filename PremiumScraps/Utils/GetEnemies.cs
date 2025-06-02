@@ -13,7 +13,7 @@ namespace PremiumScraps.Utils
                                                CircuitBees, EarthLeviathan, BunkerSpider, ForestKeeper, GhostGirl,
                                                TulipSnake, EyelessDog, Maneater, Nutcracker, Barber, Butler, OldBird,
                                                ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, BaboonHawk,
-                                               Tourist;
+                                               Tourist, Kiwi;
         public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
@@ -62,6 +62,8 @@ namespace PremiumScraps.Utils
                         CircuitBees = enemy;
                     else if (enemy.enemyType.enemyName == "Tulip Snake" && TulipSnake == null)
                         TulipSnake = enemy;
+                    else if (enemy.enemyType.enemyName == "GiantKiwi" && Kiwi == null)
+                        Kiwi = enemy;
                 }
 
                 foreach (var enemy in level.OutsideEnemies)
