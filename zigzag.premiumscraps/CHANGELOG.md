@@ -1,3 +1,9 @@
+## 2.3.8
+- **Updated**
+    - Reduced the Controller battery usage
+- **Fixed**
+    - Updated compatibility with the latest version of [WeatherRegistry](https://thunderstore.io/c/lethal-company/p/mrov/WeatherRegistry/)
+
 ## 2.3.7
 - **Updated**
     - Recompiled for v70
