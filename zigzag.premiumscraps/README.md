@@ -10,7 +10,7 @@ All items are performance friendly.
 
 This mod is automatically translated into french if you are french. *Please install [FontUpdate](https://thunderstore.io/c/lethal-company/p/rectorado/FontUpdate/) if you are playing the french mode.*
 
-Compatible with v70 of Lethal Company.
+Compatible with v73 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...

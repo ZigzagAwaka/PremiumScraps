@@ -18,6 +18,7 @@ namespace PremiumScraps
         public readonly ConfigEntry<bool> gazpachoMemeSfx;
         public readonly ConfigEntry<bool> squareSteelWeapon;
         public readonly ConfigEntry<bool> controllerBodyCams;
+        public readonly ConfigEntry<float> ronkaVolumeMultiplier;
         public readonly List<ConfigEntry<int>> entries = new List<ConfigEntry<int>>();
         public readonly List<ConfigEntry<string>> values = new List<ConfigEntry<string>>();
 
@@ -30,6 +31,7 @@ namespace PremiumScraps
             gazpachoMemeSfx = cfg.Bind("Items", "Gazpacho meme sfx", true, "Turns El Gazpacho's grab and drop sfx to memes sounds.\nWill be automatically false if the chosen language is not french.");
             squareSteelWeapon = cfg.Bind("Items", "Square Steel weapon", true, "Turns Galvanized Square Steel into a usable weapon.");
             controllerBodyCams = cfg.Bind("Items", "Controller Body Cams", true, "Upgrade the Controller screen with a camera from OpenBodyCams mod.\nWill be automatically false if OpenBodyCams is not installed.");
+            ronkaVolumeMultiplier = cfg.Bind("Items", "Ronka volume multiplier", 1f, new ConfigDescription("Change the volume of Ronka's 'scree' sound effects.", new AcceptableValueRange<float>(0f, 1f)));
             foreach (Scrap scrap in scraps)
             {
                 entries.Add(cfg.Bind("Spawn chance", scrap.asset.Split("/")[0], scrap.rarity, "Rarity of the item."));

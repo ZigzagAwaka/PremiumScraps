@@ -1,3 +1,10 @@
+## 2.4.0
+- **Updated**
+    - Updated networking to work for v73 of Lethal Company
+    - Removed the random explosion effect that can happen in the Haunted Hallucination event in My ■■■■■■th job application ; note that this effect is unchanged in the Hazard Hallucination event
+    - Edited some of the sfx values (volume and range) for Serpent of Ronka and added a config to customize the volume
+    - Added [HookGenPatcher](https://thunderstore.io/c/lethal-company/p/Evaisa/HookGenPatcher/) as a dependency *just in case it's removed from LethalLib depencendies and because it's needed by this mod*
+
 ## 2.3.8
 - **Updated**
     - Reduced the Controller battery usage

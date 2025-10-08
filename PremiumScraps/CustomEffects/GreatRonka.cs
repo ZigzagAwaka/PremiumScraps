@@ -109,7 +109,7 @@ namespace PremiumScraps.CustomEffects
             screeAnimator?.SetTrigger("Scree" + (selectedAudio + 1));
             if (!inIdle)
             {
-                float volume = Random.Range(0.9f, 1f);
+                float volume = Random.Range(0.8f, 1f) * Plugin.config.ronkaVolumeMultiplier.Value;
                 itemAudio.pitch = pitch;
                 itemAudio.PlayOneShot(audioClip, volume);
                 WalkieTalkie.TransmitOneShotAudio(itemAudio, audioClip, volume);
@@ -119,11 +119,12 @@ namespace PremiumScraps.CustomEffects
             }
             else
             {
-                idleScreeAudio.maxDistance = isInFactory ? 55 : 40;
+                float volume = Plugin.config.ronkaVolumeMultiplier.Value;
+                idleScreeAudio.maxDistance = isInFactory ? 55 : 35;
                 idleScreeAudio.pitch = pitch;
-                idleScreeAudio.PlayOneShot(audioClip);
-                WalkieTalkie.TransmitOneShotAudio(idleScreeAudio, audioClip, 0.5f);
-                RoundManager.Instance.PlayAudibleNoise(transform.position, 50, 0.5f, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
+                idleScreeAudio.PlayOneShot(audioClip, volume);
+                WalkieTalkie.TransmitOneShotAudio(idleScreeAudio, audioClip, volume);
+                RoundManager.Instance.PlayAudibleNoise(transform.position, 45, volume, 0, isInElevator && StartOfRound.Instance.hangarDoorsClosed);
             }
         }
 

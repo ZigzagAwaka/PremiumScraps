@@ -174,7 +174,7 @@ namespace PremiumScraps.CustomEffects
             }
             else
             {
-                switch (Random.Range(0, 8))
+                switch (Random.Range(0, 7))
                 {
                     case 0:
                         HUDManager.Instance.RadiationWarningHUD();
@@ -192,16 +192,12 @@ namespace PremiumScraps.CustomEffects
                         yield return new WaitForSeconds(15);
                         break;
                     case 2:
-                        Effects.Explosion(player.transform.position, 0, 0);
-                        yield return new WaitForSeconds(5);
-                        break;
-                    case 3:
                         Effects.Knockback(player.transform.position + Vector3.forward, 1, 0, 30);
                         yield return new WaitForSeconds(10);
                         Effects.Knockback(player.transform.position + Vector3.right, 1, 0, 40);
                         yield return new WaitForSeconds(10);
                         break;
-                    case 4:
+                    case 3:
                         Effects.Audio(13, 1.8f);
                         player.drunkness = 1;
                         player.drunknessInertia = 1;
@@ -210,19 +206,19 @@ namespace PremiumScraps.CustomEffects
                         player.playersManager.fearLevelIncreasing = false;
                         yield return new WaitForSeconds(15);
                         break;
-                    case 5:
+                    case 4:
                         var original = player.movementSpeed;
                         player.movementSpeed = 0.25f;
                         yield return new WaitForSeconds(15);
                         player.movementSpeed = original;
                         yield return new WaitForSeconds(5);
                         break;
-                    case 6:
+                    case 5:
                         Effects.Audio(11, 2f);
                         Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         yield return new WaitForSeconds(5);
                         break;
-                    case 7:
+                    case 6:
                         Effects.Audio(9, 2f);
                         Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         yield return new WaitForSeconds(5);

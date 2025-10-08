@@ -1,10 +1,11 @@
 {
     "name": "PremiumScraps",
-    "version_number": "2.3.8",
+    "version_number": "2.4.0",
     "website_url": "https://github.com/ZigzagAwaka/PremiumScraps",
     "description": "Adds several scrap items to the game, some with custom effect!",
     "dependencies": [
         "Evaisa-LethalLib-1.1.0",
+        "Evaisa-HookGenPatcher-0.0.5",
         "AudioKnight-StarlancerAIFix-3.10.0",
         "BepInEx-BepInExPack-5.4.2100"
     ]
