@@ -1,5 +1,0 @@
-{
-    "priority": 0,
-    "item_rotation": [245, 0, 180],
-    "stage_rotation": [ 40, 0, 0]
-}
