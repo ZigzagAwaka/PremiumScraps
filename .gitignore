@@ -56,6 +56,4 @@ crashlytics-build.properties
 /.vscode
 /PremiumScraps/bin/
 /PremiumScraps/obj/
-/Assets/AssetBundles/
-/Assets/AudioMixerController/
-/Assets/Plugins/
+/Assets/*
