@@ -33,9 +33,9 @@ namespace PremiumScraps.CustomEffects
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
-            if (buttonDown && playerHeldBy != null && !noiseAudio.isPlaying)
+            if (buttonDown && !noiseAudio.isPlaying)
             {
-                var unlucky = (Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) <= 4) || Random.Range(0, 100) <= 1;  // unlucky 50%, or 2%
+                var unlucky = (playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId) && Random.Range(0, 10) <= 4) || Random.Range(0, 100) <= 1;  // unlucky 50%, or 2%
                 if (!unlucky || StartOfRound.Instance.inShipPhase || !StartOfRound.Instance.shipHasLanded || StartOfRound.Instance.shipIsLeaving)
                     KingAudioServerRpc();
                 else

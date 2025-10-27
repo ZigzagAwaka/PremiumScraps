@@ -13,6 +13,7 @@ using UnityEngine;
 namespace PremiumScraps
 {
     [BepInPlugin(GUID, NAME, VERSION)]
+    [BepInDependency(LethalLib.Plugin.ModGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("AudioKnight.StarlancerAIFix", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("ShipInventoryUpdated", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("zigzag.SelfSortingStorage", BepInDependency.DependencyFlags.SoftDependency)]
@@ -25,7 +26,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.4.0";
+        const string VERSION = "2.4.1";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();

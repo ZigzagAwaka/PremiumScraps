@@ -10,6 +10,7 @@ namespace PremiumScraps.CustomEffects
     internal class SpanishDrink : PhysicsProp
     {
         public bool isDrunk = false;
+        public bool isMicrowavedAction = false;
         public int usage = 0;
         public int usageBeforeDrunk = 1;
         private readonly int usageBeforeDrunkMin = 0;
@@ -40,6 +41,16 @@ namespace PremiumScraps.CustomEffects
                 itemProperties.dropSFX = Plugin.audioClips[22];
             }
             itemProperties.toolTips[0] = messages[2];
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (rotateObject && !isMicrowavedAction)
+            {
+                isMicrowavedAction = true;
+                StartCoroutine(SpanishMicrowave());
+            }
         }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
@@ -125,6 +136,15 @@ namespace PremiumScraps.CustomEffects
                 player.drunknessSpeed = 1;
             }
             isDrunk = false;
+        }
+
+        private IEnumerator SpanishMicrowave()
+        {
+            Effects.Audio3D(19, transform.position, 1f);  // spanish audio from microwave
+            yield return new WaitForSeconds(1.9f);
+            Landmine.SpawnExplosion(transform.position, true, 4f, 10f, 20, 5);  // explosion
+            rotateObject = false;
+            isMicrowavedAction = false;
         }
 
         [ServerRpc(RequireOwnership = false)]

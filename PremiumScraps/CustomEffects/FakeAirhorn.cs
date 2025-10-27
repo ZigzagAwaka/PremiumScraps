@@ -20,9 +20,9 @@ namespace PremiumScraps.CustomEffects
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
-            if (buttonDown && playerHeldBy != null)
+            if (buttonDown)
             {
-                var unlucky = Effects.IsUnlucky(playerHeldBy.playerSteamId);
+                var unlucky = playerHeldBy != null && Effects.IsUnlucky(playerHeldBy.playerSteamId);
                 if (StartOfRound.Instance.inShipPhase || (unlucky && Random.Range(0, 10) <= 1) || (!unlucky && Random.Range(0, 10) >= 3))  // 70%, or 20% if unlucky
                 {
                     BaseItemActivateServerRpc(used, buttonDown);  // airhorn audio
@@ -35,28 +35,39 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
-        private IEnumerator BadEffect(PlayerControllerB player, bool unlucky, bool used, bool buttonDown = true)
+        private IEnumerator BadEffect(PlayerControllerB? player, bool unlucky, bool used, bool buttonDown = true)
         {
             bool explosion = Random.Range(0, 2) == 0 || unlucky;
             BaseItemActivateServerRpc(used, buttonDown, true, explosion);  // airhorn warning audio
             yield return new WaitForSeconds(explosion ? 0.7f : 0.5f);
-            if (player.isPlayerDead)
+            if (player != null && player.isPlayerDead)
             {
                 RestorePitchServerRpc();
                 yield break;
             }
             if (!explosion)  // 50%
             {
-                for (int i = 0; i < 3; i++)
+                if (player != null)
                 {
-                    LightningServerRpc(player.transform.position, player.isInsideFactory);
-                    yield return new WaitForSeconds(0.1f);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        LightningServerRpc(player.transform.position, player.isInsideFactory);
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                    Effects.Damage(player, 100, CauseOfDeath.Burning, (int)Effects.DeathAnimation.Fire);  // death
                 }
-                Effects.Damage(player, 100, CauseOfDeath.Burning, (int)Effects.DeathAnimation.Fire);  // death
+                else
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        LightningServerRpc(transform.position, transform.position.y < -80f, damage: true);
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                }
             }
             else  // 50%, or 100% if unlucky
             {
-                ExplosionServerRpc(player.transform.position);  // explosion
+                ExplosionServerRpc(player != null ? player.transform.position : transform.position);  // explosion
             }
             yield return new WaitForSeconds(explosion ? 1.25f : 1f);
             RestorePitchServerRpc();
@@ -106,15 +117,15 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void LightningServerRpc(Vector3 position, bool inside)
+        private void LightningServerRpc(Vector3 position, bool inside, bool damage = false)
         {
-            LightningClientRpc(position, inside);
+            LightningClientRpc(position, inside, damage);
         }
 
         [ClientRpc]
-        private void LightningClientRpc(Vector3 position, bool inside)
+        private void LightningClientRpc(Vector3 position, bool inside, bool damage)
         {
-            Effects.SpawnLightningBolt(position, false, false);
+            Effects.SpawnLightningBolt(position, damage, false);
             if (inside)
                 Effects.Audio3D(30, position, 1f);
         }

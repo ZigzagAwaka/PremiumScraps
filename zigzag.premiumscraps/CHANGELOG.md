@@ -1,4 +1,10 @@
-## 2.4.0
+## 2.4.1
+- **Updated**
+    - Added a funny secret effect for El Gazpacho when interacting with a specific vanilla furniture
+    - Changed playerHeldBy null checks for The King and Fake airhorn hehehe
+    - Replaced HookGenPatcher dependency by [AutoHookGenPatcher](https://thunderstore.io/c/lethal-company/p/Hamunii/AutoHookGenPatcher/)
+
+# 2.4.0 v73 update
 - **Updated**
     - Updated networking to work for v73 of Lethal Company
     - Removed the random explosion effect that can happen in the Haunted Hallucination event in My ■■■■■■th job application ; note that this effect is unchanged in the Hazard Hallucination event
