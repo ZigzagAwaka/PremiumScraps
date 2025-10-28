@@ -1,3 +1,7 @@
+## 2.4.2
+- **Fixed**
+    - Restored some of the broken assets in the latest update
+
 ## 2.4.1
 - **Updated**
     - Added a funny secret effect for El Gazpacho when interacting with a specific vanilla furniture
