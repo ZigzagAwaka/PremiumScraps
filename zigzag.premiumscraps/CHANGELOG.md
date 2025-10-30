@@ -1,3 +1,7 @@
+## 2.4.3
+- **Fixed**
+    - Removed the 2.0.3 patches related to [LethalThings](https://thunderstore.io/c/lethal-company/p/Evaisa/LethalThings/) since it's now fixed in the latest update
+
 ## 2.4.2
 - **Fixed**
     - Restored some of the broken assets in the latest update

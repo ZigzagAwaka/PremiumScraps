@@ -18,7 +18,6 @@ namespace PremiumScraps
     [BepInDependency("ShipInventoryUpdated", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("zigzag.SelfSortingStorage", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("mrov.WeatherRegistry", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency(LethalThings.Plugin.ModGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("Theronguard.EmergencyDice", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("Zaggy1024.OpenBodyCams", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("mattymatty.MattyFixes", BepInDependency.DependencyFlags.SoftDependency)]
@@ -26,7 +25,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.4.2";
+        const string VERSION = "2.4.3";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
@@ -39,16 +38,14 @@ namespace PremiumScraps
             PremiumScrapsMonoModPatches.Load();  // IL code patches
             harmony.CreateClassProcessor(typeof(GetEnemies), true).Patch();
             harmony.CreateClassProcessor(typeof(SteelBarPatch), true).Patch();
+            harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerTerminalPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerHUDManagerPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerPlayerControllerBPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerVehicleControllerPatch), true).Patch();
+
             if (Lang.ACTUAL_LANG == "fr")
                 harmony.CreateClassProcessor(typeof(FrenchModeItemTooltipsPatch), true).Patch();
-            if (Chainloader.PluginInfos.ContainsKey(LethalThings.Plugin.ModGUID))
-                harmony.CreateClassProcessor(typeof(LethalThingsBombItemChargerPatch), true).Patch();  // bombitem charger with lethalthings
-            else
-                harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();  // bombitem charger
             if (Chainloader.PluginInfos.ContainsKey("mattymatty.MattyFixes"))
                 harmony.CreateClassProcessor(typeof(MattyFixesAirhornPositionPatch), true).Patch();  // fake airhorn position fix with matty fixes
             if (Chainloader.PluginInfos.ContainsKey("ShipInventoryUpdated"))
