@@ -425,14 +425,15 @@ namespace PremiumScraps.Utils
 
         public static NetworkReference Spawn(SpawnableItemWithRarity scrap, Vector3 position)
         {
-            var parent = RoundManager.Instance.spawnedScrapContainer == null ? StartOfRound.Instance.elevatorTransform : RoundManager.Instance.spawnedScrapContainer;
+            var parent = RoundManager.Instance.spawnedScrapContainer ?? StartOfRound.Instance.elevatorTransform;
             GameObject gameObject = Object.Instantiate(scrap.spawnableItem.spawnPrefab, position + Vector3.up * 0.25f, Quaternion.identity, parent);
             GrabbableObject component = gameObject.GetComponent<GrabbableObject>();
             component.transform.rotation = Quaternion.Euler(component.itemProperties.restingRotation);
-            component.fallTime = 0f;
+            component.fallTime = 1f;
+            component.hasHitGround = true;
+            component.reachedFloorTarget = true;
             component.scrapValue = (int)(Random.Range(scrap.spawnableItem.minValue, scrap.spawnableItem.maxValue) * RoundManager.Instance.scrapValueMultiplier);
             component.NetworkObject.Spawn();
-            component.FallToGround(true);
             return new NetworkReference(gameObject.GetComponent<NetworkObject>(), component.scrapValue);
         }
 

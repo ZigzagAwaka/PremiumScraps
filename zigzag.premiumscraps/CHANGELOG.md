@@ -1,3 +1,11 @@
+## 2.4.4
+- **Updated**
+    - Changed [ShipInventoryUpdated](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/ShipInventoryUpdated/) soft dependency detection to be compatible with the latest update
+    - Moved the Fake airhorn scan node to be closer to the vanilla Airhorn scan node position
+    - Updated some christmas assets
+- **Fixed**
+    - Fixed Galvanized square steel spawned by Basics of architecture having a desynced position for host players
+
 ## 2.4.3
 - **Fixed**
     - Removed the 2.0.3 patches related to [LethalThings](https://thunderstore.io/c/lethal-company/p/Evaisa/LethalThings/) since it's now fixed in the latest update
@@ -9,7 +17,7 @@
 ## 2.4.1
 - **Updated**
     - Added a funny secret effect for El Gazpacho when interacting with a specific vanilla furniture
-    - Changed playerHeldBy null checks for The King and Fake airhorn hehehe
+    - The King and Fake airhorn can now be used by ghost players from the [Poltergeist](https://thunderstore.io/c/lethal-company/p/coderCleric/Poltergeist/) mod
     - Replaced HookGenPatcher dependency by [AutoHookGenPatcher](https://thunderstore.io/c/lethal-company/p/Hamunii/AutoHookGenPatcher/)
 
 # 2.4.0 v73 update

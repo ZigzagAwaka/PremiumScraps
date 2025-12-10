@@ -15,7 +15,7 @@ namespace PremiumScraps
     [BepInPlugin(GUID, NAME, VERSION)]
     [BepInDependency(LethalLib.Plugin.ModGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("AudioKnight.StarlancerAIFix", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency("ShipInventoryUpdated", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("org.lethalcompanymodding.shipinventoryupdated", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("zigzag.SelfSortingStorage", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("mrov.WeatherRegistry", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("Theronguard.EmergencyDice", BepInDependency.DependencyFlags.SoftDependency)]
@@ -25,7 +25,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.4.3";
+        const string VERSION = "2.4.4";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
@@ -33,9 +33,13 @@ namespace PremiumScraps
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
 
+
         void HarmonyPatchAll()
         {
-            PremiumScrapsMonoModPatches.Load();  // IL code patches
+            // IL code patches
+            PremiumScrapsMonoModPatches.Load();
+
+            // Harmony patches
             harmony.CreateClassProcessor(typeof(GetEnemies), true).Patch();
             harmony.CreateClassProcessor(typeof(SteelBarPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(BombItemChargerPatch), true).Patch();
@@ -44,17 +48,19 @@ namespace PremiumScraps
             harmony.CreateClassProcessor(typeof(ControllerPlayerControllerBPatch), true).Patch();
             harmony.CreateClassProcessor(typeof(ControllerVehicleControllerPatch), true).Patch();
 
+            // Soft dependency patches
             if (Lang.ACTUAL_LANG == "fr")
                 harmony.CreateClassProcessor(typeof(FrenchModeItemTooltipsPatch), true).Patch();
             if (Chainloader.PluginInfos.ContainsKey("mattymatty.MattyFixes"))
                 harmony.CreateClassProcessor(typeof(MattyFixesAirhornPositionPatch), true).Patch();  // fake airhorn position fix with matty fixes
-            if (Chainloader.PluginInfos.ContainsKey("ShipInventoryUpdated"))
-                ShipInventoryConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("ShipInventoryUpdated").Metadata);  // setup conditions for shipinventory
+            if (Chainloader.PluginInfos.ContainsKey("org.lethalcompanymodding.shipinventoryupdated"))
+                ShipInventoryConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("org.lethalcompanymodding.shipinventoryupdated").Metadata);  // setup conditions for shipinventory
             if (Chainloader.PluginInfos.ContainsKey("zigzag.SelfSortingStorage"))
                 SSSConditions.Setup(Chainloader.PluginInfos.GetValueOrDefault("zigzag.SelfSortingStorage").Metadata);  // setup conditions for SSS
             if (config.diceEvents.Value && Chainloader.PluginInfos.ContainsKey("Theronguard.EmergencyDice"))
                 DiceEvents.RegisterDiceEvents(Logger, Chainloader.PluginInfos.GetValueOrDefault("Theronguard.EmergencyDice").Metadata);  // register custom events for emergency dice mod
         }
+
 
         void LoadItemBehaviour(Item item, int behaviourId)
         {
@@ -84,6 +90,7 @@ namespace PremiumScraps
             script.grabbableToEnemies = true;
             script.itemProperties = item;
         }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051")]
         void Awake()

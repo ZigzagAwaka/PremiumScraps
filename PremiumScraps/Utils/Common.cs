@@ -28,7 +28,13 @@ namespace PremiumScraps.Utils
         public static void LoadSpecialEvent(GameObject itemPrefab)
         {
             if (todayMonth != 12) return;
-            var christmas = itemPrefab.transform.Find("Christmas");
+            Transform? christmas;
+            if (itemPrefab.name == "TheKing")
+                christmas = itemPrefab.transform.Find("CDi_LinkZeldaHarkinian/root_h/hip_jnt/spine_jnt_01/spine_jnt_02/spine_jnt_03/neck_jnt_02/Christmas");
+            else if (itemPrefab.name == "PuppyShark")
+                christmas = itemPrefab.transform.Find("PuppySharkLow/Christmas");
+            else
+                christmas = itemPrefab.transform.Find("Christmas");
             christmas?.gameObject.SetActive(true);
         }
     }

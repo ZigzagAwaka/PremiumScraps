@@ -8,9 +8,9 @@ namespace PremiumScraps.Utils
     {
         public static void Setup(BepInPlugin inventoryMetadata)
         {
-            if (new System.Version("1.2.2").CompareTo(inventoryMetadata.Version) <= 0)
+            if (new System.Version("2.0.4").CompareTo(inventoryMetadata.Version) <= 0)
             {
-                ShipInventory.Helpers.InteractionHelper.AddCondition(PremiumScrapsCondition, "[Item not allowed]");
+                ShipInventoryUpdated.Helpers.API.InteractionHelper.AddCondition(PremiumScrapsCondition, "[Item not allowed]");
             }
         }
 
