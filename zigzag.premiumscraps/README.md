@@ -135,14 +135,14 @@ You can post some suggestions or issues in the mod release page in the [modding 
 - SODA
 - Comically Large Spoon
 - crouton
-- Fake Airhorn
+- Airhorn
 - Balan Statue
-- The friendship ender
+- Friendship ender
 - Scroll of Town Portal
 - Stick
 - Basics of architecture
 - Galvanized square steel
-- My ■■■■■■th job application
+- Job application
 - Moogle
 - El Gazpacho
 - The talking orb
@@ -160,7 +160,7 @@ You can post some suggestions or issues in the mod release page in the [modding 
 
 - Thanks [Zaggy1024](https://thunderstore.io/c/lethal-company/p/Zaggy1024/) for helping with the code of the Controller item!
 
-- Some scraps have been made in collaboration with other peoples, so a big thanks to [Zedahu](https://www.twitch.tv/zedahu), [Xplozivo](https://www.twitch.tv/xplozivo), [Yoestar](https://www.instagram.com/yo_estar/) and [Abi](https://www.instagram.com/abidesh_/)
+- Some scraps have been made in collaboration with other peoples, so a big thanks to [Zeldahu](https://thunderstore.io/c/lethal-company/p/Zeldahu/), [Xplozivo](https://www.twitch.tv/xplozivo), [Yoestar](https://www.instagram.com/yo_estar/) and [Abi](https://www.instagram.com/abidesh_/)
 
 - Thanks [A Glitched Npc](https://www.twitch.tv/a_glitched_npc) for testing and some ideas!
 
