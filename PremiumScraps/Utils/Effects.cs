@@ -100,13 +100,16 @@ namespace PremiumScraps.Utils
             player.playerBodyAnimator.SetBool("Limp", false);
         }
 
-        public static void Teleportation(PlayerControllerB player, Vector3 position)
+        public static void TeleportationLocal(PlayerControllerB player, Vector3 position)
         {
             player.averageVelocity = 0f;
             player.velocityLastFrame = Vector3.zero;
             player.TeleportPlayer(position, true);
             player.beamOutParticle.Play();
-            HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
+            if (GameNetworkManager.Instance.localPlayerController.playerClientId == player.playerClientId)
+            {
+                HUDManager.Instance.ShakeCamera(ScreenShakeType.Big);
+            }
         }
 
         public static void SetPosFlags(ulong playerID, bool ship = false, bool exterior = false, bool interior = false)

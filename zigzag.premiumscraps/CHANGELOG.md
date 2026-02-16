@@ -1,3 +1,7 @@
+## 2.4.5
+- **Fixed**
+    - Fixed Scroll of Town Portal teleportation effect only being half synced for other players, and fixed the small light wrongly remaining on the ground after the destruction of the item
+
 ## 2.4.4
 - **Updated**
     - Changed [ShipInventoryUpdated](https://thunderstore.io/c/lethal-company/p/LethalCompanyModding/ShipInventoryUpdated/) soft dependency detection to be compatible with the latest update

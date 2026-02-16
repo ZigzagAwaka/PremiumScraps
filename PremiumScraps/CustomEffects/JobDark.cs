@@ -215,12 +215,12 @@ namespace PremiumScraps.CustomEffects
                         break;
                     case 5:
                         Effects.Audio(11, 2f);
-                        Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
+                        Effects.TeleportationLocal(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         yield return new WaitForSeconds(5);
                         break;
                     case 6:
                         Effects.Audio(9, 2f);
-                        Effects.Teleportation(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
+                        Effects.TeleportationLocal(player, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         yield return new WaitForSeconds(5);
                         break;
                     default:

@@ -6,7 +6,15 @@ namespace PremiumScraps.CustomEffects
 {
     internal class ScrollTP : PhysicsProp
     {
+        public Light? light;
+
         public ScrollTP() { }
+
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            light = transform.GetChild(0).GetComponent<Light>();
+        }
 
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
@@ -24,8 +32,7 @@ namespace PremiumScraps.CustomEffects
                     return;
                 }
                 var previousPos = playerHeldBy.transform.position;
-                Effects.Teleportation(playerHeldBy, StartOfRound.Instance.middleOfShipNode.position);
-                SetPosFlagsServerRpc(playerHeldBy.playerClientId, true, false, false);
+                TeleportationServerRpc(playerHeldBy.playerClientId, true, false, false);
                 AudioServerRpc(2, previousPos, 1.2f, 0.9f);
                 DestroyObjectServerRpc(StartOfRound.Instance.localPlayerController.playerClientId);
             }
@@ -50,14 +57,15 @@ namespace PremiumScraps.CustomEffects
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void SetPosFlagsServerRpc(ulong playerID, bool ship, bool exterior, bool interior)
+        private void TeleportationServerRpc(ulong playerID, bool ship, bool exterior, bool interior)
         {
-            SetPosFlagsClientRpc(playerID, ship, exterior, interior);
+            TeleportationClientRpc(playerID, ship, exterior, interior);
         }
 
         [ClientRpc]
-        private void SetPosFlagsClientRpc(ulong playerID, bool ship, bool exterior, bool interior)
+        private void TeleportationClientRpc(ulong playerID, bool ship, bool exterior, bool interior)
         {
+            Effects.TeleportationLocal(playerHeldBy, StartOfRound.Instance.middleOfShipNode.position);
             Effects.SetPosFlags(playerID, ship, exterior, interior);
         }
 
@@ -70,6 +78,10 @@ namespace PremiumScraps.CustomEffects
         [ClientRpc]
         private void DestroyObjectClientRpc(ulong playerID)
         {
+            if (light != null)
+            {
+                light.enabled = false;
+            }
             DestroyObjectInHand(StartOfRound.Instance.allPlayerScripts[playerID]);
         }
     }
