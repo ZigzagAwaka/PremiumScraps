@@ -83,6 +83,7 @@ namespace PremiumScraps
                 case 14: script = item.spawnPrefab.AddComponent<CDI_King>(); SetupScript.Copy((NoisemakerProp)script, item); break;
                 case 15: script = item.spawnPrefab.AddComponent<GreatRonka>(); break;
                 case 16: script = item.spawnPrefab.AddComponent<EvilCard>(); break;
+                case 17: script = item.spawnPrefab.AddComponent<OldStatue>(); break;
                 default: return;
             }
             script.grabbable = true;
@@ -112,7 +113,8 @@ namespace PremiumScraps
                 "ControlledOff.wav", "controller-alert.wav", "LightningStrike2.ogg", "KingAAAAAAHHH.wav", "card-evil.wav",
                 "card-evil2.wav", "card-boo.wav", "card-common-fr.wav", "card-evil-fr.wav", "card-evil2-fr.wav",
                 "book_open_square_steel-fr.wav", "book_close_eco_friendly-fr.wav", "book_use_redesign-fr.wav", "KingBoyFR.wav",
-                "KingHmmFR.wav", "KingDinnerFR.wav", "KingHelpFR.wav", "KingPeaceFR.wav", "KingSaveFR.wav", "KingShipFR.wav"
+                "KingHmmFR.wav", "KingDinnerFR.wav", "KingHelpFR.wav", "KingPeaceFR.wav", "KingSaveFR.wav", "KingShipFR.wav",
+                "Bronze Age Shitpost.wav"
             };
 
             foreach (string prefab in prefabs)
@@ -135,7 +137,7 @@ namespace PremiumScraps
                 new Scrap("Cristal/CristalItem.asset", 10),
                 new Scrap("PuppyShark/PuppySharkItem.asset", 10),
                 new Scrap("Rupee/RupeeItem.asset", 15),
-                new Scrap("EaNasir/EaNasirItem.asset", 9),
+                new Scrap("EaNasir/EaNasirItem.asset", 9, 17),
                 new Scrap("HScard/HSCardItem.asset", 9, 16),
                 new Scrap("SODA/SODAItem.asset", 8),
                 new Scrap("Spoon/SpoonItem.asset", 13),

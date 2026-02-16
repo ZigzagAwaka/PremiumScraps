@@ -1,4 +1,6 @@
 ## 2.4.5
+- **Updated**
+    - New *harmless* unlucky effect for Ea-Nasir Statue
 - **Fixed**
     - Fixed Scroll of Town Portal teleportation effect only being half synced for other players, and fixed the small light wrongly remaining on the ground after the destruction of the item
 
