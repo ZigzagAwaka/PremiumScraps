@@ -3,7 +3,7 @@
     - Updated to now be compatible with v81 of the game
     - The Controller item can now be used to access the targeted player's utility slot just like any other regular item slot
     - Updated some enemies in the spawn pool for The friendship ender effect
-    - Added clink audios to some items (small sounds while walking with the item in hands)
+    - Added jiggle audios to some items (small sounds while walking with the item in hands)
 
 ## 2.4.5
 - **Updated**
