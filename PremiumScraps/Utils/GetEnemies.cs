@@ -13,7 +13,7 @@ namespace PremiumScraps.Utils
                                                CircuitBees, EarthLeviathan, BunkerSpider, ForestKeeper, GhostGirl,
                                                TulipSnake, EyelessDog, Maneater, Nutcracker, Barber, Butler, OldBird,
                                                ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, BaboonHawk,
-                                               Tourist, Kiwi;
+                                               Tourist, Kiwi, Gunfish, Feiopar, CadaverGrowths;
         public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
@@ -54,6 +54,10 @@ namespace PremiumScraps.Utils
                         ShyGuy = enemy;
                     else if (enemy.enemyType.enemyName == "Locker" && Locker == null)
                         Locker = enemy;
+                    else if (enemy.enemyType.enemyName == "Stingray" && Gunfish == null)
+                        Gunfish = enemy;
+                    else if (enemy.enemyType.enemyName == "Cadaver Growths" && CadaverGrowths == null)
+                        CadaverGrowths = enemy;
                 }
 
                 foreach (var enemy in level.DaytimeEnemies)
@@ -88,6 +92,8 @@ namespace PremiumScraps.Utils
                         SparkTower = enemy;
                     else if (enemy.enemyType.enemyName == "Tourist" && Tourist == null)
                         Tourist = enemy;
+                    else if (enemy.enemyType.enemyName == "Feiopar" && Feiopar == null)
+                        Feiopar = enemy;
                 }
 
                 foreach (var trap in level.spawnableMapObjects)

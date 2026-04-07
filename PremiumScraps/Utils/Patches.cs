@@ -185,6 +185,13 @@ namespace PremiumScraps.Utils
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch("UseUtilitySlot_performed")]
+        public static bool UtilitySlotPatch(PlayerControllerB __instance, InputAction.CallbackContext context)
+        {
+            return CustomEffects.ControllerMovement.PlayerDataPatch(__instance, CustomEffects.ControllerMovement.ControllerActions.SwitchItemUtility, 50);
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch("Emote1_performed")]
         public static bool Emote1ControllerPatch(PlayerControllerB __instance)
         {
@@ -292,11 +299,11 @@ namespace PremiumScraps.Utils
                 if (i == 0)  // sprint is only patched on the 1st instance
                 {
                     c.Emit(Mono.Cecil.Cil.OpCodes.Ldarg_0);
-                    c.EmitDelegate<System.Func<PlayerControllerB, float>>((self) =>
+                    c.EmitDelegate<System.Func<PlayerControllerB, bool>>((self) =>
                     {
                         return CustomEffects.ControllerMovement.ControlledSprintPatch(self);
                     });
-                    c.Emit(Mono.Cecil.Cil.OpCodes.Stloc_0);
+                    c.Emit(Mono.Cecil.Cil.OpCodes.Stloc_1);
                 }
             }
         }

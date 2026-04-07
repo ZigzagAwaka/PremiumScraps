@@ -1,5 +1,6 @@
 ﻿using GameNetcodeStuff;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PremiumScraps.CustomEffects
 {
@@ -24,7 +25,8 @@ namespace PremiumScraps.CustomEffects
             SwitchItem,
             Emote,
             Move,
-            Look
+            Look,
+            SwitchItemUtility,
         }
 
         private static bool IsInControlMode(PlayerControllerB player, out Controller controller)
@@ -99,7 +101,7 @@ namespace PremiumScraps.CustomEffects
             if (((player.IsOwner && player.isPlayerControlled && (!player.IsServer || player.isHostPlayerObject)) || player.isTestingPlayer)
                 && IsInControlMode(player, out var controller))
             {
-                if ((action == ControllerActions.SwitchItem && !player.inTerminalMenu && !player.quickMenuManager.isMenuOpen && !player.isTypingChat)
+                if (((action == ControllerActions.SwitchItem || action == ControllerActions.SwitchItemUtility) && !player.inTerminalMenu && !player.quickMenuManager.isMenuOpen && !player.isTypingChat)
                     || (action == ControllerActions.Emote && !player.inSpecialInteractAnimation && !player.isJumping && !player.isWalking && !player.isClimbingLadder && !player.inTerminalMenu && !player.isTypingChat))
                 {
                     controller.SendActionControlModeServerRpc((int)action, controller.targetClientId, data: data);
@@ -159,12 +161,12 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
-        public static float ControlledSprintPatch(PlayerControllerB player)
+        public static bool ControlledSprintPatch(PlayerControllerB player)
         {
             if (IsBeingControlled(player))
-                return moveSpeed;
+                return moveSpeed > 0.3f;
             else
-                return IngamePlayerSettings.Instance.playerInput.actions.FindAction("Sprint").ReadValue<float>();
+                return InputSystem.actions.FindAction("Sprint").ReadValue<float>() > 0.3f || player.inputHoldingSprint;
         }
 
         public static void ControlledCruiserSaveValuesPatch(VehicleController vehicle)
@@ -210,6 +212,7 @@ namespace PremiumScraps.CustomEffects
                 case ControllerActions.Emote: Emote(player, data); break;
                 case ControllerActions.Move: Move(player, input, data); break;
                 case ControllerActions.Look: Look(player, input); break;
+                case ControllerActions.SwitchItemUtility: SwitchItem(player, data, isUtility: true); break;
                 default: break;
             }
         }
@@ -328,7 +331,7 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
-        private static void SwitchItem(PlayerControllerB player, float data)
+        private static void SwitchItem(PlayerControllerB player, float data, bool isUtility = false)
         {
             if (player.inTerminalMenu)
             {
@@ -339,9 +342,30 @@ namespace PremiumScraps.CustomEffects
             {
                 ShipBuildModeManager.Instance.CancelBuildMode();
                 player.playerBodyAnimator.SetBool("GrabValidated", value: false);
-                bool forward = data > 0f;
-                player.SwitchToItemSlot(player.NextItemSlot(forward));
-                player.SwitchItemSlotsServerRpc(forward);
+                if (!isUtility)
+                {
+                    bool forward = data > 0f;
+                    player.SwitchToItemSlot(player.NextItemSlot(forward));
+                    player.SwitchItemSlotsServerRpc(forward);
+                }
+                else
+                {
+                    if (player.currentItemSlot == 50)
+                    {
+                        int num = player.FirstEmptyItemSlot();
+                        if (num == -1)
+                        {
+                            num = 0;
+                        }
+                        player.SwitchToItemSlot(num);
+                        player.SwitchToSlotServerRpc(num);
+                    }
+                    else
+                    {
+                        player.SwitchToItemSlot(50);
+                        player.SwitchToSlotServerRpc(50);
+                    }
+                }
                 player.currentlyHeldObjectServer?.gameObject.GetComponent<AudioSource>().PlayOneShot(player.currentlyHeldObjectServer.itemProperties.grabSFX, 0.6f);
                 player.timeSinceSwitchingSlots = 0f;
             }

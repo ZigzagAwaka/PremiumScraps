@@ -10,7 +10,7 @@ All items are performance friendly.
 
 This mod is automatically translated into french if you are french. *Please install [FontUpdate](https://thunderstore.io/c/lethal-company/p/rectorado/FontUpdate/) if you are playing the french mode.*
 
-Compatible with v73 of Lethal Company.
+Compatible with v81 of Lethal Company.
 
 ### The friendship ender
 - Can be used to do a special effect...
@@ -156,9 +156,9 @@ You can post some suggestions or issues in the mod release page in the [modding 
 
 # Credits
 
-- Thanks [XyphireTV](https://www.twitch.tv/xyphiretv) for helping with a lot of things in this mod! (including shaders, some 3D models and coding)
+- Thanks [XyphireTV](https://www.twitch.tv/xyphiretv) for helping with a lot of things in this mod! (including shaders, some 3D models and parts of coding)
 
-- Thanks [Zaggy1024](https://thunderstore.io/c/lethal-company/p/Zaggy1024/) for helping with the code of the Controller item!
+- Thanks [Zaggy1024](https://thunderstore.io/c/lethal-company/p/Zaggy1024/) for helping with the camera code of the Controller item!
 
 - Some scraps have been made in collaboration with other peoples, so a big thanks to [Zeldahu](https://thunderstore.io/c/lethal-company/p/Zeldahu/), [Xplozivo](https://www.twitch.tv/xplozivo), [Yoestar](https://www.instagram.com/yo_estar/) and [Abi](https://www.instagram.com/abidesh_/)
 

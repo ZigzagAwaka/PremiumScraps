@@ -25,7 +25,7 @@ namespace PremiumScraps
     {
         const string GUID = "zigzag.premiumscraps";
         const string NAME = "PremiumScraps";
-        const string VERSION = "2.4.5";
+        const string VERSION = "2.5.0";
 
         public static Plugin instance;
         public static List<AudioClip> audioClips = new List<AudioClip>();
@@ -170,7 +170,6 @@ namespace PremiumScraps
                 if (scrap.behaviourId != 0) LoadItemBehaviour(item, scrap.behaviourId);
                 SpecialEvent.LoadSpecialEvent(item.spawnPrefab);
                 NetworkPrefabs.RegisterNetworkPrefab(item.spawnPrefab);
-                Utilities.FixMixerGroups(item.spawnPrefab);
                 Items.RegisterScrap(item, config.entries[i++].Value, Levels.LevelTypes.All);
             }
 

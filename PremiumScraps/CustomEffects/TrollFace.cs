@@ -161,16 +161,16 @@ namespace PremiumScraps.CustomEffects
                     enemy = GetEnemies.Nutcracker;
                 else if (i == 7 || i == 8)  // 20%
                 {
+                    Effects.Spawn(GetEnemies.Gunfish, spawnPosition);
                     if (GetEnemies.SparkTower != null)
                     {
                         Effects.Spawn(GetEnemies.Maneater, spawnPosition);
-                        Effects.Spawn(GetEnemies.ForestKeeper, spawnPosition);
                         for (int p = 0; p < 15; p++)
                             Effects.Spawn(GetEnemies.SparkTower, RoundManager.Instance.outsideAINodes[Random.Range(0, RoundManager.Instance.outsideAINodes.Length - 1)].transform.position);
                         return;
                     }
                     else
-                        enemy = GetEnemies.Maneater;
+                        enemy = GetEnemies.Thumper;
                 }
                 else  // 10%
                 {
