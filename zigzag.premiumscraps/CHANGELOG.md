@@ -1,3 +1,12 @@
+## 2.5.1
+- **Updated**
+    - Slightly reduced the base knockback power of the Stick but increased the ultimate knockback power slightly, also reduced the chance to get the ultimate knockback if the targetted player is not unlucky. And increased the chance to get the ultimate knockback if the targetted player is unlucky
+- **Fixed**
+    - Fixed the Gazpacho drinking animation sometimes getting stuck sideways
+    - Fixed the Controller sending errors in some cases when interacting with a broken/null item
+    - Fixed weather related code if [WeatherRegistry](https://thunderstore.io/c/lethal-company/p/mrov/WeatherRegistry/) is not installed (soft dependency)
+    - Fixed failing to spawn traps with The friendship ender
+
 # 2.5.0 v81 update
 - **Updated**
     - Updated to now be compatible with v81 of the game

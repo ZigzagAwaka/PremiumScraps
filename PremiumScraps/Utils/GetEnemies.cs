@@ -14,7 +14,7 @@ namespace PremiumScraps.Utils
                                                TulipSnake, EyelessDog, Maneater, Nutcracker, Barber, Butler, OldBird,
                                                ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, BaboonHawk,
                                                Tourist, Kiwi, Gunfish, Feiopar, CadaverGrowths;
-        public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
+        public static UnityEngine.GameObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
         [HarmonyPostfix]
@@ -96,28 +96,19 @@ namespace PremiumScraps.Utils
                         Feiopar = enemy;
                 }
 
-                foreach (var trap in level.spawnableMapObjects)
+                foreach (var trap in level.indoorMapHazards)
                 {
-                    if (trap.prefabToSpawn.name == "Landmine" && Landmine == null)
-                        Landmine = trap;
-                    else if (trap.prefabToSpawn.name == "TurretContainer" && Turret == null)
-                        Turret = trap;
-                    else if (trap.prefabToSpawn.name == "SpikeRoofTrapHazard" && SpikeTrap == null)
-                        SpikeTrap = trap;
-                    else if (trap.prefabToSpawn.name == "Seamine" && Seamine == null)
-                        Seamine = trap;
-                    else if (trap.prefabToSpawn.name == "Bertha" && BigBertha == null)
-                        BigBertha = trap;
+                    if (trap.hazardType.prefabToSpawn.name == "Landmine" && Landmine == null)
+                        Landmine = trap.hazardType.prefabToSpawn;
+                    else if (trap.hazardType.prefabToSpawn.name == "TurretContainer" && Turret == null)
+                        Turret = trap.hazardType.prefabToSpawn;
+                    else if (trap.hazardType.prefabToSpawn.name == "SpikeRoofTrapHazard" && SpikeTrap == null)
+                        SpikeTrap = trap.hazardType.prefabToSpawn;
+                    else if (trap.hazardType.prefabToSpawn.name == "Seamine" && Seamine == null)
+                        Seamine = trap.hazardType.prefabToSpawn;
+                    else if (trap.hazardType.prefabToSpawn.name == "Bertha" && BigBertha == null)
+                        BigBertha = trap.hazardType.prefabToSpawn;
                 }
-
-                /*if (Masked != null && HoardingBug != null && SnareFlea != null && Jester != null
-                    && Bracken != null && Thumper != null && CoilHead != null && CircuitBees != null
-                    && EarthLeviathan != null && BunkerSpider != null && ForestKeeper != null && Landmine != null
-                    && Turret != null && GhostGirl != null && TulipSnake != null && EyelessDog != null
-                    && Maneater != null && Nutcracker != null && Barber != null && SpikeTrap != null &&
-                    Seamine != null && BigBertha != null && Butler != null && OldBird != null && ShyGuy != null
-                    && RedwoodTitan != null && RedwoodGiant != null && Locker != null && Bruce != null)
-                    break;*/
             }
         }
     }

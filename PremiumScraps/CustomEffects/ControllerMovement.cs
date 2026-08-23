@@ -35,7 +35,7 @@ namespace PremiumScraps.CustomEffects
             if (player == null || player.isPlayerDead)
                 return false;
             var item = player.currentlyHeldObjectServer;
-            if (item != null && item.itemProperties.name == "ControllerItem" && item is Controller controllerItem && controllerItem.isInControlMode)
+            if (item != null && item.itemProperties != null && item.itemProperties.name == "ControllerItem" && item is Controller controllerItem && controllerItem.isInControlMode)
             {
                 controller = controllerItem;
                 return true;

@@ -274,7 +274,14 @@ namespace PremiumScraps.Utils
                 return;
             }
             RoundManager.Instance.SetToCurrentLevelWeather();
-            TimeOfDay.Instance.SetWeatherBasedOnVariables(StartOfRound.Instance.currentLevel.randomWeathers.Where(w => w.weatherType == weather).First());
+            for (int i = 0; i < StartOfRound.Instance.currentLevel.randomWeathers.Length; i++)
+            {
+                if (StartOfRound.Instance.currentLevel.randomWeathers[i].weatherType != StartOfRound.Instance.currentLevel.currentWeather)
+                {
+                    continue;
+                }
+                TimeOfDay.Instance.SetWeatherBasedOnVariables(StartOfRound.Instance.currentLevel.randomWeathers[i]);
+            }
             if (GameNetworkManager.Instance.localPlayerController.isInsideFactory)
                 return;
             ActivateWeatherEffect(original);
@@ -287,10 +294,8 @@ namespace PremiumScraps.Utils
                 var effect = TimeOfDay.Instance.effects[i];
                 var enabled = (int)StartOfRound.Instance.currentLevel.currentWeather == i;
                 effect.effectEnabled = enabled;
-                if (effect.effectPermanentObject != null)
-                    effect.effectPermanentObject.SetActive(enabled);
-                if (effect.effectObject != null)
-                    effect.effectObject.SetActive(enabled);
+                effect.effectPermanentObject?.SetActive(enabled);
+                effect.effectObject?.SetActive(enabled);
                 if (TimeOfDay.Instance.sunAnimator != null)
                 {
                     if (enabled && !string.IsNullOrEmpty(effect.sunAnimatorBool))
@@ -415,9 +420,9 @@ namespace PremiumScraps.Utils
             }
         }
 
-        public static void Spawn(SpawnableMapObject trap, Vector3 position, float yRot = 0f)
+        public static void Spawn(GameObject objectToSpawn, Vector3 position, float yRot = 0f)
         {
-            GameObject gameObject = Object.Instantiate(trap.prefabToSpawn, position, Quaternion.Euler(new Vector3(0f, yRot, 0f)), RoundManager.Instance.mapPropsContainer.transform);
+            GameObject gameObject = Object.Instantiate(objectToSpawn, position, Quaternion.Euler(new Vector3(0f, yRot, 0f)), RoundManager.Instance.mapPropsContainer.transform);
             gameObject.GetComponent<NetworkObject>().Spawn(true);
         }
 

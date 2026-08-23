@@ -17,6 +17,10 @@ namespace PremiumScraps.CustomEffects
         private readonly int usageBeforeDrunkMax = 6;
         public Vector3? originalPosition = null;
         public Vector3? originalRotation = null;
+        public Vector3 drinkPosition = new Vector3(0.05f, 0.1f, 0.05f);
+        public Vector3 drinkRotation = new Vector3(-50, 10, 0);
+        private Vector3? position = null;
+        private Vector3? rotation = null;
         private readonly List<string> messages = new List<string>();
 
         public SpanishDrink()
@@ -34,6 +38,10 @@ namespace PremiumScraps.CustomEffects
         public override void Start()
         {
             base.Start();
+            originalPosition = itemProperties.positionOffset;
+            originalRotation = itemProperties.rotationOffset;
+            position = originalPosition;
+            rotation = originalRotation;
             SelectUsageBeforeDrunk();
             if (!Plugin.config.gazpachoMemeSfx.Value || Lang.ACTUAL_LANG != "fr")
             {
@@ -53,17 +61,38 @@ namespace PremiumScraps.CustomEffects
             }
         }
 
+        public override void LateUpdate()
+        {
+            if (parentObject != null)
+            {
+                transform.rotation = parentObject.rotation;
+                transform.Rotate(rotation ?? itemProperties.rotationOffset);
+                transform.position = parentObject.position;
+                Vector3 positionOffset = position ?? itemProperties.positionOffset;
+                positionOffset = parentObject.rotation * positionOffset;
+                transform.position += positionOffset;
+            }
+            if (rotateObject)
+            {
+                transform.Rotate(new Vector3(0f, Time.deltaTime * 60f, 0f), Space.World);
+            }
+            if (radarIcon != null)
+            {
+                radarIcon.position = transform.position;
+            }
+        }
+
         public override void ItemActivate(bool used, bool buttonDown = true)
         {
             base.ItemActivate(used, buttonDown);
             if (playerHeldBy != null)
             {
+                originalPosition = itemProperties.positionOffset;
+                originalRotation = itemProperties.rotationOffset;
                 if (IsOwner)
                 {
-                    originalPosition = itemProperties.positionOffset;
-                    originalRotation = itemProperties.rotationOffset;
-                    UpdatePosRotServerRpc(new Vector3(0.05f, 0.1f, 0.05f), new Vector3(-50, 10, 0));
                     playerHeldBy.activatingItem = buttonDown;
+                    UpdatePosRotServerRpc(drinkPosition, drinkRotation);
                     playerHeldBy.playerBodyAnimator.SetBool("useTZPItem", buttonDown);  // start drink animation
                 }
                 usage++;
@@ -79,8 +108,8 @@ namespace PremiumScraps.CustomEffects
                 yield return new WaitForSeconds(0.8f);
                 AudioServerRpc(18, playerHeldBy.transform.position, 1f, 0.7f);  // drink audio
                 yield return new WaitForSeconds(1.8f);
-                UpdatePosRotServerRpc(originalPosition != null ? originalPosition.Value : default, originalRotation != null ? originalRotation.Value : default);
                 player.playerBodyAnimator.SetBool("useTZPItem", false);  // stop drink animation
+                UpdatePosRotServerRpc(originalPosition ?? itemProperties.positionOffset, originalRotation ?? itemProperties.rotationOffset);
                 player.activatingItem = false;
                 yield return new WaitForSeconds(0.2f);
                 if (!player.isPlayerDead)
@@ -185,8 +214,8 @@ namespace PremiumScraps.CustomEffects
         [ClientRpc]
         private void UpdatePosRotClientRpc(Vector3 newPos, Vector3 newRot)
         {
-            itemProperties.positionOffset = newPos;
-            itemProperties.rotationOffset = newRot;
+            position = newPos;
+            rotation = newRot;
         }
 
         [ServerRpc(RequireOwnership = false)]

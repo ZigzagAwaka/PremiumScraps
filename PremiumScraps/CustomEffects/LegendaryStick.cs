@@ -10,10 +10,10 @@ namespace PremiumScraps.CustomEffects
 {
     internal class LegendaryStick : PhysicsProp
     {
-        public int knockbackPowerMin = 5;
-        public int knockbackPowerMax = 15;
-        public int chanceForUltimateKnockback = 5;
-        public int ultimateKnockback = 50;
+        public int knockbackPowerMin = 4;
+        public int knockbackPowerMax = 12;
+        public int chanceForUltimateKnockback = 3;
+        public int ultimateKnockback = 55;
         public bool reelingUp;
         public bool isHoldingButton;
         private Coroutine? reelingUpCoroutine;
@@ -148,7 +148,7 @@ namespace PremiumScraps.CustomEffects
         {
             if (playerHeldBy != null)
             {
-                if (Effects.IsUnlucky(GameNetworkManager.Instance.localPlayerController.playerSteamId) && Random.Range(0, 10) <= 3)  // unlucky 40%
+                if (Effects.IsUnlucky(GameNetworkManager.Instance.localPlayerController.playerSteamId) && Random.Range(0, 2) == 0)  // unlucky 50%
                     power = ultimateKnockback;
                 Effects.Knockback(GameNetworkManager.Instance.localPlayerController.transform.position - direction, 5, 0, power);
             }
